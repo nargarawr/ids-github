@@ -1,0 +1,211 @@
+\documentclass[a4paper,twoside,notitlepage,11pt]{article}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyeq}
+\usepackage{amstext}
+\usepackage{tabularx}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage{tocloft}
+\usepackage{lscape}
+\usepackage{subcaption}
+\usepackage{rotating}
+\usepackage{titletoc}
+\usepackage{setspace}
+\usepackage[all]{xy}
+\usepackage{nccmath}
+\usepackage[a4paper,hmargin=50pt,vmargin=75pt]{geometry}
+\usepackage[hypcap]{caption}
+\usepackage{qtree}
+\usepackage{cleveref}
+\usepackage{mathpartir}
+\usepackage{listings}
+\usepackage{float}
+\usepackage[compact]{titlesec}
+\usepackage{layouts}
+\usepackage{wrapfig}
+\usepackage{listings}
+\usepackage{color}
+
+\hypersetup{
+    unicode=false,
+    pdftoolbar=true,  
+    pdfmenubar=true,     
+    pdffitwindow=false,    
+    pdfstartview={FitH},  
+    pdftitle={Title},  
+    pdfauthor={Craig Knott},
+    pdfsubject={CS},
+    pdfnewwindow=true,  
+    colorlinks=true,  
+    linkcolor=black,  
+    citecolor=black, 
+    filecolor=black,  
+    urlcolor=black  
+}
+
+\newcommand{\paperTitleShort}{Web-based Fuzzy Logic Visualisation and Inferencing System}
+\newcommand{\paperTitle}{Web-based Fuzzy Logic Visualisation and Inferencing System}
+
+\setlength{\parskip}{0.25em}
+
+\renewcommand{\headrulewidth}{0.0pt}
+
+\fancypagestyle{plain}{
+	\fancyhf{}
+	\fancyhead[LO]{Craig Knott}
+	\fancyhead[CO]{\textit{\paperTitleShort}}
+	\fancyhead[RO]{\thepage}
+	\fancyhead[LE]{\thepage}
+	\fancyhead[CE]{\textit{\paperTitleShort}}
+	\fancyhead[RE]{Craig Knott}
+}
+
+\fancypagestyle{appendix}{
+	\fancyhf{}
+	\fancyhead[LO]{Craig Knott}
+	\fancyhead[CO]{\textit{\paperTitleShort}}
+	\fancyhead[RO]{Appendix \thepage}
+	\fancyhead[LE]{Appendix \thepage}
+	\fancyhead[CE]{\textit{\paperTitleShort}}
+	\fancyhead[RE]{Craig Knott}
+}
+
+\fancypagestyle{biblio}{
+	\fancyhf{}
+	\fancyhead[LO]{cxk01u}
+	\fancyhead[CO]{\textit{\paperTitleShort}}
+	\fancyhead[RO]{}
+	\fancyhead[LE]{}
+	\fancyhead[CE]{\textit{\paperTitleShort}}
+	\fancyhead[RE]{Craig Knott}
+}
+
+\begin{document}
+%=====================================================================                                                       
+%   _______ __  __        ____                 
+%  /_  __(_) /_/ /__     / __ \____ _____ ____ 
+%   / / / / __/ / _ \   / /_/ / __ `/ __ `/ _ \
+%  / / / / /_/ /  __/  / ____/ /_/ / /_/ /  __/
+% /_/ /_/\__/_/\___/  /_/    \__,_/\__, /\___/ 
+%                                 /____/       
+%=====================================================================                                                       
+% http://patorjk.com/software/taag  Font: Slant
+
+\pagestyle{empty}
+\newgeometry{left=99pt, right=99pt, top = 75pt, bottom=75pt}
+\input{sections/titlepage}
+
+%========================================================================================	
+%   ______      __    __              ____   ______            __             __      
+%  /_  __/___ _/ /_  / /__     ____  / __/  / ____/___  ____  / /____  ____  / /______
+%   / / / __ `/ __ \/ / _ \   / __ \/ /_   / /   / __ \/ __ \/ __/ _ \/ __ \/ __/ ___/
+%  / / / /_/ / /_/ / /  __/  / /_/ / __/  / /___/ /_/ / / / / /_/  __/ / / / /_(__  ) 
+% /_/  \__,_/_.___/_/\___/   \____/_/     \____/\____/_/ /_/\__/\___/_/ /_/\__/____/  
+% 
+%========================================================================================                                                                                    
+\newpage
+\newgeometry{left=50pt, right=50pt, top = 75pt, bottom=75pt}
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\tableofcontents
+
+%=====================================================================                                                       
+%    _____           __  _                ____           
+%   / ___/___  _____/ /_(_)___  ____     / __ \____  ___ 
+%   \__ \/ _ \/ ___/ __/ / __ \/ __ \   / / / / __ \/ _ \
+%  ___/ /  __/ /__/ /_/ / /_/ / / / /  / /_/ / / / /  __/
+% /____/\___/\___/\__/_/\____/_/ /_/   \____/_/ /_/\___/ 
+% 
+%=====================================================================                                                       
+
+\newpage
+\pagestyle{plain}
+\setcounter{page}{1}
+
+\section{Section 1}
+
+
+\makeFig
+{\includegraphics[width=0.1\textwidth]{images/UoN_Arms}}
+{The Nottingham Crest}
+{crest}
+
+Referencing \ref{crest}
+
+
+%=====================================================================
+%    _____           __  _                ______             
+%   / ___/___  _____/ /_(_)___  ____     /_  __/      ______ 
+%   \__ \/ _ \/ ___/ __/ / __ \/ __ \     / / | | /| / / __ \
+%  ___/ /  __/ /__/ /_/ / /_/ / / / /    / /  | |/ |/ / /_/ /
+% /____/\___/\___/\__/_/\____/_/ /_/    /_/   |__/|__/\____/                                                            
+% 
+%=====================================================================                                               
+%=====================================================================
+%    _____           __  _                ________                 
+%   / ___/___  _____/ /_(_)___  ____     /_  __/ /_  ________  ___ 
+%   \__ \/ _ \/ ___/ __/ / __ \/ __ \     / / / __ \/ ___/ _ \/ _ \
+%  ___/ /  __/ /__/ /_/ / /_/ / / / /    / / / / / / /  /  __/  __/
+% /____/\___/\___/\__/_/\____/_/ /_/    /_/ /_/ /_/_/   \___/\___/                                                                   
+%  
+%=====================================================================                                                       
+%=====================================================================                                                       
+%    _____           __  _                ______                
+%   / ___/___  _____/ /_(_)___  ____     / ____/___  __  _______
+%   \__ \/ _ \/ ___/ __/ / __ \/ __ \   / /_  / __ \/ / / / ___/
+%  ___/ /  __/ /__/ /_/ / /_/ / / / /  / __/ / /_/ / /_/ / /    
+% /____/\___/\___/\__/_/\____/_/ /_/  /_/    \____/\__,_/_/     
+%                                                               
+%=====================================================================                                                       
+%=====================================================================                                                       
+%    _____           __  _                _______          
+%   / ___/___  _____/ /_(_)___  ____     / ____(_)   _____ 
+%   \__ \/ _ \/ ___/ __/ / __ \/ __ \   / /_  / / | / / _ \
+%  ___/ /  __/ /__/ /_/ / /_/ / / / /  / __/ / /| |/ /  __/
+% /____/\___/\___/\__/_/\____/_/ /_/  /_/   /_/ |___/\___/ 
+%                                                           
+%=====================================================================                                                       
+
+
+%=====================================================================                                                       
+%     ____  _ __    ___                              __         
+%    / __ )(_) /_  / (_)___  ____ __________ _____  / /_  __  __
+%   / __  / / __ \/ / / __ \/ __ `/ ___/ __ `/ __ \/ __ \/ / / /
+%  / /_/ / / /_/ / / / /_/ / /_/ / /  / /_/ / /_/ / / / / /_/ / 
+% /_____/_/_.___/_/_/\____/\__, /_/   \__,_/ .___/_/ /_/\__, /  
+%                         /____/          /_/          /____/   
+%=====================================================================                                                       
+                     
+\newpage
+\pagestyle{biblio}
+\bibliographystyle{plain}
+
+\bibliography{bib}
+
+%=====================================================================                                                       
+%     ___                               ___     
+%    /   |  ____  ____  ___  ____  ____/ (_)  __
+%   / /| | / __ \/ __ \/ _ \/ __ \/ __  / / |/_/
+%  / ___ |/ /_/ / /_/ /  __/ / / / /_/ / />  <  
+% /_/  |_/ .___/ .___/\___/_/ /_/\__,_/_/_/|_|  
+%       /_/   /_/                                                         
+%=====================================================================                                                       
+
+\newpage
+\setcounter{page}{1}
+\pagestyle{appendix}
+\appendix
+\input{appendix}
+
+% Fin
+\end{document}
+
+
+
+
+
+
+
+
+	
