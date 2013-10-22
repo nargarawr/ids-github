@@ -1,0 +1,70 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Necessary style sheets -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/shiny.css"/>  
+  <link rel="stylesheet" type="text/css" href="css/jquery.slider.min.css"/>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css"/>
+
+  <!-- Custom style sheets -->
+  <link rel="stylesheet" type="text/css" href="css/cxk-auxStyles.css"/>
+
+  <!-- Necessary functionality Favascript files-->
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+  <script src="js/shiny.js" type="text/javascript"></script>
+  <script src="js/jquery.slider.min.js"></script>
+  <script src="js/boostrap-tooltip.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+  <!-- Custom Javascript files -->
+  <script src="js/cxk-auxFunctions.js"></script>
+  <script src="js/cxk-dynamic-ui.js"></script>
+
+
+  <title>Type-1 System</title>
+</head>
+
+<body>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12" style="padding: 10px 0px;">
+      <h1>Type-1 System</h1>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span2">
+      <form class ="well">
+      </form>
+    </div>
+    <div class="span10">
+      <div class="tabbable">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#tab-inputs" data-toggle="tab" onclick="updateStructure()">Inputs</a>
+          </li>
+          <li>
+            <a href="#tab-outputs" data-toggle="tab" onclick="updateStructure()">Outputs</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" title="Input" id="tab-inputs">        
+            <div id="mainDivInput">
+            <div></div>                 
+            </div>
+           </div>
+          <div class="tab-pane" title="Output" id="tab-outputs">        
+            <div id="mainDivOutput">
+            <div></div>                 
+            </div>
+           </div>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+</body>
+</html>
