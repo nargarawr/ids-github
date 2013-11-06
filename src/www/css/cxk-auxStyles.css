@@ -2,6 +2,10 @@ h4 .titleText {
 	font-size:18px;
 }
 
+#addNewVarInput {
+	margin-left:2.564102564102564%;
+}
+
 hr {
 	border-color:#000000;
 	border: 1px solid;
