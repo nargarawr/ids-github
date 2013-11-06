@@ -12,17 +12,17 @@
   <!-- Custom style sheets -->
   <link rel="stylesheet" type="text/css" href="css/cxk-auxStyles.css"/>
 
-  <!-- Necessary functionality Favascript files-->
+  <!-- Custom Javascript files -->
+  <script src="js/cxk-objects.js"></script>
+  <script src="js/cxk-auxFunctions.js"></script>
+  <script src="js/cxk-dynamic-ui.js"></script>
+
+  <!-- Necessary functionality Javascript files-->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
   <script src="js/shiny.js" type="text/javascript"></script>
   <script src="js/jquery.slider.min.js"></script>
   <script src="js/boostrap-tooltip.js"></script>
   <script src="js/bootstrap.min.js"></script>
-
-  <!-- Custom Javascript files -->
-  <script src="js/cxk-auxFunctions.js"></script>
-  <script src="js/cxk-dynamic-ui.js"></script>
-
 
   <title>Type-1 System</title>
 </head>
@@ -51,12 +51,13 @@
           </li>
         </ul>
         <div class="tab-content">
-          <div class="tab-pane active" title="Input" id="tab-inputs">        
+          <div class="tab-pane active" id="tab-inputs">
+              <button class="btn" id="addNewVarInput" onclick="addNewVar(true)">Add New Variable</button>
             <div id="mainDivInput">
-            <div></div>                 
+            <div class="break"></div>                 
             </div>
            </div>
-          <div class="tab-pane" title="Output" id="tab-outputs">        
+          <div class="tab-pane" id="tab-outputs">        
             <div id="mainDivOutput">
             <div></div>                 
             </div>

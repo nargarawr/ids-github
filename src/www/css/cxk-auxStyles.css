@@ -1,0 +1,54 @@
+h4 .titleText {
+	font-size:18px;
+}
+
+hr {
+	border-color:#000000;
+	border: 1px solid;
+}
+
+body .modal {
+	width: 750px;
+}
+
+.break {
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.variable {
+	background-color:#EEEEEE;
+	margin-bottom:10px;
+	padding:15px;
+	border:1px solid;
+	border-radius:10px;
+	box-shadow: 5px 5px 5px #888888;
+}
+
+.variable input {
+	margin:5px;
+	padding:5px 5px;
+	height:30px;
+	font-size:14px;
+	line-height:20px;
+}
+
+.variable h4, .variable h5 {
+	float:left;
+	margin-top:10px;
+	margin-left:20px;
+}
+
+.left {
+	float:left;
+	margin-left:20px;
+}
+
+.right {
+	float:right;
+	margin-right:20px;
+}
+
+.variableButton {
+	margin-top:5px;
+}
