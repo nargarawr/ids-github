@@ -13,6 +13,17 @@
     return Math.floor(0x100000000 + (Math.random() * 0xF00000000)).toString(16);
   }
 
+  // A wrapper for getComputedStyle that is compatible with older browsers.
+  // This is significantly faster than jQuery's .css() function.
+  function getStyle(el, styleProp) {
+    if (el.currentStyle)
+      var x = el.currentStyle[styleProp];
+    else if (window.getComputedStyle)
+      var x = document.defaultView.getComputedStyle(el, null)
+                .getPropertyValue(styleProp);
+    return x;
+  }
+
   // Convert a number to a string with leading zeros
   function padZeros(n, digits) {
     var str = n.toString();
@@ -450,7 +461,16 @@
       var self = this;
 
       var createSocketFunc = exports.createSocket || function() {
-        var ws = new WebSocket('ws://' + window.location.host, 'shiny');
+        var protocol = 'ws:';
+        if (window.location.protocol === 'https:')
+          protocol = 'wss:';
+
+        var defaultPath = window.location.pathname;
+        if (!/\/$/.test(defaultPath))
+          defaultPath += '/';
+        defaultPath += 'websocket/';
+
+        var ws = new WebSocket(protocol + '//' + window.location.host + defaultPath);
         ws.binaryType = 'arraybuffer';
         return ws;
       };
@@ -472,6 +492,7 @@
       };
       socket.onclose = function() {
         $(document.body).addClass('disconnected');
+        self.$notifyDisconnected();
       };
       return socket;
     };
@@ -487,6 +508,34 @@
       $.extend(this.$inputValues, values);
       this.$updateConditionals();
     };
+
+    this.$notifyDisconnected = function() {
+
+      // function to normalize hostnames
+      normalize = function(hostname) {
+        if (hostname == "127.0.0.1")
+          return "localhost";
+        else
+          return hostname;
+      }
+
+      // Send a 'disconnected' message to parent if we are on the same domin
+      var parentUrl = (parent !== window) ? document.referrer : null;
+      if (parentUrl) {
+        // parse the parent href
+        var a = document.createElement('a');
+        a.href = parentUrl;
+                
+        // post the disconnected message if the hostnames are the same
+        if (normalize(a.hostname) == normalize(window.location.hostname)) {
+          protocol = a.protocol.replace(':',''); // browser compatability
+          origin = protocol + '://' + a.hostname;
+          if (a.port)
+            origin = origin + ':' + a.port;
+          parent.postMessage('disconnected', origin);
+        }
+      }
+    }
 
     // NB: Including blobs will cause IE to break!
     // TODO: Make blobs work with Internet Explorer
@@ -623,7 +672,18 @@
     };
 
     this.$updateConditionals = function() {
-      var scope = {input: this.$inputValues, output: this.$values};
+      var inputs = {};
+
+      // Input keys use "name:type" format; we don't want the user to
+      // have to know about the type suffix when referring to inputs.
+      for (var name in this.$inputValues) {
+        if (this.$inputValues.hasOwnProperty(name)) {
+          var shortName = name.replace(/:.*/, '');
+          inputs[shortName] = this.$inputValues[name];
+        }
+      }
+
+      var scope = {input: inputs, output: this.$values};
 
       var triggerShown  = function() { $(this).trigger('shown'); };
       var triggerHidden = function() { $(this).trigger('hidden'); };
@@ -800,6 +860,10 @@
       // Send messages.foo and messages.bar to appropriate handlers
       this._sendMessagesToHandlers(message, customMessageHandlers,
                                    customMessageHandlerOrder);
+    });
+    
+    addMessageHandler('config', function(message) {
+      this.config = message;
     });
 
   }).call(ShinyApp.prototype);
@@ -987,19 +1051,106 @@
       return $(scope).find('.shiny-image-output, .shiny-plot-output');
     },
     renderValue: function(el, data) {
+      var self = this;
+      var $el = $(el);
       // Load the image before emptying, to minimize flicker
       var img = null;
+      var clickId, hoverId;
+      
       if (data) {
+        clickId = $el.data('click-id');
+        hoverId = $el.data('hover-id');
+        
+        $el.data('coordmap', data.coordmap);
+        delete data.coordmap;
+        
         img = document.createElement('img');
         // Copy items from data to img. This should include 'src'
         $.each(data, function(key, value) {
           img[key] = value;
         });
+
+        // Firefox doesn't have offsetX/Y, so we need to use an alternate
+        // method of calculation for it
+        function mouseOffset(mouseEvent) {
+          if (typeof(mouseEvent.offsetX) !== 'undefined') {
+            return {
+              x: mouseEvent.offsetX,
+              y: mouseEvent.offsetY
+            };
+          }
+          var offset = $el.offset();
+          return {
+            x: mouseEvent.pageX - offset.left,
+            y: mouseEvent.pageY - offset.top
+          };
+        }
+        
+        function createMouseHandler(inputId) {
+          return function(e) {
+            if (e === null) {
+              Shiny.onInputChange(inputId, null);
+              return;
+            }
+            
+            // TODO: Account for scrolling within the image??
+            
+            var coordmap = $el.data('coordmap');
+            function devToUsrX(deviceX) {
+              var x = deviceX - coordmap.bounds.left;
+              var factor = (coordmap.usr.right - coordmap.usr.left) /
+                  (coordmap.bounds.right - coordmap.bounds.left);
+              return (x * factor) + coordmap.usr.left;
+            }
+            function devToUsrY(deviceY) {
+              var y = deviceY - coordmap.bounds.bottom;
+              var factor = (coordmap.usr.top - coordmap.usr.bottom) /
+                  (coordmap.bounds.top - coordmap.bounds.bottom);
+              return (y * factor) + coordmap.usr.bottom;
+            }
+
+            var offset = mouseOffset(e);
+            
+            var userX = devToUsrX(offset.x);
+            if (coordmap.log.x)
+              userX = Math.pow(10, userX);
+            
+            var userY = devToUsrY(offset.y);
+            if (coordmap.log.y)
+              userY = Math.pow(10, userY);
+            
+            Shiny.onInputChange(inputId, {
+              x: userX, y: userY,
+              ".nonce": Math.random()
+            });
+          }
+        };
+
+        if (!$el.data('hover-func')) {
+          var hoverDelayType = $el.data('hover-delay-type') || 'debounce';
+          var delayFunc = (hoverDelayType === 'throttle') ? throttle : debounce;
+          var hoverFunc = delayFunc($el.data('hover-delay') || 300,
+                                    createMouseHandler(hoverId));
+          $el.data('hover-func', hoverFunc);
+        }
+        
+        if (clickId)
+          $(img).on('mousedown', createMouseHandler(clickId));
+        if (hoverId) {
+          $(img).on('mousemove', $el.data('hover-func'));
+          $(img).on('mouseout', function(e) {
+            $el.data('hover-func')(null);
+          });
+        }
+
+        if (clickId || hoverId) {
+          $(img).addClass('crosshair');
+        }
       }
 
-      $(el).empty();
+      $el.empty();
       if (img)
-        $(el).append(img);
+        $el.append(img);
     }
   });
   outputBindings.register(imageOutputBinding, 'shiny.imageOutput');
@@ -1032,6 +1183,53 @@
     }
   });
   outputBindings.register(downloadLinkOutputBinding, 'shiny.downloadLink');
+
+  var datatableOutputBinding = new OutputBinding();
+  $.extend(datatableOutputBinding, {
+    find: function(scope) {
+      return $(scope).find('.shiny-datatable-output');
+    },
+    onValueError: function(el, err) {
+      exports.unbindAll(el);
+      this.renderError(el, err);
+    },
+    renderValue: function(el, data) {
+      var $el = $(el).empty();
+      if (!data || !data.colnames) return;
+      var colnames = $.makeArray(data.colnames);
+      var header = colnames.map(function(x) {
+        return '<th>' + x + '</th>';
+      }).join('');
+      header = '<thead><tr>' + header + '</tr></thead>';
+      var footer = colnames.map(function(x) {
+        return '<th><input type="text" placeholder="' + x + '" /></th>';
+      }).join('');
+      footer = '<tfoot>' + footer + '</tfoot>';
+      var content = '<table class="table table-striped table-hover">' +
+                    header + footer + '</table>';
+      $el.append(content);
+      var oTable = $(el).children("table").dataTable($.extend({
+        "bProcessing": true,
+        "bServerSide": true,
+        "aaSorting": [],
+        "bSortClasses": false,
+        "iDisplayLength": 25,
+        "sAjaxSource": data.action
+      }, data.options));
+      // use debouncing for searching boxes
+      $el.find('label input').first().unbind('keyup')
+           .keyup(debounce(data.searchDelay, function() {
+              oTable.fnFilter(this.value);
+            }));
+      var searchInputs = $el.find("tfoot input");
+      searchInputs.keyup(debounce(data.searchDelay, function() {
+        oTable.fnFilter(this.value, searchInputs.index(this));
+      }));
+      // FIXME: ugly scrollbars in tab panels b/c Bootstrap uses 'visible: auto'
+      $el.parents('.tab-content').css('overflow', 'visible');
+    }
+  });
+  outputBindings.register(datatableOutputBinding, 'shiny.datatableOutput');
 
   // =========================================================================
   // Input bindings
@@ -2518,7 +2716,7 @@
       // non-zero, then we know that no ancestor has display:none.
       if (obj === null || obj.offsetWidth !== 0 || obj.offsetHeight !== 0) {
         return false;
-      } else if (getComputedStyle(obj, null).display === 'none') {
+      } else if (getStyle(obj, 'display') === 'none') {
         return true;
       } else {
         return(isHidden(obj.parentNode));
@@ -2639,6 +2837,14 @@
       self.removeClass('playing');
       target.removeData('animating');
     }
+  });
+  
+  $(document).on('keydown', function(e) {
+    if (e.which !== 114 || (!e.ctrlKey && !e.metaKey) || (e.shiftKey || e.altKey))
+      return;
+    var url = 'reactlog?w=' + Shiny.shinyapp.config.workerId;
+    window.open(url);
+    e.preventDefault();
   });
 
 })();
