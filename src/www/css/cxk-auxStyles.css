@@ -56,3 +56,7 @@ body .modal {
 .variableButton {
 	margin-top:5px;
 }
+
+.indent  {
+	margin-left:20px !important;
+}

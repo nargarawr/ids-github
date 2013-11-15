@@ -3,6 +3,10 @@ var inputIndex = 0;
 var inputDivs = new Array();
 
 /*
+
+*/
+
+/*
 	Checks whether the specified variable is valid, returns an error code
 */
 function checkValidity (divId) {
@@ -97,6 +101,12 @@ function expandDiv(divId){
 function deleteDiv(divId) {
 	var r = confirm("This will permanently this variable, are you sure you wish to continue?")
 	if (r==true) { 		
+		for ( var key in inputDivs ) {
+			if ( key === divId ) {
+				delete inputDivs[key];
+			}
+		}
+
   		var myDiv = document.getElementById('mainDivInput');
   		myDiv.removeChild(document.getElementById(divId));
   	} 

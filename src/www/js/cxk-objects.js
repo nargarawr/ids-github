@@ -81,22 +81,30 @@ function systemVar(m_varName, divId, isInput){
 		varNameLabel.appendChild(document.createTextNode("Variable Name"));
 		this.div.appendChild(varNameLabel);		
 
+		this.div.appendChild(document.createElement("br"));
+		this.div.appendChild(document.createElement("br"));
+
 		var varNameInput = document.createElement("input");
 		varNameInput.id = this.divId + "_nameInput";
 		varNameInput.type = "text";
 		varNameInput.value = this.varName;
+		varNameInput.className = "indent";
 		this.div.appendChild(varNameInput);
 
 		this.div.appendChild(document.createElement("br"));
 
 		var varRangeLabel = document.createElement("h4");
 		varRangeLabel.className = "titleText";
-		varRangeLabel.appendChild(document.createTextNode("Range"));
+		varRangeLabel.appendChild(document.createTextNode("Range (min-max)"));
 		this.div.appendChild(varRangeLabel);
+
+		this.div.appendChild(document.createElement("br"));
+		this.div.appendChild(document.createElement("br"));
 
 		var varMinInput = document.createElement("input");
 		varMinInput.id = this.divId + "_rminInput";
 		varMinInput.type = "number";
+		varMinInput.className="indent";
 		varMinInput.value = this.rangeMin;
 		this.div.appendChild(varMinInput);
 
@@ -135,3 +143,4 @@ function systemVar(m_varName, divId, isInput){
 		this.div.appendChild(closeButton);
 	}
 }
+

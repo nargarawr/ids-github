@@ -52,6 +52,7 @@
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="tab-inputs">
+            <a data-toggle="modal" href="#myModal" class="btn btn-primary" onClick="setModalId('inputDiv1')">Open Modal 1</a>
               <button class="btn" id="addNewVarInput" onclick="addNewVar(true)">Add New Variable</button>
             <div id="mainDivInput">
             <div class="break"></div>                 
@@ -67,5 +68,44 @@
   </div>
 </div>
 </div>
+
+<!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Membership Function Creator</h4>
+              </div>
+              <div class="modal-body">
+                <form style="float:left;">
+                  <p class="titleText" >Function name</p>
+                  <input id="inputFunName">
+                  <br />
+                  <p style="padding-top:5px" class="titleText">Function type</p>
+                  <select id="mfTypeSelect" onChange="updateModal();">
+                     <option value="gaussMF" id="ga1f">  Gaussian </option>
+                     <option value="gaussbMF" id="ga2f"> 2-Part Gaussian </option>
+                     <option value="triMF" id="timf">    Triangular </option>
+                     <option value="trapMF" id="tpmf">   Trapezoidal </option>                    
+                  </select>
+                  <p class="titleText">Parameters</p>
+                  <div id="variableOptions"></div>
+                </form>
+                  <div id="demo-contain"class="demo-container" style="float:right;">
+                    <div id="placeholder" class="demo-placeholder">
+                    </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                <!-- Launch modal window and pass in the id of the div that the button being pressed is inside -->
+                <button type="button" class="btn btn-primary" onClick='createMembershipFunction()' id="inputBtn1">Save changes</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
 </body>
 </html>
