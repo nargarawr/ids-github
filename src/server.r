@@ -12,5 +12,13 @@ shinyServer(function(input, output) {
     evalFIS(m,tippertest())
   })
 
+  output$test2 <- renderPrint({
+  	"test"
+  })
+
+  output$plot <- renderPlot({
+    x <- (1:10)
+    hist(x, main="derp")
+  })
 
 })
