@@ -46,31 +46,27 @@ function compressDiv (divId ) {
 		inputDivs[divId].div.spanSize = "3";
 
 		inputDivs[divId].notice.innerHTML = "";
+
+		for ( var key in inputDivs ){
+			swapToFront(key);
+			break;
+		}
 	} else if (errorCode == 1){
 		inputDivs[divId].notice.innerHTML = "<div class='alert alert-error'>" +
   												"<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
   												"<strong>Error!</strong> You have not entered a name for your variable" +
 											"</div>";
-		return;
 	} else if (errorCode == 2){
 		inputDivs[divId].notice.innerHTML = "<div class='alert alert-error'>" +
   												"<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
   												"<strong>Error!</strong> Your bounds are either missing, or not numbers" +
-											"</div>";
-		return;					
+											"</div>";					
 	} else if (errorCode == 3){
 		inputDivs[divId].notice.innerHTML = "<div class='alert alert-error'>" +
   												"<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
   												"<strong>Error!</strong> Your bounds are invalid (is your maximum lower than your minimum?)" +
-											"</div>";
-		return;									
-	}
-
-	for ( var key in inputDivs ){
-		swapToFront(key);
-		break;
-	}
-	
+											"</div>";								
+	}	
 }
 
 /*
@@ -153,4 +149,123 @@ function swapToFront(keyToSwap){
 			mainDiv.appendChild(inputDivs[key].div);
 		}
 	}
+}
+
+/*
+	Updates the membership function creator based on the mf type selection
+*/
+function updateModal (selectionId) {
+	var s = document.getElementById ( 'mfTypeSelect' );
+	var opt = s.options[s.selectedIndex].value;
+
+	var vo = document.getElementById ( "variableOptions" ) ;    
+	if ( vo.hasChildNodes() ) {
+		while ( vo.childNodes.length >= 1 ) {
+			vo.removeChild( vo.firstChild );       
+		} 
+	}
+
+	addElements ( vo, opt );
+}
+
+/*
+	Adds the relevant input elements to the membership function creator
+*/
+function addElements ( id , mfType ){
+    if ( mfType == "gaussMF" ) {
+        var inputBox1 = document.createElement("input");
+        inputBox1.id = "inputSigma";
+        var inputBox2 = document.createElement("input");
+        inputBox2.id = "inputMean";
+
+        id.appendChild(document.createTextNode("Sigma"));
+        id.appendChild((document.createElement("br")));
+        id.appendChild(inputBox1);
+        id.appendChild((document.createElement("br")));
+        id.appendChild(document.createTextNode("Mean"));
+        id.appendChild((document.createElement("br")));
+        id.appendChild(inputBox2);
+        id.appendChild((document.createElement("br")));      
+    } else if ( mfType == "gaussbMF" ) {
+        var inputBox1 = document.createElement("input");
+        inputBox1.id = "inputLSigma";
+        var inputBox2 = document.createElement("input");
+        inputBox2.id = "inputLMean";
+        var inputBox3 = document.createElement("input");
+        inputBox3.id = "inputRSigma";
+        var inputBox4 = document.createElement("input");
+        inputBox4.id = "inputRMean";
+
+        id.appendChild(document.createTextNode("Left Sigma"));
+        id.appendChild((document.createElement("br")));
+        id.appendChild(inputBox1);
+        id.appendChild((document.createElement("br")));
+        id.appendChild(document.createTextNode("Left Mean"));
+        id.appendChild((document.createElement("br")));
+        id.appendChild(inputBox2);
+        id.appendChild((document.createElement("br")));
+        id.appendChild(document.createTextNode("Right Sigma"));
+        id.appendChild((document.createElement("br")));
+        id.appendChild(inputBox3);
+        id.appendChild((document.createElement("br")));
+        id.appendChild(document.createTextNode("Right Mean"));
+        id.appendChild((document.createElement("br")));
+        id.appendChild(inputBox4);
+        id.appendChild((document.createElement("br")));
+    } else if ( mfType == "triMF" ) {
+        var inputBox1 = document.createElement("input");
+        inputBox1.id = "inputLeft";
+        var inputBox2 = document.createElement("input");
+        inputBox2.id = "inputMean";
+        var inputBox3 = document.createElement("input");
+        inputBox3.id = "inputRight";
+
+        id.appendChild(document.createTextNode("Left"));
+        id.appendChild((document.createElement("br")));
+        id.appendChild(inputBox1);
+        id.appendChild((document.createElement("br")));
+        id.appendChild(document.createTextNode("Mean"));
+        id.appendChild((document.createElement("br")));
+        id.appendChild(inputBox2);
+        id.appendChild((document.createElement("br")));
+        id.appendChild(document.createTextNode("Right"));
+        id.appendChild((document.createElement("br")));
+        id.appendChild(inputBox3);
+        id.appendChild((document.createElement("br")));
+    } else if ( mfType == "trapMF" ) {
+        var inputBox1 = document.createElement("input");
+        inputBox1.id = "inputLFoot";
+        var inputBox2 = document.createElement("input");
+        inputBox2.id = "inputLShoulder";
+        var inputBox3 = document.createElement("input");
+        inputBox3.id = "inputRShoulder";
+        var inputBox4 = document.createElement("input");
+        inputBox4.id = "inputRFoot";
+
+        id.appendChild(document.createTextNode("Left Foot"));
+        id.appendChild((document.createElement("br")));
+        id.appendChild(inputBox1);
+        id.appendChild((document.createElement("br")));
+        id.appendChild(document.createTextNode("Left Shoulder"));
+        id.appendChild((document.createElement("br")));
+        id.appendChild(inputBox2);
+        id.appendChild((document.createElement("br")));
+        id.appendChild(document.createTextNode("Right Shoulder"));
+        id.appendChild((document.createElement("br")));
+        id.appendChild(inputBox3);
+        id.appendChild((document.createElement("br")));
+        id.appendChild(document.createTextNode("Right Foot"));
+        id.appendChild((document.createElement("br")));
+        id.appendChild(inputBox4);
+        id.appendChild((document.createElement("br")));
+    } else {
+        alert("Invalid option selected or option not yet supported");
+    }  
+
+      var inputBox5 = document.createElement("input");        
+      inputBox5.id = "inputHeight";
+
+      id.appendChild(document.createTextNode("Height"));  
+      id.appendChild((document.createElement("br")));
+      id.appendChild(inputBox5);
 }

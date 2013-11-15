@@ -1,4 +1,53 @@
 /*
+	Triangular Membership Function
+*/
+function triMemFun (name, left, mean, right, height) {
+      this.funName            = name;
+      this.funType            = "tri";
+      this.paramLeft          = left;
+      this.paramMean          = mean;
+      this.paramRight         = right;
+      this.paramHeight        = height; 
+}
+
+/*
+	Trapezoidal Membership Function
+*/
+function trapMemFun (name, lfoot, lshould, rshould, rfoot, height) {
+      this.funName            = name;
+      this.funType            = "trp";
+      this.paramLeftFoot      = lfoot;
+      this.paramLeftShoulder  = lshould;
+      this.paramRightShoulder = rshould;
+      this.paramRightFoot     = rfoot;
+      this.paramHeight        = height; 
+}
+
+/*
+	Gaussian Membership Function
+*/
+function gauMemFun (name, sigma, mean, height){
+      this.funName            = name;
+      this.funType            = "gau";
+      this.paramSigma         = sigma;
+      this.paramMean          = mean;
+      this.paramHeight        = height;
+}
+
+/*
+	2-Part Gaussian Membership Function
+*/
+function gau2MemFun (name, lsigma, lmean, rsigma, rmean, height) {
+      this.funName            = name;
+      this.funType            = "ga2";
+      this.paramLeftSigma     = lsigma;
+      this.paramLeftMean      = lmean;
+      this.paramRightSigma    = rsigma;
+      this.paramRightMean     = rmean;
+      this.paramHeight        = height;      
+}
+
+/*
 	The system variable object
 */
 function systemVar(m_varName, divId, isInput){
@@ -129,7 +178,7 @@ function systemVar(m_varName, divId, isInput){
 		addMFButton.appendChild(document.createTextNode("Add Functions"));
 		addMFButton.setAttribute("data-toggle","modal");
 		addMFButton.setAttribute("href","#myModal");
-		addMFButton.setAttribute("onclick","setModelId(1)");
+		addMFButton.setAttribute("onclick","updateModal();");
 		this.div.appendChild(addMFButton);
 
 		// Buttons 

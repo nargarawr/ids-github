@@ -1,9 +1,23 @@
+
+.titleText {
+	font-weight:bold;
+	font-size:18px;
+}
+
 h4 .titleText {
 	font-size:18px;
 }
 
+.modalForm {
+	margin: 0px;
+}
+
 #addNewVarInput {
 	margin-left:2.564102564102564%;
+}
+
+.divide {
+	margin:10px 0;
 }
 
 hr {

@@ -45,10 +45,10 @@
       <div class="tabbable">
         <ul class="nav nav-tabs">
           <li class="active">
-            <a href="#tab-inputs" data-toggle="tab" onclick="updateStructure()">Inputs</a>
+            <a href="#tab-inputs" data-toggle="tab" onclick="alert('tab')">Inputs</a>
           </li>
           <li>
-            <a href="#tab-outputs" data-toggle="tab" onclick="updateStructure()">Outputs</a>
+            <a href="#tab-outputs" data-toggle="tab" onclick="alert('tab')">Outputs</a>
           </li>
         </ul>
         <div class="tab-content">
@@ -79,22 +79,22 @@
               </div>
               <div class="modal-body">
                 <div style="float:left; width: 40%;">
-                <form>
+                <form class="modalForm">
                   <p class="titleText" >Function name</p>
                   <input id="inputFunName">
                   <br />
                   <p style="padding-top:5px" class="titleText">Function type</p>
-                  <select id="mfTypeSelect" onChange="updateModal();">
+                  <select id="mfTypeSelect" style="width:210px" onChange="updateModal();">
                      <option value="gaussMF" id="ga1f">  Gaussian </option>
                      <option value="gaussbMF" id="ga2f"> 2-Part Gaussian </option>
                      <option value="triMF" id="timf">    Triangular </option>
                      <option value="trapMF" id="tpmf">   Trapezoidal </option>                    
                   </select>
+                  <hr class="divide">
                   <p class="titleText">Parameters</p>
                   <div id="variableOptions"></div>
                 </form>
                 </div>
-                fuck
                 <div id="plot" class="shiny-plot-output" style="width: 33%; height: 400px;"></div> 
               </div>
               <div class="modal-footer">
