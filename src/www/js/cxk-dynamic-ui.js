@@ -51,16 +51,19 @@ function compressDiv (divId ) {
   												"<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
   												"<strong>Error!</strong> You have not entered a name for your variable" +
 											"</div>";
+		return;
 	} else if (errorCode == 2){
 		inputDivs[divId].notice.innerHTML = "<div class='alert alert-error'>" +
   												"<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
   												"<strong>Error!</strong> Your bounds are either missing, or not numbers" +
 											"</div>";
+		return;					
 	} else if (errorCode == 3){
 		inputDivs[divId].notice.innerHTML = "<div class='alert alert-error'>" +
   												"<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
   												"<strong>Error!</strong> Your bounds are invalid (is your maximum lower than your minimum?)" +
 											"</div>";
+		return;									
 	}
 
 	for ( var key in inputDivs ){
@@ -99,7 +102,7 @@ function expandDiv(divId){
 	Deletes the specified div, after giving a warning
 */
 function deleteDiv(divId) {
-	var r = confirm("This will permanently this variable, are you sure you wish to continue?")
+	var r = confirm("This will permanently delete this variable, are you sure you wish to continue?")
 	if (r==true) { 		
 		for ( var key in inputDivs ) {
 			if ( key === divId ) {
