@@ -1,6 +1,7 @@
 // Global variables to track the input variables
 var inputIndex = 0;
 var inputDivs = new Array();
+var currentDiv = "";
 
 /*
 
@@ -32,7 +33,7 @@ function checkValidity (divId) {
 /*
 	Compresses the specified div, shrinking it in size and changing the content
 */
-function compressDiv (divId ) {
+function compressDiv ( divId ) {
 	var errorCode = checkValidity(divId);
 
 	if ( errorCode == 0 ){
@@ -268,4 +269,137 @@ function addElements ( id , mfType ){
       id.appendChild(document.createTextNode("Height"));  
       id.appendChild((document.createElement("br")));
       id.appendChild(inputBox5);
+}
+
+/*
+	Checks for any errors in a given membership function
+	code 0 - valid
+	code 1 - no name
+	code 2 - a parameter is blank / not a number
+*/
+function errorsInFunction (arr) {
+      if ( arr[0] === "" ){
+        return 1;
+      }
+
+      for (i = 1 ; i < arr.length; i++){
+        if ( isNaN (arr[i]) || arr[i] === "") {
+          return 2;  
+        }       
+      }
+
+      return 0;
+}
+
+/*
+	Generates a membership function from the input elements
+*/
+function createMembershipFunction( divId ) {
+    var s = document.getElementById ( 'mfTypeSelect' );
+    var opt = s.options[s.selectedIndex].value;
+    var mfName = document.getElementById('inputFunName').value;
+    var pHeight = document.getElementById('inputHeight').value;  
+    var isNotUniqueName = false;
+
+    alert(1);
+
+    for ( var i = 0 ; i < inputDivs[divId].memFuncs.length ; i ++ ){       
+        var mf = inputDivs[divId].memFuncs[i];
+        if (mfName === mf.funName) {
+            alert("Function names must be unique");
+            return;
+        }
+    }
+alert(2);
+    if ( opt == "gaussMF" ){
+        alert(3);
+        var pSigma = document.getElementById('inputSigma').value;  
+        var pMean = document.getElementById('inputMean').value;  
+        var vals = [mfName, pSigma, pMean, pHeight];
+        var errCode = errorsInFunction(vals);
+alert(4);
+	    if ( errCode === 1 ){
+	          alert ( "You have not entered a function name." );
+	    } else if ( errCode === 2 ) {
+	          alert ( "Some parameters were not numbers, or were blank" );
+	    } else {
+            alert(5);
+	          var mf = new gauMemFun (mfName, pSigma, pMean, pHeight);
+          inputDivs[divId].memFuncs.push(mf);
+          $('#myModal').modal('hide');
+          inputDivs[divId].resetContent();
+          inputDivs[divId].getBigContent();
+	    }
+    } else if ( opt == "gaussbMF" ){
+        var pLSigma = document.getElementById('inputLSigma').value;  
+        var pLMean = document.getElementById('inputLMean').value;  
+        var pRSigma = document.getElementById('inputRSigma').value;  
+        var pRMean = document.getElementById('inputRMean').value;  
+
+        var vals = [mfName, pLSigma, pLMean, pRSigma, pRMean, pHeight];
+        var errCode = errorsInFunction(vals);
+	    if ( errCode === 1 ){
+	          alert ( "You have not entered a function name." );
+	    } else if ( errCode === 2 ) {
+	          alert ( "Some parameters were not numbers, or were blank" );
+	    } else {
+          // No Errors
+          var mf = new gau2MemFun (mfName, pLSigma, pLMean, pRSigma, pRMean, pHeight);
+	      inputDivs[divId].memFuncs.push(mf);
+          $('#myModal').modal('hide');
+          inputDivs[divId].resetContent();
+          inputDivs[divId].getBigContent();
+        }
+    } else if ( opt == "triMF" ){
+        var pLeft = document.getElementById('inputLeft').value;  
+        var pMean = document.getElementById('inputMean').value;  
+        var pRight = document.getElementById('inputRight').value;  
+
+        var vals = [mfName, pLeft, pMean, pRight, pHeight];
+        var errCode = errorsInFunction(vals);
+	    if ( errCode === 1 ){
+	          alert ( "You have not entered a function name." );
+	    } else if ( errCode === 2 ) {
+	          alert ( "Some parameters were not numbers, or were blank" );
+	    } else {
+          // No Errors
+          var mf = new triMemFun (mfName, pLeft, pMean, pRight, pHeight);
+          inputDivs[divId].memFuncs.push(mf);
+          $('#myModal').modal('hide');
+          inputDivs[divId].resetContent();
+          inputDivs[divId].getBigContent();
+        }
+    } else if ( opt == "trapMF" ){
+        var pLFoot = document.getElementById('inputLFoot').value;  
+        var pLShould = document.getElementById('inputLShoulder').value;  
+        var pRShould = document.getElementById('inputRShoulder').value;  
+        var pRFoot = document.getElementById('inputRFoot').value;  
+
+        var vals = [mfName, pLFoot, pLShould, pRShould, pRFoot, pHeight];
+        var errCode = errorsInFunction(vals);
+	    if ( errCode === 1 ){
+	          alert ( "You have not entered a function name." );
+	    } else if ( errCode === 2 ) {
+	          alert ( "Some parameters were not numbers, or were blank" );
+	    } else {
+          // No Errors
+          var mf = new trapMemFun (mfName, pLFoot, pLShould, pRShould, pRFoot, pHeight);
+          inputDivs[divId].memFuncs.push(mf);
+          $('#myModal').modal('hide');
+          inputDivs[divId].resetContent();
+          inputDivs[divId].getBigContent();
+        }
+    }
+
+}
+
+/*
+	Sets the current div, so we know where to store membership functions
+*/
+function setCurrentDiv (cd) {
+	currentDiv = cd;
+	alert(cd);
+}
+function getCurrentDiv ( ){
+    return currentDiv;
 }

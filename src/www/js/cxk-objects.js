@@ -58,6 +58,10 @@ function systemVar(m_varName, divId, isInput){
 	this.isInput = isInput;
 	this.memFuncs = new Array();
 
+	this.memFuncs.push(new gau2MemFun("Old",1,1,1,1,1));
+	this.memFuncs.push(new gau2MemFun("Middle Aged",1,1,1,1,1));
+	this.memFuncs.push(new gau2MemFun("Young",1,1,1,1,1));
+
 	// HTML div values
 	this.spanSize = 3;
 	this.divId = divId;
@@ -173,12 +177,29 @@ function systemVar(m_varName, divId, isInput){
 		this.div.appendChild(document.createElement("br"));		
 		this.div.appendChild(document.createElement("hr"));
 
+		var innerDiv = document.createElement("div");
+		innerDiv.setAttribute("id",this.div.id + "Inner");
+		this.div.appendChild(innerDiv);
+
+/*
+
+
+
+*/
+		innerDiv.appendChild(convertToTable(this.memFuncs, this.divId));
+/*
+
+
+
+*/
+
 		var addMFButton = document.createElement("button");
 		addMFButton.className = "btn variableButton left btn-primary";
-		addMFButton.appendChild(document.createTextNode("Add Functions"));
+		addMFButton.appendChild(document.createTextNode("Add Function"));
 		addMFButton.setAttribute("data-toggle","modal");
 		addMFButton.setAttribute("href","#myModal");
-		addMFButton.setAttribute("onclick","updateModal();");
+		var s = "updateModal(); setCurrentDiv('" + this.div.id + "')";
+		addMFButton.setAttribute("onclick","updateModal(); setCurrentDiv('" + this.div.id + "')");
 		this.div.appendChild(addMFButton);
 
 		// Buttons 
@@ -196,3 +217,65 @@ function systemVar(m_varName, divId, isInput){
 	}
 }
 
+function convertToTable ( memFuncs, divId ) {
+	if ( memFuncs.length < 1 ) {
+		return document.createElement("br");
+	}
+	var tbl = document.createElement("table");
+	
+	var tbl_header = document.createElement("tr");
+	tbl.appendChild(tbl_header);
+	var tbld = document.createElement("td");
+		tbld.appendChild(document.createTextNode("Name"));
+		tbl_header.appendChild(tbld);
+	
+	tbld = document.createElement("td");
+		tbld.appendChild(document.createTextNode("Type"));
+		tbl_header.appendChild(tbld);		
+
+		tbld = document.createElement("td");
+		tbl_header.appendChild(tbld);
+
+		tbld = document.createElement("td");
+		tbl_header.appendChild(tbld);
+	
+	for ( var i = 0 ; i < memFuncs.length ; i ++ ) {
+		var sid = divId + "-tr" + i;
+		var tbl_row = document.createElement("tr");
+		tbl_row.setAttribute("id", sid);
+		tbl.appendChild(tbl_row);
+		
+		tbld = document.createElement("td");
+		tbld.appendChild(document.createTextNode(memFuncs[i].funName));
+		tbl_row.appendChild(tbld);				
+
+		tbld = document.createElement("td");
+		tbld.appendChild(document.createTextNode(memFuncs[i].funType));
+		tbl_row.appendChild(tbld);						
+
+		tbld = document.createElement("td");
+		var editButton = document.createElement("button");
+		editButton.appendChild(document.createTextNode("Edit"));
+		tbld.appendChild(editButton);
+		tbl_row.appendChild(tbld);		
+
+		tbld = document.createElement("td");
+		var deleteButton = document.createElement("button");
+		deleteButton.appendChild(document.createTextNode("Delete"));
+		var s = i + ", \"" + divId +"\"";
+		deleteButton.setAttribute("onclick", "deleteMembershipFunction(" + s + ")");
+		tbld.appendChild(deleteButton);
+		tbl_row.appendChild(tbld);		
+	}
+
+	return tbl;
+}
+
+/*
+	Deletes a membership function
+*/
+function deleteMembershipFunction ( i, divId ) {
+	(inputDivs[divId].memFuncs).splice(i, 1);
+	inputDivs[divId].resetContent();
+	inputDivs[divId].getBigContent();
+}
