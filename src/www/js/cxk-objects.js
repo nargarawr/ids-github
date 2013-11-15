@@ -125,8 +125,11 @@ function systemVar(m_varName, divId, isInput){
 		this.div.appendChild(document.createElement("hr"));
 
 		var addMFButton = document.createElement("button");
-		addMFButton.className = "btn variableButton left";
+		addMFButton.className = "btn variableButton left btn-primary";
 		addMFButton.appendChild(document.createTextNode("Add Functions"));
+		addMFButton.setAttribute("data-toggle","modal");
+		addMFButton.setAttribute("href","#myModal");
+		addMFButton.setAttribute("onclick","setModelId(1)");
 		this.div.appendChild(addMFButton);
 
 		// Buttons 
