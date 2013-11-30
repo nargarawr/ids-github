@@ -48,7 +48,7 @@ function gau2MemFun (name, lsigma, lmean, rsigma, rmean, height) {
 }
 
 /*
-	The system variable object
+	A fuzzy variable object
 */
 function systemVar(m_varName, divId, isInput){
 	// Fuzzy values
@@ -59,7 +59,7 @@ function systemVar(m_varName, divId, isInput){
 	this.memFuncs = new Array();
 
 	this.memFuncs.push(new gau2MemFun("Old",1,1,1,1,1));
-	this.memFuncs.push(new gau2MemFun("Middle Aged",1,1,1,1,1));
+	this.memFuncs.push(new gauMemFun("Middle Aged",1,1,1));
 	this.memFuncs.push(new gau2MemFun("Young",1,1,1,1,1));
 
 	// HTML div values
@@ -68,6 +68,9 @@ function systemVar(m_varName, divId, isInput){
 	this.div = null;
 	this.notice = null;
 
+	/*
+		Creates the div to store all viewable content
+	*/
 	this.createDiv = createDiv; 
 	function createDiv () {
 		this.notice = document.createElement("div");
@@ -80,6 +83,9 @@ function systemVar(m_varName, divId, isInput){
 		return this.div;
 	}
 
+	/*
+		Resets content, to be refreshed
+	*/
 	this.resetContent=resetContent;
 	function resetContent () {
 		var fc = this.div.firstChild;
@@ -89,6 +95,9 @@ function systemVar(m_varName, divId, isInput){
 		}
 	}
 
+	/*
+		Displays the ``compressed'' content of a variable
+	*/
 	this.getSmallContent = getSmallContent;
 	function getSmallContent () {
 		var p = document.createElement("h4");
@@ -115,16 +124,22 @@ function systemVar(m_varName, divId, isInput){
 		var deleteButton = document.createElement("button");
 		deleteButton.className = "btn btn-danger variableButton right";
 		deleteButton.appendChild(document.createTextNode("Delete"));
-		deleteButton.setAttribute("onClick", "deleteDiv('" + this.divId +  "')");
+		var s = "\"" + this.divId +"\", " + this.isInput;
+		deleteButton.setAttribute("onClick", "deleteDiv(" + s +  ")");
 		this.div.appendChild(deleteButton);
 
 		var b = document.createElement("button");
 		b.className = "btn btn-primary variableButton right";
 		b.appendChild(document.createTextNode("Edit"));
-		b.setAttribute("onClick", "expandDiv('" + this.divId +  "')");
+		var s = "\"" + this.divId +"\", " + this.isInput;
+		b.setAttribute("onClick", "expandDiv(" + s +  ")");
 		this.div.appendChild(b);
 	}
 
+
+	/*
+		Displays the ``expanded'' content of a variable
+	*/
 	this.getBigContent = getBigContent;
 	function getBigContent () {
 		this.div.appendChild(this.notice);
@@ -137,12 +152,22 @@ function systemVar(m_varName, divId, isInput){
 		this.div.appendChild(document.createElement("br"));
 		this.div.appendChild(document.createElement("br"));
 
-		var varNameInput = document.createElement("input");
-		varNameInput.id = this.divId + "_nameInput";
-		varNameInput.type = "text";
-		varNameInput.value = this.varName;
-		varNameInput.className = "indent";
-		this.div.appendChild(varNameInput);
+		if ( this.isInput ){
+			var varNameInput = document.createElement("input");
+			varNameInput.id = this.divId + "_nameInput";
+			varNameInput.type = "text";
+			varNameInput.value = this.varName;
+			varNameInput.className = "indent";
+			this.div.appendChild(varNameInput);
+		} else {
+			var varNameOutput = document.createElement("input");
+			varNameOutput.id = this.divId + "_nameOutput";
+			varNameOutput.type = "text";
+			varNameOutput.value = this.varName;
+			varNameOutput.className = "indent";
+			this.div.appendChild(varNameOutput);
+		}
+
 
 		this.div.appendChild(document.createElement("br"));
 
@@ -154,18 +179,33 @@ function systemVar(m_varName, divId, isInput){
 		this.div.appendChild(document.createElement("br"));
 		this.div.appendChild(document.createElement("br"));
 
-		var varMinInput = document.createElement("input");
-		varMinInput.id = this.divId + "_rminInput";
-		varMinInput.type = "number";
-		varMinInput.className="indent";
-		varMinInput.value = this.rangeMin;
-		this.div.appendChild(varMinInput);
+		if ( this.isInput ){
+			var varMinInput = document.createElement("input");
+			varMinInput.id = this.divId + "_rminInput";
+			varMinInput.type = "number";
+			varMinInput.className="indent";
+			varMinInput.value = this.rangeMin;
+			this.div.appendChild(varMinInput);
 
-		var varMaxInput = document.createElement("input");
-		varMaxInput.id = this.divId + "_rmaxInput";
-		varMaxInput.type = "number";
-		varMaxInput.value = this.rangeMax;
-		this.div.appendChild(varMaxInput);
+			var varMaxInput = document.createElement("input");
+			varMaxInput.id = this.divId + "_rmaxInput";
+			varMaxInput.type = "number";
+			varMaxInput.value = this.rangeMax;
+			this.div.appendChild(varMaxInput);
+		} else {
+			var varMinOutput = document.createElement("input");
+			varMinOutput.id = this.divId + "_rminOutput";
+			varMinOutput.type = "number";
+			varMinOutput.className="indent";
+			varMinOutput.value = this.rangeMin;
+			this.div.appendChild(varMinOutput);
+
+			var varMaxOutput = document.createElement("input");
+			varMaxOutput.id = this.divId + "_rmaxOutput";
+			varMaxOutput.type = "number";
+			varMaxOutput.value = this.rangeMax;
+			this.div.appendChild(varMaxOutput);
+		}
 
 		this.div.appendChild(document.createElement("br"));		
 
@@ -181,101 +221,30 @@ function systemVar(m_varName, divId, isInput){
 		innerDiv.setAttribute("id",this.div.id + "Inner");
 		this.div.appendChild(innerDiv);
 
-/*
-
-
-
-*/
-		innerDiv.appendChild(convertToTable(this.memFuncs, this.divId));
-/*
-
-
-
-*/
+		innerDiv.appendChild(convertToTable(this.memFuncs, this.divId, this.isInput));
 
 		var addMFButton = document.createElement("button");
 		addMFButton.className = "btn variableButton left btn-primary";
 		addMFButton.appendChild(document.createTextNode("Add Function"));
 		addMFButton.setAttribute("data-toggle","modal");
 		addMFButton.setAttribute("href","#myModal");
-		var s = "updateModal(); setCurrentDiv('" + this.div.id + "')";
-		addMFButton.setAttribute("onclick","updateModal(); setCurrentDiv('" + this.div.id + "')");
+		var d = "\"" + this.divId +"\", " + this.isInput;
+		addMFButton.setAttribute("onclick","updateModal(); setCurrentDiv(" + d + ")");
 		this.div.appendChild(addMFButton);
 
 		// Buttons 
 		var deleteButton = document.createElement("button");
 		deleteButton.className = "btn btn-danger variableButton right";
 		deleteButton.appendChild(document.createTextNode("Delete"));
-		deleteButton.setAttribute("onClick", "deleteDiv('" + this.divId +  "')");
+		var s = "\"" + this.divId +"\", " + this.isInput;
+		deleteButton.setAttribute("onClick", "deleteDiv(" + s +  ")");
 		this.div.appendChild(deleteButton);
 
 		var closeButton = document.createElement("button");
 		closeButton.className = "btn btn-success variableButton right";
 		closeButton.appendChild(document.createTextNode("Save and Close"));
-		closeButton.setAttribute("onClick", "compressDiv('" + this.divId +  "')");
+		closeButton.setAttribute("onClick", "compressDiv(" + s +  ")");
 		this.div.appendChild(closeButton);
 	}
 }
 
-function convertToTable ( memFuncs, divId ) {
-	if ( memFuncs.length < 1 ) {
-		return document.createElement("br");
-	}
-	var tbl = document.createElement("table");
-	
-	var tbl_header = document.createElement("tr");
-	tbl.appendChild(tbl_header);
-	var tbld = document.createElement("td");
-		tbld.appendChild(document.createTextNode("Name"));
-		tbl_header.appendChild(tbld);
-	
-	tbld = document.createElement("td");
-		tbld.appendChild(document.createTextNode("Type"));
-		tbl_header.appendChild(tbld);		
-
-		tbld = document.createElement("td");
-		tbl_header.appendChild(tbld);
-
-		tbld = document.createElement("td");
-		tbl_header.appendChild(tbld);
-	
-	for ( var i = 0 ; i < memFuncs.length ; i ++ ) {
-		var sid = divId + "-tr" + i;
-		var tbl_row = document.createElement("tr");
-		tbl_row.setAttribute("id", sid);
-		tbl.appendChild(tbl_row);
-		
-		tbld = document.createElement("td");
-		tbld.appendChild(document.createTextNode(memFuncs[i].funName));
-		tbl_row.appendChild(tbld);				
-
-		tbld = document.createElement("td");
-		tbld.appendChild(document.createTextNode(memFuncs[i].funType));
-		tbl_row.appendChild(tbld);						
-
-		tbld = document.createElement("td");
-		var editButton = document.createElement("button");
-		editButton.appendChild(document.createTextNode("Edit"));
-		tbld.appendChild(editButton);
-		tbl_row.appendChild(tbld);		
-
-		tbld = document.createElement("td");
-		var deleteButton = document.createElement("button");
-		deleteButton.appendChild(document.createTextNode("Delete"));
-		var s = i + ", \"" + divId +"\"";
-		deleteButton.setAttribute("onclick", "deleteMembershipFunction(" + s + ")");
-		tbld.appendChild(deleteButton);
-		tbl_row.appendChild(tbld);		
-	}
-
-	return tbl;
-}
-
-/*
-	Deletes a membership function
-*/
-function deleteMembershipFunction ( i, divId ) {
-	(inputDivs[divId].memFuncs).splice(i, 1);
-	inputDivs[divId].resetContent();
-	inputDivs[divId].getBigContent();
-}

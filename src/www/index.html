@@ -6,7 +6,6 @@
 
   <!-- Necessary style sheets -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/shiny.css"/>  
   <link rel="stylesheet" type="text/css" href="css/jquery.slider.min.css"/>
   <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css"/>
 
@@ -25,14 +24,15 @@
   <script src="js/bootstrap-tooltip.js"></script>
   <script src="js/bootstrap.min.js"></script>
 
-  <title>Type-1 System</title>
+  <title> o-Fuzz! </title>
 </head>
  
 <body>
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span12" style="padding: 10px 0px;">
-      <h1>Type-1 System</h1>
+      <h1> o-Fuzz! </h1>
+      An online Type-1 fuzzy logic specification, visualization and inferencing system
     </div>
   </div>
   <div class="row-fluid">
@@ -45,22 +45,25 @@
       <div class="tabbable">
         <ul class="nav nav-tabs">
           <li class="active">
-            <a href="#tab-inputs" data-toggle="tab" onclick="alert('tab')">Inputs</a>
+            <a href="#tab-inputs" data-toggle="tab" >Inputs</a>
           </li>
           <li>
-            <a href="#tab-outputs" data-toggle="tab" onclick="alert('tab')">Outputs</a>
+            <a href="#tab-outputs" data-toggle="tab" >Outputs</a>
           </li>
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="tab-inputs">
-              <button class="btn" id="addNewVarInput" onclick="addNewVar(true)">Add New Variable</button>
+              <button class="btn addNewVarBtn" id="addNewVarInput" onclick="addNewVar(true)">Add New Variable</button>
+              <button class= "btn btn-success" data-toggle="modal" href="#myHelpModal" style="margin-left:525px"> Help </button>
             <div id="mainDivInput">
             <div class="break"></div>                 
             </div>
            </div>
           <div class="tab-pane" id="tab-outputs">        
+              <button class="btn addNewVarBtn" id="addNewVarOutput" onclick="addNewVar(false)">Add New Variable</button>
+              <button class= "btn btn-success" data-toggle="modal" href="#myHelpModal" style="margin-left:525px"> Help </button>
             <div id="mainDivOutput">
-            <div></div>                 
+            <div class="break"></div>                 
             </div>
            </div>
         </div>
@@ -69,13 +72,18 @@
 </div>
 </div>
 
+    
+
+
 <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Membership Function Creator</h4>
+                                <button class= "btn btn-success" data-toggle="modal" href="#myHelpModal" style="margin-left:525px"> Help </button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                
               </div>
               <div class="modal-body">
                 <div style="float:left; width: 40%;">
@@ -99,11 +107,10 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onClick='createMembershipFunction(getCurrentDiv())' id="inputBtn1">Save changes</button>
+                <button type="button" class="btn btn-primary" onClick='createMembershipFunction(getCurrentDiv(), getIsInput())' id="btn1">Save changes</button>
               </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
- 
 </body>
 </html>

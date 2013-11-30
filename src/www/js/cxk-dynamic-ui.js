@@ -1,20 +1,27 @@
 // Global variables to track the input variables
 var inputIndex = 0;
 var inputDivs = new Array();
+var outputIndex = 0;
+var outputDivs = new Array();
+var currentIsInput;
 var currentDiv = "";
-
-/*
-
-*/
+var edit = false;
 
 /*
 	Checks whether the specified variable is valid, returns an error code
 */
-function checkValidity (divId) {
-	var name = document.getElementById(divId + "_nameInput").value;
-	var rmin = document.getElementById(divId + "_rminInput").value;
-	var rmax = document.getElementById(divId + "_rmaxInput").value;
+function checkValidity (divId, isInput) {
+  var s;
+  if ( isInput ) {
+    s = "Input";
+  } else {
+    s = "Output";
+  }
 
+  var name = document.getElementById(divId + "_name" + s).value;
+  var rmin = document.getElementById(divId + "_rmin" + s).value;
+  var rmax = document.getElementById(divId + "_rmax" + s).value;  
+  
 	if ( !name ) {
 		// Name is missing
 		return 1;	
@@ -23,133 +30,233 @@ function checkValidity (divId) {
 		return 2;	
 	} else if ( rmin >= rmax ) {
 		// Range is invalid
-		return 3;		
-	} else {
-		// All good!
-		return 0;
-	}
+		return 3;	
+  }
+    
+  var unique = true;
+  for (var key in inputDivs){
+    if (inputDivs[key].varName === name && key !== divId) {
+      unique = false;
+    }
+  } 
+  for (var key in outputDivs){
+    if (outputDivs[key].varName === name && key !== divId) {
+      unique = false;
+    }
+  } 
+  if ( !unique ) {
+    // Non-unique name
+    return 4;
+  }
+
+	// All good!
+  	return 0;
 }
 
 /*
 	Compresses the specified div, shrinking it in size and changing the content
 */
-function compressDiv ( divId ) {
-	var errorCode = checkValidity(divId);
+function compressDiv ( divId, isInput ) {
+	var errorCode = checkValidity(divId, isInput);
+  var errorMessage;
 
 	if ( errorCode == 0 ){
-		inputDivs[divId].varName = document.getElementById(divId + "_nameInput").value;
-		inputDivs[divId].rangeMin = document.getElementById(divId + "_rminInput").value;
-		inputDivs[divId].rangeMax = document.getElementById(divId + "_rmaxInput").value;
+    if ( isInput ) {
+      inputDivs[divId].varName = document.getElementById(divId + "_nameInput").value;
+      inputDivs[divId].rangeMin = document.getElementById(divId + "_rminInput").value;
+      inputDivs[divId].rangeMax = document.getElementById(divId + "_rmaxInput").value;
 
-		inputDivs[divId].resetContent();
-		inputDivs[divId].getSmallContent();
-		inputDivs[divId].div.className = "variable span3";
-		inputDivs[divId].div.spanSize = "3";
+      inputDivs[divId].resetContent();
+      inputDivs[divId].getSmallContent();
+      inputDivs[divId].div.className = "variable span3";
+      inputDivs[divId].div.spanSize = "3";
 
-		inputDivs[divId].notice.innerHTML = "";
+      inputDivs[divId].notice.innerHTML = "";
 
-		for ( var key in inputDivs ){
-			swapToFront(key);
-			break;
-		}
+      for ( var key in inputDivs ){
+        swapToFront(key, isInput);
+        break;
+      }  
+    } else {
+      outputDivs[divId].varName = document.getElementById(divId + "_nameOutput").value;
+      outputDivs[divId].rangeMin = document.getElementById(divId + "_rminOutput").value;
+      outputDivs[divId].rangeMax = document.getElementById(divId + "_rmaxOutput").value;
+
+      outputDivs[divId].resetContent();
+      outputDivs[divId].getSmallContent();
+      outputDivs[divId].div.className = "variable span3";
+      outputDivs[divId].div.spanSize = "3";
+
+      outputDivs[divId].notice.innerHTML = "";
+
+      for ( var key in outputDivs ){
+        swapToFront(key, isInput);
+        break;
+      }      
+    }
+		
 	} else if (errorCode == 1){
-		inputDivs[divId].notice.innerHTML = "<div class='alert alert-error'>" +
-  												"<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
-  												"<strong>Error!</strong> You have not entered a name for your variable" +
-											"</div>";
+		errorMessage = "<strong>Oops!</strong> It looks like you have not entered a name for your variable";
 	} else if (errorCode == 2){
-		inputDivs[divId].notice.innerHTML = "<div class='alert alert-error'>" +
-  												"<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
-  												"<strong>Error!</strong> Your bounds are either missing, or not numbers" +
-											"</div>";					
+		errorMessage =  "<strong>Oops!</strong> Your bounds appear to be missing, or not numbers";	
 	} else if (errorCode == 3){
-		inputDivs[divId].notice.innerHTML = "<div class='alert alert-error'>" +
-  												"<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
-  												"<strong>Error!</strong> Your bounds are invalid (is your maximum lower than your minimum?)" +
-											"</div>";								
-	}	
+		errorMessage = "<strong>Oops!</strong> Your bounds are causing problems, is your maximum lower than your minimum?";						
+	}	else if (errorCode == 4 ){
+      errorMessage = "<strong>Oops!</strong> You've already given that name to one of your variables";          
+  }
+  errorMessage = "<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>&times;</button>" + errorMessage + "</div>";
+
+  if ( errorCode != 0 ){
+    if ( isInput ){
+      inputDivs[divId].notice.innerHTML = errorMessage;
+    } else {
+      outputDivs[divId].notice.innerHTML = errorMessage;
+    }
+  }
+
 }
 
 /*
 	Compresses all divs, excluding the one at index /topDivId/
 */
-function resizeDivs (topDivId) {
+function resizeDivs (topDivId, isInput) {
 	// Reduce size of all divs except newly clicked
-	for ( var key in inputDivs ) {
-		if ( key !== topDivId && inputDivs[key].div.spanSize == "9" ) {
-			compressDiv(key);
-		}
-	}
+  if ( isInput ){
+    for ( var key in inputDivs ) {
+      if ( key !== topDivId && inputDivs[key].div.spanSize == "9" ) {
+        compressDiv(key);
+      }
+    }  
+  } else {
+    for ( var key in outputDivs ) {
+      if ( key !== topDivId && outputDivs[key].div.spanSize == "9" ) {
+        compressDiv(key);
+      }
+    }      
+  }
 }
 
 /*
 	Expands the specified div, growing it in size and changing the content
 */
-function expandDiv(divId){
-	resizeDivs (divId);
-	swapToFront(divId);
+function expandDiv(divId, isInput){
+	resizeDivs (divId, isInput);
+	swapToFront(divId, isInput);
 
-	inputDivs[divId].resetContent();
-	inputDivs[divId].getBigContent();
-	inputDivs[divId].div.className = "variable span9";
-	inputDivs[divId].div.spanSize = "9";
+  if ( isInput ){
+    inputDivs[divId].resetContent();
+    inputDivs[divId].getBigContent();
+    inputDivs[divId].div.className = "variable span9";
+    inputDivs[divId].div.spanSize = "9";
+  } else {
+    outputDivs[divId].resetContent();
+    outputDivs[divId].getBigContent();
+    outputDivs[divId].div.className = "variable span9";
+    outputDivs[divId].div.spanSize = "9";    
+  }
 }
 
 /*
 	Deletes the specified div, after giving a warning
 */
-function deleteDiv(divId) {
+function deleteDiv(divId, isInput) {
 	var r = confirm("This will permanently delete this variable, are you sure you wish to continue?")
 	if (r==true) { 		
-		for ( var key in inputDivs ) {
-			if ( key === divId ) {
-				delete inputDivs[key];
-			}
-		}
+    if ( isInput ) {
+      for ( var key in inputDivs ) {
+        if ( key === divId ) {
+          delete inputDivs[key];
+        }
+      }
 
-  		var myDiv = document.getElementById('mainDivInput');
-  		myDiv.removeChild(document.getElementById(divId));
-  	} 
+      var myDiv = document.getElementById('mainDivInput');
+      myDiv.removeChild(document.getElementById(divId));      
+    } else {
+      for ( var key in outputDivs ) {
+        if ( key === divId ) {
+          delete outputDivs[key];
+        }
+      }
+
+      var myDiv = document.getElementById('mainDivOutput');
+      myDiv.removeChild(document.getElementById(divId));            
+    }
+		
+  } 
 }
 
 /*
 	Adds a new variable to the system
 */
-function addNewVar(input){
-	var mainDiv = document.getElementById("mainDivInput")
+function addNewVar(isInput){
+  if ( isInput ){
+    var mainDiv = document.getElementById("mainDivInput")
 
-	var sysVar = new systemVar("Input Variable " + inputIndex, "inputDiv" + inputIndex, input);
-	inputIndex++;
+    var sysVar = new systemVar("Input Variable " + inputIndex, "inputDiv" + inputIndex, isInput);
+    inputIndex++;
 
-	mainDiv.appendChild(sysVar.createDiv());
-	inputDivs[sysVar.divId] = sysVar;
+    mainDiv.appendChild(sysVar.createDiv());
+    inputDivs[sysVar.divId] = sysVar;  
+  } else {
+    var mainDiv = document.getElementById("mainDivOutput")
+
+    var sysVar = new systemVar("Output Variable " + outputIndex, "outputDiv" + outputIndex, isInput);
+    outputIndex++;
+
+    mainDiv.appendChild(sysVar.createDiv());
+    outputDivs[sysVar.divId] = sysVar;      
+  }
 }
 
 
 /*
 	Set the div at index /keyToSwap/ to be above all other divs
 */
-function swapToFront(keyToSwap){
-	var mainDiv = document.getElementById("mainDivInput");
-	
-	// Remove all current children
-	var fc = mainDiv.firstChild;
-	while( fc ) {
-	    mainDiv.removeChild( fc );
-	    fc = mainDiv.firstChild;
-	}
+function swapToFront(keyToSwap, isInput ){
+  if ( isInput ) {
+    var mainDiv = document.getElementById("mainDivInput");
+    
+    // Remove all current children
+    var fc = mainDiv.firstChild;
+    while( fc ) {
+        mainDiv.removeChild( fc );
+        fc = mainDiv.firstChild;
+    }
 
-	// Add necessary first, empty, div
-	var breakDiv = document.createElement("div");
-	breakDiv.className = "break";
-	mainDiv.appendChild(breakDiv);
+    // Add necessary first, empty, div
+    var breakDiv = document.createElement("div");
+    breakDiv.className = "break";
+    mainDiv.appendChild(breakDiv);
 
-	mainDiv.appendChild(inputDivs[keyToSwap].div);
-	for ( var key in inputDivs ) {
-		if ( key !== keyToSwap ){
-			mainDiv.appendChild(inputDivs[key].div);
-		}
-	}
+    mainDiv.appendChild(inputDivs[keyToSwap].div);
+    for ( var key in inputDivs ) {
+      if ( key !== keyToSwap ){
+        mainDiv.appendChild(inputDivs[key].div);
+      }
+    }    
+  } else {
+    var mainDiv = document.getElementById("mainDivOutput");
+    
+    // Remove all current children
+    var fc = mainDiv.firstChild;
+    while( fc ) {
+        mainDiv.removeChild( fc );
+        fc = mainDiv.firstChild;
+    }
+
+    // Add necessary first, empty, div
+    var breakDiv = document.createElement("div");
+    breakDiv.className = "break";
+    mainDiv.appendChild(breakDiv);
+
+    mainDiv.appendChild(outputDivs[keyToSwap].div);
+    for ( var key in outputDivs ) {
+      if ( key !== keyToSwap ){
+        mainDiv.appendChild(outputDivs[key].div);
+      }
+    }        
+  }
+  	
 }
 
 /*
@@ -294,41 +401,57 @@ function errorsInFunction (arr) {
 /*
 	Generates a membership function from the input elements
 */
-function createMembershipFunction( divId ) {
+function createMembershipFunction( divId, isInput ) {
     var s = document.getElementById ( 'mfTypeSelect' );
     var opt = s.options[s.selectedIndex].value;
     var mfName = document.getElementById('inputFunName').value;
     var pHeight = document.getElementById('inputHeight').value;  
     var isNotUniqueName = false;
 
-    alert(1);
-
-    for ( var i = 0 ; i < inputDivs[divId].memFuncs.length ; i ++ ){       
-        var mf = inputDivs[divId].memFuncs[i];
-        if (mfName === mf.funName) {
-            alert("Function names must be unique");
-            return;
-        }
+    if ( isInput ){
+      for ( var i = 0 ; i < inputDivs[divId].memFuncs.length ; i ++ ){       
+          var mf = inputDivs[divId].memFuncs[i];
+          if (mfName === mf.funName) {
+              alert("Function names must be unique");
+              return;
+          }
+      }
+    } else {
+      for ( var i = 0 ; i < outputDivs[divId].memFuncs.length ; i ++ ){       
+          var mf = outputDivs[divId].memFuncs[i];
+          if (mfName === mf.funName) {
+              alert("Function names must be unique");
+              return;
+          }
+      }
     }
-alert(2);
+    
     if ( opt == "gaussMF" ){
-        alert(3);
         var pSigma = document.getElementById('inputSigma').value;  
         var pMean = document.getElementById('inputMean').value;  
         var vals = [mfName, pSigma, pMean, pHeight];
         var errCode = errorsInFunction(vals);
-alert(4);
 	    if ( errCode === 1 ){
 	          alert ( "You have not entered a function name." );
+            return;
 	    } else if ( errCode === 2 ) {
 	          alert ( "Some parameters were not numbers, or were blank" );
+            return;
 	    } else {
-            alert(5);
-	          var mf = new gauMemFun (mfName, pSigma, pMean, pHeight);
-          inputDivs[divId].memFuncs.push(mf);
-          $('#myModal').modal('hide');
-          inputDivs[divId].resetContent();
-          inputDivs[divId].getBigContent();
+	       var mf = new gauMemFun (mfName, pSigma, pMean, pHeight);
+
+         if ( isInput ){
+            inputDivs[divId].memFuncs.push(mf);
+            $('#myModal').modal('hide');
+            inputDivs[divId].resetContent();
+            inputDivs[divId].getBigContent();          
+          } else {
+            outputDivs[divId].memFuncs.push(mf);
+            $('#myModal').modal('hide');
+            outputDivs[divId].resetContent();
+            outputDivs[divId].getBigContent();            
+          }
+
 	    }
     } else if ( opt == "gaussbMF" ){
         var pLSigma = document.getElementById('inputLSigma').value;  
@@ -339,16 +462,23 @@ alert(4);
         var vals = [mfName, pLSigma, pLMean, pRSigma, pRMean, pHeight];
         var errCode = errorsInFunction(vals);
 	    if ( errCode === 1 ){
-	          alert ( "You have not entered a function name." );
+	          alert ( "You have not entered a function name." );return;
 	    } else if ( errCode === 2 ) {
-	          alert ( "Some parameters were not numbers, or were blank" );
+	          alert ( "Some parameters were not numbers, or were blank" );return;
 	    } else {
           // No Errors
           var mf = new gau2MemFun (mfName, pLSigma, pLMean, pRSigma, pRMean, pHeight);
-	      inputDivs[divId].memFuncs.push(mf);
-          $('#myModal').modal('hide');
-          inputDivs[divId].resetContent();
-          inputDivs[divId].getBigContent();
+         if ( isInput ){
+            inputDivs[divId].memFuncs.push(mf);
+            $('#myModal').modal('hide');
+            inputDivs[divId].resetContent();
+            inputDivs[divId].getBigContent();          
+          } else {
+            outputDivs[divId].memFuncs.push(mf);
+            $('#myModal').modal('hide');
+            outputDivs[divId].resetContent();
+            outputDivs[divId].getBigContent();            
+          }
         }
     } else if ( opt == "triMF" ){
         var pLeft = document.getElementById('inputLeft').value;  
@@ -358,16 +488,23 @@ alert(4);
         var vals = [mfName, pLeft, pMean, pRight, pHeight];
         var errCode = errorsInFunction(vals);
 	    if ( errCode === 1 ){
-	          alert ( "You have not entered a function name." );
+	          alert ( "You have not entered a function name." );return;
 	    } else if ( errCode === 2 ) {
-	          alert ( "Some parameters were not numbers, or were blank" );
+	          alert ( "Some parameters were not numbers, or were blank" );return;
 	    } else {
           // No Errors
           var mf = new triMemFun (mfName, pLeft, pMean, pRight, pHeight);
-          inputDivs[divId].memFuncs.push(mf);
-          $('#myModal').modal('hide');
-          inputDivs[divId].resetContent();
-          inputDivs[divId].getBigContent();
+         if ( isInput ){
+            inputDivs[divId].memFuncs.push(mf);
+            $('#myModal').modal('hide');
+            inputDivs[divId].resetContent();
+            inputDivs[divId].getBigContent();          
+          } else {
+            outputDivs[divId].memFuncs.push(mf);
+            $('#myModal').modal('hide');
+            outputDivs[divId].resetContent();
+            outputDivs[divId].getBigContent();            
+          }
         }
     } else if ( opt == "trapMF" ){
         var pLFoot = document.getElementById('inputLFoot').value;  
@@ -378,28 +515,169 @@ alert(4);
         var vals = [mfName, pLFoot, pLShould, pRShould, pRFoot, pHeight];
         var errCode = errorsInFunction(vals);
 	    if ( errCode === 1 ){
-	          alert ( "You have not entered a function name." );
+	          alert ( "You have not entered a function name." );return;
 	    } else if ( errCode === 2 ) {
-	          alert ( "Some parameters were not numbers, or were blank" );
+	          alert ( "Some parameters were not numbers, or were blank" );return;
 	    } else {
           // No Errors
           var mf = new trapMemFun (mfName, pLFoot, pLShould, pRShould, pRFoot, pHeight);
-          inputDivs[divId].memFuncs.push(mf);
-          $('#myModal').modal('hide');
-          inputDivs[divId].resetContent();
-          inputDivs[divId].getBigContent();
+         if ( isInput ){
+            inputDivs[divId].memFuncs.push(mf);
+            $('#myModal').modal('hide');
+            inputDivs[divId].resetContent();
+            inputDivs[divId].getBigContent();          
+          } else {
+            outputDivs[divId].memFuncs.push(mf);
+            $('#myModal').modal('hide');
+            outputDivs[divId].resetContent();
+            outputDivs[divId].getBigContent();            
+          }
         }
-    }
+    } 
 
+    var p = document.getElementById('inputFunName')
+    p.value = "";
 }
 
 /*
 	Sets the current div, so we know where to store membership functions
 */
-function setCurrentDiv (cd) {
+function setCurrentDiv (cd, b) {
 	currentDiv = cd;
+  currentIsInput = b;
 	alert(cd);
+  alert(b);
 }
+
+/*
+  Gets the currently active div
+*/
 function getCurrentDiv ( ){
     return currentDiv;
+}
+
+/*
+  Gets whether or not the current active div is an input variable or not
+*/
+function getIsInput (){ 
+  return currentIsInput;
+}
+
+
+/*
+  Prints the list of membership functions as a table
+*/
+function convertToTable ( memFuncs, divId, isInput ) {
+  if ( memFuncs.length < 1 ) {
+    return document.createElement("br");
+  }
+  var tbl = document.createElement("table");
+  
+  var tbl_header = document.createElement("tr");
+  tbl.appendChild(tbl_header);
+  var tbld = document.createElement("td");
+    tbld.appendChild(document.createTextNode("Name"));
+    tbl_header.appendChild(tbld);
+  
+  tbld = document.createElement("td");
+    tbld.appendChild(document.createTextNode("Type"));
+    tbl_header.appendChild(tbld);   
+
+    tbld = document.createElement("td");
+    tbl_header.appendChild(tbld);
+
+    tbld = document.createElement("td");
+    tbl_header.appendChild(tbld);
+  
+  for ( var i = 0 ; i < memFuncs.length ; i ++ ) {
+    var sid = divId + "-tr" + i;
+    var tbl_row = document.createElement("tr");
+    tbl_row.setAttribute("id", sid);
+    tbl.appendChild(tbl_row);
+    
+    tbld = document.createElement("td");
+    tbld.appendChild(document.createTextNode(memFuncs[i].funName));
+    tbl_row.appendChild(tbld);        
+
+    tbld = document.createElement("td");
+    tbld.appendChild(document.createTextNode(convertType(memFuncs[i].funType)));
+    tbl_row.appendChild(tbld);            
+
+    tbld = document.createElement("td");
+    var editButton = document.createElement("button");
+    editButton.appendChild(document.createTextNode("Edit"));
+    
+    editButton.setAttribute("data-toggle","modal");
+    editButton.setAttribute("href","#myModal");
+    var s = i + ", \"" + divId +"\", " + isInput;
+    editButton.setAttribute("onclick", "editMembershipFunction(" + s + ")");    
+    tbld.appendChild(editButton);
+    tbl_row.appendChild(tbld);  
+    
+    
+    tbld = document.createElement("td");
+    var deleteButton = document.createElement("button");
+    deleteButton.appendChild(document.createTextNode("Delete"));
+    var s = i + ", \"" + divId +"\", " + isInput;
+    deleteButton.setAttribute("onclick", "deleteMembershipFunction(" + s + ")");
+    tbld.appendChild(deleteButton);
+    tbl_row.appendChild(tbld);    
+  }
+
+  return tbl;
+}
+
+/*
+  Deletes a membership function
+*/
+function deleteMembershipFunction ( i, divId, isInput ) {
+  if ( isInput ) {
+    (inputDivs[divId].memFuncs).splice(i, 1);
+    inputDivs[divId].resetContent();
+    inputDivs[divId].getBigContent();
+  } else {
+    (outputDivs[divId].memFuncs).splice(i, 1);
+    outputDivs[divId].resetContent();
+    outputDivs[divId].getBigContent();
+  }
+}
+
+/*
+  Converts the abbreviation type name to a full type name
+*/
+function convertType (type){
+  if ( type === "gau" ){
+    return "Gaussian";
+  } else if (type === "ga2"){
+    return "2-Part Gaussian";
+  } else if ( type === "tri" ){
+    return "Triangular";
+  } else if ( type === "trp" ){
+    return "Trapezoidal";
+  }
+}
+
+/*
+  Edits a membership function
+*/
+function editMembershipFunction (i , divId, isInput ){
+  alert(i);
+  alert(divId);
+  alert(isInput);
+
+  /*
+  setCurrentDiv(divId, true);
+  var toSet = convertType(inputDivs[divId].memFuncs[i].funType);
+  
+  var s = document.getElementById ( 'mfTypeSelect' );
+  for (var i= 0, n = s.options.length; i < n ; i++) {
+        if (options[i].value === toSet) {
+            document.getElementById("mfTypeSelect").selectedIndex = i;
+            break;
+        }
+    }
+    alert("WHAT");
+    alert(document.getElementById("mfTypeSelect").selectedIndex);
+    updateModal();
+  */
 }
