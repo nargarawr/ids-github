@@ -7,6 +7,7 @@ var currentIsInput;
 var currentDiv = "";
 var edit = false;
 
+
 /*
 	Checks whether the specified variable is valid, returns an error code
 */
@@ -680,4 +681,13 @@ function editMembershipFunction (i , divId, isInput ){
     alert(document.getElementById("mfTypeSelect").selectedIndex);
     updateModal();
   */
+}
+
+
+/*
+  Function to clear any left over popovers
+*/
+function clearPopovers() {
+    $("#inputVarHelpBtn").popover('hide');
+    $("#outputVarHelpBtn").popover('hide');
 }
