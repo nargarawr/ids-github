@@ -17,7 +17,6 @@
   <script src="js/cxk-dynamic-ui.js"></script>
 
   <!-- Necessary functionality Javascript files-->
-
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
   <script src="js/cxk-jquery.js"></script>
   <script src="js/shiny.js" type="text/javascript"></script>
@@ -92,43 +91,41 @@
 </div>
 </div>
 
-<!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">Membership Function Creator</h4>
-                  <button class= "btn btn-success" data-toggle="modal" href=""> Help </button>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                
-              </div>
-              <div class="modal-body">
-                <div style="float:left; width: 40%;">
-                <form class="modalForm">
-                  <p class="titleText" >Function name</p>
-                  <input id="inputFunName">
-                  <br />
-                  <p style="padding-top:5px" class="titleText">Function type</p>
-                  <select id="mfTypeSelect" style="width:210px" onChange="updateModal();">
-                     <option value="gaussMF" id="ga1f">  Gaussian </option>
-                     <option value="gaussbMF" id="ga2f"> 2-Part Gaussian </option>
-                     <option value="triMF" id="timf">    Triangular </option>
-                     <option value="trapMF" id="tpmf">   Trapezoidal </option>                    
-                  </select>
-                  <hr class="divide">
-                  <p class="titleText">Parameters</p>
-                  <div id="variableOptions"></div>
-                </form>
-                </div>
-                <div id="plot" class="shiny-plot-output" style="width: 33%; height: 400px;"></div> 
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onClick='createMembershipFunction(getCurrentDiv(), getIsInput())' id="btn1">Save changes</button>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class= "btn btn-success" id="mfcHelpBtn" style="width:100px; height:30px; float:right" data-toggle="modal" href="">Show Help</button>        
+        <h4 class="modal-title">Membership Function Creator</h4>
+        <!--<button class= "btn btn-success" style="float:right;" data-toggle="modal" href=""> Help </button>-->
+      </div>
+      <div class="modal-body">
+        <div style="float:left; width: 40%;">
+          <form class="modalForm">
+            <p class="titleText" >Function name</p>
+            <input id="inputFunName">
+            <br />
+            <p style="padding-top:5px" class="titleText">Function type</p>
+            <select id="mfTypeSelect" style="width:210px" onChange="updateModal();">
+              <option value="gaussMF" id="ga1f">  Gaussian </option>
+              <option value="gaussbMF" id="ga2f"> 2-Part Gaussian </option>
+              <option value="triMF" id="timf">    Triangular </option>
+              <option value="trapMF" id="tpmf">   Trapezoidal </option>                    
+            </select>
+            <hr class="divide">
+            <p class="titleText">Parameters</p>
+            <div id="variableOptions"></div>
+          </form>
+        </div>
+        <div id="plot" class="shiny-plot-output" style="width: 33%; height: 400px;"></div> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
+        <button type="button" class="btn btn-primary" onClick='createMembershipFunction(getCurrentDiv(), getIsInput())' id="btn1">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 
   

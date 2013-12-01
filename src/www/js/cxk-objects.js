@@ -229,7 +229,7 @@ function systemVar(m_varName, divId, isInput){
 		addMFButton.setAttribute("data-toggle","modal");
 		addMFButton.setAttribute("href","#myModal");
 		var d = "\"" + this.divId +"\", " + this.isInput;
-		addMFButton.setAttribute("onclick","updateModal(); setCurrentDiv(" + d + ")");
+		addMFButton.setAttribute("onclick","clearPopovers(); updateModal(); setCurrentDiv(" + d + ")");
 		this.div.appendChild(addMFButton);
 
 		// Buttons 

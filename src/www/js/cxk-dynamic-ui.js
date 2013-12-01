@@ -546,8 +546,6 @@ function createMembershipFunction( divId, isInput ) {
 function setCurrentDiv (cd, b) {
 	currentDiv = cd;
   currentIsInput = b;
-	alert(cd);
-  alert(b);
 }
 
 /*
@@ -690,4 +688,8 @@ function editMembershipFunction (i , divId, isInput ){
 function clearPopovers() {
     $("#inputVarHelpBtn").popover('hide');
     $("#outputVarHelpBtn").popover('hide');
+    $("#mfcHelpBtn").popover('hide');
+    $("#inputVarHelpBtn").html("Show Help");
+    $("#outputVarHelpBtn").html("Show Help");
+    $("#mfcHelpBtn").html("Show Help");
 }
