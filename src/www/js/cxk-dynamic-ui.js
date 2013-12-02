@@ -1,8 +1,10 @@
 // Global variables to track the input variables
 var inputIndex = 0;
 var inputDivs = new Array();
+
 var outputIndex = 0;
 var outputDivs = new Array();
+
 var currentIsInput;
 var currentDiv = "";
 var edit = false;

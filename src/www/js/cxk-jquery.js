@@ -46,7 +46,7 @@ $(document).ready(function() {
     $("#mfcHelpBtn").popover({
       placement:'bottom',
       title: '<b> Membership Function Creator </b>',
-      content: 'how to mek membership function....'
+      content: 'What a membership function is... How to specify them ... the types... parameters?'
     });
  
  $("#input-tab").click(clearPopovers);
