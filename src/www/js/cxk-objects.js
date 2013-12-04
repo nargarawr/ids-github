@@ -58,9 +58,11 @@ function systemVar(m_varName, divId, isInput){
 	this.isInput = isInput;
 	this.memFuncs = new Array();
 
-	this.memFuncs.push(new gau2MemFun("Old",1,1,1,1,1));
-	this.memFuncs.push(new gauMemFun("Middle Aged",1,1,1));
-	this.memFuncs.push(new gau2MemFun("Young",1,1,1,1,1));
+	// 	Test funcs
+	//this.memFuncs.push(new gau2MemFun("Young",1,2,3,4,5));
+	//this.memFuncs.push(new gauMemFun("Adolescent",1,2,3));
+	//this.memFuncs.push(new trapMemFun("Middle Aged",1,2,3,4,5));
+	//this.memFuncs.push(new triMemFun("Old",1,2,3,4));
 
 	// HTML div values
 	this.spanSize = 3;
@@ -96,6 +98,25 @@ function systemVar(m_varName, divId, isInput){
 	}
 
 	/*
+		Just redisplays the membership functions of the variable
+	*/
+	this.refreshMembershipFunctions = refreshMembershipFunctions;
+	function refreshMembershipFunctions () {
+		var c = document.getElementById(this.div.id + "Inner");
+		var fc = c.firstChild;
+		
+		while( fc ) {
+	    	c.removeChild( fc );
+	    	fc = c.firstChild;
+		}
+
+		var varFunctionsLabel = document.getElementById(this.div.id+"titleText");
+		varFunctionsLabel.innerHTML = "Functions: " + this.memFuncs.length;
+
+		c.appendChild(convertToTable(this.memFuncs, this.divId, this.isInput));
+	}
+
+	/*
 		Displays the ``compressed'' content of a variable
 	*/
 	this.getSmallContent = getSmallContent;
@@ -121,21 +142,23 @@ function systemVar(m_varName, divId, isInput){
 		mf.appendChild(document.createTextNode("Functions: " + this.memFuncs.length));
 		this.div.appendChild(mf);				
 
+		this.div.appendChild(document.createElement("br"));
+		this.div.appendChild(document.createElement("br"));
+
+		var editButton = document.createElement("button");
+		editButton.className = "btn btn-primary variableButton lowMarge";
+		editButton.appendChild(document.createTextNode("Edit"));
+		var s = "\"" + this.divId +"\", " + this.isInput;
+		editButton.setAttribute("onClick", "expandDiv(" + s +  ")");
+		this.div.appendChild(editButton);
+
 		var deleteButton = document.createElement("button");
-		deleteButton.className = "btn btn-danger variableButton right";
+		deleteButton.className = "btn btn-danger variableButton lowMarge";
 		deleteButton.appendChild(document.createTextNode("Delete"));
 		var s = "\"" + this.divId +"\", " + this.isInput;
 		deleteButton.setAttribute("onClick", "deleteDiv(" + s +  ")");
 		this.div.appendChild(deleteButton);
-
-		var b = document.createElement("button");
-		b.className = "btn btn-primary variableButton right";
-		b.appendChild(document.createTextNode("Edit"));
-		var s = "\"" + this.divId +"\", " + this.isInput;
-		b.setAttribute("onClick", "expandDiv(" + s +  ")");
-		this.div.appendChild(b);
 	}
-
 
 	/*
 		Displays the ``expanded'' content of a variable
@@ -211,6 +234,7 @@ function systemVar(m_varName, divId, isInput){
 
 		var varFunctionsLabel = document.createElement("h4");
 		varFunctionsLabel.className = "titleText";
+		varFunctionsLabel.id = this.div.id + "titleText";
 		varFunctionsLabel.appendChild(document.createTextNode("Functions: " + this.memFuncs.length));
 		this.div.appendChild(varFunctionsLabel);
 
@@ -229,7 +253,8 @@ function systemVar(m_varName, divId, isInput){
 		addMFButton.setAttribute("data-toggle","modal");
 		addMFButton.setAttribute("href","#myModal");
 		var d = "\"" + this.divId +"\", " + this.isInput;
-		addMFButton.setAttribute("onclick","clearPopovers(); updateModal(); setCurrentDiv(" + d + ")");
+		var e = "\"" + this.divId +"\", " + this.isInput + ", false";
+		addMFButton.setAttribute("onclick","checkValidity(" + d + "); clearPopovers(); updateModal(); setCurrentDiv(" + d + ")");
 		this.div.appendChild(addMFButton);
 
 		// Buttons 
@@ -243,8 +268,8 @@ function systemVar(m_varName, divId, isInput){
 		var closeButton = document.createElement("button");
 		closeButton.className = "btn btn-success variableButton right";
 		closeButton.appendChild(document.createTextNode("Save and Close"));
-		closeButton.setAttribute("onClick", "compressDiv(" + s +  ")");
+		var s2 = "\"" + this.divId +"\", " + this.isInput + ", true";
+		closeButton.setAttribute("onClick", "compressDiv(" + s2 +  ")");
 		this.div.appendChild(closeButton);
 	}
 }
-

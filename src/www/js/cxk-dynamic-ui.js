@@ -7,6 +7,9 @@ var outputDivs = new Array();
 
 var currentIsInput;
 var currentDiv = "";
+
+var g_originalName;
+var globali = 0;
 var edit = false;
 
 
@@ -56,10 +59,11 @@ function checkValidity (divId, isInput) {
   	return 0;
 }
 
+
 /*
 	Compresses the specified div, shrinking it in size and changing the content
 */
-function compressDiv ( divId, isInput ) {
+function compressDiv ( divId, isInput, shouldReset ) {
 	var errorCode = checkValidity(divId, isInput);
   var errorMessage;
 
@@ -69,33 +73,38 @@ function compressDiv ( divId, isInput ) {
       inputDivs[divId].rangeMin = document.getElementById(divId + "_rminInput").value;
       inputDivs[divId].rangeMax = document.getElementById(divId + "_rmaxInput").value;
 
-      inputDivs[divId].resetContent();
-      inputDivs[divId].getSmallContent();
-      inputDivs[divId].div.className = "variable span3";
-      inputDivs[divId].div.spanSize = "3";
+      if ( shouldReset ) {
+        inputDivs[divId].resetContent();
+        inputDivs[divId].getSmallContent();
+        inputDivs[divId].div.className = "variable span3";
+        inputDivs[divId].div.spanSize = "3";
 
-      inputDivs[divId].notice.innerHTML = "";
+        inputDivs[divId].notice.innerHTML = "";
 
-      for ( var key in inputDivs ){
-        swapToFront(key, isInput);
-        break;
-      }  
+        for ( var key in inputDivs ){
+          swapToFront(key, isInput);
+          break;
+        }    
+      }
+      
     } else {
       outputDivs[divId].varName = document.getElementById(divId + "_nameOutput").value;
       outputDivs[divId].rangeMin = document.getElementById(divId + "_rminOutput").value;
       outputDivs[divId].rangeMax = document.getElementById(divId + "_rmaxOutput").value;
 
-      outputDivs[divId].resetContent();
-      outputDivs[divId].getSmallContent();
-      outputDivs[divId].div.className = "variable span3";
-      outputDivs[divId].div.spanSize = "3";
+      if ( shouldReset ) {
+        outputDivs[divId].resetContent();
+        outputDivs[divId].getSmallContent();
+        outputDivs[divId].div.className = "variable span3";
+        outputDivs[divId].div.spanSize = "3";
 
-      outputDivs[divId].notice.innerHTML = "";
+        outputDivs[divId].notice.innerHTML = "";
 
-      for ( var key in outputDivs ){
-        swapToFront(key, isInput);
-        break;
-      }      
+        for ( var key in outputDivs ){
+          swapToFront(key, isInput);
+          break;
+        }      
+      }
     }
 		
 	} else if (errorCode == 1){
@@ -127,13 +136,13 @@ function resizeDivs (topDivId, isInput) {
   if ( isInput ){
     for ( var key in inputDivs ) {
       if ( key !== topDivId && inputDivs[key].div.spanSize == "9" ) {
-        compressDiv(key);
+        compressDiv(key, isInput, true);
       }
     }  
   } else {
     for ( var key in outputDivs ) {
       if ( key !== topDivId && outputDivs[key].div.spanSize == "9" ) {
-        compressDiv(key);
+        compressDiv(key, isInput, true);
       }
     }      
   }
@@ -401,16 +410,101 @@ function errorsInFunction (arr) {
       return 0;
 }
 
+function overwriteMembershipFunction (divId, isInput, originalName) {
+    // Get the entered values
+    var vals;
+    var mf;
+    if ( isInput ){
+      mf = inputDivs[divId].memFuncs[globali];
+    } else {
+      mf = outputDivs[divId].memFuncs[globali];
+    }
+    
+    // Check for duplicate names
+    var mfName = document.getElementById('inputFunName').value;
+
+    if ( isInput ){
+      for ( var i = 0 ; i < inputDivs[divId].memFuncs.length ; i ++ ){       
+          var m = inputDivs[divId].memFuncs[i];
+          if (mfName == m.funName && mfName != g_originalName) {
+              alert("Function names must be unique");
+              return;
+          }
+      }
+    } else {
+      for ( var i = 0 ; i < outputDivs[divId].memFuncs.length ; i ++ ){       
+          var m = outputDivs[divId].memFuncs[i];
+          if (mfName == m.funName && mfName != g_originalName) {
+              alert("Function names must be unique");
+              return;
+          }
+      }
+    }
+
+    var s = document.getElementById ( 'mfTypeSelect' );
+    var opt = s.options[s.selectedIndex].value;
+
+    if ( opt == "gaussMF" ){
+        mf.paramSigma = document.getElementById('inputSigma').value;  
+        mf.paramMean = document.getElementById('inputMean').value;          
+        mf.funType = "gau";
+    } else if ( opt == "gaussbMF" ){
+        mf.paramLeftSigma = document.getElementById('inputLSigma').value;  
+        mf.paramLeftMean = document.getElementById('inputLMean').value;  
+        mf.paramRightSigma = document.getElementById('inputRSigma').value;  
+        mf.paramRightMean = document.getElementById('inputRMean').value;  
+        mf.funType = "ga2";
+    } else if ( opt == "triMF" ){
+        mf.paramLeft = document.getElementById('inputLeft').value;  
+        mf.paramRight = document.getElementById('inputMean').value;  
+        mf.paramMean = document.getElementById('inputRight').value;  
+        mf.funType = "tri";
+    } else if ( opt == "trapMF" ){
+        mf.paramLeftFoot = document.getElementById('inputLFoot').value;  
+        mf.paramLeftShoulder = document.getElementById('inputLShoulder').value;  
+        mf.paramRightFoot = document.getElementById('inputRShoulder').value;  
+        mf.paramRightShoulder = document.getElementById('inputRFoot').value;  
+        mf.funType = "trp";
+    } 
+    mf.funName = document.getElementById('inputFunName').value;
+    mf.paramHeight = document.getElementById('inputHeight').value;
+
+
+  // Error checking on parameters
+
+
+
+  // Refresh display
+  if ( isInput ){
+    inputDivs[divId].refreshMembershipFunctions();       
+  } else {
+    outputDivs[divId].refreshMembershipFunctions();
+  }
+
+  // Close modal
+  $('#myModal').modal('hide');
+
+  edit = false;
+}
+
+
 /*
 	Generates a membership function from the input elements
 */
 function createMembershipFunction( divId, isInput ) {
+
+    if ( edit ) {
+      overwriteMembershipFunction(divId, isInput, g_originalName);
+      return;
+    }
+
     var s = document.getElementById ( 'mfTypeSelect' );
     var opt = s.options[s.selectedIndex].value;
     var mfName = document.getElementById('inputFunName').value;
     var pHeight = document.getElementById('inputHeight').value;  
     var isNotUniqueName = false;
 
+    // Check for unique names
     if ( isInput ){
       for ( var i = 0 ; i < inputDivs[divId].memFuncs.length ; i ++ ){       
           var mf = inputDivs[divId].memFuncs[i];
@@ -429,33 +523,13 @@ function createMembershipFunction( divId, isInput ) {
       }
     }
     
+    // Get the entered values
+    var vals;
     if ( opt == "gaussMF" ){
         var pSigma = document.getElementById('inputSigma').value;  
         var pMean = document.getElementById('inputMean').value;  
-        var vals = [mfName, pSigma, pMean, pHeight];
-        var errCode = errorsInFunction(vals);
-	    if ( errCode === 1 ){
-	          alert ( "You have not entered a function name." );
-            return;
-	    } else if ( errCode === 2 ) {
-	          alert ( "Some parameters were not numbers, or were blank" );
-            return;
-	    } else {
-	       var mf = new gauMemFun (mfName, pSigma, pMean, pHeight);
 
-         if ( isInput ){
-            inputDivs[divId].memFuncs.push(mf);
-            $('#myModal').modal('hide');
-            inputDivs[divId].resetContent();
-            inputDivs[divId].getBigContent();          
-          } else {
-            outputDivs[divId].memFuncs.push(mf);
-            $('#myModal').modal('hide');
-            outputDivs[divId].resetContent();
-            outputDivs[divId].getBigContent();            
-          }
-
-	    }
+        var vals = [mfName, pSigma, pMean, pHeight];   
     } else if ( opt == "gaussbMF" ){
         var pLSigma = document.getElementById('inputLSigma').value;  
         var pLMean = document.getElementById('inputLMean').value;  
@@ -463,52 +537,12 @@ function createMembershipFunction( divId, isInput ) {
         var pRMean = document.getElementById('inputRMean').value;  
 
         var vals = [mfName, pLSigma, pLMean, pRSigma, pRMean, pHeight];
-        var errCode = errorsInFunction(vals);
-	    if ( errCode === 1 ){
-	          alert ( "You have not entered a function name." );return;
-	    } else if ( errCode === 2 ) {
-	          alert ( "Some parameters were not numbers, or were blank" );return;
-	    } else {
-          // No Errors
-          var mf = new gau2MemFun (mfName, pLSigma, pLMean, pRSigma, pRMean, pHeight);
-         if ( isInput ){
-            inputDivs[divId].memFuncs.push(mf);
-            $('#myModal').modal('hide');
-            inputDivs[divId].resetContent();
-            inputDivs[divId].getBigContent();          
-          } else {
-            outputDivs[divId].memFuncs.push(mf);
-            $('#myModal').modal('hide');
-            outputDivs[divId].resetContent();
-            outputDivs[divId].getBigContent();            
-          }
-        }
     } else if ( opt == "triMF" ){
         var pLeft = document.getElementById('inputLeft').value;  
         var pMean = document.getElementById('inputMean').value;  
         var pRight = document.getElementById('inputRight').value;  
 
         var vals = [mfName, pLeft, pMean, pRight, pHeight];
-        var errCode = errorsInFunction(vals);
-	    if ( errCode === 1 ){
-	          alert ( "You have not entered a function name." );return;
-	    } else if ( errCode === 2 ) {
-	          alert ( "Some parameters were not numbers, or were blank" );return;
-	    } else {
-          // No Errors
-          var mf = new triMemFun (mfName, pLeft, pMean, pRight, pHeight);
-         if ( isInput ){
-            inputDivs[divId].memFuncs.push(mf);
-            $('#myModal').modal('hide');
-            inputDivs[divId].resetContent();
-            inputDivs[divId].getBigContent();          
-          } else {
-            outputDivs[divId].memFuncs.push(mf);
-            $('#myModal').modal('hide');
-            outputDivs[divId].resetContent();
-            outputDivs[divId].getBigContent();            
-          }
-        }
     } else if ( opt == "trapMF" ){
         var pLFoot = document.getElementById('inputLFoot').value;  
         var pLShould = document.getElementById('inputLShoulder').value;  
@@ -516,31 +550,43 @@ function createMembershipFunction( divId, isInput ) {
         var pRFoot = document.getElementById('inputRFoot').value;  
 
         var vals = [mfName, pLFoot, pLShould, pRShould, pRFoot, pHeight];
-        var errCode = errorsInFunction(vals);
-	    if ( errCode === 1 ){
-	          alert ( "You have not entered a function name." );return;
-	    } else if ( errCode === 2 ) {
-	          alert ( "Some parameters were not numbers, or were blank" );return;
-	    } else {
-          // No Errors
-          var mf = new trapMemFun (mfName, pLFoot, pLShould, pRShould, pRFoot, pHeight);
-         if ( isInput ){
-            inputDivs[divId].memFuncs.push(mf);
-            $('#myModal').modal('hide');
-            inputDivs[divId].resetContent();
-            inputDivs[divId].getBigContent();          
-          } else {
-            outputDivs[divId].memFuncs.push(mf);
-            $('#myModal').modal('hide');
-            outputDivs[divId].resetContent();
-            outputDivs[divId].getBigContent();            
-          }
-        }
     } 
 
-    var p = document.getElementById('inputFunName')
-    p.value = "";
+    // Check for errors in the entered parameters
+    var errCode = errorsInFunction(vals);
+    if ( errCode === 1 ){
+      alert ( "You have not entered a function name." );
+      return;
+    } else if ( errCode === 2 ) {
+      alert ( "Some parameters were not numbers, or were blank" );
+      return;
+    } 
+
+    // Create the membership function
+    var mf;
+    if ( opt == "gaussMF" ){
+         var mf = new gauMemFun (mfName, pSigma, pMean, pHeight);
+    } else if ( opt == "gaussbMF" ){
+          var mf = new gau2MemFun (mfName, pLSigma, pLMean, pRSigma, pRMean, pHeight);
+    } else if ( opt == "triMF" ){
+          var mf = new triMemFun (mfName, pLeft, pMean, pRight, pHeight);
+    } else if ( opt == "trapMF" ){
+          var mf = new trapMemFun (mfName, pLFoot, pLShould, pRShould, pRFoot, pHeight);
+    } 
+
+    // Add to correct place, and refresh display
+    if ( isInput ){
+      inputDivs[divId].memFuncs.push(mf);
+      inputDivs[divId].refreshMembershipFunctions();       
+    } else {
+      outputDivs[divId].memFuncs.push(mf);
+      outputDivs[divId].refreshMembershipFunctions();
+    }
+
+    // Hide modal
+    $('#myModal').modal('hide');
 }
+
 
 /*
 	Sets the current div, so we know where to store membership functions
@@ -661,26 +707,49 @@ function convertType (type){
 /*
   Edits a membership function
 */
-function editMembershipFunction (i , divId, isInput ){
-  alert(i);
-  alert(divId);
-  alert(isInput);
+function editMembershipFunction (i, divId, isInput ){
+  edit = true;
+  globali = i;
 
-  /*
-  setCurrentDiv(divId, true);
-  var toSet = convertType(inputDivs[divId].memFuncs[i].funType);
-  
+
+  var type = inputDivs[divId].memFuncs[i].funType;
   var s = document.getElementById ( 'mfTypeSelect' );
-  for (var i= 0, n = s.options.length; i < n ; i++) {
-        if (options[i].value === toSet) {
-            document.getElementById("mfTypeSelect").selectedIndex = i;
-            break;
-        }
-    }
-    alert("WHAT");
-    alert(document.getElementById("mfTypeSelect").selectedIndex);
-    updateModal();
-  */
+  if ( type === "gau" ){
+    s.selectedIndex = 0;
+  } else if (type === "ga2"){
+    s.selectedIndex = 1;
+  } else if ( type === "tri" ){
+    s.selectedIndex = 2;
+  } else if ( type === "trp" ){
+    s.selectedIndex = 3;
+  }
+
+  updateModal();
+  var mf = inputDivs[divId].memFuncs[i];
+
+  // Fill values, dependent on function type
+  if ( type === "gau" ){
+    document.getElementById("inputSigma").value = mf.paramSigma;
+    document.getElementById("inputMean").value = mf.paramMean;
+  } else if (type === "ga2"){
+    document.getElementById("inputLSigma").value = mf.paramLeftSigma;
+    document.getElementById("inputLMean").value = mf.paramLeftMean;
+    document.getElementById("inputRSigma").value = mf.paramRightSigma;
+    document.getElementById("inputRMean").value = mf.paramRightMean;
+  } else if ( type === "tri" ){
+    document.getElementById("inputLeft").value = mf.paramLeft;
+    document.getElementById("inputRight").value = mf.paramRight;
+    document.getElementById("inputMean").value = mf.paramMean;
+  } else if ( type === "trp" ){
+    document.getElementById("inputLFoot").value = mf.paramLeftFoot;
+    document.getElementById("inputLShoulder").value = mf.paramLeftShoulder;
+    document.getElementById("inputRFoot").value = mf.paramRightFoot;
+    document.getElementById("inputRShoulder").value = mf.paramRightShoulder;
+  }
+    document.getElementById("inputFunName").value = mf.funName;
+    document.getElementById("inputHeight").value = mf.paramHeight;
+
+    g_originalName = mf.funName;
 }
 
 
