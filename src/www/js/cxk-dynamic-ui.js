@@ -729,8 +729,13 @@ function editMembershipFunction (i, divId, isInput ){
   edit = true;
   globali = i;
 
-
-  var type = inputDivs[divId].memFuncs[i].funType;
+  var type;
+  if ( isInput ) {
+    type = inputDivs[divId].memFuncs[i].funType;
+  } else {
+    type = outputDivs[divId].memFuncs[i].funType;
+  }
+  
   var s = document.getElementById ( 'mfTypeSelect' );
   if ( type === "gau" ){
     s.selectedIndex = 0;
@@ -743,7 +748,13 @@ function editMembershipFunction (i, divId, isInput ){
   }
 
   updateModal();
-  var mf = inputDivs[divId].memFuncs[i];
+  var mf;
+  if ( isInput ) {
+    mf = inputDivs[divId].memFuncs[i];
+  } else {
+    mf = outputDivs[divId].memFuncs[i];
+  }
+   
 
   // Fill values, dependent on function type
   if ( type === "gau" ){

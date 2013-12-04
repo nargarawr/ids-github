@@ -4,6 +4,7 @@ $(document).ready(function() {
     $('#myModal').on('hidden', function () {
       clearPopovers();
       document.getElementById('inputFunName').value = "";
+      edit = false;
     })
 
     // Input variable help button information
