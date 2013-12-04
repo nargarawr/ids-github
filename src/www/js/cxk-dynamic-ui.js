@@ -420,9 +420,16 @@ function overwriteMembershipFunction (divId, isInput, originalName) {
       mf = outputDivs[divId].memFuncs[globali];
     }
     
-    // Check for duplicate names
     var mfName = document.getElementById('inputFunName').value;
 
+  // Error checking on parameters
+  if ( mfName === "" ){
+    alert("You have not entered a function name.");
+    return;
+  }
+
+
+  // Check for duplicate names
     if ( isInput ){
       for ( var i = 0 ; i < inputDivs[divId].memFuncs.length ; i ++ ){       
           var m = inputDivs[divId].memFuncs[i];
@@ -443,36 +450,47 @@ function overwriteMembershipFunction (divId, isInput, originalName) {
 
     var s = document.getElementById ( 'mfTypeSelect' );
     var opt = s.options[s.selectedIndex].value;
+    var vals;
 
     if ( opt == "gaussMF" ){
         mf.paramSigma = document.getElementById('inputSigma').value;  
-        mf.paramMean = document.getElementById('inputMean').value;          
+        mf.paramMean = document.getElementById('inputMean').value;    
         mf.funType = "gau";
+
+        vals = [mf.paramSigma, mf.paramMean, document.getElementById('inputHeight').value];
     } else if ( opt == "gaussbMF" ){
         mf.paramLeftSigma = document.getElementById('inputLSigma').value;  
         mf.paramLeftMean = document.getElementById('inputLMean').value;  
         mf.paramRightSigma = document.getElementById('inputRSigma').value;  
         mf.paramRightMean = document.getElementById('inputRMean').value;  
         mf.funType = "ga2";
+
+        vals = [mf.paramLeftSigma, mf.paramLeftMean, mf.paramRightSigma, mf.paramRightMean, document.getElementById('inputHeight').value];
     } else if ( opt == "triMF" ){
         mf.paramLeft = document.getElementById('inputLeft').value;  
         mf.paramRight = document.getElementById('inputMean').value;  
         mf.paramMean = document.getElementById('inputRight').value;  
         mf.funType = "tri";
+
+        vals = [mf.paramLeft, mf.paramMean, mf.paramRight, document.getElementById('inputHeight').value];
     } else if ( opt == "trapMF" ){
         mf.paramLeftFoot = document.getElementById('inputLFoot').value;  
         mf.paramLeftShoulder = document.getElementById('inputLShoulder').value;  
         mf.paramRightFoot = document.getElementById('inputRShoulder').value;  
         mf.paramRightShoulder = document.getElementById('inputRFoot').value;  
         mf.funType = "trp";
+
+        vals = [mf.paramLeftFoot, mf.paramLeftShoulder,  mf.paramRightFoot, mf.paramRightShoulder, document.getElementById('inputHeight').value];
     } 
     mf.funName = document.getElementById('inputFunName').value;
     mf.paramHeight = document.getElementById('inputHeight').value;
 
-
-  // Error checking on parameters
-
-
+      for (i = 0 ; i < vals.length; i++){
+        if ( isNaN (vals[i]) || vals[i] === "") {
+          alert("Some parameters were not numbers, or were blank");
+          return;
+        }       
+      }
 
   // Refresh display
   if ( isInput ){
