@@ -1,0 +1,16 @@
+References[edit]
+
+Jump up ^ Vichuzhanin, Vladimir (12 April 2012). "Realization of a fuzzy controller with fuzzy dynamic correction". Central European Journal of Engineering 2 (3): 392–398. doi:10.2478/s13531-012-0003-7.
+Gerla G., Fuzzy Logic Programming and fuzzy control, Studia Logica, 79 (2005) 231-254.
+Bastian A., Identifying Fuzzy Models utilizing Genetic Programming, Fuzzy Sets and Systems 113, 333–350, 2000
+Hájek P., Metamathematics of Fuzzy Logic, Kluwer Academic Publishers, Dordrecht, The Netherlands, 1998.
+Mamdani, E. H., Application of fuzzy algorithms for the control of a simple dynamic plant. In Proc IEEE (1974), 121-159.
+Further reading[edit]
+
+Kevin M. Passino and Stephen Yurkovich, Fuzzy Control, Addison Wesley Longman, Menlo Park, CA, 1998 (522 pages)
+Kazuo Tanaka; Hua O. Wang (2001). Fuzzy control systems design and analysis: a linear matrix inequality approach. John Wiley and Sons. ISBN 978-0-471-32324-2.
+Cox, E. (Oct. 1992). Fuzzy fundamentals. Spectrum, IEEE, 29:10. pp. 58–61.
+Cox, E. (Feb. 1993) Adaptive fuzzy systems. Spectrum, IEEE, 30:2. pp. 7–31.
+Jan Jantzen, "Tuning Of Fuzzy PID Controllers", Technical University of Denmark, report 98-H 871, September 30, 1998. [1]
+Jan Jantzen, Foundations of Fuzzy Control. Wiley, 2007 (209 pages) (Table of contents)
+Computational Intelligence: A Methodological Introduction by Kruse, Borgelt, Klawonn, Moewes, Steinbrecher, Held, 2013, Springer, ISBN 9781447150121

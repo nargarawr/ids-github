@@ -78,7 +78,7 @@ $(document).ready(function() {
 
 
 
-
+/*
 $(document).on("click", "textarea.inputTextarea", function(evt) {
 
     // evt.target is the button that was clicked
@@ -110,7 +110,4 @@ $(document).on("click", "textarea.inputTextarea", function(evt) {
   });
 
   Shiny.inputBindings.register(inputTextareaBinding);
-
-
-
-});
+});*/
