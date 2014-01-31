@@ -5,6 +5,9 @@ var inputDivs = new Array();
 var outputIndex = 0;
 var outputDivs = new Array();
 
+var systemRulesIndex = 0;
+var systemRules = new Array();
+
 var currentIsInput;
 var currentDiv = "";
 
@@ -411,6 +414,7 @@ function errorsInFunction (arr) {
 }
 
 function overwriteMembershipFunction (divId, isInput, originalName) {
+    
     // Get the entered values
     var vals;
     var mf;
@@ -793,3 +797,36 @@ function clearPopovers() {
     $("#outputVarHelpBtn").html("Show Help");
     $("#mfcHelpBtn").html("Show Help");
 }
+
+/*
+  Ran each time a new tab is selected, takes the tab selected as argument
+*/
+function onTabChange ( tabIndex ) {
+  /*
+  alert(tabIndex);
+  if ( tabIndex == 2 ) { // Clicked on rule tab
+    generateRules();  
+  }*/
+}
+
+/*
+  Draws the UI elements necessary to create the rules
+*/
+
+function generateRules() {
+    var d = document.getElementById("mainDivRules");
+
+    for ( var key in inputDivs ) {
+       d.appendChild(document.createTextNode(inputDivs[key].varName));
+    }
+
+    for ( var key in outputDivs ) {
+      d.appendChild(document.createTextNode(outputDivs[key].varName));
+    }
+}
+
+function addNewRule () {
+
+
+}
+

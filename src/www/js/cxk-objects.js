@@ -58,11 +58,13 @@ function systemVar(m_varName, divId, isInput){
 	this.isInput = isInput;
 	this.memFuncs = new Array();
 
-	// 	Test funcs
-	//this.memFuncs.push(new gau2MemFun("Young",1,2,3,4,5));
-	//this.memFuncs.push(new gauMemFun("Adolescent",1,2,3));
-	//this.memFuncs.push(new trapMemFun("Middle Aged",1,2,3,4,5));
-	//this.memFuncs.push(new triMemFun("Old",1,2,3,4));
+	/* 	Add some test membership functions */
+	/*
+	this.memFuncs.push(new gau2MemFun("Young",1,2,3,4,5));
+	this.memFuncs.push(new gauMemFun("Adolescent",1,2,3));
+	this.memFuncs.push(new trapMemFun("Middle Aged", 1,2,3,4,5));
+	this.memFuncs.push(new triMemFun("Old",1,2,3,4));
+	*/
 
 	// HTML div values
 	this.spanSize = 3;

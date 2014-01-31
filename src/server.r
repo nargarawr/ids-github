@@ -5,18 +5,23 @@ shinyServer(function(input, output) {
 
   # Generate a summary of the data
   output$test <- renderPrint({
-  	seq1 <- c(0,10,0,10)
-  	m <- matrix(seq1,2);
+      paste(input$testText, "...", input$inputDiv0_nameInput)
+    
+
+    #paste("hello", " ", "yolo")
+    #paste(input$inputSigma, input$inputMean, input$inputHeight, input$inputFunName)
+
+  	#seq1 <- c(0,10,0,10)
+  	#m <- matrix(seq1,2);
   	# 0,0
   	# 10, 10
-    evalFIS(m,tippertest())
+    #evalFIS(m,tippertest())
   })
 
-  output$test2 <- renderPrint({
-  	"test"
-  })
 
   output$plot <- renderPlot({
+
+
    # x <- (1:10)
    # hist(x, main="derp")
   })

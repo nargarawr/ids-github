@@ -41,25 +41,24 @@
     <div class="span2">
       <form class ="well">
       </form>
-      <pre id="test" class="shiny-text-output"></pre> 
     </div>
     <div class="span10">
       <div class="tabbable">
         <ul class="nav nav-tabs">
           <li class="active">
-            <a href="#tab-inputs" id="input-tab" data-toggle="tab" >Inputs</a>
+            <a href="#tab-inputs" id="input-tab" data-toggle="tab" onClick="onTabChange(0)">Inputs</a>
           </li>
           <li>
-            <a href="#tab-outputs" id="output-tab" data-toggle="tab" >Outputs</a>
+            <a href="#tab-outputs" id="output-tab" data-toggle="tab" onClick="onTabChange(1)">Outputs</a>
           </li>
           <li>
-            <a href="#tab-rules" id="rule-tab" data-toggle="tab" >Rules</a>
+            <a href="#tab-rules" id="rule-tab" data-toggle="tab" onClick="onTabChange(2)">Rules</a>
           </li>
           <li>
-            <a href="#tab-import" id="import-tab" data-toggle="tab" >Import</a>
+            <a href="#tab-import" id="import-tab" data-toggle="tab" onClick="onTabChange(3)">Import</a>
           </li>          
             <li>
-            <a href="#tab-export" id="export-tab" data-toggle="tab" >Export</a>
+            <a href="#tab-export" id="export-tab" data-toggle="tab" onClick="onTabChange(4)">Export</a>
           </li>                    
         </ul>
         <div class="tab-content">
@@ -93,8 +92,21 @@
                 </div>
               </div>
             </div>
-          <div class="tab-pane" id="tab-rules">   
-            </div>  
+          <div class="tab-pane" id="tab-rules">  
+              <div class="span10">
+                <div class="span10">
+                   <button class="btn addNewVarBtn" id="addNewRule" onclick="addNewRule()">Add New Rule</button>
+                </div> 
+                <div class= "span2">
+                  <a href="#" id="ruleHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
+                </div>
+              </div>  
+              <div style="padding-top:35px">
+                <div id="mainDivRule">
+                  <div class="break"></div>                 
+                </div>
+              </div>            
+          </div>  
           <div class="tab-pane" id="tab-import">   
             </div>   
           <div class="tab-pane" id="tab-export">   
@@ -139,6 +151,7 @@
       </div>
     </div>
   </div>
+
 </div>
 </body>
 
