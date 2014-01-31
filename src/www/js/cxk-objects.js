@@ -275,3 +275,17 @@ function systemVar(m_varName, divId, isInput){
 		this.div.appendChild(closeButton);
 	}
 }
+
+/*
+	Rule object
+*/
+function systemRule(m_inputList, m_outputList, weight, connective){
+	this.inputList = m_inputList;
+	this.outputList = m_outputList;
+	this.weight = weight;
+	this.connective = connective;
+
+	/*
+		Various Functions
+	*/
+}

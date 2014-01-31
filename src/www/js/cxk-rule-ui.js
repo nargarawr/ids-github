@@ -6,7 +6,7 @@ var systemRules = new Array();
 */
 
 function generateRules() {
-    var d = document.getElementById("mainDivRules");
+    var d = document.getElementById("mainDivRule");
 
     for ( var key in inputDivs ) {
        d.appendChild(document.createTextNode(inputDivs[key].varName));
@@ -18,18 +18,49 @@ function generateRules() {
 }
 
 /*
-	Creates a table displaying all the rules of the system
+	Creates a list detailing all the rules of the system
 */
 
 function printRules () {
 
+	/*
 
+
+		needs to have edit/delete buttons
+
+
+	*/
+
+	var d = document.getElementById("mainDivRule");
+
+	while ( d.hasChildNodes() ) {
+		while ( d.childNodes.length >= 1 ) {
+			d.removeChild( d.firstChild );       
+		} 
+	}
+
+	var list = document.createElement("ul");
+	d.appendChild(list);
+
+	for ( var key in systemRules ) {
+		var listItem = document.createElement("li");
+		listItem.appendChild(document.createTextNode("test"));
+		list.appendChild(listItem);
+	}
 }
 
 /*
 	Adds a new rule to the system
 */
 function addNewRule () {
+
+	/*
+		Get all the shit from IO
+	*/
+
+
+	systemRules.push(new systemRule(0,0,0,0))	
+
 }
 
 /*
@@ -43,5 +74,5 @@ function editrule () {
 */
 function deleteRule () {
 
-	
+
 }
