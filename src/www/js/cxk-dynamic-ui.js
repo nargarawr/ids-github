@@ -6,9 +6,12 @@ function clearPopovers() {
     $("#inputVarHelpBtn").popover('hide');
     $("#outputVarHelpBtn").popover('hide');
     $("#mfcHelpBtn").popover('hide');
+    $("#ruleHelpBtn").popover('hide');
+
     $("#inputVarHelpBtn").html("Show Help");
     $("#outputVarHelpBtn").html("Show Help");
     $("#mfcHelpBtn").html("Show Help");
+    $("#ruleHelpBtn").html("Show Help");
 }
 
 /*

@@ -7,7 +7,11 @@ $(document).ready(function() {
       edit = false;
     })
 
-    // Input variable help button information
+
+
+    /* 
+      Input variable help button information
+    */
     $("#inputVarHelpBtn").popover(
       {
         placement:'bottom',
@@ -23,7 +27,11 @@ $(document).ready(function() {
         }
     });
 
-    // Output variable help button information   
+
+
+    /* 
+      Output variable help button information   
+    */
     $("#outputVarHelpBtn").popover(
       {
         placement:'bottom',
@@ -39,11 +47,13 @@ $(document).ready(function() {
         }
     });
 
-    // Rule creator help button information 
+    /*
+      Rule creator help button information 
+    */
     $("#ruleHelpBtn").popover({
       placement:'bottom',
       title: '<b> Rule Creator </b>',
-      content: 'Test'
+      content: 'What a rule is, an example, make up of a rule, buttons to press on this page and what they do'
     });
 
     $("#ruleHelpBtn").click(function(){
@@ -54,11 +64,15 @@ $(document).ready(function() {
       }
     });
 
-    // Membership function creator help button information 
+
+
+    /*
+      Membership function creator help button information 
+    */
     $("#mfcHelpBtn").popover({
       placement:'bottom',
       title: '<b> Membership Function Creator </b>',
-      content: 'Membership functions make up fuzzy sets (or fuzzy variables, as we know them here), and represent the degrees of truth that given values have for the property they represent. For instance, if we had an \'Age\' variable, we could have membership functions such as: Old, Young, and Middle-Aged.<br><br> In o-Fuzz!, there are currently four difference membership functions to choose from, each providing a distinct shape: <a href=\"http://www.mathworks.co.uk/help/fuzzy/gaussmf.html\">Gaussian</a>, <a href=\"http://www.mathworks.co.uk/help/fuzzy/gauss2mf.html\">2-Part Gaussian</a>, <a href=\"http://www.mathworks.co.uk/help/fuzzy/trimf.html\">Triangular</a>, and <a href=\"http://www.mathworks.co.uk/help/fuzzy/trapmf.html\">Trapezoidal</a>. This will be expanded upon when our back end, <a href=\"http://cran.r-project.org/web/packages/FuzzyToolkitUoN/index.html\">FuzzyToolkitUoN</a> is updated.<br><br>Creating a membership function is as easy as specifying the type and parameters that you wish the function to have. You\'ll notice that a graphical representation of your function will be drawn as you specify it, so you can observe any errors.<br><br>Be aware that all membership functions within a variable need to have a unique name, this name cannot be blank, and all parameters must be numbers'
+      content: 'Membership functions make up fuzzy sets (or fuzzy variables, as we know them here), and represent the degrees of truth that given values have for the property they represent. For instance, if we had an \'Age\' variable, we could have membership functions such as: Old, Young, and Middle-Aged.<br><br> In o-Fuzz!, there are currently four different membership functions to choose from, each providing a distinct shape: <a href=\"http://www.mathworks.co.uk/help/fuzzy/gaussmf.html\">Gaussian</a>, <a href=\"http://www.mathworks.co.uk/help/fuzzy/gauss2mf.html\">2-Part Gaussian</a>, <a href=\"http://www.mathworks.co.uk/help/fuzzy/trimf.html\">Triangular</a>, and <a href=\"http://www.mathworks.co.uk/help/fuzzy/trapmf.html\">Trapezoidal</a>. This will be expanded upon when our back end, <a href=\"http://cran.r-project.org/web/packages/FuzzyToolkitUoN/index.html\">FuzzyToolkitUoN</a> is updated.<br><br>Creating a membership function is as easy as specifying the type and parameters that you wish the function to have. You\'ll notice that a graphical representation of your function will be drawn as you specify it, so you can observe any errors.<br><br>Be aware that all membership functions within a variable need to have a unique name, this name cannot be blank, and all parameters must be numbers'
     });
 
     $("#mfcHelpBtn").click(function(){
@@ -69,13 +83,14 @@ $(document).ready(function() {
       }
     });
 
+
     // When any navigation is pressed, clear all help windows
     $("#input-tab").click(clearPopovers);
     $("#output-tab").click(clearPopovers);
     $("#rule-tab").click(clearPopovers);
     $("#import-tab").click(clearPopovers);
     $("#export-tab").click(clearPopovers);
-
+});
 
 
 /*
@@ -110,4 +125,6 @@ $(document).on("click", "textarea.inputTextarea", function(evt) {
   });
 
   Shiny.inputBindings.register(inputTextareaBinding);
-});*/
+});
+*/
+

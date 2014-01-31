@@ -17,7 +17,31 @@ function generateRules() {
     }
 }
 
+/*
+	Creates a table displaying all the rules of the system
+*/
+
+function printRules () {
+
+
+}
+
+/*
+	Adds a new rule to the system
+*/
 function addNewRule () {
+}
 
+/*
+	Change an existing rule in the system
+*/
+function editrule () {
+}
 
+/*
+	Delete a rule in the system
+*/
+function deleteRule () {
+
+	
 }
