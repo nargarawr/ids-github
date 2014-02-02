@@ -1,11 +1,23 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Motivation}{}% 2
-\BOOKMARK [1][-]{section.3}{System Specification}{}% 3
-\BOOKMARK [2][-]{subsection.3.1}{Functional Requirements}{section.3}% 4
-\BOOKMARK [2][-]{subsection.3.2}{Non-Functional Requirements}{section.3}% 5
-\BOOKMARK [1][-]{section.4}{Existing Systems}{}% 6
-\BOOKMARK [1][-]{section.5}{Designs}{}% 7
-\BOOKMARK [1][-]{section.6}{Software Implementation}{}% 8
-\BOOKMARK [1][-]{section.7}{Evaluation}{}% 9
-\BOOKMARK [1][-]{section.8}{Summary and Further Work}{}% 10
-\BOOKMARK [1][-]{appendix.A}{test}{}% 11
+\BOOKMARK [1][-]{section.2}{Introduction}{}% 2
+\BOOKMARK [1][-]{section.3}{Introduction}{}% 3
+\BOOKMARK [1][-]{section.4}{Motivation}{}% 4
+\BOOKMARK [1][-]{section.5}{Background Research}{}% 5
+\BOOKMARK [2][-]{subsection.5.1}{Existing Systems}{section.5}% 6
+\BOOKMARK [1][-]{section.6}{System Specification}{}% 7
+\BOOKMARK [2][-]{subsection.6.1}{Functional Requirements}{section.6}% 8
+\BOOKMARK [2][-]{subsection.6.2}{Non-Functional Requirements}{section.6}% 9
+\BOOKMARK [1][-]{section.7}{Designs}{}% 10
+\BOOKMARK [2][-]{subsection.7.1}{The Design Process}{section.7}% 11
+\BOOKMARK [2][-]{subsection.7.2}{UI Design}{section.7}% 12
+\BOOKMARK [3][-]{subsubsection.7.2.1}{First Iteration}{subsection.7.2}% 13
+\BOOKMARK [3][-]{subsubsection.7.2.2}{Second Iteration}{subsection.7.2}% 14
+\BOOKMARK [3][-]{subsubsection.7.2.3}{Third Iteration}{subsection.7.2}% 15
+\BOOKMARK [2][-]{subsection.7.3}{Navigation/Control Flow Design}{section.7}% 16
+\BOOKMARK [2][-]{subsection.7.4}{Internal Design}{section.7}% 17
+\BOOKMARK [1][-]{section.8}{Software Implementation}{}% 18
+\BOOKMARK [1][-]{section.9}{Evaluation}{}% 19
+\BOOKMARK [1][-]{section.10}{Further Work}{}% 20
+\BOOKMARK [2][-]{subsection.10.1}{Type-2 Fuzzy Logic}{section.10}% 21
+\BOOKMARK [1][-]{section.11}{Summary}{}% 22
+\BOOKMARK [1][-]{appendix.A}{test}{}% 23

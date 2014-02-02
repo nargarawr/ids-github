@@ -27,6 +27,7 @@
 \usepackage{wrapfig}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{ulem}
 
 \hypersetup{
     unicode=false,
@@ -102,12 +103,25 @@
 
 \newpage
 \begin{abstract}
-{\color{red} Abstract giving a short overview of the work in your project}
+{\color{red} Abstract giving a short overview of the work in your project
+\\
+\\
+Why did you undertake the study? 
+What were you examining, or testing or investigating. 
+Return to your research question and ensure you have re-stated it concisely, coherently and clearly. A good opening is often, "The report examines . . . ".
+\\
+What was done and how did you do it? Be specific, don’t make generalised comments. 
+
+
+What did you find out? State specific outcomes and, if appropriate, draw conclusions. ``The results found that 85\% of respondents used non-standardised assessments''
+
+}
 \end{abstract}
 
 \begin{large}
 Ensure to mention:
 \begin{enumerate}
+	\item WHAT IS FUZZY!!!
 	\item Further work with Type 2
 	\item Extend with other systems (Joe's dissertation)
 	\item Changes that Luke makes
@@ -116,6 +130,8 @@ Ensure to mention:
 	\item KeyPress Javascript library
 	\item Help system is dedicated, but offers links to other, helpful, external resources
 \end{enumerate}
+
+
 \end{large}
 
 %
@@ -125,7 +141,7 @@ Ensure to mention:
 %
 
 \newpage
-\newgeometry{left=50pt, right=50pt, top = 75pt, bottom=75pt}
+\newgeometry{left=3cm, right=3cm, top = 75pt, bottom=75pt}
 \addtocontents{toc}{\protect\thispagestyle{empty}}
 \tableofcontents
 
@@ -141,11 +157,15 @@ Ensure to mention:
 
 \input{sections/introduction}
 
+\input{sections/introduction2}
+
+\input{sections/introduction3}
+
 \input{sections/motivation}
 
-\input{sections/specification}
+\input{sections/background}
 
-\input{sections/existing}
+\input{sections/specification}
 
 \input{sections/design}
 
@@ -153,10 +173,10 @@ Ensure to mention:
 
 \input{sections/evaluation}
 
+\input{sections/furtherwork}
+
 \input{sections/summary}
 
-
-\cite{singh2011k}
 
 %
 %
