@@ -84,6 +84,27 @@ $(document).ready(function() {
     });
 
 
+
+    /* 
+      Input variable help button information
+    */
+    $("#rulecHelpBtn").popover(
+      {
+        placement:'bottom',
+        title: '<b> Rule Creator </b>',
+        content: "How to specify rules and the effects they have"
+      });
+
+    $("#rulecHelpBtn").click(function(){
+        if ( $("#inputVarHelpBtn").text() === "Show Help") {
+          $("#rulecHelpBtn").html("Hide Help");
+        } else {
+          $("#rulecHelpBtn").html("Show Help");
+        }
+    });
+
+
+
     // When any navigation is pressed, clear all help windows
     $("#input-tab").click(clearPopovers);
     $("#output-tab").click(clearPopovers);

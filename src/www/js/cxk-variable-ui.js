@@ -12,6 +12,20 @@ var g_originalName;
 var globali = 0;
 var edit = false;
 
+function getTotalMfCount( input ){
+    var total = 0;
+    if ( input ) {
+      for ( var key in inputDivs ) {
+        total += inputDivs[key].memFuncs.length;
+      }
+    } else {
+      for ( var key in outputDivs ) {
+        total += outputDivs[key].memFuncs.length;
+      }
+    }
+
+    return total;
+}
 
 /*
 	Checks whether the specified variable is valid, returns an error code

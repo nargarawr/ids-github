@@ -1,20 +1,79 @@
 var systemRulesIndex = 0;
 var systemRules = new Array();
 
+
+function checkVarsForRules () {
+
+	var d = document.getElementById("errorRowRule");
+	var errorMessage;
+
+	var inputLength = 0;
+	for ( var key in inputDivs ) {
+       inputLength++;
+    }
+
+	var outputLength = 0;
+	for ( var key in outputDivs ) {
+       outputLength++;
+    }
+
+	var errorOccured;
+	
+	if ( inputLength < 1 ) {
+		errorMessage = "You do not have enough input variables to construct a rule"
+		errorOccured = true;
+	} else if ( outputLength < 1 ) {
+		errorMessage = "You do not have enough output variables to construct a rule"
+		errorOccured = true;
+	} else if ( getTotalMfCount(true) < 1 ) {
+		errorMessage = "You do not have enough input membership functions to construct a rule"
+		errorOccured = true;
+	} else if ( getTotalMfCount(false) < 1 ) {
+		errorMessage = "You do not have enough output membership functions to construct a rule"
+		errorOccured = true;
+	}
+
+	if ( errorOccured ) {
+		errorMessage = "<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>&times;</button>" + errorMessage + "</div>";
+		d.innerHTML = errorMessage;
+	} else {
+		$('#myRuleModal').modal('show');	
+		generateRuleUI();
+	}
+	
+}
+
+
+
 /*
   Draws the UI elements necessary to create the rules
 */
 
-function generateRules() {
-    var d = document.getElementById("mainDivRule");
+function generateRuleUI() {
+    var d = document.getElementById("ruleModalDiv");
+	while ( d.hasChildNodes() ) {
+			d.removeChild( d.firstChild );       
+	}    
+
+    var table = document.createElement("table");
+    var tableRow = document.createElement("tr");
+	var tableCol = document.createElement("td");
 
     for ( var key in inputDivs ) {
-       d.appendChild(document.createTextNode(inputDivs[key].varName));
+      	var tableCol = document.createElement("td");
+      	tableCol.appendChild(document.createTextNode(inputDivs[key].varName));
+      	tableRow.appendChild(tableCol)
     }
 
     for ( var key in outputDivs ) {
-      d.appendChild(document.createTextNode(outputDivs[key].varName));
+     	var tableCol = document.createElement("td");
+      	tableCol.appendChild(document.createTextNode(outputDivs[key].varName));
+      	tableRow.appendChild(tableCol)
     }
+    
+    table.appendChild(tableRow);
+    d.appendChild(table);
+
 }
 
 /*
@@ -44,7 +103,8 @@ function printRules () {
 
 	for ( var key in systemRules ) {
 		var listItem = document.createElement("li");
-		listItem.appendChild(document.createTextNode("test"));
+		// put rule info here
+		listItem.appendChild(document.createTextNode("IF"));
 		list.appendChild(listItem);
 	}
 }
@@ -58,9 +118,11 @@ function addNewRule () {
 		Get all the shit from IO
 	*/
 
-
 	systemRules.push(new systemRule(0,0,0,0))	
+	printRules();
 
+    // Hide modal
+    $('#myRuleModal').modal('hide');
 }
 
 /*

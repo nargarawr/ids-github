@@ -1,25 +1,23 @@
 \thispagestyle {empty}
 \contentsline {section}{\numberline {1}Introduction}{1}{section.1}
-\contentsline {section}{\numberline {2}Introduction}{2}{section.2}
-\contentsline {section}{\numberline {3}Introduction}{4}{section.3}
-\contentsline {section}{\numberline {4}Motivation}{5}{section.4}
-\contentsline {section}{\numberline {5}Background Research}{5}{section.5}
-\contentsline {subsection}{\numberline {5.1}Existing Systems}{5}{subsection.5.1}
-\contentsline {section}{\numberline {6}System Specification}{5}{section.6}
-\contentsline {subsection}{\numberline {6.1}Functional Requirements}{5}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}Non-Functional Requirements}{5}{subsection.6.2}
-\contentsline {section}{\numberline {7}Designs}{5}{section.7}
-\contentsline {subsection}{\numberline {7.1}The Design Process}{6}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}UI Design}{6}{subsection.7.2}
-\contentsline {subsubsection}{\numberline {7.2.1}First Iteration}{6}{subsubsection.7.2.1}
-\contentsline {subsubsection}{\numberline {7.2.2}Second Iteration}{6}{subsubsection.7.2.2}
-\contentsline {subsubsection}{\numberline {7.2.3}Third Iteration}{6}{subsubsection.7.2.3}
-\contentsline {subsection}{\numberline {7.3}Navigation/Control Flow Design}{6}{subsection.7.3}
-\contentsline {subsection}{\numberline {7.4}Internal Design}{6}{subsection.7.4}
-\contentsline {section}{\numberline {8}Software Implementation}{6}{section.8}
-\contentsline {section}{\numberline {9}Evaluation}{6}{section.9}
-\contentsline {section}{\numberline {10}Further Work}{6}{section.10}
-\contentsline {subsection}{\numberline {10.1}Type-2 Fuzzy Logic}{6}{subsection.10.1}
-\contentsline {section}{\numberline {11}Summary}{6}{section.11}
+\contentsline {section}{\numberline {2}Motivation}{2}{section.2}
+\contentsline {section}{\numberline {3}Background Research}{2}{section.3}
+\contentsline {subsection}{\numberline {3.1}Existing Systems}{2}{subsection.3.1}
+\contentsline {section}{\numberline {4}System Specification}{2}{section.4}
+\contentsline {subsection}{\numberline {4.1}Functional Requirements}{3}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Non-Functional Requirements}{3}{subsection.4.2}
+\contentsline {section}{\numberline {5}Designs}{3}{section.5}
+\contentsline {subsection}{\numberline {5.1}The Design Process}{3}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}UI Design}{3}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}First Iteration}{3}{subsubsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2}Second Iteration}{3}{subsubsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.3}Third Iteration}{3}{subsubsection.5.2.3}
+\contentsline {subsection}{\numberline {5.3}Navigation/Control Flow Design}{3}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Internal Design}{3}{subsection.5.4}
+\contentsline {section}{\numberline {6}Software Implementation}{3}{section.6}
+\contentsline {section}{\numberline {7}Evaluation}{3}{section.7}
+\contentsline {section}{\numberline {8}Further Work}{3}{section.8}
+\contentsline {subsection}{\numberline {8.1}Type-2 Fuzzy Logic}{3}{subsection.8.1}
+\contentsline {section}{\numberline {9}Summary}{3}{section.9}
 \contentsline {section}{\numberline {A}test}{1}{appendix.A}
 \contentsfinish 

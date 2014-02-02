@@ -39,8 +39,7 @@ J. Lazar, A. Jones, and B. Shneiderman. Workplace user frustration with computer
 exploratory investigation of the causes and severity. Behaviour & Information Technology,
 2006.
 
-George A Miller. The magical number seven, plus or minus two: some limits on our capacity
-for processing information. Psychological review, 63(2):81, 1956.
+George A Miller. The magical number seven, plus or minus two: some limits on our capacity for processing information. Psychological review, 63(2):81, 1956.
 
 Don Norman. The design of everyday things. Basic books, 2002.
 

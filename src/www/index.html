@@ -41,6 +41,7 @@
   <div class="row-fluid">
     <div class="span2">
       <form class ="well">
+        <button onclick="testStuff()"> add test </button>
       </form>
     </div>
     <div class="span10">
@@ -96,7 +97,8 @@
           <div class="tab-pane" id="tab-rules">  
               <div class="span10">
                 <div class="span10">
-                   <button class="btn addNewVarBtn" id="addNewRule" onclick="addNewRule()">Add New Rule</button>
+                  <div id="errorRowRule"></div>
+                   <button class="btn addNewVarBtn" id="addNewRule" onclick="clearPopovers(); checkVarsForRules();">Add New Rule</button>
                 </div> 
                 <div class= "span2">
                   <a href="#" id="ruleHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
@@ -118,6 +120,9 @@
   </div>
 </div>
 </div>
+
+
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -152,5 +157,26 @@
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" id="myRuleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class= "btn btn-success" id="rulecHelpBtn" style="width:100px; height:30px; float:right" data-toggle="modal" href="">Show Help</button>        
+        <h4 class="modal-title">Membership Function Creator</h4>
+      </div>
+      <div class="modal-body">
+        <div id="ruleModalDiv">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
+        <button type="button" class="btn btn-primary" onClick='addNewRule()' id="btn2">Save Rule</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>  
 </html>
