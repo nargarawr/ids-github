@@ -56,21 +56,56 @@ function generateRuleUI() {
 	}    
 
     var table = document.createElement("table");
-    var tableRow = document.createElement("tr");
+    var tableHeadings = document.createElement("tr");
 	var tableCol = document.createElement("td");
 
     for ( var key in inputDivs ) {
       	var tableCol = document.createElement("td");
       	tableCol.appendChild(document.createTextNode(inputDivs[key].varName));
-      	tableRow.appendChild(tableCol)
+      	tableHeadings.appendChild(tableCol)
     }
 
     for ( var key in outputDivs ) {
      	var tableCol = document.createElement("td");
       	tableCol.appendChild(document.createTextNode(outputDivs[key].varName));
-      	tableRow.appendChild(tableCol)
+      	tableHeadings.appendChild(tableCol)
     }
     
+	table.appendChild(tableHeadings);
+
+	var tableRow = document.createElement("tr");
+    for ( var key in inputDivs ) {
+    	var tableCol = document.createElement("td");
+    	var sel = document.createElement("select")
+    	sel.className = "thinSelectBox";
+    	var opt = null;
+
+    	for ( var key2 in inputDivs[key].memFuncs )  {
+    		opt = document.createElement("option");
+    		opt.value = "inputOption_" + inputDivs[key].memFuncs[key2].funName;
+    		opt.innerHTML = inputDivs[key].memFuncs[key2].funName;
+    		sel.appendChild(opt);
+    	}
+
+    	tableCol.appendChild(sel);
+    	tableRow.appendChild(tableCol) 
+    }
+
+    for ( var key in outputDivs ) {
+    	var tableCol = document.createElement("td");
+    	var sel = document.createElement("select");
+    	sel.className = "thinSelectBox";
+    	for ( var key2 in outputDivs[key].memFuncs )  {
+    		opt = document.createElement("option");
+    		opt.value = "outputOption_" + outputDivs[key].memFuncs[key2].funName;
+    		opt.innerHTML = outputDivs[key].memFuncs[key2].funName;
+    		sel.appendChild(opt);
+    	}
+
+    	tableCol.appendChild(sel);
+      	tableRow.appendChild(tableCol)    		
+    }
+
     table.appendChild(tableRow);
     d.appendChild(table);
 
