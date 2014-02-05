@@ -1,9 +1,26 @@
 \begin{thebibliography}{1}
 
+\bibitem{albertos1998fuzzy}
+Pedro Albertos and Antonio Sala.
+\newblock Fuzzy logic controllers, advantages and drawbacks.
+\newblock {\em IEEE transactions on control system technology}, 1998.
+
 \bibitem{lazar2006workplace}
 Jonathan Lazar, Adam Jones, and Ben Shneiderman.
 \newblock Workplace user frustration with computers: An exploratory
   investigation of the causes and severity.
 \newblock {\em Behaviour \& Information Technology}, 25(03):239--251, 2006.
+
+\bibitem{zadeh1965fuzzy}
+Lotfi~A Zadeh.
+\newblock Fuzzy sets.
+\newblock {\em Information and control}, 8(3):338--353, 1965.
+
+\bibitem{zadeh1999computing}
+Lotfi~A Zadeh.
+\newblock From computing with numbers to computing with words. from
+  manipulation of measurements to manipulation of perceptions.
+\newblock {\em Circuits and Systems I: Fundamental Theory and Applications,
+  IEEE Transactions on}, 46(1):105--119, 1999.
 
 \end{thebibliography}
