@@ -1,4 +1,15 @@
 /*
+  cxk-dynamic-ui.js
+  Deals with additional dynamic user interface elements
+  Author: Craig Knott
+
+  Functions:
+    clearPopovers( );
+    onTabChange( tabIndex );
+    tipperTest( );
+*/
+
+/*
   Function to clear any left over popovers
 */
 function clearPopovers() {

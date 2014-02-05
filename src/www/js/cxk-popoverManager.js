@@ -1,5 +1,29 @@
+/*
+  cxk-rule-ui.js
+  Deals with all popovers
+  Author: Craig Knott
+
+  Functions:
+    $("#inputVarHelpBtn").popover(); 
+    $("#inputVarHelpBtn").click();
+    $("#outputVarHelpBtn").popover();
+    $("#outputVarHelpBtn").click();
+    $("#ruleHelpBtn").popover();
+    $("#ruleHelpBtn").click();
+    $("#mfcHelpBtn").popover();
+    $("#mfcHelpBtn").click();
+    $("#rulecHelpBtn").popover();
+    $("#rulecHelpBtn").click();
+    $("#input-tab").click();
+    $("#output-tab").click();
+    $("#rule-tab").click();
+    $("#import-tab").click();
+    $("#export-tab").click();
+*/
+
+
 $(document).ready(function() {
-  
+
     /* 
       Input variable help button information
     */

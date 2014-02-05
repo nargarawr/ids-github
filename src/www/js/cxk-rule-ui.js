@@ -1,3 +1,24 @@
+/*
+  cxk-rule-ui.js
+  Deals with all rule storage and display
+  Author: Craig Knott
+
+  Functions:
+    $('#myRuleModal').on('hidden', function ();
+	checkVarsForRules ( );
+	generateRuleUI ( );
+	getConnective ( );
+	isLastKey ( lkey, arr );
+	printRules ( ); 
+	addNewRule ( ); 
+	editrule ( );
+	deleteRule ( );
+	clearRuleErrors ( ); 
+	updateWeight ( );
+	validRuleWeight ( );
+	resetWeight ( );
+*/
+
 var systemRulesIndex = 0;
 var systemRules = new Array();
 
@@ -51,11 +72,9 @@ function checkVarsForRules () {
 }
 
 
-
 /*
   Draws the UI elements necessary to create the rules
 */
-
 function generateRuleUI() {
     var d = document.getElementById("ruleModalDiv");
 	while ( d.hasChildNodes() ) {
@@ -142,8 +161,6 @@ function generateRuleUI() {
     d.appendChild(table);
 
 }
-
-
 
 
 function getConnective () {
@@ -252,5 +269,3 @@ function resetWeight () {
 	document.getElementById("weight_val").value = 0.5;
 	document.getElementById("weight_val_selector").value = 0.5;	
 }
-
-

@@ -1,4 +1,18 @@
 /*
+  cxk-objects.js
+  All of the objects present in the system
+  Author: Craig Knott
+
+  Functions:
+    triMemFun (name, left, mean, right, height);
+    trapMemFun (name, lfoot, lshould, rshould, rfoot, height);
+  	gauMemFun (name, sigma, mean, height);
+    gau2MemFun (name, lsigma, lmean, rsigma, rmean, height);
+    systemVar(m_varName, divId, isInput);
+    systemRule(m_inputList, m_outputList, weight, connective);	
+*/
+
+/*
 	Triangular Membership Function
 */
 function triMemFun (name, left, mean, right, height) {

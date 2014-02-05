@@ -1,3 +1,23 @@
+/*
+  cxk-variable-ui.js
+  Deals with all variable aspects of the system
+  Author: Craig Knott
+
+  Functions:
+    getTotalMfCount ( input );
+    checkValidity ( divId, isInput );
+    compressDiv ( divId, isInput, shouldReset );
+    resizeDivs ( topDivId, isInput );
+    expandDiv( divId, isInput );
+    deleteDiv( divId, isInput );
+    addNewVar( isInput );
+    swapToFront( keyToSwap, isInput );
+    setCurrentDiv ( cd, b );
+    getCurrentDiv ( );
+    getIsInput ( );
+    convertToTable ( memFuncs, divId, isInput );
+*/
+
 // Global variables to track the input variables
 var inputIndex = 0;
 var inputDivs = new Array();
@@ -12,6 +32,9 @@ var g_originalName;
 var globali = 0;
 var edit = false;
 
+/*
+  Get the number of input or output membership functions
+*/
 function getTotalMfCount( input ){
     var total = 0;
     if ( input ) {
@@ -185,6 +208,7 @@ function expandDiv(divId, isInput){
 /*
 	Deletes the specified div, after giving a warning
 */
+
 function deleteDiv(divId, isInput) {
 	var r = confirm("This will permanently delete this variable, are you sure you wish to continue?")
 	if (r==true) { 		
@@ -214,6 +238,7 @@ function deleteDiv(divId, isInput) {
 /*
 	Adds a new variable to the system
 */
+
 function addNewVar(isInput){
   if ( isInput ){
     var mainDiv = document.getElementById("mainDivInput")
@@ -238,6 +263,7 @@ function addNewVar(isInput){
 /*
 	Set the div at index /keyToSwap/ to be above all other divs
 */
+
 function swapToFront(keyToSwap, isInput ){
   if ( isInput ) {
     var mainDiv = document.getElementById("mainDivInput");
@@ -370,94 +396,4 @@ function convertToTable ( memFuncs, divId, isInput ) {
   }
 
   return tbl;
-}
-
-
-/*
-  Deletes a membership function
-*/
-function deleteMembershipFunction ( i, divId, isInput ) {
-  if ( isInput ) {
-    (inputDivs[divId].memFuncs).splice(i, 1);
-    inputDivs[divId].resetContent();
-    inputDivs[divId].getBigContent();
-  } else {
-    (outputDivs[divId].memFuncs).splice(i, 1);
-    outputDivs[divId].resetContent();
-    outputDivs[divId].getBigContent();
-  }
-}
-
-/*
-  Converts the abbreviation type name to a full type name
-*/
-function convertType (type){
-  if ( type === "gau" ){
-    return "Gaussian";
-  } else if (type === "ga2"){
-    return "2-Part Gaussian";
-  } else if ( type === "tri" ){
-    return "Triangular";
-  } else if ( type === "trp" ){
-    return "Trapezoidal";
-  }
-}
-
-/*
-  Edits a membership function
-*/
-function editMembershipFunction (i, divId, isInput ){
-  edit = true;
-  globali = i;
-
-  var type;
-  if ( isInput ) {
-    type = inputDivs[divId].memFuncs[i].funType;
-  } else {
-    type = outputDivs[divId].memFuncs[i].funType;
-  }
-  
-  var s = document.getElementById ( 'mfTypeSelect' );
-  if ( type === "gau" ){
-    s.selectedIndex = 0;
-  } else if (type === "ga2"){
-    s.selectedIndex = 1;
-  } else if ( type === "tri" ){
-    s.selectedIndex = 2;
-  } else if ( type === "trp" ){
-    s.selectedIndex = 3;
-  }
-
-  updateModal();
-  var mf;
-  if ( isInput ) {
-    mf = inputDivs[divId].memFuncs[i];
-  } else {
-    mf = outputDivs[divId].memFuncs[i];
-  }
-   
-
-  // Fill values, dependent on function type
-  if ( type === "gau" ){
-    document.getElementById("inputSigma").value = mf.paramSigma;
-    document.getElementById("inputMean").value = mf.paramMean;
-  } else if (type === "ga2"){
-    document.getElementById("inputLSigma").value = mf.paramLeftSigma;
-    document.getElementById("inputLMean").value = mf.paramLeftMean;
-    document.getElementById("inputRSigma").value = mf.paramRightSigma;
-    document.getElementById("inputRMean").value = mf.paramRightMean;
-  } else if ( type === "tri" ){
-    document.getElementById("inputLeft").value = mf.paramLeft;
-    document.getElementById("inputRight").value = mf.paramRight;
-    document.getElementById("inputMean").value = mf.paramMean;
-  } else if ( type === "trp" ){
-    document.getElementById("inputLFoot").value = mf.paramLeftFoot;
-    document.getElementById("inputLShoulder").value = mf.paramLeftShoulder;
-    document.getElementById("inputRFoot").value = mf.paramRightFoot;
-    document.getElementById("inputRShoulder").value = mf.paramRightShoulder;
-  }
-    document.getElementById("inputFunName").value = mf.funName;
-    document.getElementById("inputHeight").value = mf.paramHeight;
-
-    g_originalName = mf.funName;
 }
