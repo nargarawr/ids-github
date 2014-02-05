@@ -11,6 +11,12 @@ Jonathan Lazar, Adam Jones, and Ben Shneiderman.
   investigation of the causes and severity.
 \newblock {\em Behaviour \& Information Technology}, 25(03):239--251, 2006.
 
+\bibitem{miller1956magical}
+George~A Miller.
+\newblock The magical number seven, plus or minus two: some limits on our
+  capacity for processing information.
+\newblock {\em Psychological review}, 63(2):81, 1956.
+
 \bibitem{zadeh1965fuzzy}
 Lotfi~A Zadeh.
 \newblock Fuzzy sets.
