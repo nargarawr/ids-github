@@ -1,4 +1,7 @@
 
+
+
+
 /*
   Function to clear any left over popovers
 */
@@ -13,7 +16,7 @@ function clearPopovers() {
     $("#outputVarHelpBtn").html("Show Help");
     $("#mfcHelpBtn").html("Show Help");
     $("#ruleHelpBtn").html("Show Help");
-    $("#rulecHelpBtn").html("Show Help")
+    $("#rulecHelpBtn").html("Show Help");
 }
 
 /*

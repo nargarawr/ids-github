@@ -1,6 +1,14 @@
 var systemRulesIndex = 0;
 var systemRules = new Array();
 
+var connectiveColumns = new Array();
+
+$(document).ready(function() {
+	$('#myRuleModal').on('hidden', function () {
+	    clearPopovers();
+	    clearRuleErrors();
+	});
+});
 
 function checkVarsForRules () {
 
@@ -39,8 +47,7 @@ function checkVarsForRules () {
 	} else {
 		$('#myRuleModal').modal('show');	
 		generateRuleUI();
-	}
-	
+	}	
 }
 
 
@@ -59,21 +66,27 @@ function generateRuleUI() {
     var tableHeadings = document.createElement("tr");
 	var tableCol = document.createElement("td");
 
+	tableCol.appendChild(document.createTextNode("IF"));
+	tableHeadings.appendChild(tableCol);
+
     for ( var key in inputDivs ) {
       	var tableCol = document.createElement("td");
-      	tableCol.appendChild(document.createTextNode(inputDivs[key].varName));
+      	tableCol.appendChild(document.createTextNode(inputDivs[key].varName  + " is"));
       	tableHeadings.appendChild(tableCol)
+      	tableHeadings.appendChild(document.createElement("td"));
     }
 
     for ( var key in outputDivs ) {
      	var tableCol = document.createElement("td");
-      	tableCol.appendChild(document.createTextNode(outputDivs[key].varName));
+      	tableCol.appendChild(document.createTextNode(outputDivs[key].varName  + " is"));
       	tableHeadings.appendChild(tableCol)
+      	tableHeadings.appendChild(document.createElement("td"));
     }
     
 	table.appendChild(tableHeadings);
 
 	var tableRow = document.createElement("tr");
+	tableRow.appendChild(document.createElement("td"));
     for ( var key in inputDivs ) {
     	var tableCol = document.createElement("td");
     	var sel = document.createElement("select")
@@ -88,7 +101,15 @@ function generateRuleUI() {
     	}
 
     	tableCol.appendChild(sel);
-    	tableRow.appendChild(tableCol) 
+    	tableRow.appendChild(tableCol);
+    	var tableColConnective = document.createElement("td");
+    	if ( isLastKey(key,inputDivs) ) { 
+    		tableColConnective.appendChild(document.createTextNode("THEN"));
+    	} else {
+    		tableColConnective.appendChild(document.createTextNode(getConnective()));
+    		connectiveColumns.push(tableColConnective);
+    	}
+    	tableRow.appendChild(tableColConnective);
     }
 
     for ( var key in outputDivs ) {
@@ -109,6 +130,21 @@ function generateRuleUI() {
     table.appendChild(tableRow);
     d.appendChild(table);
 
+}
+
+
+
+
+function getConnective () {
+	return ($('input[name=connective]:checked').val());
+}
+
+function isLastKey ( lkey, arr ) {
+	var lastKey;
+	for ( var key in arr ) {
+		lastKey = key;
+	}
+	return ( lastKey === lkey );
 }
 
 /*
@@ -148,16 +184,18 @@ function printRules () {
 	Adds a new rule to the system
 */
 function addNewRule () {
-
-	/*
+	if ( validRuleWeight() ) {
+		/*
 		Get all the shit from IO
-	*/
+		*/
+		
+		// Add the new rule, and display
+		systemRules.push(new systemRule(0,0,0,0))	
+		printRules();
 
-	systemRules.push(new systemRule(0,0,0,0))	
-	printRules();
-
-    // Hide modal
-    $('#myRuleModal').modal('hide');
+	    // Hide modal
+	    $('#myRuleModal').modal('hide');
+	} 
 }
 
 /*
@@ -173,3 +211,33 @@ function deleteRule () {
 
 
 }
+
+function clearRuleErrors () {
+	document.getElementById("ruleCreatorErrorsDiv").innerHTML = "";
+}
+
+function updateWeight ( ) {
+	document.getElementById("weight_val").value = document.getElementById("weight_val_selector").value;
+}
+
+function validRuleWeight () {
+	var val = document.getElementById("weight_val").value;
+	if ( val > 1 || val < 0 ) {   
+		var errorMessage = "Weight must be between 0 and 1"; 
+		document.getElementById("ruleCreatorErrorsDiv").innerHTML = 
+		"<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>&times;</button>" + errorMessage  +"</div>";
+
+		document.getElementById("weight_val").value = 0.5;
+		document.getElementById("weight_val_selector").value = 0.5;		
+		return false;
+	}	
+	return true;
+}
+
+
+function resetWeight () {
+	document.getElementById("weight_val").value = 0.5;
+	document.getElementById("weight_val_selector").value = 0.5;	
+}
+
+

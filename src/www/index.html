@@ -20,11 +20,12 @@
   <script src="js/libs/bootstrap.min.js"></script>
 
   <!-- Custom Javascript files -->
+
   <script src="js/cxk-objects.js"></script>
   <script src="js/cxk-dynamic-ui.js"></script>
   <script src="js/cxk-mf-ui.js"></script>
   <script src="js/cxk-variable-ui.js"></script>
-  <script src="js/cxk-rule-ui.js"></script>
+  <script src="js/cxk-rule-ui.js"></script>    
   <script src="js/cxk-popoverManager.js"></script>
 
   <title> o-Fuzz! </title>
@@ -98,7 +99,7 @@
               <div class="span10">
                 <div class="span10">
                   <div id="errorRowRule"></div>
-                   <button class="btn addNewVarBtn" id="addNewRule" onclick="clearPopovers(); checkVarsForRules();">Add New Rule</button>
+                   <button class="btn addNewVarBtn" id="addNewRule" onclick="clearPopovers(); resetWeight(); checkVarsForRules();">Add New Rule</button>
                 </div> 
                 <div class= "span2">
                   <a href="#" id="ruleHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
@@ -169,6 +170,35 @@
       <div class="modal-body">
         <div id="ruleModalDiv">
         </div>
+        <br>
+        <hr class="divide">
+        <div id="ruleCreatorErrorsDiv"></div>
+        <br>
+        <div style="margin-left:25px; width:25%; float:left">
+          <b>Connective</b>
+          <form>
+          <div class="btn-group">
+            <div class="form-inline">
+                <label class="radio inline"> <input type="radio" name="connective" id="cand" checked value="AND"/> And </label>
+                <br>
+                <label class="radio inline"> <input type="radio" name="connective" id="cor" value="OR"/> Or </label>
+            </div>
+          </div>
+          <script type="text/javascript">
+          $("#cand, #cor").change(function () {
+             for ( var key in connectiveColumns ) {
+                var cc = connectiveColumns[key];
+                cc.removeChild(cc.firstChild);
+                cc.appendChild(document.createTextNode(getConnective()));
+              }
+          });
+          </script>
+        </div>     
+        <div>
+          <b> Weight: </b> <input type="text" style="width:50px; height:25px" id="weight_val" onblur="validRuleWeight()"> <br>
+          <br>
+          0 <input type="range" name="points" id="weight_val_selector" step="0.1" min="0" max="1" onchange="updateWeight()"> 1
+        </div>   
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>

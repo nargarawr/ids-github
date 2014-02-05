@@ -1,3 +1,12 @@
+// Functions to be called when the modal window is closed in any way
+$(document).ready(function() {
+    $('#myModal').on('hidden', function () {
+        clearPopovers();
+        document.getElementById('inputFunName').value = "";
+        edit = false;
+    });
+});
+
 /*
 	Updates the membership function creator based on the mf type selection
 */

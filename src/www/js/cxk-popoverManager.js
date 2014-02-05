@@ -1,14 +1,5 @@
 $(document).ready(function() {
-
-    // Functions to be called when the modal window is closed in any way
-    $('#myModal').on('hidden', function () {
-      clearPopovers();
-      document.getElementById('inputFunName').value = "";
-      edit = false;
-    })
-
-
-
+  
     /* 
       Input variable help button information
     */
@@ -96,7 +87,7 @@ $(document).ready(function() {
       });
 
     $("#rulecHelpBtn").click(function(){
-        if ( $("#inputVarHelpBtn").text() === "Show Help") {
+        if ( $("#rulecHelpBtn").text() === "Show Help") {
           $("#rulecHelpBtn").html("Hide Help");
         } else {
           $("#rulecHelpBtn").html("Show Help");
