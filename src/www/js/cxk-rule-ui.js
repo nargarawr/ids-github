@@ -76,6 +76,7 @@ function generateRuleUI() {
       	tableHeadings.appendChild(document.createElement("td"));
     }
 
+
     for ( var key in outputDivs ) {
      	var tableCol = document.createElement("td");
       	tableCol.appendChild(document.createTextNode(outputDivs[key].varName  + " is"));
@@ -100,6 +101,11 @@ function generateRuleUI() {
     		sel.appendChild(opt);
     	}
 
+    	var nullOpt = document.createElement("option");
+    	nullOpt.value = "inputOption_" + inputDivs[key] + "_nullOpt";
+    	nullOpt.innerHTML = "(Not used)";
+    	sel.appendChild(nullOpt);
+
     	tableCol.appendChild(sel);
     	tableRow.appendChild(tableCol);
     	var tableColConnective = document.createElement("td");
@@ -122,6 +128,11 @@ function generateRuleUI() {
     		opt.innerHTML = outputDivs[key].memFuncs[key2].funName;
     		sel.appendChild(opt);
     	}
+
+    	var nullOpt = document.createElement("option");
+    	nullOpt.value = "outputOption_" + outputDivs[key] + "_nullOpt";
+    	nullOpt.innerHTML = "(Not used)";
+    	sel.appendChild(nullOpt);
 
     	tableCol.appendChild(sel);
       	tableRow.appendChild(tableCol)    		
@@ -189,6 +200,8 @@ function addNewRule () {
 		Get all the shit from IO
 		*/
 		
+
+
 		// Add the new rule, and display
 		systemRules.push(new systemRule(0,0,0,0))	
 		printRules();

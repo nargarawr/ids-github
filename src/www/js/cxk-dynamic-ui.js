@@ -1,7 +1,3 @@
-
-
-
-
 /*
   Function to clear any left over popovers
 */
