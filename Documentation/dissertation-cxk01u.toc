@@ -6,32 +6,32 @@
 \contentsline {subsection}{\numberline {3.2}Existing Systems}{4}{subsection.3.2}
 \contentsline {paragraph}{MATLAB Fuzzy Toolbox}{4}{subsection.3.2}
 \contentsline {paragraph}{FuzzyToolkitUoN}{4}{subsection.3.2}
-\contentsline {paragraph}{XFuzzy}{4}{subsection.3.2}
-\contentsline {paragraph}{fuzzyTECH}{4}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Platforms and Tools}{4}{subsection.3.3}
-\contentsline {section}{\numberline {4}System Specification}{5}{section.4}
-\contentsline {subsection}{\numberline {4.1}Functional Requirements}{5}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Non-Functional Requirements}{5}{subsection.4.2}
-\contentsline {section}{\numberline {5}System Designs}{5}{section.5}
-\contentsline {subsection}{\numberline {5.1}The Design Process}{5}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}UI Design}{5}{subsection.5.2}
-\contentsline {subsubsection}{\numberline {5.2.1}First Iteration}{5}{subsubsection.5.2.1}
-\contentsline {subsubsection}{\numberline {5.2.2}Second Iteration}{5}{subsubsection.5.2.2}
-\contentsline {subsubsection}{\numberline {5.2.3}Third Iteration}{5}{subsubsection.5.2.3}
-\contentsline {subsection}{\numberline {5.3}Navigation/Control Flow Design}{5}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}Internal Design}{5}{subsection.5.4}
-\contentsline {section}{\numberline {6}Software Implementation}{5}{section.6}
-\contentsline {subsection}{\numberline {6.1}Key Implementation Decisions}{5}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}a detailed description of all aspects of the system}{5}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Problems Encountered}{5}{subsection.6.3}
-\contentsline {section}{\numberline {7}Evaluation}{6}{section.7}
-\contentsline {subsection}{\numberline {7.1}Statistical Tests}{6}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}User Feedback Tests}{6}{subsection.7.2}
-\contentsline {subsection}{\numberline {7.3}Successes and Limitations of the Project}{6}{subsection.7.3}
-\contentsline {section}{\numberline {8}Further Work}{6}{section.8}
-\contentsline {subsection}{\numberline {8.1}Type-2 Fuzzy Logic}{6}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}Backend Interoperability}{6}{subsection.8.2}
-\contentsline {subsection}{\numberline {8.3}Customisations}{6}{subsection.8.3}
-\contentsline {section}{\numberline {9}Summary}{6}{section.9}
+\contentsline {paragraph}{XFuzzy (3.0)}{5}{subsection.3.2}
+\contentsline {paragraph}{fuzzyTECH}{5}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Platforms and Tools}{6}{subsection.3.3}
+\contentsline {section}{\numberline {4}System Specification}{6}{section.4}
+\contentsline {subsection}{\numberline {4.1}Functional Requirements}{6}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Non-Functional Requirements}{6}{subsection.4.2}
+\contentsline {section}{\numberline {5}System Designs}{6}{section.5}
+\contentsline {subsection}{\numberline {5.1}The Design Process}{6}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}UI Design}{6}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}First Iteration}{6}{subsubsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2}Second Iteration}{6}{subsubsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.3}Third Iteration}{6}{subsubsection.5.2.3}
+\contentsline {subsection}{\numberline {5.3}Navigation/Control Flow Design}{6}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Internal Design}{6}{subsection.5.4}
+\contentsline {section}{\numberline {6}Software Implementation}{7}{section.6}
+\contentsline {subsection}{\numberline {6.1}Key Implementation Decisions}{7}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}a detailed description of all aspects of the system}{7}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Problems Encountered}{7}{subsection.6.3}
+\contentsline {section}{\numberline {7}Evaluation}{7}{section.7}
+\contentsline {subsection}{\numberline {7.1}Statistical Tests}{7}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}User Feedback Tests}{7}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Successes and Limitations of the Project}{7}{subsection.7.3}
+\contentsline {section}{\numberline {8}Further Work}{7}{section.8}
+\contentsline {subsection}{\numberline {8.1}Type-2 Fuzzy Logic}{7}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Backend Interoperability}{7}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}Customisations}{7}{subsection.8.3}
+\contentsline {section}{\numberline {9}Summary}{7}{section.9}
 \contentsline {section}{\numberline {A}test}{1}{appendix.A}
 \contentsfinish 
