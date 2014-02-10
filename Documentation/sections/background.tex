@@ -65,17 +65,70 @@ The disadvantages of fuzzyTECH, just as with the MATLAB fuzzy toolbox, is that i
 
 
 
+\subsection{Platforms and Tools}
+This section introduces some potential platforms and tools that could have been used in the project, along with justifications for and against. The system itself consisted of two major parts, the web front end, and potentially some server back end (at the research stage of the project it had not yet been decided whether the application was to be entirely client-side or not). Both front end tools (including design frameworks and programming languages) and back end tools were explored and evaluated during this process to discern which would be the most appropriate for this project. Further to this, there was some research into graphing tools to be used on the website, as drawing fuzzy sets as graphs is an extremely powerful and intuitive way to represent them. A full list of the final decisions of tools to use, including their justifications, can be found in section \ref{sec:kid}.
 
-
-
+\subsubsection{System Back End}\ \\
 {\color{red}
-Talk about fuzzy toolkituon, matlab, xfuzzy (brief), fuzzytech(brief), mention their positions and negatives in terms of the key flaws, and novice users.\ \\
-\ \\
-Then talk about my project and how this will counter the specific issues raised.
+Talk about mutliple ones for different languages, talk about shiny (can use a lot of a little). talk about fuzzy toolkituon
+
+no database or such needed, just need a simple server to do calculations - could /really/ be client sided, but can't use R that way - optimal would be to link with fuzzytoolkituon (mean that updates to fuz could be applied to the website with reletive ease, if some api was created)
 }
 
+\paragraph{R-Node}
+\paragraph{R-Shiny}
+\paragraph{Node.js}
 
-\subsection{Platforms and Tools}
+
+\subsubsection{Front End Programming Language}
+Naturally, the website would be built using HTML and CSS, as they are the de-facto standard languages for the construction and design of websites. However, the most appropriate language to provide the functionality to the website required some research. Fortunately, it was not necessary to decide upon only a single language for this task, as many web based programming languages combine with relative ease, and even complement one another. 
+
+\paragraph{JavaScript}\ \\
+JavaScript is an obvious choice when looking to provide functionality to a website, due to it's high level of integration with HTML. It is a client-sided programming language used to alter the content of a display document, or in this case, website. The main advantage of JavaScript is it's ability to directly and easily manipulate the content of a web page, by accessing the document object model. The basic semantics and syntax of JavaScript are very similar to many other languages, meaning adopting this language is very easy to both expert and novice programmers. But, it also provides advanced features and functionality, that help to produce extremely powerful systems with relative ease. The disadvantages of JavaScript are that there are security issues (although this is not an issue with the system proposed in this project), and there is potential that JavaScript can be rendered differently depending on layout engine, causing inconsistencies.
+
+\paragraph{Flash}\ \\
+
+\paragraph{JQuery}\ \\
+
+\subsubsection{Front End Design Framework}\ \\
+A front end framework, in the context of web development, is a standardised set of concepts, practices and criteria for dealing with the production of the front end of a website. There are many advantages to using pre-made front end frameworks for developing web applications, the most prominent of which are that: they generally look more aesthetically appealing than a single individual would be able to produce, they provide access to a large selection of easy to implement dynamic user interface elements, and many of them deal with browser cross-compatibility automatically. During the research period of this project, the following three candidates were evaluated: Semantic, Twitter's Bootstrap, and HTML KickStart.
+
+\paragraph{Semantic}\ \\
+{\color{red} About semantic }
+
+\paragraph{Twitter's Bootstrap}\ \\
+Twitter's Bootstrap\footnote{\url{http://getbootstrap.com/}} is an extremely popular web development front end (so popular in fact, that some individuals\footnote{\url{http://css.dzone.com/articles/please-stop-using-twitter}} are beginning to complain about it's overuse), which helps to produce responsive websites, that function both on  desktop and mobile devices. It is designed so that anyone of any skill level, beginner to expert, can pick up the framework and begin creating websites with relative ease. It provides a framework that produces websites that easily and efficiently scale for a multitude of devices, such as phones, tablets, and desktops, helping to make them much more accessible (although, not entirely relevant for this project, as there are many logistical issues with attempting to create a fuzzy logic system from a mobile device). There is also extensive and comprehensive documentation available for Bootstrap, including live working examples, and ready-to-use code samples, making its adoption into any project extremely simple. As mentioned above, however, Bootstrap is so popular nowadays that many people find it's usage off putting, as a large number of websites are beginning to look like clones of one another. For this reason, if Bootstrap were to be used in this project, it would be important to ensure that it was not one of these ``sheep'' websites.	
+
+\paragraph{HTML KickStart}\ \\
+{\color{red} About html kickstart }
+
+\subsubsection{Graphing Tools}\ \\
+The drawing of fuzzy sets is extremely intuitive and powerful in a graphical format. For this reason, a suitable tool for the drawing of graphs on a website was required for this project. This would help to make the system considerably easier to use (as the user would be able to see their work as they were completing it), would take advantage of the graphical interface, and help to improve the general aesthetic of the system. 
+\paragraph{Directly from R}\ \\
+\paragraph{Google Charts}\ \\
+\paragraph{Highcharts}\ \\
+
+\ \\
+The first option for this was to the ability to draw graphs present in FuzzyToolkitUoN, which was one of the potential back end candidates. Using FuzzyToolkitUoN to draw the graphs would have promoted uniformity between the front end of the system, and it's back end, and would mean that the actual implementation of drawing of graphs would not need to be considered (as the system would simply be returning the image from R). It would also mean that the computation of the values for the graphs  could be done entirely in R, and thus there would be less computation necessary on the client side. However, this presented the issue that transferring graphical data from an R back end to a web front is a difficult task, and the graphs themselves were simply pictures, and the graphs would not be interactive or dynamic. \ \\
+\ \\
+Next, Google Charts\footnote{\url{https://developers.google.com/chart/}} was evaluated. Google Charts is an entirely free tool that provides a variety of graph types, that are simple to generate and embed on a web page.  
+
+Finally, a product called HighCharts\footnote{\url{http://www.highcharts.com/products/highcharts}} was examined. This was a commercial piece of software, but could be used for free, if the project it was being used by was non-commercial (like this project).
+
+Google charts, charts from R, highchart Js(free if not for profit!) (graphing tools to make it all easy)
+
+
+
+
+
+
+
+Jquery for power extra features, javascript as main languageas tis integrates with html seemlessly
+
+
+{\color{red}different web tools, jquery, html, css, javascript, }
+
+
 {\color{red}\begin{enumerate}
 \item Languages used (R, Javascript)
 \item Web technologies (tools, languages)

@@ -9,29 +9,45 @@
 \contentsline {paragraph}{XFuzzy (3.0)}{5}{subsection.3.2}
 \contentsline {paragraph}{fuzzyTECH}{5}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Platforms and Tools}{6}{subsection.3.3}
-\contentsline {section}{\numberline {4}System Specification}{6}{section.4}
-\contentsline {subsection}{\numberline {4.1}Functional Requirements}{6}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Non-Functional Requirements}{6}{subsection.4.2}
-\contentsline {section}{\numberline {5}System Designs}{6}{section.5}
-\contentsline {subsection}{\numberline {5.1}The Design Process}{6}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}UI Design}{6}{subsection.5.2}
-\contentsline {subsubsection}{\numberline {5.2.1}First Iteration}{6}{subsubsection.5.2.1}
-\contentsline {subsubsection}{\numberline {5.2.2}Second Iteration}{6}{subsubsection.5.2.2}
-\contentsline {subsubsection}{\numberline {5.2.3}Third Iteration}{6}{subsubsection.5.2.3}
-\contentsline {subsection}{\numberline {5.3}Navigation/Control Flow Design}{6}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}Internal Design}{6}{subsection.5.4}
-\contentsline {section}{\numberline {6}Software Implementation}{7}{section.6}
-\contentsline {subsection}{\numberline {6.1}Key Implementation Decisions}{7}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}a detailed description of all aspects of the system}{7}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Problems Encountered}{7}{subsection.6.3}
-\contentsline {section}{\numberline {7}Evaluation}{7}{section.7}
-\contentsline {subsection}{\numberline {7.1}Statistical Tests}{7}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}User Feedback Tests}{7}{subsection.7.2}
-\contentsline {subsection}{\numberline {7.3}Successes and Limitations of the Project}{7}{subsection.7.3}
-\contentsline {section}{\numberline {8}Further Work}{7}{section.8}
-\contentsline {subsection}{\numberline {8.1}Type-2 Fuzzy Logic}{7}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}Backend Interoperability}{7}{subsection.8.2}
-\contentsline {subsection}{\numberline {8.3}Customisations}{7}{subsection.8.3}
-\contentsline {section}{\numberline {9}Summary}{7}{section.9}
+\contentsline {subsubsection}{\numberline {3.3.1}System Back End}{6}{subsubsection.3.3.1}
+\contentsline {paragraph}{R-Node}{6}{subsubsection.3.3.1}
+\contentsline {paragraph}{R-Shiny}{6}{subsubsection.3.3.1}
+\contentsline {paragraph}{Node.js}{6}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}Front End Programming Language}{6}{subsubsection.3.3.2}
+\contentsline {paragraph}{JavaScript}{6}{subsubsection.3.3.2}
+\contentsline {paragraph}{Flash}{6}{subsubsection.3.3.2}
+\contentsline {paragraph}{JQuery}{6}{subsubsection.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.3}Front End Design Framework}{7}{subsubsection.3.3.3}
+\contentsline {paragraph}{Semantic}{7}{subsubsection.3.3.3}
+\contentsline {paragraph}{Twitter's Bootstrap}{7}{subsubsection.3.3.3}
+\contentsline {paragraph}{HTML KickStart}{7}{subsubsection.3.3.3}
+\contentsline {subsubsection}{\numberline {3.3.4}Graphing Tools}{7}{subsubsection.3.3.4}
+\contentsline {paragraph}{Directly from R}{7}{subsubsection.3.3.4}
+\contentsline {paragraph}{Google Charts}{7}{subsubsection.3.3.4}
+\contentsline {paragraph}{Highcharts}{7}{subsubsection.3.3.4}
+\contentsline {section}{\numberline {4}System Specification}{8}{section.4}
+\contentsline {subsection}{\numberline {4.1}Functional Requirements}{8}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Non-Functional Requirements}{8}{subsection.4.2}
+\contentsline {section}{\numberline {5}System Designs}{8}{section.5}
+\contentsline {subsection}{\numberline {5.1}The Design Process}{9}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}UI Design}{9}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}First Iteration}{9}{subsubsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2}Second Iteration}{9}{subsubsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.3}Third Iteration}{9}{subsubsection.5.2.3}
+\contentsline {subsection}{\numberline {5.3}Navigation/Control Flow Design}{9}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Internal Design}{9}{subsection.5.4}
+\contentsline {section}{\numberline {6}Software Implementation}{9}{section.6}
+\contentsline {subsection}{\numberline {6.1}Key Implementation Decisions}{9}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Detailed Description of the Implemented System}{9}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Problems Encountered}{9}{subsection.6.3}
+\contentsline {section}{\numberline {7}Evaluation}{9}{section.7}
+\contentsline {subsection}{\numberline {7.1}Functionality Tests}{9}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}User Feedback Tests}{10}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Successes and Limitations of the Project}{10}{subsection.7.3}
+\contentsline {section}{\numberline {8}Further Work}{10}{section.8}
+\contentsline {subsection}{\numberline {8.1}Type-2 Fuzzy Logic}{10}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Backend Interoperability}{10}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}Customisations}{10}{subsection.8.3}
+\contentsline {section}{\numberline {9}Summary}{10}{section.9}
 \contentsline {section}{\numberline {A}test}{1}{appendix.A}
 \contentsfinish 
