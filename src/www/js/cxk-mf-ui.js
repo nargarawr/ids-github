@@ -376,7 +376,6 @@ function deleteMembershipFunction ( i, divId, isInput ) {
         outputDivs[divId].getBigContent();
       }
     }
-  
 }
 
 

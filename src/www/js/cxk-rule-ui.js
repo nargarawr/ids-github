@@ -16,7 +16,7 @@
 	clearRuleErrors ( ); 
 	updateWeight ( );
 	validRuleWeight ( );
-	resetWeight ( );
+	resetRuleCreator ( );
 */
 
 var systemRulesIndex = 0;
@@ -201,9 +201,9 @@ function printRules () {
 			var x = systemRules[key].inputList[key2];
 			listItem.appendChild(document.createTextNode(x.leftEl + " IS " + x.rightEl + " "));
 			if ( !(isLastKey (key2, systemRules[key].inputList)) ) {
-				listItem.appendChild(document.createTextNode(systemRules[key].connective + " "));		
+				listItem.appendChild(document.createTextNode(systemRules[key].connective + " "));
 			} else {
-				listItem.appendChild(document.createTextNode("THEN "));		
+				listItem.appendChild(document.createTextNode("THEN "));
 			}
 		}
 		
@@ -214,6 +214,22 @@ function printRules () {
 				listItem.appendChild(document.createTextNode(systemRules[key].connective + " "));		
 			} 
 		}
+
+		listItem.appendChild(document.createTextNode("(" + systemRules[key].weight + ")"));		
+
+		var editButton = document.createElement("button");
+		editButton.className = "btn btn-primary lowMarge";
+		editButton.appendChild(document.createTextNode("Edit"));
+		var s = "\""+ key +"\"";
+		editButton.setAttribute("onclick", "editRule(" + s + ")");
+		listItem.appendChild(editButton);
+
+		var deleteButton = document.createElement("button");
+		deleteButton.className = "btn btn-danger lowMarge";
+		deleteButton.appendChild(document.createTextNode("Delete"));
+		deleteButton.setAttribute("onclick", "deleteRule(" + s + ")");
+		listItem.appendChild(deleteButton);
+
 		list.appendChild(listItem);
 	}
 }
@@ -226,9 +242,6 @@ function addNewRule () {
 		
 		var inputs = new Array();
 		var outputs = new Array();
-
-
-
 
 		for ( var key in inputDivs ) {
 			var x = document.getElementById("input" + key);
@@ -244,15 +257,6 @@ function addNewRule () {
 			outputs.push(p);		
 		}
 
-		//for ( var key in inputDivs ) {
-    //		for ( var key2 in inputDivs[key].memFuncs )  {
-   // 			//alert(key + ", " + key2)
-   // 			var p = new pair ( inputDivs[key].name, "test" );
-   // 			inputs.push(p);
-   // 		}
-   // 	}
-
-
 		var weight = document.getElementById("weight_val").value;
 		var conn = getConnective();
 
@@ -265,13 +269,19 @@ function addNewRule () {
 /*
 	Change an existing rule in the system
 */
-function editrule () {
+function editRule ( ruleId ) {
+	alert(ruleId);
 }
 
 /*
 	Delete a rule in the system
 */
-function deleteRule () {
+function deleteRule ( ruleId ) {
+	var r = confirm("This will permanently delete this rule, are you sure you wish to continue?")
+	if ( r ) {    
+		systemRules.splice(ruleId,1);
+		printRules();
+    }
 }
 
 function clearRuleErrors () {
@@ -291,15 +301,14 @@ function validRuleWeight () {
 		document.getElementById("ruleCreatorErrorsDiv").innerHTML = 
 		"<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>&times;</button>" + errorMessage  +"</div>";
 
-		document.getElementById("weight_val").value = 0.5;
-		document.getElementById("weight_val_selector").value = 0.5;		
+		document.getElementById("weight_val").value = 1;
+		document.getElementById("weight_val_selector").value = 1;		
 		return false;
 	}	
 	return true;
 }
 
-
-function resetWeight () {
-	document.getElementById("weight_val").value = 0.5;
-	document.getElementById("weight_val_selector").value = 0.5;	
+function resetRuleCreator () {
+	document.getElementById("weight_val").value = 1;
+	document.getElementById("weight_val_selector").value = 1;	
 }

@@ -191,7 +191,6 @@ function resizeDivs (topDivId, isInput) {
 function expandDiv(divId, isInput){
 	resizeDivs (divId, isInput);
 	swapToFront(divId, isInput);
-
   if ( isInput ){
     inputDivs[divId].resetContent();
     inputDivs[divId].getBigContent();
