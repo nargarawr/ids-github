@@ -111,17 +111,18 @@ function generateRuleUI() {
     	var tableCol = document.createElement("td");
     	var sel = document.createElement("select")
     	sel.className = "thinSelectBox";
+    	sel.id = "input" + key;
     	var opt = null;
 
     	for ( var key2 in inputDivs[key].memFuncs )  {
     		opt = document.createElement("option");
-    		opt.value = "inputOption_" + inputDivs[key].memFuncs[key2].funName;
+    		opt.value = "input" + key + "function" + key2;
     		opt.innerHTML = inputDivs[key].memFuncs[key2].funName;
     		sel.appendChild(opt);
     	}
 
     	var nullOpt = document.createElement("option");
-    	nullOpt.value = "inputOption_" + inputDivs[key] + "_nullOpt";
+    	nullOpt.value = "input" + key + "null";
     	nullOpt.innerHTML = "(Not used)";
     	sel.appendChild(nullOpt);
 
@@ -140,16 +141,17 @@ function generateRuleUI() {
     for ( var key in outputDivs ) {
     	var tableCol = document.createElement("td");
     	var sel = document.createElement("select");
+    	sel.id = "output" + key;
     	sel.className = "thinSelectBox";
     	for ( var key2 in outputDivs[key].memFuncs )  {
     		opt = document.createElement("option");
-    		opt.value = "outputOption_" + outputDivs[key].memFuncs[key2].funName;
+    		opt.value = "output" + key + "function" + key2;
     		opt.innerHTML = outputDivs[key].memFuncs[key2].funName;
     		sel.appendChild(opt);
     	}
 
     	var nullOpt = document.createElement("option");
-    	nullOpt.value = "outputOption_" + outputDivs[key] + "_nullOpt";
+    	nullOpt.value = "output" + key + "null";
     	nullOpt.innerHTML = "(Not used)";
     	sel.appendChild(nullOpt);
 
@@ -159,11 +161,11 @@ function generateRuleUI() {
 
     table.appendChild(tableRow);
     d.appendChild(table);
-
 }
 
 
 function getConnective () {
+	//
 	return ($('input[name=connective]:checked').val());
 }
 
@@ -181,14 +183,6 @@ function isLastKey ( lkey, arr ) {
 
 function printRules () {
 
-	/*
-
-
-		needs to have edit/delete buttons
-
-
-	*/
-
 	var d = document.getElementById("mainDivRule");
 
 	while ( d.hasChildNodes() ) {
@@ -202,8 +196,24 @@ function printRules () {
 
 	for ( var key in systemRules ) {
 		var listItem = document.createElement("li");
-		// put rule info here
-		listItem.appendChild(document.createTextNode("IF"));
+		listItem.appendChild(document.createTextNode("IF "));
+		for ( var key2 in systemRules[key].inputList ) {
+			var x = systemRules[key].inputList[key2];
+			listItem.appendChild(document.createTextNode(x.leftEl + " IS " + x.rightEl + " "));
+			if ( !(isLastKey (key2, systemRules[key].inputList)) ) {
+				listItem.appendChild(document.createTextNode(systemRules[key].connective + " "));		
+			} else {
+				listItem.appendChild(document.createTextNode("THEN "));		
+			}
+		}
+		
+		for ( var key2 in systemRules[key].outputList ) {
+			var x = systemRules[key].outputList[key2];
+			listItem.appendChild(document.createTextNode(x.leftEl + " IS " + x.rightEl + " "));
+			if ( !(isLastKey (key2, systemRules[key].outputList)) ) {
+				listItem.appendChild(document.createTextNode(systemRules[key].connective + " "));		
+			} 
+		}
 		list.appendChild(listItem);
 	}
 }
@@ -213,17 +223,41 @@ function printRules () {
 */
 function addNewRule () {
 	if ( validRuleWeight() ) {
-		/*
-		Get all the shit from IO
-		*/
 		
+		var inputs = new Array();
+		var outputs = new Array();
 
 
-		// Add the new rule, and display
-		systemRules.push(new systemRule(0,0,0,0))	
+
+
+		for ( var key in inputDivs ) {
+			var x = document.getElementById("input" + key);
+			var selected = x.options[x.selectedIndex].text;
+			var p = new pair ( inputDivs[key].varName, selected );
+			inputs.push(p);		
+		}
+	
+		for ( var key in outputDivs ) {
+			var x = document.getElementById("output" + key);
+			var selected = x.options[x.selectedIndex].text;
+			var p = new pair ( outputDivs[key].varName, selected );
+			outputs.push(p);		
+		}
+
+		//for ( var key in inputDivs ) {
+    //		for ( var key2 in inputDivs[key].memFuncs )  {
+   // 			//alert(key + ", " + key2)
+   // 			var p = new pair ( inputDivs[key].name, "test" );
+   // 			inputs.push(p);
+   // 		}
+   // 	}
+
+
+		var weight = document.getElementById("weight_val").value;
+		var conn = getConnective();
+
+		systemRules.push(new systemRule(inputs,outputs,weight, conn))	
 		printRules();
-
-	    // Hide modal
 	    $('#myRuleModal').modal('hide');
 	} 
 }
@@ -238,15 +272,15 @@ function editrule () {
 	Delete a rule in the system
 */
 function deleteRule () {
-
-
 }
 
 function clearRuleErrors () {
+	
 	document.getElementById("ruleCreatorErrorsDiv").innerHTML = "";
 }
 
 function updateWeight ( ) {
+
 	document.getElementById("weight_val").value = document.getElementById("weight_val_selector").value;
 }
 

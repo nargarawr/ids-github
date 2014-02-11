@@ -43,7 +43,6 @@ $(document).ready(function() {
     });
 
 
-
     /* 
       Output variable help button information   
     */
@@ -68,7 +67,7 @@ $(document).ready(function() {
     $("#ruleHelpBtn").popover({
       placement:'bottom',
       title: '<b> Rule Creator </b>',
-      content: 'What a rule is, an example, make up of a rule, buttons to press on this page and what they do'
+      content: 'In this section of the system, you can specify what logical rules you wish to apply to the system, during the evaluation process.<br><br> To add a rule, press the \'Add New Rule\' button. This will bring up the Rule Creator Menu, which will explain more about rules in a fuzzy system. Once a rule has been created, you can use the \'Edit\' and \'Delete\' buttons to edit and delete the rule, respectively.'
     });
 
     $("#ruleHelpBtn").click(function(){
@@ -107,7 +106,7 @@ $(document).ready(function() {
       {
         placement:'bottom',
         title: '<b> Rule Creator </b>',
-        content: "How to specify rules and the effects they have"
+        content: "Specifying rules is as simple as selecting the correct linguistic term for each variable in your system. We use rules to dictate how the system will be evaluated later on. For example, you could specify a rule that says:<br><br> If \"height\" is \"tall\" and \"athleticism\" is \"good\" then \"sport to play\" is \"basketball\". <br><br>This will then tell the fuzzy inference system how to evaluate an instance where these statements are true. It is generally a good idea to specify a rule for each combination of input terms for your system, to ensure you cover all possible permutations. <br><br>You may also specify the connective to use (either AND or OR), and the weight of the rule (which affects how much impact the rule has on the system as a whole). You can select the weight using the provided slider, or by entering a value directly into the provided text box; just remember that this value has to be between 0 (no effect), and 1 (full effect)."
       });
 
     $("#rulecHelpBtn").click(function(){

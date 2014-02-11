@@ -290,6 +290,15 @@ function systemVar(m_varName, divId, isInput){
 	}
 }
 
+
+/*
+	Pair Object
+*/
+function pair ( l, r ) {
+	this.leftEl = l;
+	this.rightEl = r;
+}
+
 /*
 	Rule object
 */
