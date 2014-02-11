@@ -19,6 +19,8 @@
 	resetRuleCreator ( );
 */
 
+var edittingRule = false;
+
 var systemRulesIndex = 0;
 var systemRules = new Array();
 
@@ -199,7 +201,7 @@ function printRules () {
 		listItem.appendChild(document.createTextNode("IF "));
 		for ( var key2 in systemRules[key].inputList ) {
 			var x = systemRules[key].inputList[key2];
-			listItem.appendChild(document.createTextNode(x.leftEl + " IS " + x.rightEl + " "));
+			listItem.appendChild(document.createTextNode(inputDivs[x.leftEl].varName + " IS " + x.rightEl + " "));
 			if ( !(isLastKey (key2, systemRules[key].inputList)) ) {
 				listItem.appendChild(document.createTextNode(systemRules[key].connective + " "));
 			} else {
@@ -209,7 +211,7 @@ function printRules () {
 		
 		for ( var key2 in systemRules[key].outputList ) {
 			var x = systemRules[key].outputList[key2];
-			listItem.appendChild(document.createTextNode(x.leftEl + " IS " + x.rightEl + " "));
+			listItem.appendChild(document.createTextNode(outputDivs[x.leftEl].varNames + " IS " + x.rightEl + " "));
 			if ( !(isLastKey (key2, systemRules[key].outputList)) ) {
 				listItem.appendChild(document.createTextNode(systemRules[key].connective + " "));		
 			} 
@@ -237,33 +239,38 @@ function printRules () {
 /*
 	Adds a new rule to the system
 */
-function addNewRule () {
-	if ( validRuleWeight() ) {
+function addNewRule ( isEditting ) {
+	if ( isEditting ) {
+		alert("gonna overwrite you bro")
+	} else {
+		if ( validRuleWeight() ) {
+			var inputs = new Array();
+			var outputs = new Array();
+
+			for ( var key in inputDivs ) {
+				var x = document.getElementById("input" + key);
+				var selected = x.options[x.selectedIndex].text;
+				var p = new pair ( inputDivs[key].divId, selected );
+				inputs.push(p);		
+			}
 		
-		var inputs = new Array();
-		var outputs = new Array();
+			for ( var key in outputDivs ) {
+				var x = document.getElementById("output" + key);
+				var selected = x.options[x.selectedIndex].text;
+				var p = new pair ( outputDivs[key].divId, selected );
+				outputs.push(p);		
+			}
 
-		for ( var key in inputDivs ) {
-			var x = document.getElementById("input" + key);
-			var selected = x.options[x.selectedIndex].text;
-			var p = new pair ( inputDivs[key].divId, selected );
-			inputs.push(p);		
-		}
-	
-		for ( var key in outputDivs ) {
-			var x = document.getElementById("output" + key);
-			var selected = x.options[x.selectedIndex].text;
-			var p = new pair ( outputDivs[key].divId, selected );
-			outputs.push(p);		
-		}
+			var weight = document.getElementById("weight_val").value;
+			var conn = getConnective();
 
-		var weight = document.getElementById("weight_val").value;
-		var conn = getConnective();
+			systemRules.push(new systemRule(inputs,outputs,weight, conn))	
+			printRules();
+		    $('#myRuleModal').modal('hide');
+		} 
+	}
+	edittingRule = false;
 
-		systemRules.push(new systemRule(inputs,outputs,weight, conn))	
-		printRules();
-	    $('#myRuleModal').modal('hide');
-	} 
 }
 
 function isNumber (o) {
@@ -274,6 +281,7 @@ function isNumber (o) {
 	Change an existing rule in the system
 */
 function editRule ( ruleId ) {
+	edittingRule = true;
 	$('#myRuleModal').modal('show');
 
 	for ( var key in systemRules[ruleId].inputList ) {
