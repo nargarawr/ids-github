@@ -246,14 +246,14 @@ function addNewRule () {
 		for ( var key in inputDivs ) {
 			var x = document.getElementById("input" + key);
 			var selected = x.options[x.selectedIndex].text;
-			var p = new pair ( inputDivs[key].varName, selected );
+			var p = new pair ( inputDivs[key].divId, selected );
 			inputs.push(p);		
 		}
 	
 		for ( var key in outputDivs ) {
 			var x = document.getElementById("output" + key);
 			var selected = x.options[x.selectedIndex].text;
-			var p = new pair ( outputDivs[key].varName, selected );
+			var p = new pair ( outputDivs[key].divId, selected );
 			outputs.push(p);		
 		}
 
@@ -266,11 +266,48 @@ function addNewRule () {
 	} 
 }
 
+function isNumber (o) {
+  return ! isNaN (o-0) && o !== null && o !== "" && o !== false;
+}
+
 /*
 	Change an existing rule in the system
 */
 function editRule ( ruleId ) {
-	alert(ruleId);
+	$('#myRuleModal').modal('show');
+
+	for ( var key in systemRules[ruleId].inputList ) {
+		var divId = systemRules[ruleId].inputList[key].leftEl;
+		var funcName = systemRules[ruleId].inputList[key].rightEl;
+		var x = getFuncNum( divId, funcName, true );
+		if ( isNumber(x) ) {
+			document.getElementById("input" + divId).value = "input" + divId + "function" + x;			
+		} else {
+			document.getElementById("input" + divId).value = "input" + divId + x;			
+		}
+	}
+	
+ 	for ( var key in systemRules[ruleId].outputList ) {
+		var divId = systemRules[ruleId].outputList[key].leftEl;
+		var funcName = systemRules[ruleId].outputList[key].rightEl;
+		var x = getFuncNum( divId, funcName, false );
+		if ( isNumber(x) ) {
+			document.getElementById("output" + divId).value = "output" + divId + "function" + x;			
+		} else {
+			document.getElementById("output" + divId).value = "output" + divId + x;			
+		}	
+	}   
+
+	// Set connective
+	if ( systemRules[ruleId].connective === "AND" ) {
+		$('#cand').attr('checked','checked');
+	} else {
+		$('#cor').attr('checked','checked');	
+	}
+
+	// Set weight
+	$('#weight_val').val(systemRules[ruleId].weight);
+	$('#weight_val_selector').val(systemRules[ruleId].weight);
 }
 
 /*
@@ -289,7 +326,7 @@ function clearRuleErrors () {
 	document.getElementById("ruleCreatorErrorsDiv").innerHTML = "";
 }
 
-function updateWeight ( ) {
+function updateWeight () {
 
 	document.getElementById("weight_val").value = document.getElementById("weight_val_selector").value;
 }

@@ -12,6 +12,7 @@
     createMembershipFunction( divId, isInput );
     deleteMembershipFunction ( i, divId, isInput );
     convertType ( type );
+    getFuncNum ( divId, funcName );
     editMembershipFunction (i, divId, isInput );
 */
 
@@ -392,6 +393,26 @@ function convertType (type){
   } else if ( type === "trp" ){
     return "Trapezoidal";
   }
+}
+
+function getFuncNum ( divId, funcName, isInput ) {
+  var i = 0;
+  if ( isInput ) {
+    for ( var key in inputDivs[divId].memFuncs ) {
+      if ( inputDivs[divId].memFuncs[key].funName === funcName ) {
+        return i;
+      }
+      i++;
+    }  
+  } else {
+    for ( var key in outputDivs[divId].memFuncs ) {
+      if ( outputDivs[divId].memFuncs[key].funName === funcName ) {
+        return i;
+      }
+      i++;
+    }
+  }
+  return "null";
 }
 
 /*
