@@ -68,73 +68,44 @@ The disadvantages of fuzzyTECH, just as with the MATLAB fuzzy toolbox, is that i
 \subsection{Platforms and Tools}
 This section introduces some potential platforms and tools that could have been used in the project, along with justifications for and against. The system itself consisted of two major parts, the web front end, and potentially some server back end (at the research stage of the project it had not yet been decided whether the application was to be entirely client-side or not). Both front end tools (including design frameworks and programming languages) and back end tools were explored and evaluated during this process to discern which would be the most appropriate for this project. Further to this, there was some research into graphing tools to be used on the website, as drawing fuzzy sets as graphs is an extremely powerful and intuitive way to represent them. A full list of the final decisions of tools to use, including their justifications, can be found in section \ref{sec:kid}.
 
-\subsubsection{System Back End}\ \\
-{\color{red}
-Talk about mutliple ones for different languages, talk about shiny (can use a lot of a little). talk about fuzzy toolkituon
+\subsubsection{System Back End}
+\paragraph{R-Node}\ \\
+R-Node\footnote{\url{http://squirelove.net/r-node/}} is a web front end that allows access to an R instance running in the back end. Allowing for the use of R, means that this tool could be used to directly use FuzzyToolkitUoN, which would give the system access to all of the tools that are already available in the R package. This would greatly simplify the production process, as a brand new inference engine would not need to be produced. Specifically, this tool allows for the drawing of graphs, which would be a huge usability boost to the system (as visualising fuzzy sets as graphics is extremely useful). Unfortunately, the website for R-Node has been unresponsive for some time now, so finding documentation, or an actual download link is impossible. This shows that the tool is not very well maintained, and any issues discovered whilst using it would not likely be resolved in a reasonable time frame.
 
-no database or such needed, just need a simple server to do calculations - could /really/ be client sided, but can't use R that way - optimal would be to link with fuzzytoolkituon (mean that updates to fuz could be applied to the website with reletive ease, if some api was created)
-}
+\paragraph{R-Shiny}\ \\
+R-Shiny\footnote{\url{http://www.rstudio.com/shiny/}} is an easy way to create web applications, using the R programming language. Like R-Node above, the advantages of using R would be the use of the FuzzyToolitUoN package, allowing for direct access to tools for the manipulation of fuzzy sets and systems. R-Shiny is currently in development, which means it lacks a lot of important features that would make its use much simpler, however, the development team are very active both in regards to respond to bug reports, and answering questions on their discussion board. R-Shiny allows for the creation of entire web pages using entirely R, or the use of just R as a back end, allowing for a much more dynamic web front end (created with HTML). Unfortunately, despite this more dynamic web front end, R-Shiny still does not provide an adequate way to create fully dynamic websites, which would be required for this project.
 
-\paragraph{R-Node}
-\paragraph{R-Shiny}
-\paragraph{Node.js}
-
+\paragraph{Node.js}\ \\
+Node.js\footnote{\url{http://nodejs.org}} is a platform built on JavaScript that allows for the construction of network applications with ease. It is quick and easy to set up a basic server, however, can become quite confusing and difficult to set up a more complex one. Luckily, there is a lot of support for Node.js, as it is becoming more and more popular among developers. This means that any issues that were encountered would hopefully be solvable within a reasonable time frame, and would not hinder the project too greatly. However, unlike the other back ends discussed, the use of Node.js would mean the construction of a new, bespoke, JavaScript based fuzzy inference system, which would be a significant increase to the work required. 
 
 \subsubsection{Front End Programming Language}
-Naturally, the website would be built using HTML and CSS, as they are the de-facto standard languages for the construction and design of websites. However, the most appropriate language to provide the functionality to the website required some research. Fortunately, it was not necessary to decide upon only a single language for this task, as many web based programming languages combine with relative ease, and even complement one another. 
+Naturally, the website would be built using HTML and CSS, as they are the de-facto standard languages for the construction and design of websites. However, the most appropriate language to provide the functionality to the website required some research. 
 
 \paragraph{JavaScript}\ \\
-JavaScript is an obvious choice when looking to provide functionality to a website, due to it's high level of integration with HTML. It is a client-sided programming language used to alter the content of a display document, or in this case, website. The main advantage of JavaScript is it's ability to directly and easily manipulate the content of a web page, by accessing the document object model. The basic semantics and syntax of JavaScript are very similar to many other languages, meaning adopting this language is very easy to both expert and novice programmers. But, it also provides advanced features and functionality, that help to produce extremely powerful systems with relative ease. The disadvantages of JavaScript are that there are security issues (although this is not an issue with the system proposed in this project), and there is potential that JavaScript can be rendered differently depending on layout engine, causing inconsistencies.
+JavaScript is an obvious choice when looking to provide functionality to a website, due to it's high level of integration with HTML. It is a client-sided programming language used to alter the content of a display document, or in this case, website. The main advantage of JavaScript is it's ability to directly and easily manipulate the content of a web page, by accessing the document object model. The basic semantics and syntax of JavaScript are very similar to many other languages, meaning adopting this language is very easy to both expert and novice programmers. It also provides advanced features and functionality, that help to produce extremely powerful systems with relative ease. Using JavaScript also allows access to other JavaScript tools, such as JQuery. 1The disadvantages of JavaScript are that there are security issues (although this is not an issue with the system proposed in this project), and there is potential that JavaScript can be rendered differently depending on layout engine, causing inconsistencies.
 
-\paragraph{Flash}\ \\
+\paragraph{Adobe Flash (ActionScript)}\ \\
+Adobe Flash is a tool for the creation of graphics, animation, games, and rich internet applications, which require the Adobe Flash Player to be viewed. This allows for the creation of websites that are both aesthetically pleasing, and are interactive for the use, making the entire experience of using the website much more pleasing. However, HTML5 is now at the stage where it can almost perform the same functionality as Flash, negating it's necessity. It also requires that the user have Adobe Flash Player installed, which, whilst free, is an extra unnecessary download that could stand to make the system more difficult to access (for optimal accessibility, the project would require no additional downloads).
 
-\paragraph{JQuery}\ \\
-
-\subsubsection{Front End Design Framework}\ \\
+\subsubsection{Front End Design Framework}
 A front end framework, in the context of web development, is a standardised set of concepts, practices and criteria for dealing with the production of the front end of a website. There are many advantages to using pre-made front end frameworks for developing web applications, the most prominent of which are that: they generally look more aesthetically appealing than a single individual would be able to produce, they provide access to a large selection of easy to implement dynamic user interface elements, and many of them deal with browser cross-compatibility automatically. During the research period of this project, the following three candidates were evaluated: Semantic, Twitter's Bootstrap, and HTML KickStart.
 
 \paragraph{Semantic}\ \\
-{\color{red} About semantic }
+Semantic\footnote{\url{http://semantic-ui.com}} is a web front end development system produced by Jack Lukic. The main advantages of semantic are that is it tag agnostic (meaning any tag with UI elements can be used), and that it has a variety of elements with real-time debug output, allowing the application programmer to see what effect their code has. It also has the advantage that it isn't Bootstrap, spoken about below, which is often cited as being overused; this would give the project a slightly more unique feel. Unfortunately, as this is a less well known, and less well developed framework, there are much fewer UI elements to choose from, in comparison to a framework like Bootstrap, and the entire framework is less documented, and there is less online help (due to it's lower adoption rate).
 
 \paragraph{Twitter's Bootstrap}\ \\
 Twitter's Bootstrap\footnote{\url{http://getbootstrap.com/}} is an extremely popular web development front end (so popular in fact, that some individuals\footnote{\url{http://css.dzone.com/articles/please-stop-using-twitter}} are beginning to complain about it's overuse), which helps to produce responsive websites, that function both on  desktop and mobile devices. It is designed so that anyone of any skill level, beginner to expert, can pick up the framework and begin creating websites with relative ease. It provides a framework that produces websites that easily and efficiently scale for a multitude of devices, such as phones, tablets, and desktops, helping to make them much more accessible (although, not entirely relevant for this project, as there are many logistical issues with attempting to create a fuzzy logic system from a mobile device). There is also extensive and comprehensive documentation available for Bootstrap, including live working examples, and ready-to-use code samples, making its adoption into any project extremely simple. As mentioned above, however, Bootstrap is so popular nowadays that many people find it's usage off putting, as a large number of websites are beginning to look like clones of one another. For this reason, if Bootstrap were to be used in this project, it would be important to ensure that it was not one of these ``sheep'' websites.	
 
 \paragraph{HTML KickStart}\ \\
-{\color{red} About html kickstart }
+HTML KickStart\footnote{\url{http://www.99lime.com/elements}} was the final web front end that was evaluated. Like Bootstrap, this was a responsive and scalable framework that meant it was suitable for devices ranging from desktops, to mobiles (even if the application itself wasn't). It also comes with over 240 icons, which can be used to help the design and usability of elements on the website (as people generally associate certain icons with certain tasks), and the entire framework can be included with just two files (instead of Bootstrap that requires some level of configuration to ensure you have all possible features). On the other hand, this framework provided much fewer elements than other packages (like Bootstrap), and the documentation presented on the framework's web page was confusing and laid out poorly (which is ironic, as the website was built using HTML KickStart), which made searching for specific tools much more troublesome. 
 
-\subsubsection{Graphing Tools}\ \\
+\subsubsection{Graphing Tools}
 The drawing of fuzzy sets is extremely intuitive and powerful in a graphical format. For this reason, a suitable tool for the drawing of graphs on a website was required for this project. This would help to make the system considerably easier to use (as the user would be able to see their work as they were completing it), would take advantage of the graphical interface, and help to improve the general aesthetic of the system. 
 \paragraph{Directly from R}\ \\
+As mentioned in the back end section, there was potential to use the R language, as the back end for the system. This meant that any R libraries could be imported and used for the front end. In the case of this system, the use of FuzzyToolkitUoN would allow us to work with fuzzy logic and fuzzy sets, without the need to write an entirely new client-sided inference system from scratch. Using FuzzyToolkitUoN to draw the graphs, would promote uniformity between the back end and front end (if the back end did end up being R based), and would mean the implementation of drawing graphs would not need to be considered (as this would be handled by the R package). However, transferring graphical data from an R back end to a web front is a difficult task, and the graphs themselves would be simple, static images, whereas a dynamic or interactive graph would be much preferred.
+
 \paragraph{Google Charts}\ \\
-\paragraph{Highcharts}\ \\
+Google Charts\footnote{\url{https://developers.google.com/chart/}} is a tool for creating and displaying highly customisable graphs and charts on a web page. This package provides a large range of graphs and charts, all of which have interactive elements (helping to improve usability by a considerable margin, and reduce screen clutter). As this service is provided by Google, there is a large library of support available, and it can be assumed that the service is of a high quality. The only negatives of this tool is that the API isn't as simple to use as it potentially could be, and the returning of graphs can sometimes be slow.
 
-\ \\
-The first option for this was to the ability to draw graphs present in FuzzyToolkitUoN, which was one of the potential back end candidates. Using FuzzyToolkitUoN to draw the graphs would have promoted uniformity between the front end of the system, and it's back end, and would mean that the actual implementation of drawing of graphs would not need to be considered (as the system would simply be returning the image from R). It would also mean that the computation of the values for the graphs  could be done entirely in R, and thus there would be less computation necessary on the client side. However, this presented the issue that transferring graphical data from an R back end to a web front is a difficult task, and the graphs themselves were simply pictures, and the graphs would not be interactive or dynamic. \ \\
-\ \\
-Next, Google Charts\footnote{\url{https://developers.google.com/chart/}} was evaluated. Google Charts is an entirely free tool that provides a variety of graph types, that are simple to generate and embed on a web page.  
-
-Finally, a product called HighCharts\footnote{\url{http://www.highcharts.com/products/highcharts}} was examined. This was a commercial piece of software, but could be used for free, if the project it was being used by was non-commercial (like this project).
-
-Google charts, charts from R, highchart Js(free if not for profit!) (graphing tools to make it all easy)
-
-
-
-
-
-
-
-Jquery for power extra features, javascript as main languageas tis integrates with html seemlessly
-
-
-{\color{red}different web tools, jquery, html, css, javascript, }
-
-
-{\color{red}\begin{enumerate}
-\item Languages used (R, Javascript)
-\item Web technologies (tools, languages)
-\item Shiny r to html
-\item Bootstrap
-\item jquery
-\item Good user interfaces
-\end{enumerate}}
-
+\paragraph{Flot}\ \\
+Flot\footnote{\url{http://www.flotcharts.org}} was the final graphing tool that was evaluated. It is written, and accessed through jQuery, which means any project using JavaScript can easily incorporate it. The project is in constant development, and bug reports filed by the users are taken into account, as well as their general suggestions. However, the package itself can be difficult to get started with, and there are much fewer graph types available, compared to other services.
