@@ -4,14 +4,16 @@
   Author: Craig Knott
 
   Functions:
-    $('#myRuleModal').on('hidden', function ();
+	$(document).ready(function();
+		$('#myRuleModal').on('hidden', function ();
 	checkVarsForRules ( );
 	generateRuleUI ( );
 	getConnective ( );
 	isLastKey ( lkey, arr );
 	printRules ( ); 
 	addNewRule ( ); 
-	editrule ( );
+	isNumber ( o );
+	editRule ( );
 	deleteRule ( );
 	clearRuleErrors ( ); 
 	updateWeight ( );
@@ -20,19 +22,29 @@
 */
 
 var edittingRule = false;
+var edittingId = null;
 
 var systemRulesIndex = 0;
 var systemRules = new Array();
 
 var connectiveColumns = new Array();
 
+/**
+	Functions to be called when the document has loaded
+*/
 $(document).ready(function() {
+	/**
+		Function to hide rule modal
+	*/
 	$('#myRuleModal').on('hidden', function () {
 	    clearPopovers();
 	    clearRuleErrors();
 	});
 });
 
+/**
+	Check that we have enough variables and membership functions to construct a rule
+*/
 function checkVarsForRules () {
 
 	var d = document.getElementById("errorRowRule");
@@ -73,8 +85,7 @@ function checkVarsForRules () {
 	}	
 }
 
-
-/*
+/**
   Draws the UI elements necessary to create the rules
 */
 function generateRuleUI() {
@@ -158,19 +169,37 @@ function generateRuleUI() {
     	sel.appendChild(nullOpt);
 
     	tableCol.appendChild(sel);
-      	tableRow.appendChild(tableCol)    		
+      	tableRow.appendChild(tableCol) 
+
+    	var tableColConnective = document.createElement("td");
+    	if ( !(isLastKey(key,outputDivs)) ) { 
+    		tableColConnective.appendChild(document.createTextNode(getConnective()));
+    		connectiveColumns.push(tableColConnective);
+    	}
+    	tableRow.appendChild(tableColConnective);
+
     }
 
     table.appendChild(tableRow);
     d.appendChild(table);
 }
 
-
+/**
+	Get the currently selected connective
+	@return {string}, the value of the selected connective
+*/
 function getConnective () {
-	//
+
 	return ($('input[name=connective]:checked').val());
 }
 
+/**
+	Checks whether the key specified is the last key in the given array
+
+	@param {string}, the key to look for
+	@param {array[a]}, some array to look through
+	@return {boolean}, whether the key is the last element or not
+*/
 function isLastKey ( lkey, arr ) {
 	var lastKey;
 	for ( var key in arr ) {
@@ -179,10 +208,9 @@ function isLastKey ( lkey, arr ) {
 	return ( lastKey === lkey );
 }
 
-/*
+/**
 	Creates a list detailing all the rules of the system
 */
-
 function printRules () {
 
 	var d = document.getElementById("mainDivRule");
@@ -193,95 +221,114 @@ function printRules () {
 		} 
 	}
 
-	var list = document.createElement("ul");
-	d.appendChild(list);
+	var table = document.createElement("table");
 
 	for ( var key in systemRules ) {
-		var listItem = document.createElement("li");
-		listItem.appendChild(document.createTextNode("IF "));
+		var trow = document.createElement("tr");	
+		var tcol = document.createElement("td");
+
+		tcol.appendChild(document.createTextNode("IF "));
 		for ( var key2 in systemRules[key].inputList ) {
 			var x = systemRules[key].inputList[key2];
-			listItem.appendChild(document.createTextNode(inputDivs[x.leftEl].varName + " IS " + x.rightEl + " "));
+			tcol.appendChild(document.createTextNode(inputDivs[x.leftEl].varName + " IS " + x.rightEl + " "));
 			if ( !(isLastKey (key2, systemRules[key].inputList)) ) {
-				listItem.appendChild(document.createTextNode(systemRules[key].connective + " "));
+				tcol.appendChild(document.createTextNode(systemRules[key].connective + " "));
 			} else {
-				listItem.appendChild(document.createTextNode("THEN "));
+				tcol.appendChild(document.createTextNode("THEN "));
 			}
 		}
-		
+
 		for ( var key2 in systemRules[key].outputList ) {
 			var x = systemRules[key].outputList[key2];
-			listItem.appendChild(document.createTextNode(outputDivs[x.leftEl].varNames + " IS " + x.rightEl + " "));
+			tcol.appendChild(document.createTextNode(outputDivs[x.leftEl].varName + " IS " + x.rightEl + " "));
 			if ( !(isLastKey (key2, systemRules[key].outputList)) ) {
-				listItem.appendChild(document.createTextNode(systemRules[key].connective + " "));		
+				tcol.appendChild(document.createTextNode(systemRules[key].connective + " "));		
 			} 
 		}
 
-		listItem.appendChild(document.createTextNode("(" + systemRules[key].weight + ")"));		
+		tcol.appendChild(document.createTextNode("(" + systemRules[key].weight + ")"));			
 
+		var tcol2 = document.createElement("td");
 		var editButton = document.createElement("button");
 		editButton.className = "btn btn-primary lowMarge";
 		editButton.appendChild(document.createTextNode("Edit"));
 		var s = "\""+ key +"\"";
 		editButton.setAttribute("onclick", "editRule(" + s + ")");
-		listItem.appendChild(editButton);
+		tcol2.appendChild(editButton);
 
 		var deleteButton = document.createElement("button");
 		deleteButton.className = "btn btn-danger lowMarge";
 		deleteButton.appendChild(document.createTextNode("Delete"));
 		deleteButton.setAttribute("onclick", "deleteRule(" + s + ")");
-		listItem.appendChild(deleteButton);
+		tcol2.appendChild(deleteButton);
 
-		list.appendChild(listItem);
+		trow.appendChild(tcol);
+		trow.appendChild(tcol2);
+		table.appendChild(trow);
 	}
+
+	d.appendChild(table);
 }
 
-/*
+/**
 	Adds a new rule to the system
+
+	@param {boolean}, whether this is a new rule, or we are editing an old one
 */
 function addNewRule ( isEditting ) {
-	if ( isEditting ) {
-		alert("gonna overwrite you bro")
-	} else {
-		if ( validRuleWeight() ) {
-			var inputs = new Array();
-			var outputs = new Array();
+	if ( validRuleWeight() ) {
+		var inputs = new Array();
+		var outputs = new Array();
 
-			for ( var key in inputDivs ) {
-				var x = document.getElementById("input" + key);
-				var selected = x.options[x.selectedIndex].text;
-				var p = new pair ( inputDivs[key].divId, selected );
-				inputs.push(p);		
-			}
+		for ( var key in inputDivs ) {
+			var x = document.getElementById("input" + key);
+			var selected = x.options[x.selectedIndex].text;
+			var p = new pair ( inputDivs[key].divId, selected );
+			inputs.push(p);		
+		}
+	
+		for ( var key in outputDivs ) {
+			var x = document.getElementById("output" + key);
+			var selected = x.options[x.selectedIndex].text;
+			var p = new pair ( outputDivs[key].divId, selected );
+			outputs.push(p);		
+		}
+
+		var weight = document.getElementById("weight_val").value;
+		var conn = getConnective();
+		if ( isEditting ) {
+			systemRules.splice(edittingId, 1, new systemRule(inputs,outputs,weight,conn));
+		} else {
+			systemRules.push(new systemRule(inputs,outputs,weight,conn))		
+		}
 		
-			for ( var key in outputDivs ) {
-				var x = document.getElementById("output" + key);
-				var selected = x.options[x.selectedIndex].text;
-				var p = new pair ( outputDivs[key].divId, selected );
-				outputs.push(p);		
-			}
-
-			var weight = document.getElementById("weight_val").value;
-			var conn = getConnective();
-
-			systemRules.push(new systemRule(inputs,outputs,weight, conn))	
-			printRules();
-		    $('#myRuleModal').modal('hide');
-		} 
+		printRules();
+		edittingRule = false;
+		edittingId = null;
+	    $('#myRuleModal').modal('hide');
 	}
-	edittingRule = false;
-
 }
 
+/**
+	Checks whether the given value is a number or not
+
+	@param {a}, some value to be checked
+	@return {boolean}, whether this is a number or not
+*/
 function isNumber (o) {
+
   return ! isNaN (o-0) && o !== null && o !== "" && o !== false;
 }
 
-/*
+/**
 	Change an existing rule in the system
+
+	@param {string}, the id of the rule to be edited
 */
 function editRule ( ruleId ) {
 	edittingRule = true;
+	edittingId = ruleId;
+
 	$('#myRuleModal').modal('show');
 
 	for ( var key in systemRules[ruleId].inputList ) {
@@ -318,8 +365,10 @@ function editRule ( ruleId ) {
 	$('#weight_val_selector').val(systemRules[ruleId].weight);
 }
 
-/*
+/**
 	Delete a rule in the system
+
+	@param {string}, the id of the rule to be deleted	
 */
 function deleteRule ( ruleId ) {
 	var r = confirm("This will permanently delete this rule, are you sure you wish to continue?")
@@ -329,16 +378,27 @@ function deleteRule ( ruleId ) {
     }
 }
 
+/**
+	Remove any displayed errors
+*/
 function clearRuleErrors () {
 	
 	document.getElementById("ruleCreatorErrorsDiv").innerHTML = "";
 }
 
+/**
+	Sets the weight slider value to the entered value
+*/
 function updateWeight () {
 
 	document.getElementById("weight_val").value = document.getElementById("weight_val_selector").value;
 }
 
+/**
+	Checks whether the specified rule weight is valid
+
+	@return {boolean}, whether the weight is valid or not
+*/
 function validRuleWeight () {
 	var val = document.getElementById("weight_val").value;
 	if ( val > 1 || val < 0 ) {   
@@ -353,6 +413,9 @@ function validRuleWeight () {
 	return true;
 }
 
+/**
+	Resets values in the rule creator
+*/
 function resetRuleCreator () {
 	document.getElementById("weight_val").value = 1;
 	document.getElementById("weight_val_selector").value = 1;	

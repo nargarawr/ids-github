@@ -9,7 +9,7 @@
     tipperTest( );
 */
 
-/*
+/**
   Function to clear any left over popovers
 */
 function clearPopovers() {
@@ -26,8 +26,10 @@ function clearPopovers() {
     $("#rulecHelpBtn").html("Show Help");
 }
 
-/*
+/**
   Ran each time a new tab is selected, takes the tab selected as argument
+
+  @param {int}, the index of the tab changed to
 */
 function onTabChange ( tabIndex ) {
   var d = document.getElementById("errorRowRule");
@@ -39,8 +41,9 @@ function onTabChange ( tabIndex ) {
   }*/
 }
 
-
-
+/**
+    Debug function that constructs the tipper test example
+*/
 function tipperTest () {
     var mainDiv = document.getElementById("mainDivInput")
 
@@ -89,5 +92,4 @@ function tipperTest () {
     outputDivs[sysVar.divId].memFuncs.push(mf);
     outputDivs[sysVar.divId].memFuncs.push(mf2);   
     outputDivs[sysVar.divId].memFuncs.push(mf3);   
-    
 }

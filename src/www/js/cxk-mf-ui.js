@@ -4,7 +4,8 @@
   Author: Craig Knott
 
   Functions:
-    $('#myModal').on('hidden', function ();
+    $(document).ready(function();
+      $('#myModal').on('hidden', function ();
     updateModal ( selectionId );
     addElements ( id , mfType );
     errorsInFunction ( arr );
@@ -17,8 +18,14 @@
 */
 
 
-// Functions to be called when the modal window is closed in any way
+/**
+  Functions that are called when the page is loaded
+*/
 $(document).ready(function() {
+
+    /**
+      Functions to be called when the modal window is closed in any way
+    */
     $('#myModal').on('hidden', function () {
         clearPopovers();
         document.getElementById('inputFunName').value = "";
@@ -26,8 +33,10 @@ $(document).ready(function() {
     });
 });
 
-/*
+/**
 	Updates the membership function creator based on the mf type selection
+
+  @param {int}, the selected value of the option box
 */
 function updateModal (selectionId) {
 	var s = document.getElementById ( 'mfTypeSelect' );
@@ -43,10 +52,13 @@ function updateModal (selectionId) {
 	addElements ( vo, opt );
 }
 
-/*
+/**
 	Adds the relevant input elements to the membership function creator
+
+  @param {int}, the index of the div to add to
+  @param {string}, the type of the membership function being added
 */
-function addElements ( id , mfType ){
+function addElements ( id, mfType ){
     if ( mfType == "gaussMF" ) {
         var inputBox1 = document.createElement("input");
         inputBox1.id = "inputSigma";
@@ -145,11 +157,14 @@ function addElements ( id , mfType ){
       id.appendChild(inputBox5);
 }
 
-/*
+/**
 	Checks for any errors in a given membership function
-	code 0 - valid
-	code 1 - no name
-	code 2 - a parameter is blank / not a number
+	
+  @param {int}, the array of membership function parameters to check
+  @return {int}, error code
+                  code 0 - valid
+                  code 1 - no name
+                  code 2 - a parameter is blank / not a number
 */
 function errorsInFunction (arr) {
       if ( arr[0] === "" ){
@@ -165,18 +180,25 @@ function errorsInFunction (arr) {
       return 0;
 }
 
+/**
+  Overwrites a give membership function with a new one
+
+  @param {string}, the id of the div to add to
+  @param {boolean}, whether this is an input or not
+  @param {string}, the original name of the membership function
+*/
 function overwriteMembershipFunction (divId, isInput, originalName) {
     
-    // Get the entered values
-    var vals;
-    var mf;
-    if ( isInput ){
-      mf = inputDivs[divId].memFuncs[globali];
-    } else {
-      mf = outputDivs[divId].memFuncs[globali];
-    }
-    
-    var mfName = document.getElementById('inputFunName').value;
+  // Get the entered values
+  var vals;
+  var mf;
+  if ( isInput ){
+    mf = inputDivs[divId].memFuncs[globali];
+  } else {
+    mf = outputDivs[divId].memFuncs[globali];
+  }
+  
+  var mfName = document.getElementById('inputFunName').value;
 
   // Error checking on parameters
   if ( mfName === "" ){
@@ -261,9 +283,11 @@ function overwriteMembershipFunction (divId, isInput, originalName) {
   edit = false;
 }
 
+/**
+  Creates a membership function from the input elements
 
-/*
-    Generates a membership function from the input elements
+  @param {string}, the id of the div to add to
+  @param {boolean}, whether this is an input or not
 */
 function createMembershipFunction( divId, isInput ) {
 
@@ -361,8 +385,12 @@ function createMembershipFunction( divId, isInput ) {
     $('#myModal').modal('hide');
 }
 
-/*
+/**
   Deletes a membership function
+
+  @param {int}, index of the membership function
+  @param {string}, the id of the div to delete from
+  @param {boolean}, whether this is an input or not
 */
 function deleteMembershipFunction ( i, divId, isInput ) {
   var r = confirm("This will permanently delete this membership function, are you sure you wish to continue?")
@@ -379,9 +407,11 @@ function deleteMembershipFunction ( i, divId, isInput ) {
     }
 }
 
-
-/*
+/**
   Converts the abbreviation type name to a full type name
+
+  @param {string}, the type to be converted
+  @return {string}, the convert type
 */
 function convertType (type){
   if ( type === "gau" ){
@@ -395,6 +425,14 @@ function convertType (type){
   }
 }
 
+/**
+  Finds the index of a membership function in a variable
+
+  @param {string}, the id of the div to look in
+  @param {string}, the name of the membership function to look for
+  @param {boolean}, whether this is an input or not
+  @return {int|string}, either returns the index, or the string "null"
+*/
 function getFuncNum ( divId, funcName, isInput ) {
   var i = 0;
   if ( isInput ) {
@@ -415,8 +453,12 @@ function getFuncNum ( divId, funcName, isInput ) {
   return "null";
 }
 
-/*
+/**
   Edits a membership function
+
+  @param {int}, the index of the membership function
+  @param {string}, the id of the div to edit from
+  @param {boolean}, whether this is an input or not
 */
 function editMembershipFunction (i, divId, isInput ){
   edit = true;

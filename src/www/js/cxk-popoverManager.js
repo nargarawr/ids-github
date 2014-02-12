@@ -21,10 +21,8 @@
     $("#export-tab").click();
 */
 
-
 $(document).ready(function() {
-
-    /* 
+    /** 
       Input variable help button information
     */
     $("#inputVarHelpBtn").popover(
@@ -33,7 +31,6 @@ $(document).ready(function() {
         title: '<b> Input Variable Creator </b>',
         content: "An input variable is a collection of membership functions that specify an input to the system. For instance, if we wanted to construct a system to predict how good we would be at basketball, we could have inputs such as height and athleticism.<br><br> To create your own input variable, simply click on the \'Add New Variable\' button. This will create a placeholder new variable for you. The name of the variable is a symbolic, and unique, reference name for it, and the range of a variable is the range between the values can fall<br><br> To then edit your variable, you can click on the \'Edit\' button, which will take you to the expanded view of the variable. From here you can modify all the values of the variable (including any functions that have been added). To actually add your membership functions, click on the \'Add Function\' button, which will bring up the membership function creation window"
       });
-
     $("#inputVarHelpBtn").click(function(){
         if ( $("#inputVarHelpBtn").text() === "Show Help") {
           $("#inputVarHelpBtn").html("Hide Help");
@@ -42,8 +39,7 @@ $(document).ready(function() {
         }
     });
 
-
-    /* 
+    /** 
       Output variable help button information   
     */
     $("#outputVarHelpBtn").popover(
@@ -61,7 +57,7 @@ $(document).ready(function() {
         }
     });
 
-    /*
+    /**
       Rule creator help button information 
     */
     $("#ruleHelpBtn").popover({
@@ -78,9 +74,7 @@ $(document).ready(function() {
       }
     });
 
-
-
-    /*
+    /**
       Membership function creator help button information 
     */
     $("#mfcHelpBtn").popover({
@@ -97,9 +91,7 @@ $(document).ready(function() {
       }
     });
 
-
-
-    /* 
+    /**
       Input variable help button information
     */
     $("#rulecHelpBtn").popover(
@@ -116,8 +108,6 @@ $(document).ready(function() {
           $("#rulecHelpBtn").html("Show Help");
         }
     });
-
-
 
     // When any navigation is pressed, clear all help windows
     $("#input-tab").click(clearPopovers);
@@ -162,4 +152,3 @@ $(document).on("click", "textarea.inputTextarea", function(evt) {
   Shiny.inputBindings.register(inputTextareaBinding);
 });
 */
-

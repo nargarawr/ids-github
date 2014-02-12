@@ -32,8 +32,11 @@ var g_originalName;
 var globali = 0;
 var edit = false;
 
-/*
+/**
   Get the number of input or output membership functions
+
+  @param {boolean}, whether this is an input or not
+  @return {int}, the number of membership functions 
 */
 function getTotalMfCount( input ){
     var total = 0;
@@ -50,8 +53,16 @@ function getTotalMfCount( input ){
     return total;
 }
 
-/*
-	Checks whether the specified variable is valid, returns an error code
+/**
+	Checks whether the specified variable is valid
+
+  @param {string}, the id of the div to look at
+  @param {boolean}, whether this is an input or not
+  @return {int}, a number representing an error code
+                  0 - No Error
+                  1 - Name is missing
+                  2 - Bounds are missing/invalid
+                  3 - Range is invalid
 */
 function checkValidity (divId, isInput) {
   var s;
@@ -62,13 +73,13 @@ function checkValidity (divId, isInput) {
   }
 
   var name = document.getElementById(divId + "_name" + s).value;
-  var rmin = document.getElementById(divId + "_rmin" + s).value;
-  var rmax = document.getElementById(divId + "_rmax" + s).value;  
-  
+  var rmin = parseInt(document.getElementById(divId + "_rmin" + s).value);
+  var rmax = parseInt(document.getElementById(divId + "_rmax" + s).value);  
+ 
 	if ( !name ) {
 		// Name is missing
 		return 1;	
-	} else if ( !rmin || !rmax ){
+	} else if ( (!rmin && rmin!==0) || !rmax ){
 		// A bound is missing/invalid
 		return 2;	
 	} else if ( rmin >= rmax ) {
@@ -96,9 +107,12 @@ function checkValidity (divId, isInput) {
   	return 0;
 }
 
-
-/*
+/**
 	Compresses the specified div, shrinking it in size and changing the content
+
+  @param {string}, the id of the div to look at
+  @param {boolean}, whether this is an input or not
+  @param {boolean}, whether or not this div should be reset or not
 */
 function compressDiv ( divId, isInput, shouldReset ) {
 	var errorCode = checkValidity(divId, isInput);
@@ -162,11 +176,13 @@ function compressDiv ( divId, isInput, shouldReset ) {
       outputDivs[divId].notice.innerHTML = errorMessage;
     }
   }
-
 }
 
-/*
+/**
 	Compresses all divs, excluding the one at index /topDivId/
+
+  @param {string}, the id of the div listed first currently
+  @param {boolean}, whether this is an input or not
 */
 function resizeDivs (topDivId, isInput) {
 	// Reduce size of all divs except newly clicked
@@ -185,8 +201,11 @@ function resizeDivs (topDivId, isInput) {
   }
 }
 
-/*
+/**
 	Expands the specified div, growing it in size and changing the content
+
+  @param {string}, the id of the div to expand
+  @param {boolean}, whether this is an input or not  
 */
 function expandDiv(divId, isInput){
 	resizeDivs (divId, isInput);
@@ -204,13 +223,15 @@ function expandDiv(divId, isInput){
   }
 }
 
-/*
+/**
 	Deletes the specified div, after giving a warning
-*/
 
+  @param {string}, the id of the div to expand
+  @param {boolean}, whether this is an input or not    
+*/
 function deleteDiv(divId, isInput) {
 	var r = confirm("This will permanently delete this variable, are you sure you wish to continue?")
-	if (r==true) { 		
+	if (r) { 		
     if ( isInput ) {
       for ( var key in inputDivs ) {
         if ( key === divId ) {
@@ -234,11 +255,20 @@ function deleteDiv(divId, isInput) {
   } 
 }
 
-/*
+/**
 	Adds a new variable to the system
-*/
 
+  @param {boolean}, whether this variable is an input or and output
+*/
 function addNewVar(isInput){
+  if ( systemRules.length > 0 ) {
+    var r = confirm("Doing this will result in your rule base becoming invalid, are you sure you wish to do this?")
+    if ( r ) {    
+      systemRules.length = 0;
+      printRules();
+    }  
+  }
+
   if ( isInput ){
     var mainDiv = document.getElementById("mainDivInput")
 
@@ -259,10 +289,12 @@ function addNewVar(isInput){
 }
 
 
-/*
-	Set the div at index /keyToSwap/ to be above all other divs
-*/
+/**
+	Set the div at index 'keyToSwap' to be above all other divs
 
+  @param {string}, the key of the div to swap to the top
+  @param {boolean}, whether this variable is an input or and output
+*/
 function swapToFront(keyToSwap, isInput ){
   if ( isInput ) {
     var mainDiv = document.getElementById("mainDivInput");
@@ -307,35 +339,48 @@ function swapToFront(keyToSwap, isInput ){
       }
     }        
   }
-  	
 }
 
 
-/*
+/**
   Sets the current div, so we know where to store membership functions
+
+  @param {string}, the id of the current div
+  @param {boolean}, whether this is an input or output
 */
 function setCurrentDiv (cd, b) {
   currentDiv = cd;
   currentIsInput = b;
 }
 
-/*
+/**
   Gets the currently active div
+
+  @return {string}, returns the id of the current div
 */
 function getCurrentDiv ( ){
+
     return currentDiv;
 }
 
-/*
+/**
   Gets whether or not the current active div is an input variable or not
+
+  @param {boolean}, whether the div is an input or output
 */
 function getIsInput (){ 
+
   return currentIsInput;
 }
 
 
-/*
-  Prints the list of membership functions as a table
+/**
+  Creates a table to display the membership functions in
+  
+  @param {array[membershipFunction]}, array of membership functions to print 
+  @param {string}, the id of the div to print the membership functions to
+  @param {boolean}, whether the div is an input or output
+  @return {table}, the table of membership functions to be printed
 */
 function convertToTable ( memFuncs, divId, isInput ) {
   if ( memFuncs.length < 1 ) {

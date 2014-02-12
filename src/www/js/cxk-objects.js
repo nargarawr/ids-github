@@ -12,8 +12,14 @@
     systemRule(m_inputList, m_outputList, weight, connective);	
 */
 
-/*
+/**
 	Triangular Membership Function
+
+	@param {string}, the name of the function
+	@param {double}, the left foot of the function
+	@param {double}, the center of the function
+	@param {double}, the right foot of the function
+	@param {double}, the height of the function
 */
 function triMemFun (name, left, mean, right, height) {
       this.funName            = name;
@@ -24,8 +30,15 @@ function triMemFun (name, left, mean, right, height) {
       this.paramHeight        = height; 
 }
 
-/*
+/**
 	Trapezoidal Membership Function
+
+	@param {string}, the name of the function
+	@param {double}, the left foot of the function 
+	@param {double}, the left shoulder of the function
+	@param {double}, the right shoulder of the function
+	@param {double}, the right foot of the function
+	@param {double}, the height of the function
 */
 function trapMemFun (name, lfoot, lshould, rshould, rfoot, height) {
       this.funName            = name;
@@ -37,8 +50,13 @@ function trapMemFun (name, lfoot, lshould, rshould, rfoot, height) {
       this.paramHeight        = height; 
 }
 
-/*
+/**
 	Gaussian Membership Function
+
+	@param {string}, the name of the function
+	@param {double}, the standard deviation of the function
+	@param {double}, the center of the function
+	@param {double}, the height of the function
 */
 function gauMemFun (name, sigma, mean, height){
       this.funName            = name;
@@ -48,8 +66,15 @@ function gauMemFun (name, sigma, mean, height){
       this.paramHeight        = height;
 }
 
-/*
+/**
 	2-Part Gaussian Membership Function
+
+	@param {string}, the name of the function
+	@param {double}, the standard deviation of the first function
+	@param {double}, the center of the first function
+	@param {double}, the standard deviation of the second function
+	@param {double}, the center of the second function	
+	@param {double}, the height of the functions
 */
 function gau2MemFun (name, lsigma, lmean, rsigma, rmean, height) {
       this.funName            = name;
@@ -61,8 +86,12 @@ function gau2MemFun (name, lsigma, lmean, rsigma, rmean, height) {
       this.paramHeight        = height;      
 }
 
-/*
+/**
 	A fuzzy variable object
+
+	@param {string}, the name of the variable
+	@param {string}, the id of the div this is stored in
+	@param {boolean}, whether this is an input or output
 */
 function systemVar(m_varName, divId, isInput){
 	// Fuzzy values
@@ -72,22 +101,16 @@ function systemVar(m_varName, divId, isInput){
 	this.isInput = isInput;
 	this.memFuncs = new Array();
 
-	/* 	Add some test membership functions */
-	/*
-	this.memFuncs.push(new gau2MemFun("Young",1,2,3,4,5));
-	this.memFuncs.push(new gauMemFun("Adolescent",1,2,3));
-	this.memFuncs.push(new trapMemFun("Middle Aged", 1,2,3,4,5));
-	this.memFuncs.push(new triMemFun("Old",1,2,3,4));
-	*/
-
-	// HTML div values
+	// HTML div values 
 	this.spanSize = 3;
 	this.divId = divId;
 	this.div = null;
 	this.notice = null;
 
-	/*
+	/**
 		Creates the div to store all viewable content
+
+		@return {string}, this as a div
 	*/
 	this.createDiv = createDiv; 
 	function createDiv () {
@@ -101,8 +124,8 @@ function systemVar(m_varName, divId, isInput){
 		return this.div;
 	}
 
-	/*
-		Resets content, to be refreshed
+	/**
+		Resets content of this div, to be refreshed
 	*/
 	this.resetContent=resetContent;
 	function resetContent () {
@@ -113,8 +136,8 @@ function systemVar(m_varName, divId, isInput){
 		}
 	}
 
-	/*
-		Just redisplays the membership functions of the variable
+	/**
+		Redisplays the membership functions of the variable
 	*/
 	this.refreshMembershipFunctions = refreshMembershipFunctions;
 	function refreshMembershipFunctions () {
@@ -132,8 +155,8 @@ function systemVar(m_varName, divId, isInput){
 		c.appendChild(convertToTable(this.memFuncs, this.divId, this.isInput));
 	}
 
-	/*
-		Displays the ``compressed'' content of a variable
+	/**
+		Displays the 'compressed' content of a variable
 	*/
 	this.getSmallContent = getSmallContent;
 	function getSmallContent () {
@@ -176,8 +199,8 @@ function systemVar(m_varName, divId, isInput){
 		this.div.appendChild(deleteButton);
 	}
 
-	/*
-		Displays the ``expanded'' content of a variable
+	/**
+		Displays the 'expanded' content of a variable
 	*/
 	this.getBigContent = getBigContent;
 	function getBigContent () {
@@ -291,8 +314,11 @@ function systemVar(m_varName, divId, isInput){
 }
 
 
-/*
-	Pair Object
+/**
+	A object to pair together two homogeneous elements
+
+	@param {a}, the left hand element
+	@param {b}, the right hand element
 */
 function pair ( l, r ) {
 	this.leftEl = l;
@@ -301,14 +327,16 @@ function pair ( l, r ) {
 
 /*
 	Rule object
+
+	@param {array[pair]}, an array of pairs of variables and terms for inputs
+	@param {array[pair]}, an array of pairs of variables and terms for outputs
+	@param {double}, the weight of the 
+	@param {}
+
 */
 function systemRule(m_inputList, m_outputList, weight, connective){
 	this.inputList = m_inputList;
 	this.outputList = m_outputList;
 	this.weight = weight;
 	this.connective = connective;
-
-	/*
-		Various Functions
-	*/
 }
