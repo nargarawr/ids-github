@@ -92,4 +92,6 @@ function tipperTest () {
     outputDivs[sysVar.divId].memFuncs.push(mf);
     outputDivs[sysVar.divId].memFuncs.push(mf2);   
     outputDivs[sysVar.divId].memFuncs.push(mf3);   
+
+      updateSidePanelWithVars();
 }

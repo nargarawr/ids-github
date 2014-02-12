@@ -176,6 +176,7 @@ function compressDiv ( divId, isInput, shouldReset ) {
       outputDivs[divId].notice.innerHTML = errorMessage;
     }
   }
+  updateSidePanelWithVars();
 }
 
 /**
@@ -251,8 +252,8 @@ function deleteDiv(divId, isInput) {
       var myDiv = document.getElementById('mainDivOutput');
       myDiv.removeChild(document.getElementById(divId));            
     }
-		
   } 
+  updateSidePanelWithVars();
 }
 
 /**
@@ -286,6 +287,56 @@ function addNewVar(isInput){
     mainDiv.appendChild(sysVar.createDiv());
     outputDivs[sysVar.divId] = sysVar;      
   }
+
+  updateSidePanelWithVars();
+}
+
+/**
+  Displays the inputs and outputs of the system in the side panel
+*/
+function updateSidePanelWithVars(){
+
+  var x = document.getElementById("dispSysInfo");
+
+  while ( x.hasChildNodes() ) {
+    while ( x.childNodes.length >= 1 ) {
+      x.removeChild( x.firstChild );       
+    } 
+  }
+
+
+  x.appendChild(document.createTextNode("Input Values"));
+  x.appendChild(document.createElement("br"));      
+  for ( var key in inputDivs ){
+    x.appendChild(document.createTextNode(inputDivs[key].varName + " { "));
+    for ( var key2 in inputDivs[key].memFuncs ) {
+      if ( isLastKey ( key2, inputDivs[key].memFuncs ) ) {
+        x.appendChild(document.createTextNode(inputDivs[key].memFuncs[key2].funName)); 
+      } else {
+        x.appendChild(document.createTextNode(inputDivs[key].memFuncs[key2].funName + ", "));        
+      }
+      
+    } 
+    x.appendChild(document.createTextNode(" }"));
+    x.appendChild(document.createElement("br")); 
+  }
+  x.appendChild(document.createElement("br")); 
+  x.appendChild(document.createTextNode("Output Values"));
+  x.appendChild(document.createElement("br"));     
+  for ( var key in outputDivs ){
+    x.appendChild(document.createTextNode(outputDivs[key].varName + " { "));
+    for ( var key2 in outputDivs[key].memFuncs ) {
+      if ( isLastKey ( key2, outputDivs[key].memFuncs ) ) {
+        x.appendChild(document.createTextNode(outputDivs[key].memFuncs[key2].funName)); 
+   
+      } else {
+        x.appendChild(document.createTextNode(outputDivs[key].memFuncs[key2].funName + ", "));        
+      }
+    }
+    x.appendChild(document.createTextNode(" }"));
+    x.appendChild(document.createElement("br"));  
+  }
+
 }
 
 
