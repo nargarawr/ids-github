@@ -5,7 +5,6 @@
 
   Functions:
   	strcmp ( str1, str2 );
-    importFile (  );
     exportFile ( filetype );
 */
 
@@ -23,44 +22,14 @@ function strcmp ( str1, str2 ) {
     return ( ( str1 == str2 ) ? 0 : ( ( str1 > str2 ) ? 1 : -1 ) );
 }
 
-function importFile (  ) {
-
-}
-
-function createMFisFile () {
-	var d = document.getElementById("mainDivExport");
-	clearNode(d);
-}
-
-Node.prototype.appendText = function (string) {
-	
-	this.appendChild(document.createTextNode(string));
-} 
-
-Node.prototype.appendText = function (string, shouldBreak) {
-	this.appendChild(document.createTextNode(string));
-	if ( shouldBreak ) {
-		this.appendChild(document.createElement("br"));	
-	}
-} 	
-
-function createUFisFile () {
-
-	
-
-
-	
 
 
 
-}
+/**
+	Prints the system in a variety of formats
 
-function createOJsnFile () {
-	var d = document.getElementById("mainDivExport");
-	clearNode(d);
-}
-
-
+	@param {string}, the format to print in (mfis, ufis, or ojsn)
+*/
 function exportFile( filetype ){
 	var d = document.getElementById("mainDivExport");
 	clearNode(d);
@@ -68,6 +37,7 @@ function exportFile( filetype ){
 	if ( strcmp("mfis", filetype ) == 0 ){
 
 	} else if ( strcmp("ufis", filetype ) == 0 ){
+		// System Parameters
 		d.appendText("[System]", true)
 		d.appendText("Name='" + ($("#fisName").val()) + "'", true);
 		d.appendText("Type='" + ($("#fisType").val()).toLowerCase() + "'", true);
@@ -82,6 +52,7 @@ function exportFile( filetype ){
 		d.appendText("DefuzzMethod='" + ($("#fisDfz").val()).toLowerCase() + "'", true);
 		d.appendText("", true);
 
+		// System Inputs
 		var i = 1;
 		for ( var key in inputDivs ) {
 			inputDivs[key].printVar(d, i, "ufis");
@@ -89,11 +60,46 @@ function exportFile( filetype ){
 			i++;
 		}
 
+		// System Outputs
 		i = 1;
 		for ( var key in outputDivs ) {
 			outputDivs[key].printVar(d, i, "ufis");
 			d.appendText("", true);
 			i++;
+		}
+
+		// System Rules
+		d.appendText("[Rules]", true);
+		for ( var key in systemRules ) {
+			var r = systemRules[key];
+
+			var id = 0;
+			for ( var inp in r.inputList ) {
+				d.appendText(findMfInVar(inputDivs["inputDiv" + id], r.inputList[inp].rightEl));
+				id++;
+				if ( isLastKey (inp, r.inputList)) {
+					d.appendText(", ");		
+				} else {
+					d.appendText(" ");		
+				}
+			}
+			
+			id = 0;
+			for ( var oup in r.outputList ){
+				d.appendText(findMfInVar(outputDivs["outputDiv" + id], r.outputList[oup].rightEl));
+				id++;
+				if ( isLastKey (oup, r.outputList)) {
+					d.appendText(" ");		
+				} 
+			}
+
+			d.appendText("(" + r.weight + ")");
+
+			if ( strcmp(r.connective, "AND") == 0 ) {
+				d.appendText(" : 1", true);
+			} else if ( strcmp(r.connective, "OR") == 0 ) {
+				d.appendText(" : 2", true);		
+			}
 		}
 
 	} else if ( strcmp("ojsn", filetype ) == 0 ){

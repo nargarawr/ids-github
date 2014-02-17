@@ -73,7 +73,7 @@ function trapMemFun (name, lfoot, lshould, rshould, rfoot, height) {
     this.printMf = printMf; 
 	function printMf ( loc, format, i ) {
 		if ( strcmp( format, "ufis" ) == 0 ) {
-
+			loc.appendText("MF" + i + "='" + this.funName + "':'trapmf',[" + this.paramLeftFoot + " " + this.paramLeftShoulder + " " + this.paramRightShoulder + " " + this.paramRightFoot + " " + this.paramHeight + "]", true);
 		} else if ( strcmp( format, "mfis" ) == 0 ) {
 		} else if ( strcmp( format, "ojsn" ) == 0 ) {
 		}
@@ -104,7 +104,7 @@ function gauMemFun (name, sigma, mean, height){
     this.printMf = printMf; 
 	function printMf ( loc, format, i ) {
 		if ( strcmp( format, "ufis" ) == 0 ) {
-
+			loc.appendText("MF" + i + "='" + this.funName + "':'gaussmf',[" + this.paramSigma + " " + this.paramMean + " " + this.paramHeight + "]", true);
 		} else if ( strcmp( format, "mfis" ) == 0 ) {
 		} else if ( strcmp( format, "ojsn" ) == 0 ) {
 		}
@@ -139,7 +139,7 @@ function gau2MemFun (name, lsigma, lmean, rsigma, rmean, height) {
     this.printMf = printMf; 
 	function printMf ( loc, format, i ) {
 		if ( strcmp( format, "ufis" ) == 0 ) {
-			loc.appendText();
+			loc.appendText("MF" + i + "='" + this.funName + "':'gaussbmf',[" + this.paramLeftSigma + " " + this.paramLeftMean + " " + this.paramRightSigma + " " + this.paramRightMean + " " + this.paramHeight +"]", true);
 		} else if ( strcmp( format, "mfis" ) == 0 ) {
 		} else if ( strcmp( format, "ojsn" ) == 0 ) {
 		}
@@ -415,8 +415,8 @@ function pair ( l, r ) {
 
 	@param {array[pair]}, an array of pairs of variables and terms for inputs
 	@param {array[pair]}, an array of pairs of variables and terms for outputs
-	@param {double}, the weight of the 
-	@param {}
+	@param {double}, the weight of the rule in the system
+	@param {string}, the connective to use in this rule
 
 */
 function systemRule(m_inputList, m_outputList, weight, connective){

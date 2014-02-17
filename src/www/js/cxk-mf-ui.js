@@ -7,6 +7,7 @@
     $(document).ready(function();
       $('#myModal').on('hidden', function ();
     updateModal ( selectionId );
+    findMfInVar ( varDiv, mf );
     addElements ( id , mfType );
     errorsInFunction ( arr );
     overwriteMembershipFunction ( divId, isInput, originalName );
@@ -46,6 +47,26 @@ function updateModal (selectionId) {
   clearNode(vo);   
 
 	addElements ( vo, opt );
+}
+
+/**
+  Finds the index of a membership function in a variable, by name
+
+  @param {Variable}, the variable to search in
+  @param {string}, the name to look for
+  @return {int}, the index of the name
+*/
+function findMfInVar ( varDiv, mf ) {
+  var i = 1;
+  for ( var key in varDiv.memFuncs ) {
+    if (strcmp (mf, varDiv.memFuncs[key].funName) == 0) {
+      return i;
+    } else {
+      i++;
+    }
+  } 
+
+  return 0;
 }
 
 /**

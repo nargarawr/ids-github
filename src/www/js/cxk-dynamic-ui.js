@@ -7,6 +7,8 @@
     clearPopovers( );
     onTabChange( tabIndex );
     clearNode ( nodetoclear );
+    Node.prototype.appendText = function (string);
+    Node.prototype.appendText = function (string, shouldBreak);
     tipperTest( );
 */
 
@@ -54,6 +56,29 @@ function clearNode ( nodetoclear ) {
       } 
     }
 }
+
+/**
+  Appends text to a node element
+
+  @param {string}, the string to append
+*/
+Node.prototype.appendText = function (string) {
+  
+  this.appendChild(document.createTextNode(string));
+} 
+
+/**
+  Appends text to a node element
+
+  @param {string}, the string to append
+  @param {boolean}, whether to also append a break or not
+*/
+Node.prototype.appendText = function (string, shouldBreak) {
+  this.appendChild(document.createTextNode(string));
+  if ( shouldBreak ) {
+    this.appendChild(document.createElement("br")); 
+  }
+} 
 
 /**
     Debug function that constructs the tipper test example

@@ -4,6 +4,7 @@
   Author: Craig Knott
 
   Functions:
+    getLength ( input );
     getTotalMfCount ( input );
     checkValidity ( divId, isInput );
     compressDiv ( divId, isInput, shouldReset );
@@ -31,6 +32,27 @@ var currentDiv = "";
 var g_originalName;
 var globali = 0;
 var edit = false;
+
+/**
+  Get the number of either input or output variables
+
+  @param {boolean}, whether to get input (true), or output (false)
+  @return {int}, the number of variables
+*/
+function getLength ( input ) {
+  var i = 0;
+  if ( input ) {
+    for ( var key in inputDivs ){
+      i++;
+    }
+  } else {
+    for ( var key in outputDivs ){
+      i++;
+    }
+  }
+  
+  return i;
+}
 
 /**
   Get the number of input or output membership functions
