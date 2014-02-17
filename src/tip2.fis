@@ -1,9 +1,9 @@
 [System]
-Name='tippertest'
+Name='Sys001'
 Type='mamdani'
 Version=1.0
-						NumInputs=0
-						NumOutputs=0
+NumInputs=2
+NumOutputs=1
 NumRules=3
 AndMethod='min'
 OrMethod='max'

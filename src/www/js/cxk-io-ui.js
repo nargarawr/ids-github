@@ -22,9 +22,6 @@ function strcmp ( str1, str2 ) {
     return ( ( str1 == str2 ) ? 0 : ( ( str1 > str2 ) ? 1 : -1 ) );
 }
 
-
-
-
 /**
 	Prints the system in a variety of formats
 
@@ -35,15 +32,14 @@ function exportFile( filetype ){
 	clearNode(d);
 
 	if ( strcmp("mfis", filetype ) == 0 ){
-
 	} else if ( strcmp("ufis", filetype ) == 0 ){
 		// System Parameters
 		d.appendText("[System]", true)
 		d.appendText("Name='" + ($("#fisName").val()) + "'", true);
 		d.appendText("Type='" + ($("#fisType").val()).toLowerCase() + "'", true);
 		d.appendText("Version=1.0", true);
-		d.appendText("NumInputs=" + inputDivs.length, true);
-		d.appendText("NumOutputs=" + outputDivs.length, true);
+		d.appendText("NumInputs=" + getLength(true), true);
+		d.appendText("NumOutputs=" + getLength(false), true);
 		d.appendText("NumRules=" + systemRules.length, true);
 		d.appendText("AndMethod='" + ($("#fisAnd").val()).toLowerCase() + "'", true);
 		d.appendText("OrMethod='" + ($("#fisOr").val()).toLowerCase() + "'", true);
@@ -101,8 +97,70 @@ function exportFile( filetype ){
 				d.appendText(" : 2", true);		
 			}
 		}
-
 	} else if ( strcmp("ojsn", filetype ) == 0 ){
 
 	}
+}
+
+
+{
+    "System": {
+        "Name": "",
+        "Type": "",
+        "Version": "",
+        "NumInputs": "",
+        "NumOutputs": "",
+        "NumRules": "",
+        "AndMethod": "",
+        "OrMethod": "",
+        "ImpMethod": "",
+        "AggMethod": "",
+        "DefuzzMethod": ""
+    },
+    "Inputs": [
+        {
+            "Name": "",
+            "RangeMin": "",
+            "RangeMax": "",
+            "NumMFs": "",
+            "MFs": [
+                {
+                    "Name": "",
+                    "Type": "",
+                    "Params": [
+                        {
+                            "P1": "",
+                            "P2": "",
+                            "P3": "",
+                            "P4": "",
+                            "P5": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+	"Outputs": [
+        {
+            "Name": "",
+            "RangeMin": "",
+            "RangeMax": "",
+            "NumMFs": "",
+            "MFs": [
+                {
+                    "Name": "",
+                    "Type": "",
+                    "Params": [
+                        {
+                            "P1": "",
+                            "P2": "",
+                            "P3": "",
+                            "P4": "",
+                            "P5": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

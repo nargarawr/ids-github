@@ -2,8 +2,8 @@
 Name='tippertest'
 Type='mamdani'
 Version=1.0
-----------------------NumInputs=2
-----------------------NumOutputs=1
+NumInputs=2
+NumOutputs=1
 NumRules=3
 AndMethod='min'
 OrMethod='max'
