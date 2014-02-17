@@ -42,12 +42,8 @@ function updateModal (selectionId) {
 	var s = document.getElementById ( 'mfTypeSelect' );
 	var opt = s.options[s.selectedIndex].value;
 
-	var vo = document.getElementById ( "variableOptions" ) ;    
-	if ( vo.hasChildNodes() ) {
-		while ( vo.childNodes.length >= 1 ) {
-			vo.removeChild( vo.firstChild );       
-		} 
-	}
+	var vo = document.getElementById ( "variableOptions" ) ; 
+  clearNode(vo);   
 
 	addElements ( vo, opt );
 }

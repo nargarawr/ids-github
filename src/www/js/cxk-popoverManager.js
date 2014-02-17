@@ -14,6 +14,8 @@
     $("#mfcHelpBtn").click();
     $("#rulecHelpBtn").popover();
     $("#rulecHelpBtn").click();
+    $("#importHelpBtn").popover();
+    $("#importHelpBtn").click();
     $("#input-tab").click();
     $("#output-tab").click();
     $("#rule-tab").click();
@@ -92,7 +94,7 @@ $(document).ready(function() {
     });
 
     /**
-      Input variable help button information
+      Rule creator help button information
     */
     $("#rulecHelpBtn").popover(
       {
@@ -108,6 +110,60 @@ $(document).ready(function() {
           $("#rulecHelpBtn").html("Show Help");
         }
     });
+
+    /**
+      Import tab help button information
+    */
+    $("#importHelpBtn").popover(
+      {
+        placement:'bottom',
+        title: '<b> File Import </b>',
+        content: "In this panel, you can import a Fuzzy Inference System, in a variety of formats, into the system. You will then be able to work with this Fuzzy System, and even export it again later (again, in a variety of formats). <br><br> The currently supported formats are:<ul><li>MATLAB .fis</li><li>FuzzyToolkitUoN .fis</li><li>o-Fuzz .json</li></ul>"
+      });
+
+    $("#importHelpBtn").click(function(){
+        if ( $("#importHelpBtn").text() === "Show Help") {
+          $("#importHelpBtn").html("Hide Help");
+        } else {
+          $("#importHelpBtn").html("Show Help");
+        }
+    });
+
+    /**
+      Export tab help button information
+    */
+    $("#exportHelpBtn").popover(
+      {
+        placement:'bottom',
+        title: '<b> File Export </b>',
+        content: "In this panel, you can export the Fuzzy System you have created, to a variety of file types. This allows you to save your system and work on it later, and it also allows you to open the file in a different software environment.<br><br> Currently, you can export you file into the following formats:<ul><li>MATLAB .fis</li><li>FuzzyToolkitUoN .fis</li><li>o-Fuzz .json</li></ul>"
+      });
+
+    $("#exportHelpBtn").click(function(){
+        if ( $("#exportHelpBtn").text() === "Show Help") {
+          $("#exportHelpBtn").html("Hide Help");
+        } else {
+          $("#exportHelpBtn").html("Show Help");
+        }
+    });
+
+    /**
+      System Parameters tab help button information
+    */
+    $("#paramHelpBtn").popover(
+      {
+        placement:'right',
+        title: '<b> System Wide Parameters </b>',
+        content: ""
+      });
+
+    $("#paramHelpBtn").click(function(){
+        if ( $("#paramHelpBtn").text() === "Show Help") {
+          $("#paramHelpBtn").html("Hide Help");
+        } else {
+          $("#paramHelpBtn").html("Show Help");
+        }
+    });    
 
     // When any navigation is pressed, clear all help windows
     $("#input-tab").click(clearPopovers);

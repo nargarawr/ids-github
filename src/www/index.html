@@ -26,6 +26,7 @@
   <script src="js/cxk-mf-ui.js"></script>
   <script src="js/cxk-variable-ui.js"></script>
   <script src="js/cxk-rule-ui.js"></script>    
+  <script src="js/cxk-io-ui.js"></script>    
   <script src="js/cxk-popoverManager.js"></script>
 
   <title> o-Fuzz! </title>
@@ -43,15 +44,58 @@
     <div class="span2">
       <form class ="well">
         <div id="dispSysParams">
+          <a href="#" id="paramHelpBtn" class="btn btn-success varHelpBtn" rel="popover" style="float:right" data-original-title>Show Help</a><br>
+          <label for="fisName">System Name: </label>
+          <input id="fisName" type="text" value="Sys001" />
+        
+          <label class="control-label" for="fisType">System Type:</label>
+          <select id="fisType">
+            <option value="Mamdani" selected="selected">Mamdani</option>
+          </select>
+
+          <label class="control-label" for="fisAnd">And Method:</label>
+          <select id="fisAnd">
+            <option value="Min" selected="selected">Min</option>
+            <option value="Product">Product</option>
+          </select>
+          
+          <label class="control-label" for="fisOr">Or Method:</label>
+          <select id="fisOr">
+            <option value="Max" selected="selected">Max</option>
+            <option value="Probor">Probor</option>
+          </select>
+
+          <label class="control-label" for="fisAgg">Aggregation Method:</label>
+          <select id="fisAgg">
+            <option value="Max" selected="selected">Max</option>
+            <option value="Probor">Probor</option>
+            <option value="Sum">Sum</option>
+          </select>
+
+          <label class="control-label" for="fisImp">Implication Method:</label>
+          <select id="fisImp">
+              <option value="Min" selected="selected">Min</option>
+              <option value="Prod">Prod</option>
+          </select>
+
+          <label class="control-label" for="fisDfz">Defuzzification Method:</label>
+          <select id="fisDfz">
+              <option value="Centroid" selected="selected">Centroid</option>
+              <option value="Bisector">Bisector</option>
+              <option value="lom">lom</option>
+              <option value="som">som</option>
+              <option value="mom">mom</option>
+          </select>
         </div>
         <button onclick="tipperTest()"> TipperTest </button>
       </form>
       <form class ="well">
+        <h4> System Listing </h4>
         <div id="dispSysInfo">
             
         </div>
       </form>
-    </div>
+      </div>
     <div class="span10">
       <div class="tabbable">
         <ul class="nav nav-tabs">
@@ -70,7 +114,7 @@
             <li>
             <a href="#tab-export" id="export-tab" data-toggle="tab" onClick="onTabChange(4)">Export</a>
           </li>                    
-        </ul>
+          </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="tab-inputs">
               <div class="span10">
@@ -119,8 +163,61 @@
               </div>            
           </div>  
           <div class="tab-pane" id="tab-import">   
+            <div class="span10">
+                <div class="span10">
+                  <div id="errorRowImport"></div>
+                   <button class="btn addNewVarBtn" id="importBtn" onclick="clearPopovers();">Import File</button>
+                </div> 
+                <div class= "span2">
+                  <a href="#" id="importHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
+                </div>
+              </div>  
+              <div style="padding-top:35px">
+                <div id="mainDivImport">
+                  <div class="break"></div>                 
+                </div>
+              </div>                        
             </div>   
           <div class="tab-pane" id="tab-export">   
+              <div class="span10">
+                <div class="span10">
+                  <div id="errorRowExport"></div>
+                    <div class="btn-group" >
+                      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="margin-left: 2.564102564102564%">
+                        Export As...
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu" style="margin-left: 2.564102564102564%">
+                        <li> 
+                          <a href ="#" onclick="exportFile('mfis')"> 
+                            MATLAB File (.fis)
+                          </a> 
+                        </li>
+                        <li> 
+                          <a href ="#" onclick="exportFile('ufis')"> 
+                            FuzzyToolkitUoN File (.fis)
+                          </a> 
+                        </li>
+                        <li> 
+                          <a href ="#" onclick="exportFile('ojsn')"> 
+                            o-Fuzz File (.json)
+                          </a> 
+                        </li>                        
+                      </ul>
+                    </div>
+                   <!--<button class="btn addNewVarBtn" id="exportBtn" onclick="clearPopovers();">Export File</button>-->
+                </div> 
+                <div class= "span2">
+                  <a href="#" id="exportHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
+                </div>
+              </div>  
+              <div style="padding-top:35px">
+                <div id="mainDivExport">
+                  <div class="break"></div>                 
+                </div>
+              </div> 
+              <div style="margin-bottom:100px"></div>                       
+            </div> 
             </div>                                   
            </div>
         </div>

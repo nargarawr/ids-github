@@ -6,6 +6,7 @@
   Functions:
     clearPopovers( );
     onTabChange( tabIndex );
+    clearNode ( nodetoclear );
     tipperTest( );
 */
 
@@ -39,6 +40,19 @@ function onTabChange ( tabIndex ) {
   if ( tabIndex == 2 ) { // Clicked on rule tab
     generateRules();  
   }*/
+}
+
+/**
+  Deletes all child nodes of the given node
+
+  @param {Node}, the node to be cleared
+*/
+function clearNode ( nodetoclear ) {
+    if ( nodetoclear.hasChildNodes() ) {
+      while ( nodetoclear.childNodes.length >= 1 ) {
+        nodetoclear.removeChild( nodetoclear.firstChild );       
+      } 
+    }
 }
 
 /**
@@ -93,5 +107,46 @@ function tipperTest () {
     outputDivs[sysVar.divId].memFuncs.push(mf2);   
     outputDivs[sysVar.divId].memFuncs.push(mf3);   
 
-      updateSidePanelWithVars();
+    updateSidePanelWithVars();
+
+    // Create 3 rules
+
+    
+
+    var r1i = new Array;
+    r1i.push(new pair("inputDiv0","Poor"))
+    r1i.push(new pair("inputDiv1","Rancid"))
+    var r1o = new Array;
+    r1o.push(new pair("outputDiv0","Poor"))
+    var r1 = new systemRule(r1i, r1o, 1,"OR")
+    systemRules.push(r1);
+
+    var r2i = new Array;
+    r2i.push(new pair("inputDiv0","Good"))
+    r2i.push(new pair("inputDiv1","(Not Used)"))
+    var r2o = new Array;
+    r2o.push(new pair("outputDiv0","Average"))
+    var r2 = new systemRule(r2i, r2o, 1,"AND")
+    systemRules.push(r2);
+
+    var r3i = new Array;
+    r3i.push(new pair("inputDiv0","Excellent"))
+    r3i.push(new pair("inputDiv1","Delicious"))
+    var r3o = new Array;
+    r3o.push(new pair("outputDiv0","Generous"))
+    var r3 = new systemRule(r3i, r3o, 1,"OR")
+    systemRules.push(r3);
+
+    printRules();
+    edittingRule = false;
+    edittingId = null;    
+/*
+    var r2i = null;
+    var r2o = null;
+    var r2 = new systemRule(r2i, r2o, 1,"AND")
+
+    var r3i = null;
+    var r3o = null;    
+    var r3 = new systemRule(r3i, r3o, 1,"OR")
+*/
 }

@@ -297,14 +297,8 @@ function addNewVar(isInput){
 function updateSidePanelWithVars(){
 
   var x = document.getElementById("dispSysInfo");
-
-  while ( x.hasChildNodes() ) {
-    while ( x.childNodes.length >= 1 ) {
-      x.removeChild( x.firstChild );       
-    } 
-  }
-
-
+  clearNode(x);
+  
   x.appendChild(document.createTextNode("Input Values"));
   x.appendChild(document.createElement("br"));      
   for ( var key in inputDivs ){

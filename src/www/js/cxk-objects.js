@@ -22,12 +22,27 @@
 	@param {double}, the height of the function
 */
 function triMemFun (name, left, mean, right, height) {
-      this.funName            = name;
-      this.funType            = "tri";
-      this.paramLeft          = left;
-      this.paramMean          = mean;
-      this.paramRight         = right;
-      this.paramHeight        = height; 
+    this.funName            = name;
+    this.funType            = "tri";
+    this.paramLeft          = left;
+    this.paramMean          = mean;
+    this.paramRight         = right;
+    this.paramHeight        = height; 
+
+	/**
+		Prints this membership function
+		@param {Node}, where to print this membership function
+		@param {string}, the format of the print
+		@param {int}, the index of this variable in the print queue		
+	*/
+    this.printMf = printMf; 
+	function printMf ( loc, format, i ) {
+		if ( strcmp( format, "ufis" ) == 0 ) {
+			loc.appendText("MF" + i + "='" + this.funName + "':'trimf',[" + this.paramLeft + " " + this.paramMean + " " + this.paramRight + " " + this.paramHeight + "]", true);
+		} else if ( strcmp( format, "mfis" ) == 0 ) {
+		} else if ( strcmp( format, "ojsn" ) == 0 ) {
+		}
+	} 
 }
 
 /**
@@ -41,13 +56,28 @@ function triMemFun (name, left, mean, right, height) {
 	@param {double}, the height of the function
 */
 function trapMemFun (name, lfoot, lshould, rshould, rfoot, height) {
-      this.funName            = name;
-      this.funType            = "trp";
-      this.paramLeftFoot      = lfoot;
-      this.paramLeftShoulder  = lshould;
-      this.paramRightShoulder = rshould;
-      this.paramRightFoot     = rfoot;
-      this.paramHeight        = height; 
+    this.funName            = name;
+    this.funType            = "trp";
+    this.paramLeftFoot      = lfoot;
+    this.paramLeftShoulder  = lshould;
+    this.paramRightShoulder = rshould;
+    this.paramRightFoot     = rfoot;
+    this.paramHeight        = height; 
+
+	/**
+		Prints this membership function
+		@param {Node}, where to print this membership function
+		@param {string}, the format of the print
+		@param {int}, the index of this variable in the print queue		
+	*/
+    this.printMf = printMf; 
+	function printMf ( loc, format, i ) {
+		if ( strcmp( format, "ufis" ) == 0 ) {
+
+		} else if ( strcmp( format, "mfis" ) == 0 ) {
+		} else if ( strcmp( format, "ojsn" ) == 0 ) {
+		}
+	}
 }
 
 /**
@@ -59,11 +89,26 @@ function trapMemFun (name, lfoot, lshould, rshould, rfoot, height) {
 	@param {double}, the height of the function
 */
 function gauMemFun (name, sigma, mean, height){
-      this.funName            = name;
-      this.funType            = "gau";
-      this.paramSigma         = sigma;
-      this.paramMean          = mean;
-      this.paramHeight        = height;
+    this.funName            = name;
+    this.funType            = "gau";
+    this.paramSigma         = sigma;
+    this.paramMean          = mean;
+    this.paramHeight        = height;
+
+	/**
+		Prints this membership function
+		@param {Node}, where to print this membership function
+		@param {string}, the format of the print
+		@param {int}, the index of this variable in the print queue		
+	*/
+    this.printMf = printMf; 
+	function printMf ( loc, format, i ) {
+		if ( strcmp( format, "ufis" ) == 0 ) {
+
+		} else if ( strcmp( format, "mfis" ) == 0 ) {
+		} else if ( strcmp( format, "ojsn" ) == 0 ) {
+		}
+	} 
 }
 
 /**
@@ -77,13 +122,28 @@ function gauMemFun (name, sigma, mean, height){
 	@param {double}, the height of the functions
 */
 function gau2MemFun (name, lsigma, lmean, rsigma, rmean, height) {
-      this.funName            = name;
-      this.funType            = "ga2";
-      this.paramLeftSigma     = lsigma;
-      this.paramLeftMean      = lmean;
-      this.paramRightSigma    = rsigma;
-      this.paramRightMean     = rmean;
-      this.paramHeight        = height;      
+    this.funName            = name;
+    this.funType            = "ga2";
+    this.paramLeftSigma     = lsigma;
+    this.paramLeftMean      = lmean;
+    this.paramRightSigma    = rsigma;
+    this.paramRightMean     = rmean;
+    this.paramHeight        = height;   
+
+	/**
+		Prints this membership function
+		@param {Node}, where to print this membership function
+		@param {string}, the format of the print
+		@param {int}, the index of this variable in the print queue		
+	*/
+    this.printMf = printMf; 
+	function printMf ( loc, format, i ) {
+		if ( strcmp( format, "ufis" ) == 0 ) {
+			loc.appendText();
+		} else if ( strcmp( format, "mfis" ) == 0 ) {
+		} else if ( strcmp( format, "ojsn" ) == 0 ) {
+		}
+	}   
 }
 
 /**
@@ -106,6 +166,31 @@ function systemVar(m_varName, divId, isInput){
 	this.divId = divId;
 	this.div = null;
 	this.notice = null;
+
+	/**
+		Prints this variable
+
+		@param {Node}, where to print the variable to
+		@param {int}, the index of this variable in the print queue
+		@param {string}, the format of the print (i.e, what file type)
+	*/
+    this.printVar = printVar; 
+	function printVar ( loc, i, format ) {
+		if ( strcmp( format, "ufis" ) == 0 ) {
+			var io = this.isInput ? "In" : "Out" ;
+			loc.appendText("[" + io + "put" + i + "]", true);
+			loc.appendText("Name='" + this.varName + "'", true);
+			loc.appendText("Range=[" + this.rangeMin + " " + this.rangeMax + "]", true);
+			loc.appendText("NumMFs=" + this.memFuncs.length, true);
+			var j = 1;
+			for ( var key in this.memFuncs ) {
+				this.memFuncs[key].printMf( loc, format, j );
+				j++;
+			}
+		} else if ( strcmp( format, "mfis" ) == 0 ) {
+		} else if ( strcmp( format, "ojsn" ) == 0 ) {
+		}
+	}  
 
 	/**
 		Creates the div to store all viewable content
