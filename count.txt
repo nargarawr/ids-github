@@ -1,0 +1,4 @@
+521+1+15 (1/0/0/0) File: introduction.tex
+655+1+2 (1/0/0/0) File: motivation.tex
+3542+50+33 (23/1/8/0) File: background.tex
+4718+52+50 (25/1/8/0) Total

@@ -1,0 +1,12 @@
+  311  www/index.html
+  176  www/js/cxk-dynamic-ui.js
+  165  www/js/cxk-io-ui.js
+  533  www/js/cxk-mf-ui.js
+  426  www/js/cxk-objects.js
+  209  www/js/cxk-popoverManager.js
+  421  www/js/cxk-rule-ui.js
+  509  www/js/cxk-variable-ui.js
+  521  introduction.tex
+  655  motivation.tex
+  3542 background.tex
+  7468 total
