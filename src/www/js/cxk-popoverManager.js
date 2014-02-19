@@ -4,6 +4,7 @@
   Author: Craig Knott
 
   Functions:
+    clearPopovers( );
     $("#inputVarHelpBtn").popover(); 
     $("#inputVarHelpBtn").click();
     $("#outputVarHelpBtn").popover();
@@ -22,6 +23,29 @@
     $("#import-tab").click();
     $("#export-tab").click();
 */
+
+/**
+  Function to clear any left over popovers
+*/
+function clearPopovers() {
+    $("#inputVarHelpBtn").popover('hide');
+    $("#outputVarHelpBtn").popover('hide');
+    $("#mfcHelpBtn").popover('hide');
+    $("#ruleHelpBtn").popover('hide');
+    $("#rulecHelpBtn").popover('hide');
+    $("#importHelpBtn").popover('hide');
+    $("#exportHelpBtn").popover('hide');
+    $("#paramHelpBtn").popover('hide');
+
+    $("#inputVarHelpBtn").html("Show Help");
+    $("#outputVarHelpBtn").html("Show Help");
+    $("#mfcHelpBtn").html("Show Help");
+    $("#ruleHelpBtn").html("Show Help");
+    $("#rulecHelpBtn").html("Show Help");
+    $("#importHelpBtn").html("Show Help");
+    $("#exportHelpBtn").html("Show Help");    
+    $("#paramHelpBtn").html("Show Help");        
+}
 
 $(document).ready(function() {
     /** 
