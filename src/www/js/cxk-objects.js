@@ -233,6 +233,7 @@ function systemVar(m_varName, divId, isInput){
 	    	c.removeChild( fc );
 	    	fc = c.firstChild;
 		}
+		
 
 		var varFunctionsLabel = document.getElementById(this.div.id+"titleText");
 		varFunctionsLabel.innerHTML = "Functions: " + this.memFuncs.length;

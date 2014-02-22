@@ -14,12 +14,13 @@
 
   <!-- Necessary functionality Javascript files-->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
-  <script src="js/libs/shiny.js" type="text/javascript"></script>
-  <script src="js/libs/jquery.slider.min.js"></script>
-  <script src="js/libs/bootstrap-tooltip.js"></script>
-  <script src="js/libs/bootstrap-popover.js"></script>
-  <script src="js/libs/bootstrap.min.js"></script>
-  <script src="js/libs/underscore-min.js"></script>
+  <script type="text/javascript" src="js/libs/shiny.js" ></script>
+  <script type="text/javascript" src="js/libs/jquery.slider.min.js"></script>
+  <script type="text/javascript" type="text/javascript" src="js/libs/bootstrap-tooltip.js"></script>
+  <script type="text/javascript" src="js/libs/bootstrap-popover.js"></script>
+  <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+  <!--<script type="text/javascript" src="js/libs/underscore-min.js"></script>-->
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
   <!-- Custom Javascript files -->
   <script src="js/cxk-objects.js"></script>
@@ -29,6 +30,7 @@
   <script src="js/cxk-rule-ui.js"></script>    
   <script src="js/cxk-io-ui.js"></script>    
   <script src="js/cxk-popoverManager.js"></script>
+  <script src="js/cxk-graphs.js"></script>  
 
   <title> o-Fuzz! </title>
 </head>
@@ -47,40 +49,40 @@
         <div id="dispSysParams">
           <a href="#" id="paramHelpBtn" class="btn btn-success varHelpBtn" rel="popover" style="float:right" data-original-title>Show Help</a><br>
           <label for="fisName">System Name: </label>
-          <input id="fisName" type="text" value="Sys001" />
+          <input id="fisName"  style="max-width:90%" type="text" value="Sys001" />
         
           <label class="control-label" for="fisType">System Type:</label>
-          <select id="fisType">
+          <select id="fisType" class="input">
             <option value="Mamdani" selected="selected">Mamdani</option>
           </select>
 
           <label class="control-label" for="fisAnd">And Method:</label>
-          <select id="fisAnd">
+          <select id="fisAnd" class="input">
             <option value="Min" selected="selected">Min</option>
             <option value="Product">Product</option>
           </select>
           
           <label class="control-label" for="fisOr">Or Method:</label>
-          <select id="fisOr">
+          <select id="fisOr" class="input">
             <option value="Max" selected="selected">Max</option>
             <option value="Probor">Probor</option>
           </select>
 
           <label class="control-label" for="fisAgg">Aggregation Method:</label>
-          <select id="fisAgg">
+          <select id="fisAgg"  class="input">
             <option value="Max" selected="selected">Max</option>
             <option value="Probor">Probor</option>
             <option value="Sum">Sum</option>
           </select>
 
           <label class="control-label" for="fisImp">Implication Method:</label>
-          <select id="fisImp">
+          <select id="fisImp"  class="input">
               <option value="Min" selected="selected">Min</option>
               <option value="Prod">Prod</option>
           </select>
 
           <label class="control-label" for="fisDfz">Defuzzification Method:</label>
-          <select id="fisDfz">
+          <select id="fisDfz"  class="input">
               <option value="Centroid" selected="selected">Centroid</option>
               <option value="Bisector">Bisector</option>
               <option value="lom">lom</option>
@@ -227,8 +229,11 @@
 </div>
 </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
-  <div class="modal-dialog">
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none;">
+  <div class="modal-dialog modal-horizontal-centered">
     <div class="modal-content">
       <div class="modal-header">
         <button class= "btn btn-success" id="mfcHelpBtn" style="width:100px; height:30px; float:right" data-toggle="modal" href="">Show Help</button>        
@@ -237,8 +242,8 @@
       <div class="modal-body">
         <div style="float:left; width: 40%;">
           <form class="modalForm">
-            <p class="titleText" >Function name</p>
-            <input id="inputFunName">
+            <p class="titleText">Function name</p>
+            <input id="inputFunName" onBlur="drawChart()">
             <br />
             <p style="padding-top:5px" class="titleText">Function type</p>
             <select id="mfTypeSelect" style="width:210px" onChange="updateModal();">
@@ -249,10 +254,17 @@
             </select>
             <hr class="divide">
             <p class="titleText">Parameters</p>
-            <div id="variableOptions"></div>
+            <div id="variableOptions">
+            </div>
           </form>
         </div>
-        <div id="plot" class="shiny-plot-output" style="width: 33%; height: 400px;"></div> 
+
+
+        <div id="chart_div" class="shiny-plot-output" style="width: 60%; float:left">
+          <!--Your graph will draw here!-->
+        </div> 
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
@@ -309,5 +321,11 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+</script>
+
 </body>  
 </html>

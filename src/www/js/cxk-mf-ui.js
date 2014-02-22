@@ -18,12 +18,10 @@
     editMembershipFunction (i, divId, isInput );
 */
 
-
 /**
   Functions that are called when the page is loaded
 */
 $(document).ready(function() {
-
     /**
       Functions to be called when the modal window is closed in any way
     */
@@ -76,12 +74,17 @@ function findMfInVar ( varDiv, mf ) {
   @param {string}, the type of the membership function being added
 */
 function addElements ( id, mfType ){
+
     if ( mfType == "gaussMF" ) {
         var inputBox1 = document.createElement("input");
-        inputBox1.id = "inputSigma";
-        var inputBox2 = document.createElement("input");
-        inputBox2.id = "inputMean";
+        inputBox1.setAttribute("id","inputSigma");
+        inputBox1.setAttribute("onBlur","drawChart()");
 
+
+        var inputBox2 = document.createElement("input");
+        inputBox2.setAttribute("id","inputMean");
+        inputBox2.setAttribute("onBlur","drawChart()");
+        
         id.appendChild(document.createTextNode("Sigma"));
         id.appendChild((document.createElement("br")));
         id.appendChild(inputBox1);
@@ -93,12 +96,19 @@ function addElements ( id, mfType ){
     } else if ( mfType == "gaussbMF" ) {
         var inputBox1 = document.createElement("input");
         inputBox1.id = "inputLSigma";
+        inputBox1.setAttribute("onBlur", "drawChart()");
+
         var inputBox2 = document.createElement("input");
         inputBox2.id = "inputLMean";
+        inputBox2.setAttribute("onBlur", "drawChart()");
+
         var inputBox3 = document.createElement("input");
         inputBox3.id = "inputRSigma";
+        inputBox3.setAttribute("onBlur", "drawChart()");
+
         var inputBox4 = document.createElement("input");
         inputBox4.id = "inputRMean";
+        inputBox4.setAttribute("onBlur", "drawChart()");
 
         id.appendChild(document.createTextNode("Left Sigma"));
         id.appendChild((document.createElement("br")));
@@ -119,10 +129,15 @@ function addElements ( id, mfType ){
     } else if ( mfType == "triMF" ) {
         var inputBox1 = document.createElement("input");
         inputBox1.id = "inputLeft";
+        inputBox1.setAttribute("onBlur", "drawChart()")
+
         var inputBox2 = document.createElement("input");
         inputBox2.id = "inputMean";
+        inputBox2.setAttribute("onBlur", "drawChart()")
+
         var inputBox3 = document.createElement("input");
         inputBox3.id = "inputRight";
+        inputBox3.setAttribute("onBlur", "drawChart()")
 
         id.appendChild(document.createTextNode("Left"));
         id.appendChild((document.createElement("br")));
@@ -139,12 +154,19 @@ function addElements ( id, mfType ){
     } else if ( mfType == "trapMF" ) {
         var inputBox1 = document.createElement("input");
         inputBox1.id = "inputLFoot";
+        inputBox1.setAttribute("onBlur", "drawChart()")
+
         var inputBox2 = document.createElement("input");
         inputBox2.id = "inputLShoulder";
+        inputBox2.setAttribute("onBlur", "drawChart()")
+
         var inputBox3 = document.createElement("input");
         inputBox3.id = "inputRShoulder";
+        inputBox3.setAttribute("onBlur", "drawChart()")
+
         var inputBox4 = document.createElement("input");
         inputBox4.id = "inputRFoot";
+        inputBox4.setAttribute("onBlur", "drawChart()")
 
         id.appendChild(document.createTextNode("Left Foot"));
         id.appendChild((document.createElement("br")));
@@ -163,11 +185,14 @@ function addElements ( id, mfType ){
         id.appendChild(inputBox4);
         id.appendChild((document.createElement("br")));
     } else {
+
         alert("Invalid option selected or option not yet supported");
     }  
 
       var inputBox5 = document.createElement("input");        
       inputBox5.id = "inputHeight";
+      inputBox5.setAttribute("onBlur","drawChart()");
+
 
       id.appendChild(document.createTextNode("Height"));  
       id.appendChild((document.createElement("br")));
@@ -222,7 +247,6 @@ function overwriteMembershipFunction (divId, isInput, originalName) {
     alert("You have not entered a function name.");
     return;
   }
-
 
   // Check for duplicate names
     if ( isInput ){
@@ -411,7 +435,7 @@ function createMembershipFunction( divId, isInput ) {
 */
 function deleteMembershipFunction ( i, divId, isInput ) {
   var r = confirm("This will permanently delete this membership function, are you sure you wish to continue?")
-    if (r==true) {    
+    if ( r ) {    
       if ( isInput ) {
         (inputDivs[divId].memFuncs).splice(i, 1);
         inputDivs[divId].resetContent();
@@ -477,7 +501,7 @@ function getFuncNum ( divId, funcName, isInput ) {
   @param {string}, the id of the div to edit from
   @param {boolean}, whether this is an input or not
 */
-function editMembershipFunction (i, divId, isInput ){
+function editMembershipFunction ( i, divId, isInput ){
   edit = true;
   globali = i;
 

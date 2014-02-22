@@ -147,13 +147,5 @@ function tipperTest () {
     printRules();
     edittingRule = false;
     edittingId = null;    
-/*
-    var r2i = null;
-    var r2o = null;
-    var r2 = new systemRule(r2i, r2o, 1,"AND")
-
-    var r3i = null;
-    var r3o = null;    
-    var r3 = new systemRule(r3i, r3o, 1,"OR")
-*/
+  
 }
