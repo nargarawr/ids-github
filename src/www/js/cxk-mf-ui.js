@@ -74,6 +74,8 @@ function findMfInVar ( varDiv, mf ) {
   @param {string}, the type of the membership function being added
 */
 function addElements ( id, mfType ){
+    var  x = document.getElementById("chart_div");
+    clearNode(x);
 
     if ( mfType == "gaussMF" ) {
         var inputBox1 = document.createElement("input");
@@ -502,6 +504,10 @@ function getFuncNum ( divId, funcName, isInput ) {
   @param {boolean}, whether this is an input or not
 */
 function editMembershipFunction ( i, divId, isInput ){
+
+  var  x = document.getElementById("chart_div");
+  clearNode(x);
+
   edit = true;
   globali = i;
 
@@ -530,7 +536,6 @@ function editMembershipFunction ( i, divId, isInput ){
   } else {
     mf = outputDivs[divId].memFuncs[i];
   }
-   
 
   // Fill values, dependent on function type
   if ( type === "gau" ){
@@ -551,8 +556,11 @@ function editMembershipFunction ( i, divId, isInput ){
     document.getElementById("inputRFoot").value = mf.paramRightFoot;
     document.getElementById("inputRShoulder").value = mf.paramRightShoulder;
   }
-    document.getElementById("inputFunName").value = mf.funName;
-    document.getElementById("inputHeight").value = mf.paramHeight;
 
-    g_originalName = mf.funName;
+  document.getElementById("inputFunName").value = mf.funName;
+  document.getElementById("inputHeight").value = mf.paramHeight;
+
+  g_originalName = mf.funName;
+
+  drawChart();
 }

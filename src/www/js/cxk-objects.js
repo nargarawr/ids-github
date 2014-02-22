@@ -390,6 +390,13 @@ function systemVar(m_varName, divId, isInput){
 		deleteButton.setAttribute("onClick", "deleteDiv(" + s +  ")");
 		this.div.appendChild(deleteButton);
 
+		var saveButton = document.createElement("button");
+		saveButton.className = "btn btn-success variableButton right";
+		saveButton.appendChild(document.createTextNode("Save"));
+		var s2 = "\"" + this.divId +"\", " + this.isInput;
+		saveButton.setAttribute("onClick", "saveDiv(" + s2 +  ")");
+		this.div.appendChild(saveButton);
+
 		var closeButton = document.createElement("button");
 		closeButton.className = "btn btn-success variableButton right";
 		closeButton.appendChild(document.createTextNode("Save and Close"));

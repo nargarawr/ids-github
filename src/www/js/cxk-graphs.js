@@ -56,10 +56,10 @@ function calcGauVals( inputValues, min, max ){
 	var outputValues = new Array();
 
 	var sigma  = inputValues[0];
-	var mean   = inputValues[1]
-	var height = inputValues[2]
+	var mean   = inputValues[1];
+	var height = inputValues[2];
 
-	for ( var i = parseInt(min); i <= parseInt (max); i++) {
+	for ( var i = parseInt(min); i <= parseInt(max); i++) {
 		var v = height * Math.pow(Math.E, ((-1) * ((Math.pow(i - mean, 2))/(2 * Math.pow(sigma, 2)))));
 		outputValues.push(new pair(i, v));
 	}
@@ -90,7 +90,30 @@ function calcGauBVals( inputValues, min, max ){
 */
 function calcTrapVals( inputValues, min, max ){
 
+	var outputValues = new Array();
 
+	var lFoot 	= inputValues[0];
+	var lShould = inputValues[1];
+	var rShould = inputValues[2];
+	var rFoot 	= inputValues[3];
+	var height 	= inputValues[4];
+
+
+	for ( var i = parseInt(min); i <= parseInt(max); i++) {
+		var a = (i - lFoot) / (lShould - lFoot);
+		var b = 1.0;
+		var c = (rFoot - i) / (rFoot - rShould);
+
+		var e = height * Math.max(Math.min(Math.min(a,b),c),0);
+
+		if ( isNaN(e) ) {
+			e = 1;
+		}
+
+		outputValues.push(new pair(i, e));
+	}
+
+	return outputValues;
 }
 
 /**
@@ -103,7 +126,21 @@ function calcTrapVals( inputValues, min, max ){
 */
 function calcTriVals ( inputValues, min, max ){
 
+	var outputValues = new Array();
 
+	var left   = inputValues[0];
+	var mean   = inputValues[1];
+	var right  = inputValues[2];
+	var height = inputValues[3];
+
+	for ( var i = parseInt(min); i <= parseInt(max); i++) {
+		var a = (i - left) / (mean - left);
+		var b = (right - i) / (right - mean);
+		var e = height * (Math.max(Math.min(a, b), 0));
+		outputValues.push(new pair(i, e));
+	}
+
+	return outputValues;
 }
 
 /**
@@ -136,7 +173,6 @@ function drawChart(  ) {
 
 		var plotPoints = calcGauVals(inputValues, minRange, maxRange);
 
-
 		var data = new google.visualization.DataTable();
 		data.addColumn('number', 'xVal');
 		data.addColumn('number', 'Truth');		
@@ -149,10 +185,11 @@ function drawChart(  ) {
 		}
 		
 		var funName = document.getElementById("inputFunName").value;
-    	var options = { title: funName };        
-
-		var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-    	chart.draw(data, options);	
+    	var options = { 
+    		title: funName,
+    		curveType: 'function',
+    		legend : { position : 'none' }
+    	};     
 
     } else if ( mfType == "gaussbMF" ) {
     	// Check all parameters
@@ -181,6 +218,25 @@ function drawChart(  ) {
 			return;
 		}
 
+		var plotPoints = calcTriVals(inputValues, minRange, maxRange);
+
+		var data = new google.visualization.DataTable();
+		data.addColumn('number', 'xVal');
+		data.addColumn('number', 'Truth');		
+		data.addRows(plotPoints.length);
+		var i = 0;
+		for ( var key in plotPoints ) {
+			data.setCell(i, 0, plotPoints[key].leftEl);
+			data.setCell(i, 1, plotPoints[key].rightEl);
+			i++;
+		}
+		
+		var funName = document.getElementById("inputFunName").value;
+    	var options = { 
+    		title: funName,
+    		legend : { position : 'none' }
+    	};       
+
     } else if ( mfType == "trapMF" ) {
     	// Check all parameters
 		var inputValues = new Array();
@@ -195,16 +251,28 @@ function drawChart(  ) {
 			return;
 		}
 
+		var plotPoints = calcTrapVals(inputValues, minRange, maxRange);
+
+		var data = new google.visualization.DataTable();
+		data.addColumn('number', 'xVal');
+		data.addColumn('number', 'Truth');		
+		data.addRows(plotPoints.length);
+		var i = 0;
+		for ( var key in plotPoints ) {
+			data.setCell(i, 0, plotPoints[key].leftEl);
+			data.setCell(i, 1, plotPoints[key].rightEl);
+			i++;
+		}
+		
+		var funName = document.getElementById("inputFunName").value;
+    	var options = { 
+    		title: funName,
+    		legend : { position : 'none' }
+    	};       
     }
 
-/*
-	    var data = google.visualization.arrayToDataTable([
-			['Value', 'Truth'],
-			[1,1],
-			[2,2]
-		]);
-
-*/
+	var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(data, options);	
 
 }
 

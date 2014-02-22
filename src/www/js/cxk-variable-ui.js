@@ -129,6 +129,40 @@ function checkValidity (divId, isInput) {
   	return 0;
 }
 
+function saveDiv ( divId, isInput ) {
+  var errorCode = checkValidity(divId, isInput);
+  var errorMessage;
+
+  if ( errorCode == 0) {
+    if ( isInput ) {
+      inputDivs[divId].varName = document.getElementById(divId + "_nameInput").value;
+      inputDivs[divId].rangeMin = document.getElementById(divId + "_rminInput").value;
+      inputDivs[divId].rangeMax = document.getElementById(divId + "_rmaxInput").value;
+    } else {
+      outputDivs[divId].varName = document.getElementById(divId + "_nameInput").value;
+      outputDivs[divId].rangeMin = document.getElementById(divId + "_rminInput").value;
+      outputDivs[divId].rangeMax = document.getElementById(divId + "_rmaxInput").value;
+    }
+  } else if (errorCode == 1){
+    errorMessage = "<strong>Oops!</strong> It looks like you have not entered a name for your variable";
+  } else if (errorCode == 2){
+    errorMessage =  "<strong>Oops!</strong> Your bounds appear to be missing, or not numbers";  
+  } else if (errorCode == 3){
+    errorMessage = "<strong>Oops!</strong> Your bounds are causing problems, is your maximum lower than your minimum?";           
+  } else if (errorCode == 4 ){
+      errorMessage = "<strong>Oops!</strong> You've already given that name to one of your variables";          
+  }
+  errorMessage = "<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>&times;</button>" + errorMessage + "</div>";
+
+  if ( errorCode != 0 ){
+    if ( isInput ){
+      inputDivs[divId].notice.innerHTML = errorMessage;
+    } else {
+      outputDivs[divId].notice.innerHTML = errorMessage;
+    }
+  }
+}
+
 /**
 	Compresses the specified div, shrinking it in size and changing the content
 
