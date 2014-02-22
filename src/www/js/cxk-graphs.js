@@ -39,20 +39,6 @@ function checkParameters ( inputValues ) {
 	@return {array[pair(a,b)]}, the plottable results of the function
 */
 function calcGauVals( inputValues, min, max ){
-	/*
-		double[] values = new double[interval + 1];
-		double sigma = mf.getParameter(0);
-		double mean = mf.getParameter(1);
-		double height = mf.getParameter(2);
-
-		int j = 0;
-		for (int i = (int) rangeMin; i <= (int) rangeMax; i++, j++) {
-			values[j] = (height * Math.exp(-((Math.pow(i - mean, 2) / (2 * (Math.pow(sigma, 2)))))));
-		}
-
-		return values;
-	*/
-
 	var outputValues = new Array();
 
 	var sigma  = inputValues[0];
@@ -76,8 +62,30 @@ function calcGauVals( inputValues, min, max ){
 	@return {array[pair(a,b)]}, the plottable results of the function
 */
 function calcGauBVals( inputValues, min, max ){
+	var outputValues = new Array();
 
+	var leftSigma  = inputValues[0];
+	var leftMean   = inputValues[1];
+	var rightSigma = inputValues[2];
+	var rightMean  = inputValues[3];
+	var height     = inputValues[4];
 
+	var lastLeft = 0;
+	var j = 0;
+
+	for ( var i = parseInt(min); i <= parseInt(max); i++, j++) {
+		var e;
+		if (i <= leftMean) {
+			e = height * Math.pow(Math.E, ((-1) * ((Math.pow(i - leftMean, 2))/(2 * Math.pow(leftSigma, 2)))));
+			lastLeft = j;
+		} else if (i >= rightMean) {
+			e = height * Math.pow(Math.E, ((-1) * ((Math.pow(i - rightMean, 2))/(2 * Math.pow(rightSigma, 2)))));
+		}
+
+		outputValues.push(new pair(i, e));
+	}
+	
+	return outputValues;
 }
 
 /**
@@ -190,7 +198,6 @@ function drawChart(  ) {
     		curveType: 'function',
     		legend : { position : 'none' }
     	};     
-
     } else if ( mfType == "gaussbMF" ) {
     	// Check all parameters
 		var inputValues = new Array();
@@ -204,7 +211,26 @@ function drawChart(  ) {
 			clearNode(x);
 			return;
 		}
+		
+		var plotPoints = calcGauBVals(inputValues, minRange, maxRange);
 
+		var data = new google.visualization.DataTable();
+		data.addColumn('number', 'xVal');
+		data.addColumn('number', 'Truth');		
+		data.addRows(plotPoints.length);
+		var i = 0;
+		for ( var key in plotPoints ) {
+			data.setCell(i, 0, plotPoints[key].leftEl);
+			data.setCell(i, 1, plotPoints[key].rightEl);
+			i++;
+		}
+		
+		var funName = document.getElementById("inputFunName").value;
+    	var options = { 
+    		title: funName,
+    		curveType: 'function',
+    		legend : { position : 'none' }
+    	};  
     } else if ( mfType == "triMF" ) {
     	// Check all parameters
 		var inputValues = new Array();
@@ -236,7 +262,6 @@ function drawChart(  ) {
     		title: funName,
     		legend : { position : 'none' }
     	};       
-
     } else if ( mfType == "trapMF" ) {
     	// Check all parameters
 		var inputValues = new Array();
@@ -273,7 +298,6 @@ function drawChart(  ) {
 
 	var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
     chart.draw(data, options);	
-
 }
 
 $(function() {
