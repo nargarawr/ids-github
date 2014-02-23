@@ -28,21 +28,6 @@ function triMemFun (name, left, mean, right, height) {
     this.paramMean          = mean;
     this.paramRight         = right;
     this.paramHeight        = height; 
-
-	/**
-		Prints this membership function
-		@param {Node}, where to print this membership function
-		@param {string}, the format of the print
-		@param {int}, the index of this variable in the print queue		
-	*/
-    this.printMf = printMf; 
-	function printMf ( loc, format, i ) {
-		if ( strcmp( format, "ufis" ) == 0 ) {
-			loc.appendText("MF" + i + "='" + this.funName + "':'trimf',[" + this.paramLeft + " " + this.paramMean + " " + this.paramRight + " " + this.paramHeight + "]", true);
-		} else if ( strcmp( format, "mfis" ) == 0 ) {
-		} else if ( strcmp( format, "ojsn" ) == 0 ) {
-		}
-	} 
 }
 
 /**
@@ -63,21 +48,6 @@ function trapMemFun (name, lfoot, lshould, rshould, rfoot, height) {
     this.paramRightShoulder = rshould;
     this.paramRightFoot     = rfoot;
     this.paramHeight        = height; 
-
-	/**
-		Prints this membership function
-		@param {Node}, where to print this membership function
-		@param {string}, the format of the print
-		@param {int}, the index of this variable in the print queue		
-	*/
-    this.printMf = printMf; 
-	function printMf ( loc, format, i ) {
-		if ( strcmp( format, "ufis" ) == 0 ) {
-			loc.appendText("MF" + i + "='" + this.funName + "':'trapmf',[" + this.paramLeftFoot + " " + this.paramLeftShoulder + " " + this.paramRightShoulder + " " + this.paramRightFoot + " " + this.paramHeight + "]", true);
-		} else if ( strcmp( format, "mfis" ) == 0 ) {
-		} else if ( strcmp( format, "ojsn" ) == 0 ) {
-		}
-	}
 }
 
 /**
@@ -94,21 +64,6 @@ function gauMemFun (name, sigma, mean, height){
     this.paramSigma         = sigma;
     this.paramMean          = mean;
     this.paramHeight        = height;
-
-	/**
-		Prints this membership function
-		@param {Node}, where to print this membership function
-		@param {string}, the format of the print
-		@param {int}, the index of this variable in the print queue		
-	*/
-    this.printMf = printMf; 
-	function printMf ( loc, format, i ) {
-		if ( strcmp( format, "ufis" ) == 0 ) {
-			loc.appendText("MF" + i + "='" + this.funName + "':'gaussmf',[" + this.paramSigma + " " + this.paramMean + " " + this.paramHeight + "]", true);
-		} else if ( strcmp( format, "mfis" ) == 0 ) {
-		} else if ( strcmp( format, "ojsn" ) == 0 ) {
-		}
-	} 
 }
 
 /**
@@ -129,21 +84,6 @@ function gau2MemFun (name, lsigma, lmean, rsigma, rmean, height) {
     this.paramRightSigma    = rsigma;
     this.paramRightMean     = rmean;
     this.paramHeight        = height;   
-
-	/**
-		Prints this membership function
-		@param {Node}, where to print this membership function
-		@param {string}, the format of the print
-		@param {int}, the index of this variable in the print queue		
-	*/
-    this.printMf = printMf; 
-	function printMf ( loc, format, i ) {
-		if ( strcmp( format, "ufis" ) == 0 ) {
-			loc.appendText("MF" + i + "='" + this.funName + "':'gaussbmf',[" + this.paramLeftSigma + " " + this.paramLeftMean + " " + this.paramRightSigma + " " + this.paramRightMean + " " + this.paramHeight +"]", true);
-		} else if ( strcmp( format, "mfis" ) == 0 ) {
-		} else if ( strcmp( format, "ojsn" ) == 0 ) {
-		}
-	}   
 }
 
 /**
@@ -166,31 +106,6 @@ function systemVar(m_varName, divId, isInput){
 	this.divId = divId;
 	this.div = null;
 	this.notice = null;
-
-	/**
-		Prints this variable
-
-		@param {Node}, where to print the variable to
-		@param {int}, the index of this variable in the print queue
-		@param {string}, the format of the print (i.e, what file type)
-	*/
-    this.printVar = printVar; 
-	function printVar ( loc, i, format ) {
-		if ( strcmp( format, "ufis" ) == 0 ) {
-			var io = this.isInput ? "In" : "Out" ;
-			loc.appendText("[" + io + "put" + i + "]", true);
-			loc.appendText("Name='" + this.varName + "'", true);
-			loc.appendText("Range=[" + this.rangeMin + " " + this.rangeMax + "]", true);
-			loc.appendText("NumMFs=" + this.memFuncs.length, true);
-			var j = 1;
-			for ( var key in this.memFuncs ) {
-				this.memFuncs[key].printMf( loc, format, j );
-				j++;
-			}
-		} else if ( strcmp( format, "mfis" ) == 0 ) {
-		} else if ( strcmp( format, "ojsn" ) == 0 ) {
-		}
-	}  
 
 	/**
 		Creates the div to store all viewable content
