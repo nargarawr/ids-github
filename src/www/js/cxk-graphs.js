@@ -300,6 +300,9 @@ function drawChart(  ) {
     chart.draw(data, options);	
 }
 
+/**
+	Called when the mfTypeSelect (membership function type selector) is changed
+*/
 $(function() {
     $('#mfTypeSelect').change(function() {
         drawChart();

@@ -6,10 +6,8 @@
   Functions:
   	strcmp ( str1, str2 );
     exportFile ( filetype );
+    saveFile ( filetype ); 
 */
-
-
-var globalFile;
 
 /**
 	Compares the two given strings
@@ -64,13 +62,13 @@ function exportFile( filetype ){
 				var t = inputDivs[key].memFuncs[key2];
 
 				if ( t.funType === "gau" ) {
-					d.appendText("MF" + i + "='" + t.funName + "':'gaussmf',[" + t.paramSigma + " " + t.paramMean + " " + t.paramHeight + "]", true);
+					d.appendText("MF" + i + "='" + t.funName + "':'gaussmf',[" + t.paramSigma + " " + t.paramMean + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true);
 				} else if ( inputDivs[key].memFuncs[key2].funType === "ga2" ) {
-					d.appendText("MF" + i + "='" + t.funName + "':'gaussbmf',[" + t.paramLeftSigma + " " + t.paramLeftMean + " " + t.paramRightSigma + " " + t.paramRightMean + " " + t.paramHeight +"]", true);
+					d.appendText("MF" + i + "='" + t.funName + "':'gaussbmf',[" + t.paramLeftSigma + " " + t.paramLeftMean + " " + t.paramRightSigma + " " + t.paramRightMean + " " + (filetype==="ufis" ? " " + t.paramHeight : "") +"]", true);
 				} else if ( inputDivs[key].memFuncs[key2].funType === "trp" ) {
-					d.appendText("MF" + i + "='" + t.funName + "':'trapmf',[" + t.paramLeftFoot + " " + t.paramLeftShoulder + " " + t.paramRightShoulder + " " + t.paramRightFoot + " " + t.paramHeight + "]", true);
+					d.appendText("MF" + i + "='" + t.funName + "':'trapmf',[" + t.paramLeftFoot + " " + t.paramLeftShoulder + " " + t.paramRightShoulder + " " + t.paramRightFoot + " " + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true);
 				} else if ( inputDivs[key].memFuncs[key2].funType === "tri" ) {
-					d.appendText("MF" + i + "='" + t.funName + "':'trimf',[" + t.paramLeft + " " + t.paramMean + " " + t.paramRight + " " + t.paramHeight + "]", true);	
+					d.appendText("MF" + i + "='" + t.funName + "':'trimf',[" + t.paramLeft + " " + t.paramMean + " " + t.paramRight + " " + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true);	
 				}					
 
 				j++;
@@ -80,7 +78,6 @@ function exportFile( filetype ){
 			i++;
 		}
 
-		
 		// System Outputs
 		i = 1;
 		for ( var key in outputDivs ) {
@@ -214,6 +211,7 @@ function exportFile( filetype ){
 		
 			var subInputData = [];
 			subInputData.push({
+				Id:   key,
 				Name: inputDivs[key].varName,
 				Min:  inputDivs[key].rangeMin,
 				Max:  inputDivs[key].rangeMax,
@@ -221,6 +219,7 @@ function exportFile( filetype ){
 			});
 			inputData.push(subInputData);
 		}
+
 		outputData = [];
 		for ( var key in outputDivs ) {
 			var mfDataMain = [];
@@ -271,6 +270,7 @@ function exportFile( filetype ){
 		
 			var suboutputData = [];
 			suboutputData.push({
+				Id:   key,
 				Name: outputDivs[key].varName,
 				Min:  outputDivs[key].rangeMin,
 				Max:  outputDivs[key].rangeMax,
@@ -278,7 +278,35 @@ function exportFile( filetype ){
 			});
 			outputData.push(suboutputData);
 		}
+
 		ruleData = [];
+		for ( var key in systemRules ) {
+			var r = systemRules[key];
+
+			ruleInputData  = [];
+			for ( var key2 in r.inputList ) {
+				ruleInputData.push({
+					Variable : r.inputList[key2].leftEl,
+					Term     : r.inputList[key2].rightEl
+				});
+			}
+			ruleOutputData = [];
+			for ( var key2 in r.outputList ) {
+				ruleOutputData.push({
+					Variable : r.outputList[key2].leftEl,
+					Term     : r.outputList[key2].rightEl
+				});
+			}
+
+			subRuleData = [];
+			subRuleData.push({
+				Inputs     : ruleInputData,
+				Outputs    : ruleOutputData,
+				Connective : r.connective,
+				Weight     : r.weight
+			});
+			ruleData.push(subRuleData);
+		}
 
 		jsonData.push({
         	System:  systemData,
@@ -287,72 +315,22 @@ function exportFile( filetype ){
         	Rules:   ruleData
     	});
 
-		console.log(jsonData);
-		console.log(JSON.stringify(jsonData));
+		d.appendText(JSON.stringify(jsonData))		
 	}
+
+	saveFile (filetype);
 }
 
+/**
+	Saves the system in a variety of formats
 
-/*
-
-{
-    "System": {
-        "Name": "",
-        "Type": "",
-        "Version": "",
-        "NumInputs": "",
-        "NumOutputs": "",
-        "NumRules": "",
-        "AndMethod": "",
-        "OrMethod": "",
-        "ImpMethod": "",
-        "AggMethod": "",
-        "DefuzzMethod": ""
-    },
-    "Inputs": [
-        {
-            "Name": "",
-            "RangeMin": "",
-            "RangeMax": "",
-            "NumMFs": "",
-            "MFs": [
-                {
-                    "Name": "",
-                    "Type": "",
-                    "Params": [
-                        {
-                            "P1": "",
-                            "P2": "",
-                            "P3": "",
-                            "P4": "",
-                            "P5": ""
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-	"Outputs": [
-        {
-            "Name": "",
-            "RangeMin": "",
-            "RangeMax": "",
-            "NumMFs": "",
-            "MFs": [
-                {
-                    "Name": "",
-                    "Type": "",
-                    "Params": [
-                        {
-                            "P1": "",
-                            "P2": "",
-                            "P3": "",
-                            "P4": "",
-                            "P5": ""
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
-}*/
+	@param {string}, the format to print in (mfis, ufis, or ojsn)
+*/
+function saveFile ( filetype ){
+	// Check for the various File API support.
+	if (window.File && window.FileReader && window.FileList && window.Blob) {
+		alert("In progress!")  		
+	} else {
+  		alert('Your browser does not allow for the saving and loading of files (yet)');
+  	}
+}
