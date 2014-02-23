@@ -21,7 +21,7 @@ shinyServer(function(input, output) {
 
   output$plot <- renderPlot({
 
-
+ 
    # x <- (1:10)
    # hist(x, main="derp")
   })

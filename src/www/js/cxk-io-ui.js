@@ -65,7 +65,9 @@ function exportFile( filetype ){
 		}
 
 		// System Rules
-		d.appendText("[Rules]", true);
+		if ( systemRules.length > 0) {
+			d.appendText("[Rules]", true);		
+		}
 		for ( var key in systemRules ) {
 			var r = systemRules[key];
 

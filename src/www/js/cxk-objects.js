@@ -379,7 +379,7 @@ function systemVar(m_varName, divId, isInput){
 		addMFButton.setAttribute("href","#myModal");
 		var d = "\"" + this.divId +"\", " + this.isInput;
 		var e = "\"" + this.divId +"\", " + this.isInput + ", false";
-		addMFButton.setAttribute("onclick","checkValidity(" + d + "); clearPopovers(); updateModal(); setCurrentDiv(" + d + ")");
+		addMFButton.setAttribute("onclick","checkValidity(" + d + "); clearPopovers(); updateModal(); saveDiv(" + d + "); setCurrentDiv(" + d + ")");
 		this.div.appendChild(addMFButton);
 
 		// Buttons 
