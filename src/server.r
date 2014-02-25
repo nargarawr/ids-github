@@ -2,10 +2,17 @@ library(shiny)
 library(FuzzyToolkitUoN)
 
 shinyServer(function(input, output) {
+  FIS <<- tippertest()
+
+  output$testOp <- renderPrint({
+    #paste(input$n1, "...", input$n2)
+      m <- matrix(c(input$n1,input$n2),1,2)
+      evalFIS(m,FIS)
+  })
 
   # Generate a summary of the data
-  output$test <- renderPrint({
-      paste(input$testText, "...", input$inputDiv0_nameInput)
+  #output$test <- renderPrint({
+      #paste(input$testText, "...", input$inputDiv0_nameInput)
     
 
     #paste("hello", " ", "yolo")
@@ -16,14 +23,14 @@ shinyServer(function(input, output) {
   	# 0,0
   	# 10, 10
     #evalFIS(m,tippertest())
-  })
+  #})
 
 
-  output$plot <- renderPlot({
+  #output$plot <- renderPlot({
 
  
    # x <- (1:10)
    # hist(x, main="derp")
-  })
+  #})
 
 })
