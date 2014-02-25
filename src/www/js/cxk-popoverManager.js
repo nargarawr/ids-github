@@ -17,11 +17,14 @@
     $("#rulecHelpBtn").click();
     $("#importHelpBtn").popover();
     $("#importHelpBtn").click();
+    $("#evalHelpBtn").popover();
+    $("#evalHelpBtn").click();
     $("#input-tab").click();
     $("#output-tab").click();
     $("#rule-tab").click();
     $("#import-tab").click();
     $("#export-tab").click();
+    $("#eval-tab").click();
 */
 
 /**
@@ -36,6 +39,7 @@ function clearPopovers() {
     $("#importHelpBtn").popover('hide');
     $("#exportHelpBtn").popover('hide');
     $("#paramHelpBtn").popover('hide');
+    $("#evalHelpBtn").popover('hide');
 
     $("#inputVarHelpBtn").html("Show Help");
     $("#outputVarHelpBtn").html("Show Help");
@@ -45,6 +49,7 @@ function clearPopovers() {
     $("#importHelpBtn").html("Show Help");
     $("#exportHelpBtn").html("Show Help");    
     $("#paramHelpBtn").html("Show Help");        
+    $("#evalHelpBtn").html("Show Help"); 
 }
 
 $(document).ready(function() {
@@ -176,9 +181,9 @@ $(document).ready(function() {
     */
     $("#paramHelpBtn").popover(
       {
-        placement:'right',
+        placement:'bottom',
         title: '<b> System Wide Parameters </b>',
-        content: ""
+        content: "These are parameters that will affect the way the system will be evaluated. As our back end (<a href=\"http://cran.r-project.org/web/packages/FuzzyToolkitUoN/index.html\">FuzzyToolkitUoN</a>) is expanded, more options for this will become available. The table below summarizing the effects of each parameter:<table><tr><td>Name</td><td>The system name</td><tr><tr><td>Type</td><td>The inference method to use</td><tr><tr><td>And</td><td>How to process rules with ands in them</td><tr><tr><td>Or</td><td>How to process rules with ors in them</td><tr><tr><td>Aggregation</td><td>How to combine the outputs of the evaluation</td><tr><tr><td>Implication</td><td>How to map the inputs to the outputs</td><tr><tr><td>Defuzzification</td><td>How to convert your output set to a crisp value</td><tr></table>"
       });
 
     $("#paramHelpBtn").click(function(){
@@ -189,12 +194,28 @@ $(document).ready(function() {
         }
     });    
 
+    $("#evalHelpBtn").popover(
+    {
+        placement:'bottom',
+        title: '<b> System Evaluation </b>',
+        content: "Evaluation of a fuzzy system is the process of taking the rules of the system, and applying the supplied input values to those rules. The goal of this is to evaluate each rule, combine the results of this rule, and then produce a single value for you to use. The actual process of inferencing is not important to the end user, but those looking to find more can check <a href=\"http://www.cs.princeton.edu/courses/archive/fall07/cos436/HIDDEN/Knapp/fuzzy004.htm\">this</a>. <br><br> There are some facts and figures that are displayed on this page that may not be relevant to novice users, so feel free to ignore these. The most important values are the \"Input\" boxes, and the \"Output\" boxes"
+    });
+
+    $("#evalHelpBtn").click(function(){s
+        if ( $("#evalHelpBtn").text() === "Show Help") {
+          $("#evalHelpBtn").html("Hide Help");
+        } else {
+          $("#evalHelpBtn").html("Show Help");
+        }
+    });    
+
     // When any navigation is pressed, clear all help windows
     $("#input-tab").click(clearPopovers);
     $("#output-tab").click(clearPopovers);
     $("#rule-tab").click(clearPopovers);
     $("#import-tab").click(clearPopovers);
     $("#export-tab").click(clearPopovers);
+    $("#eval-tab").click(clearPopovers);
 });
 
 

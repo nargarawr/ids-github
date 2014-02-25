@@ -336,7 +336,7 @@ function exportFile( filetype ){
 function saveFile ( filetype ){
 	// Check for the various File API support.
 	if (window.File && window.FileReader && window.FileList && window.Blob) {
-		alert("In progress!")  		
+
 	} else {
   		alert('Your browser does not allow for the saving and loading of files (yet)');
   	}

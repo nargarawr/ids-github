@@ -114,9 +114,12 @@
           <li>
             <a href="#tab-import" id="import-tab" data-toggle="tab" onClick="onTabChange(3)">Import</a>
           </li>          
-            <li>
+          <li>
             <a href="#tab-export" id="export-tab" data-toggle="tab" onClick="onTabChange(4)">Export</a>
-          </li>                    
+          </li>
+          <li>
+            <a href="#tab-eval" id="eval-tab" data-toggle="tab" onClick="onTabChange(5)">Evaluate</a>
+          </li>                
           </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="tab-inputs">
@@ -224,6 +227,23 @@
               </div> 
               <div style="margin-bottom:100px"></div>                       
             </div> 
+          <div class="tab-pane" id="tab-eval">  
+              <div class="span10">
+                <div class="span10">
+                  <div id="evalRowRule">
+                  </div>
+                  <button class="btn addNewVarBtn" id="evaluateBtn" onclick="clearPopovers();">Evaluate System</button>
+                </div> 
+                <div class= "span2">
+                  <a href="#" id="evalHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
+                </div>
+              </div>  
+              <div style="padding-top:35px">
+                <div id="mainDivEval">
+                  <div class="break"></div>                 
+                </div>
+              </div>  
+          </div>
             </div>                                   
            </div>
         </div>
