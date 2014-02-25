@@ -19,6 +19,12 @@
 function onTabChange ( tabIndex ) {
   var d = document.getElementById("errorRowRule");
   d.innerHTML = "";
+
+  if ( tabIndex == 0 ) {
+    g_isInput = true;
+  } else if ( tabIndex == 1 ) {
+    g_isInput = false;
+  }
   /*
   alert(tabIndex);
   if ( tabIndex == 2 ) { // Clicked on rule tab

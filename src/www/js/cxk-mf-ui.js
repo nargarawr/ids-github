@@ -324,6 +324,13 @@ function overwriteMembershipFunction (divId, isInput, originalName) {
   $('#myModal').modal('hide');
 
   edit = false;
+
+  if ( isInput ){
+    drawVarCharts(inputDivs[divId].chartDiv, divId, inputDivs[divId].memFuncs, isInput)
+  } else {
+    drawVarCharts(outputDivs[divId].chartDiv, divId, outputDivs[divId].memFuncs, isInput)
+  }
+
 }
 
 /**
@@ -426,6 +433,12 @@ function createMembershipFunction( divId, isInput ) {
 
     // Hide modal
     $('#myModal').modal('hide');
+
+  if ( isInput ){
+    drawVarCharts(inputDivs[divId].chartDiv, divId, inputDivs[divId].memFuncs, isInput)
+  } else {
+    drawVarCharts(outputDivs[divId].chartDiv, divId, outputDivs[divId].memFuncs, isInput)
+  }
 }
 
 /**
@@ -448,6 +461,11 @@ function deleteMembershipFunction ( i, divId, isInput ) {
         outputDivs[divId].getBigContent();
       }
     }
+  if ( isInput ){
+    drawVarCharts(inputDivs[divId].chartDiv, divId, inputDivs[divId].memFuncs, isInput)
+  } else {
+    drawVarCharts(outputDivs[divId].chartDiv, divId, outputDivs[divId].memFuncs, isInput)
+  }
 }
 
 /**

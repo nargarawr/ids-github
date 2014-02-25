@@ -106,6 +106,7 @@ function systemVar(m_varName, divId, isInput){
 	this.divId = divId;
 	this.div = null;
 	this.notice = null;
+	this.chartDiv = null;
 
 	/**
 		Creates the div to store all viewable content
@@ -205,6 +206,13 @@ function systemVar(m_varName, divId, isInput){
 	*/
 	this.getBigContent = getBigContent;
 	function getBigContent () {
+		var chartDiv = document.createElement("div");
+		chartDiv.id = this.divId + "_chartDiv";
+		chartDiv.setAttribute("style", "float:right");
+		this.div.appendChild(chartDiv);
+		this.chartDiv = chartDiv;
+		drawVarCharts(this.chartDiv, this.divId, this.memFuncs, this.isInput);
+
 		this.div.appendChild(this.notice);
 
 		var varNameLabel = document.createElement("h4");

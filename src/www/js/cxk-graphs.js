@@ -11,8 +11,10 @@
 	calcTriVals ( inputValues, min, max );
     drawChart();
     $('#mfTypeSelect').change(function();
+    drawVarCharts(chartDiv, divId, isInput);
 */
 
+var g_isInput = true;
 
 /**
   Checks whether all given parameters are numbers and not null
@@ -157,15 +159,31 @@ function calcTriVals ( inputValues, min, max ){
 function drawChart(  ) {
 
 	var selectedDiv = getCurrentDiv();
-	if(typeof inputDivs[selectedDiv] === 'undefined'){
-   		return;
- 	}
+
+	if ( g_isInput ) {
+		if (typeof inputDivs[selectedDiv] === 'undefined'){
+   			return;
+ 		}
+	} else {
+		if (typeof outputDivs[selectedDiv] === 'undefined'){
+   			return;
+ 		}
+	}
 
 	var s = document.getElementById ( 'mfTypeSelect' );
 	var mfType = s.options[s.selectedIndex].value;
 		
-	var minRange = inputDivs[selectedDiv].rangeMin;
-	var maxRange = inputDivs[selectedDiv].rangeMax;
+
+	var minRange;
+	var maxRange;
+	if ( g_isInput ) {
+		minRange = inputDivs[selectedDiv].rangeMin;
+		maxRange = inputDivs[selectedDiv].rangeMax;	
+	} else {
+		minRange = outputDivs[selectedDiv].rangeMin;
+		maxRange = outputDivs[selectedDiv].rangeMax;	
+	}
+	
 
 	if ( mfType == "gaussMF" ) {
 		// Check all parameters
@@ -308,3 +326,42 @@ $(function() {
         drawChart();
     });    
 });
+
+/**
+	Draws all membership functions of a variable
+
+	@param {string}, the id of the div to draw to
+	@param {string}, the id of the variable div
+	@param {array[membership functions]}, the array of membership functions
+	@param {boolean}, input variable or output
+*/
+function drawVarCharts(chartDiv, divId, memFuncs, isInput) {
+
+  if ( memFuncs.length < 1 ) {
+    return;
+  } else {
+    var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2004',  1000,      400],
+          ['2005',  1170,      460],
+          ['2006',  660,       1120],
+          ['2007',  1030,      540]
+        ]);
+
+        if ( isInput ) {
+          var options = {
+            title: inputDivs[divId].varName, 
+            legend : 'bottom'
+          };  
+          var chart = new google.visualization.LineChart(chartDiv);
+          chart.draw(data, options);  
+        } else {
+          var options = {
+            title: outputDivs[divId].varName, 
+            legend : 'bottom'
+          };  
+          var chart = new google.visualization.LineChart(chartDiv);
+          chart.draw(data, options);  
+        }        
+  }
+}

@@ -139,9 +139,9 @@ function saveDiv ( divId, isInput ) {
       inputDivs[divId].rangeMin = document.getElementById(divId + "_rminInput").value;
       inputDivs[divId].rangeMax = document.getElementById(divId + "_rmaxInput").value;
     } else {
-      outputDivs[divId].varName = document.getElementById(divId + "_nameInput").value;
-      outputDivs[divId].rangeMin = document.getElementById(divId + "_rminInput").value;
-      outputDivs[divId].rangeMax = document.getElementById(divId + "_rmaxInput").value;
+      outputDivs[divId].varName = document.getElementById(divId + "_nameOutput").value;
+      outputDivs[divId].rangeMin = document.getElementById(divId + "_rminOutput").value;
+      outputDivs[divId].rangeMax = document.getElementById(divId + "_rmaxOutput").value;
     }
   } else if (errorCode == 1){
     errorMessage = "<strong>Oops!</strong> It looks like you have not entered a name for your variable";
@@ -160,7 +160,18 @@ function saveDiv ( divId, isInput ) {
     } else {
       outputDivs[divId].notice.innerHTML = errorMessage;
     }
+  } else {
+    if ( isInput ){
+      inputDivs[divId].notice.innerHTML = "";
+      drawVarCharts(inputDivs[divId].chartDiv, divId, inputDivs[divId].memFuncs,isInput);
+    } else {
+      outputDivs[divId].notice.innerHTML = "";
+      drawVarCharts(outputDivs[divId].chartDiv, divId, outputDivs[divId].memFuncs,isInput);      
+    }    
+
   }
+
+  updateSidePanelWithVars();
 }
 
 /**
@@ -542,3 +553,4 @@ function convertToTable ( memFuncs, divId, isInput ) {
 
   return tbl;
 }
+
