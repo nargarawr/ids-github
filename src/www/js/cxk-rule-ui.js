@@ -10,8 +10,9 @@
 	generateRuleUI ( );
 	getConnective ( );
 	isLastKey ( lkey, arr );
+	isFirstKey ( lkey, arr );
 	printRules ( ); 
-	addNewRule ( ); 
+	addNewRule ( isEditting ); 
 	isNumber ( o );
 	editRule ( );
 	deleteRule ( );
@@ -209,6 +210,19 @@ function isLastKey ( lkey, arr ) {
 }
 
 /**
+	Checks whether the key specified is the first key in the given array
+
+	@param {string}, the key to look for
+	@param {array[a]}, some array to look through
+	@return {boolean}, whether the key is the last element or not
+*/
+function isFirstKey ( lkey, arr ) {
+	for ( var key in arr ) {
+		return ( key === lkey );
+	}
+}
+
+/**
 	Creates a list detailing all the rules of the system
 */
 function printRules () {
@@ -230,20 +244,36 @@ function printRules () {
 		tcol.appendChild(document.createTextNode("IF "));
 		for ( var key2 in systemRules[key].inputList ) {
 			var x = systemRules[key].inputList[key2];
-			tcol.appendChild(document.createTextNode(inputDivs[x.leftEl].varName + " IS " + x.rightEl + " "));
-			if ( !(isLastKey (key2, systemRules[key].inputList)) ) {
-				tcol.appendChild(document.createTextNode(systemRules[key].connective + " "));
+
+			if ( !isFirstKey ( key2, systemRules[key].inputList ) ) {
+				if ( strcmp (x.rightEl, "(Not Used)") != 0) { 
+					tcol.appendChild(document.createTextNode(systemRules[key].connective + " "));
+				}
+			}
+
+			if ( strcmp(x.rightEl,"(Not Used)") == 0 ) {
 			} else {
+				tcol.appendChild(document.createTextNode(inputDivs[x.leftEl].varName + " IS " + x.rightEl + " "));
+			}
+			
+			if ( (isLastKey (key2, systemRules[key].inputList))) {
 				tcol.appendChild(document.createTextNode("THEN "));
 			}
 		}
 
 		for ( var key2 in systemRules[key].outputList ) {
 			var x = systemRules[key].outputList[key2];
-			tcol.appendChild(document.createTextNode(outputDivs[x.leftEl].varName + " IS " + x.rightEl + " "));
-			if ( !(isLastKey (key2, systemRules[key].outputList)) ) {
-				tcol.appendChild(document.createTextNode(systemRules[key].connective + " "));		
-			} 
+
+			if ( !isFirstKey ( key2, systemRules[key].outputList ) ) {
+				if ( strcmp (x.rightEl, "(Not Used)") != 0) { 
+					tcol.appendChild(document.createTextNode(systemRules[key].connective + " "));
+				}
+			}
+			
+			if ( strcmp(x.rightEl,"(Not Used)") == 0 ) {
+			} else {
+				tcol.appendChild(document.createTextNode(outputDivs[x.leftEl].varName + " IS " + x.rightEl + " "));
+			}
 		}
 
 		tcol.appendChild(document.createTextNode("(" + systemRules[key].weight + ")"));			
@@ -307,6 +337,7 @@ function addNewRule ( isEditting ) {
 		edittingId = null;
 	    $('#myRuleModal').modal('hide');
 	}
+	printRules();
 }
 
 /**

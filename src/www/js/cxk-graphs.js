@@ -173,7 +173,6 @@ function drawChart(  ) {
 	var s = document.getElementById ( 'mfTypeSelect' );
 	var mfType = s.options[s.selectedIndex].value;
 		
-
 	var minRange;
 	var maxRange;
 	if ( g_isInput ) {
@@ -340,28 +339,94 @@ function drawVarCharts(chartDiv, divId, memFuncs, isInput) {
   if ( memFuncs.length < 1 ) {
     return;
   } else {
-    var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
-        ]);
 
-        if ( isInput ) {
-          var options = {
-            title: inputDivs[divId].varName, 
-            legend : 'bottom'
-          };  
-          var chart = new google.visualization.LineChart(chartDiv);
-          chart.draw(data, options);  
-        } else {
-          var options = {
-            title: outputDivs[divId].varName, 
-            legend : 'bottom'
-          };  
-          var chart = new google.visualization.LineChart(chartDiv);
-          chart.draw(data, options);  
-        }        
-  }
+  	var x;
+  	if ( isInput ) {
+  		x = inputDivs[divId];
+  	} else {
+  		x = outputDivs[divId];
+  	}
+
+  	var dataArray = new Array();
+
+  	for ( var key in memFuncs ) {
+  		if ( memFuncs[key].funType == "gau" ) {
+			var inputValues = new Array();
+			inputValues.push(memFuncs[key].paramSigma);
+			inputValues.push(memFuncs[key].paramMean);
+			inputValues.push(memFuncs[key].paramHeight);
+
+			var plotPoints = calcGauVals(inputValues, x.rangeMin, x.rangeMax);
+			dataArray.push(plotPoints);
+  		} else if ( memFuncs[key].funType == "ga2") {
+			var inputValues = new Array();
+			inputValues.push(memFuncs[key].paramLeftSigma);
+			inputValues.push(memFuncs[key].paramLeftMean);
+			inputValues.push(memFuncs[key].paramRightSigma);
+			inputValues.push(memFuncs[key].paramRightMean);
+			inputValues.push(memFuncs[key].paramHeight);
+
+			var plotPoints = calcGauBVals(inputValues, x.rangeMin, x.rangeMax);
+			dataArray.push(plotPoints);
+  		} else if (memFuncs[key].funType == "tri") {
+			var inputValues = new Array();
+			inputValues.push(memFuncs[key].paramLeft);
+			inputValues.push(memFuncs[key].paramMean);
+			inputValues.push(memFuncs[key].paramRight);
+			inputValues.push(memFuncs[key].paramHeight);
+
+			var plotPoints = calcTriVals(inputValues, x.rangeMin, x.rangeMax);
+			dataArray.push(plotPoints);
+  		} else if (memFuncs[key].funType == "trp") {
+			var inputValues = new Array();
+			inputValues.push(memFuncs[key].paramLeftFoot);
+			inputValues.push(memFuncs[key].paramLeftShoulder);
+			inputValues.push(memFuncs[key].paramRightShoulder);
+			inputValues.push(memFuncs[key].paramRightFoot);
+			inputValues.push(memFuncs[key].paramHeight);
+
+			var plotPoints = calcTrapVals(inputValues, x.rangeMin, x.rangeMax);
+			dataArray.push(plotPoints);
+  		}
+  	}
+	
+
+  	var data = new google.visualization.DataTable();
+	data.addColumn('number', 'xVal');
+
+	for ( var key in memFuncs ) {
+		data.addColumn('number', memFuncs[key].funName);	
+	}
+
+	var length = dataArray[0].length; 
+	data.addRows(dataArray[0].length);
+
+	for ( var i = 0 ; i < length ; i ++ ){
+		data.setCell(i, 0, dataArray[0][i].leftEl); // Set the x value
+
+		var j = 1;
+		for ( var key in dataArray ) { // set each mf truth values
+			data.setCell(i,j, dataArray[key][i].rightEl);
+		j++;
+		}
+	}
+
+
+	var curve = "function";
+	for ( var key in memFuncs ) {
+		if ( memFuncs[key].funType != "gau" && memFuncs[key].funType != "ga2" ){
+			curve = "";
+		} 
+	}
+
+    var options = { 
+    	title: x.varName,
+    	curveType: curve,
+    	legend : { position : 'bottom' }
+    };       
+    
+	var chart = new google.visualization.LineChart(chartDiv);
+    chart.draw(data, options);		
+
+  }	
 }
