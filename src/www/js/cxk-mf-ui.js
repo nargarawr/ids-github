@@ -232,7 +232,7 @@ function errorsInFunction (arr) {
   @param {string}, the original name of the membership function
 */
 function overwriteMembershipFunction (divId, isInput, originalName) {
-  alert(divId + " " + isInput + " " + originalName)
+ // alert(divId + " " + isInput + " " + originalName)
  // return;
 
   // Get the entered values
@@ -291,16 +291,16 @@ function overwriteMembershipFunction (divId, isInput, originalName) {
         vals = [mf.paramLeftSigma, mf.paramLeftMean, mf.paramRightSigma, mf.paramRightMean, document.getElementById('inputHeight').value];
     } else if ( opt == "triMF" ){
         mf.paramLeft = document.getElementById('inputLeft').value;  
-        mf.paramRight = document.getElementById('inputMean').value;  
-        mf.paramMean = document.getElementById('inputRight').value;  
+        mf.paramMean = document.getElementById('inputMean').value;  
+        mf.paramRight = document.getElementById('inputRight').value;  
         mf.funType = "tri";
 
         vals = [mf.paramLeft, mf.paramMean, mf.paramRight, document.getElementById('inputHeight').value];
     } else if ( opt == "trapMF" ){
         mf.paramLeftFoot = document.getElementById('inputLFoot').value;  
         mf.paramLeftShoulder = document.getElementById('inputLShoulder').value;  
-        mf.paramRightFoot = document.getElementById('inputRShoulder').value;  
-        mf.paramRightShoulder = document.getElementById('inputRFoot').value;  
+        mf.paramRightShoulder = document.getElementById('inputRShoulder').value;  
+        mf.paramRightFoot = document.getElementById('inputRFoot').value;  
         mf.funType = "trp";
 
         vals = [mf.paramLeftFoot, mf.paramLeftShoulder,  mf.paramRightFoot, mf.paramRightShoulder, document.getElementById('inputHeight').value];
@@ -567,8 +567,8 @@ function editMembershipFunction ( i, divId, isInput ){
     document.getElementById("inputRMean").value = mf.paramRightMean;
   } else if ( type === "tri" ){
     document.getElementById("inputLeft").value = mf.paramLeft;
-    document.getElementById("inputRight").value = mf.paramRight;
     document.getElementById("inputMean").value = mf.paramMean;
+    document.getElementById("inputRight").value = mf.paramRight;
   } else if ( type === "trp" ){
     document.getElementById("inputLFoot").value = mf.paramLeftFoot;
     document.getElementById("inputLShoulder").value = mf.paramLeftShoulder;
@@ -581,5 +581,6 @@ function editMembershipFunction ( i, divId, isInput ){
 
   g_originalName = mf.funName;
 
+  drawChart();
   drawChart();
 }

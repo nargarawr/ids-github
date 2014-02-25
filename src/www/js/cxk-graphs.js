@@ -411,18 +411,23 @@ function drawVarCharts(chartDiv, divId, memFuncs, isInput) {
 		}
 	}
 
-	var curve = "function";
+	var options;
 	for ( var key in memFuncs ) {
 		if ( memFuncs[key].funType != "gau" && memFuncs[key].funType != "ga2" ){
-			curve = "";
-		} 
+			var options = { 
+		    	title: x.varName,
+		    	legend : { position : 'bottom' }
+		    };       
+		} else {
+			var options = { 
+		    	title: x.varName,
+		    	curveType: "function", 	
+		    	legend : { position : 'bottom' }
+		    };       
+		}
 	}
 
-    var options = { 
-    	title: x.varName,
-    	curveType: curve,
-    	legend : { position : 'bottom' }
-    };       
+    
     
 	var chart = new google.visualization.LineChart(chartDiv);
     chart.draw(data, options);		
