@@ -10,6 +10,7 @@
     getExtension ( filename );
     loadFile ( evt );
     validateInput ( inputText );
+    copyToClipboard ( );
 */
 
 $(document).ready(function() {
@@ -407,4 +408,11 @@ function validateInput ( inputText ) {
 \[System\]\nName='[a-zA-Z0-9]*'\nType='[a-zA-Z]*'\nVersion=\d*\.\d*\nNumInputs=\d*\nNumOutputs=\d*\nNumRules=\d*\nAndMethod='[a-zA-Z]*'\nOrMethod='[a-zA-Z]*'\nImpMethod='[a-zA-Z]*'\nAggMethod='[a-zA-Z]*'\nDefuzzMethod='[a-zA-Z]*'\n\n(\[Input\d*\]\nName='[a-zA-Z0-9]*'\nRange=\[\d* \d*\]\nNumMFs=\d*\n(MF\d*='[a-zA-Z0-9]*':'(trimf|trapmf|gaussmf|gaussbmf)',\[((-|)\d*(\.|)\d*( |))*\]\n)*\n)*\[Output\d*\]\nName='[a-zA-Z0-9]*'\nRange=\[\d* \d*\]\nNumMFs=\d*\n(MF\d*='[a-zA-Z0-9]*':'(trimf|trapmf|gaussmf|gaussbmf)',\[((-|)\d*(\.|)\d*( |))*\]\n)*\n(\[Rules\]|)(\n|)(((\d*( |,))*\(\d*.\d*\) : \d)(\n|))*(\n|)
 */
 
-
+/**
+	Pseudo- copies to clipboard
+*/
+function copyToClipboard () {
+	var expVal = (document.getElementById("mainDivExport").innerHTML).toString();
+	expVal = expVal.replace(/<br>/g, '\n');
+	window.prompt("To copy to clipboard, press Ctrl+C and then Enter", expVal);
+}

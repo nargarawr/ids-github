@@ -182,7 +182,7 @@
                 </div>
               </div>  
               <div style="padding-top:35px">
-                <div id="mainDivImport">
+                <div id="mainDivImport" style="margin-left:2.564102564102564%;">
                   <div class="break"></div>                 
                 </div>
               </div>                        
@@ -213,15 +213,16 @@
                           </a> 
                         </li>                        
                       </ul>
+                      <button class="btn addNewVarBtn" id="ctcb" style="margin-left:5px" onclick="copyToClipboard()">Add To Clipboard</button>
                     </div>
-                   <!--<button class="btn addNewVarBtn" id="exportBtn" onclick="clearPopovers();">Export File</button>-->
+                   
                 </div> 
                 <div class= "span2">
                   <a href="#" id="exportHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
                 </div>
               </div>  
               <div style="padding-top:35px">
-                <div id="mainDivExport">
+                <div id="mainDivExport" style="margin-left:2.564102564102564%;">
                   <div class="break"></div>                 
                 </div>
               </div> 
@@ -252,9 +253,6 @@
 </div>
 </div>
 
-
-
-
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none;">
   <div class="modal-dialog modal-horizontal-centered">
     <div class="modal-content">
@@ -282,11 +280,8 @@
           </form>
         </div>
 
-
         <div id="chart_div" class="shiny-plot-output" style="width: 60%; float:left">
-          <!--Your graph will draw here!-->
         </div> 
-
 
       </div>
       <div class="modal-footer">
