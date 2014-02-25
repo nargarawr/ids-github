@@ -107,6 +107,15 @@ function generateRuleUI() {
       	tableCol.appendChild(document.createTextNode(inputDivs[key].varName  + " is"));
       	tableHeadings.appendChild(tableCol)
       	tableHeadings.appendChild(document.createElement("td"));
+
+      	tableCol.appendChild(document.createTextNode(" ( "))
+
+      	var cb = document.createElement("input");
+    	cb.setAttribute("type", "checkbox");
+    	cb.id = inputDivs[key].divId + "_cb";
+    	tableCol.appendChild(cb);
+
+    	tableCol.appendChild(document.createTextNode(" Not)"))
     }
 
 
@@ -115,6 +124,15 @@ function generateRuleUI() {
       	tableCol.appendChild(document.createTextNode(outputDivs[key].varName  + " is"));
       	tableHeadings.appendChild(tableCol)
       	tableHeadings.appendChild(document.createElement("td"));
+
+      	tableCol.appendChild(document.createTextNode(" ( "))
+
+      	var cb = document.createElement("input");
+    	cb.setAttribute("type", "checkbox");
+    	cb.id = outputDivs[key].divId + "_cb";
+    	tableCol.appendChild(cb);
+
+    	tableCol.appendChild(document.createTextNode(" Not)"))
     }
     
 	table.appendChild(tableHeadings);
@@ -122,7 +140,8 @@ function generateRuleUI() {
 	var tableRow = document.createElement("tr");
 	tableRow.appendChild(document.createElement("td"));
     for ( var key in inputDivs ) {
-    	var tableCol = document.createElement("td");
+		var tableCol = document.createElement("td");
+
     	var sel = document.createElement("select")
     	sel.className = "thinSelectBox";
     	sel.id = "input" + key;
@@ -150,6 +169,7 @@ function generateRuleUI() {
     		connectiveColumns.push(tableColConnective);
     	}
     	tableRow.appendChild(tableColConnective);
+
     }
 
     for ( var key in outputDivs ) {
@@ -245,13 +265,17 @@ function printRules () {
 		for ( var key2 in systemRules[key].inputList ) {
 			var x = systemRules[key].inputList[key2];
 
+			var ns ="";
+			if (x.negated){
+				ns = "NOT";
+			} 
 
 			if ( strcmp(x.rightEl,"(Not used)") == 0 ) {
 			} else {
 				if ( !isFirstKey ( key2, systemRules[key].inputList ) ) {
 					tcol.appendChild(document.createTextNode(systemRules[key].connective + " "));
 				}
-				tcol.appendChild(document.createTextNode(inputDivs[x.leftEl].varName + " IS " + x.rightEl + " "));
+				tcol.appendChild(document.createTextNode(inputDivs[x.leftEl].varName + " IS " + ns + " " + x.rightEl + " "));
 			}
 			
 			if ( (isLastKey (key2, systemRules[key].inputList))) {
@@ -270,7 +294,7 @@ function printRules () {
 			
 			if ( strcmp(x.rightEl,"(Not used)") == 0 ) {
 			} else {
-				tcol.appendChild(document.createTextNode(outputDivs[x.leftEl].varName + " IS " + x.rightEl + " "));
+				tcol.appendChild(document.createTextNode(outputDivs[x.leftEl].varName + " IS "  + ns + " " + x.rightEl + " "));
 			}
 		}
 
@@ -311,14 +335,16 @@ function addNewRule ( isEditting ) {
 		for ( var key in inputDivs ) {
 			var x = document.getElementById("input" + key);
 			var selected = x.options[x.selectedIndex].text;
-			var p = new pair ( inputDivs[key].divId, selected );
+			var cbVal = document.getElementById(inputDivs[key].divId + "_cb").checked;			
+			var p = new rulePair ( inputDivs[key].divId, selected, cbVal );
 			inputs.push(p);		
 		}
 	
 		for ( var key in outputDivs ) {
 			var x = document.getElementById("output" + key);
 			var selected = x.options[x.selectedIndex].text;
-			var p = new pair ( outputDivs[key].divId, selected );
+			var cbVal = document.getElementById(outputDivs[key].divId + "_cb").checked;
+			var p = new rulePair ( outputDivs[key].divId, selected, cbVal );
 			outputs.push(p);		
 		}
 
@@ -336,6 +362,13 @@ function addNewRule ( isEditting ) {
 	    $('#myRuleModal').modal('hide');
 	}
 	printRules();
+
+	for ( var key in inputDivs ) {
+    	document.getElementById(inputDivs[key].divId + "_cb").checked=false;
+    }
+	for ( var key in outputDivs ) {
+    	document.getElementById(outputDivs[key].divId + "_cb").checked=false;
+    }    
 }
 
 /**
@@ -392,6 +425,18 @@ function editRule ( ruleId ) {
 	// Set weight
 	$('#weight_val').val(systemRules[ruleId].weight);
 	$('#weight_val_selector').val(systemRules[ruleId].weight);
+
+	for ( var key in systemRules[ruleId].inputList ) {
+		if ( systemRules[ruleId].inputList[key].negated ) {
+			document.getElementById(systemRules[ruleId].inputList[key].leftEl + "_cb").checked=true;	
+		}
+	}
+	for ( var key in systemRules[ruleId].outputList ) {
+		if ( systemRules[ruleId].outputList[key].negated ) {
+			document.getElementById(systemRules[ruleId].outputList[key].leftEl + "_cb").checked=true;	
+		}
+	}
+ 
 }
 
 /**
@@ -449,3 +494,7 @@ function resetRuleCreator () {
 	document.getElementById("weight_val").value = 1;
 	document.getElementById("weight_val_selector").value = 1;	
 }
+
+
+
+

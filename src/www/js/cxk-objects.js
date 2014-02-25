@@ -343,8 +343,8 @@ function pair ( l, r ) {
 /*
 	Rule object
 
-	@param {array[pair]}, an array of pairs of variables and terms for inputs
-	@param {array[pair]}, an array of pairs of variables and terms for outputs
+	@param {array[rulePair]}, an array of pairs of variables and terms for inputs
+	@param {array[rulePair]}, an array of pairs of variables and terms for outputs
 	@param {double}, the weight of the rule in the system
 	@param {string}, the connective to use in this rule
 
@@ -354,4 +354,17 @@ function systemRule(m_inputList, m_outputList, weight, connective){
 	this.outputList = m_outputList;
 	this.weight = weight;
 	this.connective = connective;
+}
+
+/**
+	A object to pair together two homogeneous elements and a boolean
+
+	@param {a}, the left hand element
+	@param {b}, the right hand element
+	@param {boolean}, whether the rule is negated or not
+*/
+function rulePair ( l, r, n ) {
+	this.leftEl = l;
+	this.rightEl = r;
+	this.negated = n;
 }

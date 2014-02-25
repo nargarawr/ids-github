@@ -124,6 +124,9 @@ function exportFile( filetype ){
 
 			var id = 0;
 			for ( var inp in r.inputList ) {
+				if ( r.inputList[inp].negated ) {
+					d.appendText("-");
+				}
 				d.appendText(findMfInVar(inputDivs["inputDiv" + id], r.inputList[inp].rightEl));
 				id++;
 				if ( isLastKey (inp, r.inputList)) {
@@ -135,6 +138,9 @@ function exportFile( filetype ){
 			
 			id = 0;
 			for ( var oup in r.outputList ){
+				if ( r.outputList[oup].negated ) {
+					d.appendText("-");
+				}				
 				d.appendText(findMfInVar(outputDivs["outputDiv" + id], r.outputList[oup].rightEl));
 				id++;
 				if ( isLastKey (oup, r.outputList)) {
