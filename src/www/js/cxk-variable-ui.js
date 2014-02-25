@@ -504,11 +504,14 @@ function convertToTable ( memFuncs, divId, isInput ) {
   tbl.appendChild(tbl_header);
   var tbld = document.createElement("td");
     tbld.appendChild(document.createTextNode("Name"));
+    tbld.setAttribute("style", "font-weight:bold");
     tbl_header.appendChild(tbld);
   
   tbld = document.createElement("td");
     tbld.appendChild(document.createTextNode("Type"));
+    tbld.setAttribute("style", "font-weight:bold");
     tbl_header.appendChild(tbld);   
+
 
     tbld = document.createElement("td");
     tbl_header.appendChild(tbld);
@@ -533,17 +536,19 @@ function convertToTable ( memFuncs, divId, isInput ) {
     tbld = document.createElement("td");
     var editButton = document.createElement("button");
     editButton.appendChild(document.createTextNode("Edit"));
-    
     editButton.setAttribute("data-toggle","modal");
     editButton.setAttribute("href","#myModal");
+    editButton.className = "btn btn-primary";
     var s = i + ", \"" + divId +"\", " + isInput;
-    editButton.setAttribute("onclick", "editMembershipFunction(" + s + ")");    
+    var d = "\"" + divId +"\", " + isInput;
+    editButton.setAttribute("onclick", "setCurrentDiv(" + d + "), editMembershipFunction(" + s + ")");    
     tbld.appendChild(editButton);
     tbl_row.appendChild(tbld);  
     
     
     tbld = document.createElement("td");
     var deleteButton = document.createElement("button");
+    deleteButton.className = "btn btn-danger";
     deleteButton.appendChild(document.createTextNode("Delete"));
     var s = i + ", \"" + divId +"\", " + isInput;
     deleteButton.setAttribute("onclick", "deleteMembershipFunction(" + s + ")");
@@ -553,4 +558,3 @@ function convertToTable ( memFuncs, divId, isInput ) {
 
   return tbl;
 }
-

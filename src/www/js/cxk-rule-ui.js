@@ -245,14 +245,12 @@ function printRules () {
 		for ( var key2 in systemRules[key].inputList ) {
 			var x = systemRules[key].inputList[key2];
 
-			if ( !isFirstKey ( key2, systemRules[key].inputList ) ) {
-				if ( strcmp (x.rightEl, "(Not Used)") != 0) { 
+
+			if ( strcmp(x.rightEl,"(Not used)") == 0 ) {
+			} else {
+				if ( !isFirstKey ( key2, systemRules[key].inputList ) ) {
 					tcol.appendChild(document.createTextNode(systemRules[key].connective + " "));
 				}
-			}
-
-			if ( strcmp(x.rightEl,"(Not Used)") == 0 ) {
-			} else {
 				tcol.appendChild(document.createTextNode(inputDivs[x.leftEl].varName + " IS " + x.rightEl + " "));
 			}
 			
@@ -265,12 +263,12 @@ function printRules () {
 			var x = systemRules[key].outputList[key2];
 
 			if ( !isFirstKey ( key2, systemRules[key].outputList ) ) {
-				if ( strcmp (x.rightEl, "(Not Used)") != 0) { 
+				if ( strcmp (x.rightEl, "(Not used)") != 0) { 
 					tcol.appendChild(document.createTextNode(systemRules[key].connective + " "));
 				}
 			}
 			
-			if ( strcmp(x.rightEl,"(Not Used)") == 0 ) {
+			if ( strcmp(x.rightEl,"(Not used)") == 0 ) {
 			} else {
 				tcol.appendChild(document.createTextNode(outputDivs[x.leftEl].varName + " IS " + x.rightEl + " "));
 			}

@@ -411,7 +411,6 @@ function drawVarCharts(chartDiv, divId, memFuncs, isInput) {
 		}
 	}
 
-
 	var curve = "function";
 	for ( var key in memFuncs ) {
 		if ( memFuncs[key].funType != "gau" && memFuncs[key].funType != "ga2" ){

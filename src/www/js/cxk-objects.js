@@ -329,7 +329,6 @@ function systemVar(m_varName, divId, isInput){
 	}
 }
 
-
 /**
 	A object to pair together two homogeneous elements
 

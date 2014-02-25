@@ -232,7 +232,9 @@ function errorsInFunction (arr) {
   @param {string}, the original name of the membership function
 */
 function overwriteMembershipFunction (divId, isInput, originalName) {
-    
+  alert(divId + " " + isInput + " " + originalName)
+ // return;
+
   // Get the entered values
   var vals;
   var mf;
@@ -245,7 +247,7 @@ function overwriteMembershipFunction (divId, isInput, originalName) {
   var mfName = document.getElementById('inputFunName').value;
 
   // Error checking on parameters
-  if ( mfName === "" ){
+  if ( strcmp(mfName,"") == 0 ){
     alert("You have not entered a function name.");
     return;
   }
@@ -433,12 +435,11 @@ function createMembershipFunction( divId, isInput ) {
 
     // Hide modal
     $('#myModal').modal('hide');
-
-  if ( isInput ){
-    drawVarCharts(inputDivs[divId].chartDiv, divId, inputDivs[divId].memFuncs, isInput)
-  } else {
-    drawVarCharts(outputDivs[divId].chartDiv, divId, outputDivs[divId].memFuncs, isInput)
-  }
+    if ( isInput ){
+      drawVarCharts(inputDivs[divId].chartDiv, divId, inputDivs[divId].memFuncs, isInput)
+    } else {
+      drawVarCharts(outputDivs[divId].chartDiv, divId, outputDivs[divId].memFuncs, isInput)
+    }
 }
 
 /**
@@ -523,7 +524,7 @@ function getFuncNum ( divId, funcName, isInput ) {
 */
 function editMembershipFunction ( i, divId, isInput ){
 
-  var  x = document.getElementById("chart_div");
+  var x = document.getElementById("chart_div");
   clearNode(x);
 
   edit = true;
