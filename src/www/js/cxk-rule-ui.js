@@ -286,6 +286,11 @@ function printRules () {
 		for ( var key2 in systemRules[key].outputList ) {
 			var x = systemRules[key].outputList[key2];
 
+			var ns ="";
+			if (x.negated){
+				ns = "NOT";
+			} 
+
 			if ( !isFirstKey ( key2, systemRules[key].outputList ) ) {
 				if ( strcmp (x.rightEl, "(Not used)") != 0) { 
 					tcol.appendChild(document.createTextNode(systemRules[key].connective + " "));

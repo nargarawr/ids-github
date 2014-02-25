@@ -301,14 +301,16 @@ function exportFile( filetype ){
 			for ( var key2 in r.inputList ) {
 				ruleInputData.push({
 					Variable : r.inputList[key2].leftEl,
-					Term     : r.inputList[key2].rightEl
+					Term     : r.inputList[key2].rightEl,
+					Negated  : r.inputList[key2].negated
 				});
 			}
 			ruleOutputData = [];
 			for ( var key2 in r.outputList ) {
 				ruleOutputData.push({
 					Variable : r.outputList[key2].leftEl,
-					Term     : r.outputList[key2].rightEl
+					Term     : r.outputList[key2].rightEl,
+					Negated  : r.outputList[key2].negated					
 				});
 			}
 
