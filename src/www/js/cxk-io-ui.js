@@ -7,7 +7,14 @@
   	strcmp ( str1, str2 );
     exportFile ( filetype );
     saveFile ( filetype ); 
+    getExtension ( filename );
+    loadFile ( evt );
+    validateInput ( inputText );
 */
+
+$(document).ready(function() {
+    document.getElementById('files').addEventListener('change', loadFile, false);
+});
 
 /**
 	Compares the two given strings
@@ -334,3 +341,70 @@ function saveFile ( filetype ){
   		alert('Your browser does not allow for the saving and loading of files (yet)');
   	}
 }
+
+/**
+	Get the extension of a file 
+
+	@param {string}, the file name to check
+	@return {string}, the file extension
+*/
+function getExtension(filename) {
+    var parts = filename.split('.');
+    return parts[parts.length - 1];
+}
+
+/**
+	Loads a file from a local directory
+
+	@param {event}, the file event that called this function
+*/
+function loadFile(evt) {
+	var files = evt.target.files; 
+
+	var output = [];
+	for (var i = 0, f; f = files[i]; i++) {
+		var ext = getExtension(f.name);
+		switch ( ext.toLowerCase() ) {
+			case 'fis':
+			case 'json':
+				break;
+			default: 
+				alert("Unsupported file type. Please unpload a .fis or .json file");
+				return;
+		} 
+
+		document.getElementById('list').innerHTML = '<li><strong>' + escape(f.name) + '</strong> - '
+		+ f.size + ' bytes, last modified: ' + (f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a') +
+		'</li>';
+
+		var reader = new FileReader();
+		reader.onload = function ( e ) {
+			var text = reader.result;
+			if ( validateInput(text) ) {
+				document.getElementById('list').innerHTML = text.replace(/\n/g, "<br />");	
+			} else {
+				alert("Invalid file.");
+			}
+		}
+		reader.readAsText(files[i]);	
+	}
+	document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+}
+
+/**
+	Checks a file for input validity
+
+	@param {string}, input text to validate
+*/
+function validateInput ( inputText ) {
+	var pattern = new RegExp("\[System\]\nName='[a-zA-Z0-9]*'\nType='[a-zA-Z]*'\nVersion=\d*\.\d*\nNumInputs=\d*\nNumOutputs=\d*\nNumRules=\d*\nAndMethod='[a-zA-Z]*'\nOrMethod='[a-zA-Z]*'\nImpMethod='[a-zA-Z]*'\nAggMethod='[a-zA-Z]*'\nDefuzzMethod='[a-zA-Z]*'\n\n(\[Input\d*\]\nName='[a-zA-Z0-9]*'\nRange=\[\d* \d*\]\nNumMFs=\d*\n(MF\d*='[a-zA-Z0-9]*':'(trimf|trapmf|gaussmf|gaussbmf)',\[((-|)\d*(\.|)\d*( |))*\]\n)*\n)*\[Output\d*\]\nName='[a-zA-Z0-9]*'\nRange=\[\d* \d*\]\nNumMFs=\d*\n(MF\d*='[a-zA-Z0-9]*':'(trimf|trapmf|gaussmf|gaussbmf)',\[((-|)\d*(\.|)\d*( |))*\]\n)*\n(\[Rules\]|)(\n|)(((\d*( |,))*\(\d*.\d*\) : \d)(\n|))*");
+	var res = pattern.test(inputText);	
+
+	return res;
+}
+
+/*
+\[System\]\nName='[a-zA-Z0-9]*'\nType='[a-zA-Z]*'\nVersion=\d*\.\d*\nNumInputs=\d*\nNumOutputs=\d*\nNumRules=\d*\nAndMethod='[a-zA-Z]*'\nOrMethod='[a-zA-Z]*'\nImpMethod='[a-zA-Z]*'\nAggMethod='[a-zA-Z]*'\nDefuzzMethod='[a-zA-Z]*'\n\n(\[Input\d*\]\nName='[a-zA-Z0-9]*'\nRange=\[\d* \d*\]\nNumMFs=\d*\n(MF\d*='[a-zA-Z0-9]*':'(trimf|trapmf|gaussmf|gaussbmf)',\[((-|)\d*(\.|)\d*( |))*\]\n)*\n)*\[Output\d*\]\nName='[a-zA-Z0-9]*'\nRange=\[\d* \d*\]\nNumMFs=\d*\n(MF\d*='[a-zA-Z0-9]*':'(trimf|trapmf|gaussmf|gaussbmf)',\[((-|)\d*(\.|)\d*( |))*\]\n)*\n(\[Rules\]|)(\n|)(((\d*( |,))*\(\d*.\d*\) : \d)(\n|))*(\n|)
+*/
+
+

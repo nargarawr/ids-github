@@ -169,7 +169,10 @@
             <div class="span10">
                 <div class="span10">
                   <div id="errorRowImport"></div>
-                   <button class="btn addNewVarBtn" id="importBtn" onclick="clearPopovers();">Import File</button>
+                  <span class="btn btn-file" style="margin-left: 2.564102564102564%">
+                    <input type="file" id="files" name="files[]"/>
+                  </span><br>
+                  <output id="list"></output>
                 </div> 
                 <div class= "span2">
                   <a href="#" id="importHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
