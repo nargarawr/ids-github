@@ -1,5 +1,4 @@
-/*
-  cxk-rule-ui.js
+/**  cxk-rule-ui.js
   Deals with all rule storage and display
   Author: Craig Knott
 

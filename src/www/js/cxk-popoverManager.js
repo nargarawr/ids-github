@@ -1,5 +1,4 @@
-/*
-  cxk-rule-ui.js
+/**  cxk-rule-ui.js
   Deals with all popovers
   Author: Craig Knott
 
@@ -219,8 +218,7 @@ $(document).ready(function() {
 });
 
 
-/*
-$(document).on("click", "textarea.inputTextarea", function(evt) {
+/**$(document).on("click", "textarea.inputTextarea", function(evt) {
 
     // evt.target is the button that was clicked
     var el = $(evt.target);

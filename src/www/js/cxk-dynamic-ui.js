@@ -1,5 +1,4 @@
-/*
-  cxk-dynamic-ui.js
+/**  cxk-dynamic-ui.js
   Deals with additional dynamic user interface elements
   Author: Craig Knott
 
@@ -25,8 +24,7 @@ function onTabChange ( tabIndex ) {
   } else if ( tabIndex == 1 ) {
     g_isInput = false;
   }
-  /*
-  alert(tabIndex);
+  /**  alert(tabIndex);
   if ( tabIndex == 2 ) { // Clicked on rule tab
     generateRules();  
   }*/

@@ -1,5 +1,4 @@
-/*
-  cxk-mf-ui.js
+/**  cxk-mf-ui.js
   Deals with all membership function storage and display
   Author: Craig Knott
 

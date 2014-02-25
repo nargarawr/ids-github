@@ -1,5 +1,4 @@
-/*
-  cxk-variable-ui.js
+/**  cxk-variable-ui.js
   Deals with all variable aspects of the system
   Author: Craig Knott
 

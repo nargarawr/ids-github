@@ -1,5 +1,4 @@
-/*
-  cxk-graphs.js
+/**  cxk-graphs.js
   Deals with drawing of graphs with GoogleCharts
   Author: Craig Knott
 

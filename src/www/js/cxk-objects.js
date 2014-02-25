@@ -1,5 +1,4 @@
-/*
-  cxk-objects.js
+/**  cxk-objects.js
   All of the objects present in the system
   Author: Craig Knott
 
@@ -340,8 +339,7 @@ function pair ( l, r ) {
 	this.rightEl = r;
 }
 
-/*
-	Rule object
+/**	Rule object
 
 	@param {array[rulePair]}, an array of pairs of variables and terms for inputs
 	@param {array[rulePair]}, an array of pairs of variables and terms for outputs
