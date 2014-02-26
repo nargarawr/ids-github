@@ -64,6 +64,9 @@ Node.prototype.appendText = function (string, shouldBreak) {
   if ( shouldBreak ) {
     this.appendChild(document.createElement("br")); 
   }
+  var d = document.getElementById('exportOutput');
+  d.value += string + '\n';
+
 } 
 
 /**

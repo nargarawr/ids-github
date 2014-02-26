@@ -10,6 +10,15 @@ shinyServer(function(input, output) {
       evalFIS(m,FIS)
   })
 
+  output$downloadData <- downloadHandler(
+    filename = function() { 
+      paste(input$fisName, input$iotypestore, sep='') 
+    },
+    content = function(file) {
+      write({input$exportOutput}, file)
+    }
+  )
+
   # Generate a summary of the data
   #output$test <- renderPrint({
       #paste(input$testText, "...", input$inputDiv0_nameInput)

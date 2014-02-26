@@ -198,32 +198,36 @@
                       </a>
                       <ul class="dropdown-menu" style="margin-left: 2.564102564102564%">
                         <li> 
-                          <a href ="#" onclick="exportFile('mfis')"> 
+                          <a href ="#" onclick="exportFile('mfis'); updateIOType('.fis')"> 
                             MATLAB File (.fis)
                           </a> 
                         </li>
                         <li> 
-                          <a href ="#" onclick="exportFile('ufis')"> 
+                          <a href ="#" onclick="exportFile('ufis'); updateIOType('.fis')"> 
                             FuzzyToolkitUoN File (.fis)
                           </a> 
                         </li>
                         <li> 
-                          <a href ="#" onclick="exportFile('ojsn')"> 
+                          <a href ="#" onclick="exportFile('ojsn'); updateIOType('.json')"> 
                             o-Fuzz File (.json)
                           </a> 
                         </li>                        
                       </ul>
                       <button class="btn addNewVarBtn" id="ctcb" style="margin-left:5px" onclick="copyToClipboard()">Add To Clipboard</button>
+                      <a id="downloadData" class="btn shiny-download-link" target="_blank">Download</a>
                     </div>
-                   
                 </div> 
-                <div class= "span2">
+                <div class= "span2">  
                   <a href="#" id="exportHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
                 </div>
               </div>  
               <div style="padding-top:35px">
-                <div id="mainDivExport" style="margin-left:2.564102564102564%;">
+
+               <div style="margin-left:2.564102564102564%;">
                   <div class="break"></div>                 
+                  <input type="text" id="exportOutput" > 
+                  <input type="text" id="iotypestore" value=".fis" > 
+                  <div id="mainDivExport"> </div>
                 </div>
               </div> 
               <div style="margin-bottom:100px"></div>                       

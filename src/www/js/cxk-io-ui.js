@@ -11,6 +11,7 @@
     loadFile ( evt );
     validateInput ( inputText );
     copyToClipboard ( );
+    updateIOType( type );
 */
 
 $(document).ready(function() {
@@ -34,6 +35,10 @@ function strcmp ( str1, str2 ) {
 	@param {string}, the format to print in (mfis, ufis, or ojsn)
 */
 function exportFile( filetype ){
+
+   	var texts = document.getElementById('exportOutput');
+   	texts.value = "";
+   
 	var d = document.getElementById("mainDivExport");
 	clearNode(d);
 
@@ -423,4 +428,13 @@ function copyToClipboard () {
 	var expVal = (document.getElementById("mainDivExport").innerHTML).toString();
 	expVal = expVal.replace(/<br>/g, '\n');
 	window.prompt("To copy to clipboard, press Ctrl+C and then Enter", expVal);
+}
+
+/**
+	Allows R-Shiny to access the type of file to save
+
+	@param {string}, the file type 
+*/
+function updateIOType( type ) {
+	document.getElementById("iotypestore").value = type;
 }
