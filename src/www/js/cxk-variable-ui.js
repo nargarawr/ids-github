@@ -86,16 +86,10 @@ function getTotalMfCount( input ){
                   3 - Range is invalid
 */
 function checkValidity (divId, isInput) {
-  var s;
-  if ( isInput ) {
-    s = "Input";
-  } else {
-    s = "Output";
-  }
 
-  var name = document.getElementById(divId + "_name" + s).value;
-  var rmin = parseInt(document.getElementById(divId + "_rmin" + s).value);
-  var rmax = parseInt(document.getElementById(divId + "_rmax" + s).value);  
+  var name = document.getElementById(divId + "_nameInput").value;
+  var rmin = parseInt(document.getElementById(divId + "_rminInput").value);
+  var rmax = parseInt(document.getElementById(divId + "_rmaxInput").value);  
  
 	if ( !name ) {
 		// Name is missing
@@ -138,9 +132,9 @@ function saveDiv ( divId, isInput ) {
       inputDivs[divId].rangeMin = document.getElementById(divId + "_rminInput").value;
       inputDivs[divId].rangeMax = document.getElementById(divId + "_rmaxInput").value;
     } else {
-      outputDivs[divId].varName = document.getElementById(divId + "_nameOutput").value;
-      outputDivs[divId].rangeMin = document.getElementById(divId + "_rminOutput").value;
-      outputDivs[divId].rangeMax = document.getElementById(divId + "_rmaxOutput").value;
+      outputDivs[divId].varName = document.getElementById(divId + "_nameInput").value;
+      outputDivs[divId].rangeMin = document.getElementById(divId + "_rminInput").value;
+      outputDivs[divId].rangeMax = document.getElementById(divId + "_rmaxInput").value;
     }
   } else if (errorCode == 1){
     errorMessage = "<strong>Oops!</strong> It looks like you have not entered a name for your variable";
@@ -205,9 +199,9 @@ function compressDiv ( divId, isInput, shouldReset ) {
       }
       
     } else {
-      outputDivs[divId].varName = document.getElementById(divId + "_nameOutput").value;
-      outputDivs[divId].rangeMin = document.getElementById(divId + "_rminOutput").value;
-      outputDivs[divId].rangeMax = document.getElementById(divId + "_rmaxOutput").value;
+      outputDivs[divId].varName = document.getElementById(divId + "_nameInput").value;
+      outputDivs[divId].rangeMin = document.getElementById(divId + "_rminInput").value;
+      outputDivs[divId].rangeMax = document.getElementById(divId + "_rmaxInput").value;
 
       if ( shouldReset ) {
         outputDivs[divId].resetContent();
@@ -333,7 +327,9 @@ function addNewVar(isInput){
     if ( r ) {    
       systemRules.length = 0;
       printRules();
-    }  
+    }  else {
+      return;
+    }
   }
 
   if ( isInput ){
@@ -355,6 +351,7 @@ function addNewVar(isInput){
   }
 
   updateSidePanelWithVars();
+  printRules();
 }
 
 /**

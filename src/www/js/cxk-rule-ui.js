@@ -11,6 +11,8 @@
 	isLastKey ( lkey, arr );
 	isFirstKey ( lkey, arr );
 	printRules ( ); 
+	printRulesAsTable ( connective ) ;
+	getRuleTableValue (connective, col, row);
 	addNewRule ( isEditting ); 
 	isNumber ( o );
 	editRule ( );
@@ -82,6 +84,7 @@ function checkVarsForRules () {
 	} else {
 		$('#myRuleModal').modal('show');	
 		generateRuleUI();
+		d.innerHTML = "";
 	}	
 }
 
@@ -91,7 +94,7 @@ function checkVarsForRules () {
 function generateRuleUI() {
     var d = document.getElementById("ruleModalDiv");
 	while ( d.hasChildNodes() ) {
-			d.removeChild( d.firstChild );       
+		d.removeChild( d.firstChild );       
 	}    
 
     var table = document.createElement("table");
@@ -260,6 +263,10 @@ function printRules () {
 		var trow = document.createElement("tr");	
 		var tcol = document.createElement("td");
 
+		if ( !isLastKey (key, systemRules)) {
+			tcol.setAttribute("style","border-bottom:1px solid black");	
+		}
+
 		tcol.appendChild(document.createTextNode("IF "));
 		for ( var key2 in systemRules[key].inputList ) {
 			var x = systemRules[key].inputList[key2];
@@ -302,21 +309,30 @@ function printRules () {
 			}
 		}
 
+		
+
 		tcol.appendChild(document.createTextNode("(" + systemRules[key].weight + ")"));			
 
 		var tcol2 = document.createElement("td");
-		var editButton = document.createElement("button");
-		editButton.className = "btn btn-primary lowMarge";
-		editButton.appendChild(document.createTextNode("Edit"));
-		var s = "\""+ key +"\"";
-		editButton.setAttribute("onclick", "editRule(" + s + ")");
-		tcol2.appendChild(editButton);
+
+		if ( !isLastKey (key, systemRules)) {
+			tcol2.setAttribute("style","border-bottom:1px solid black");	
+		}
 
 		var deleteButton = document.createElement("button");
 		deleteButton.className = "btn btn-danger lowMarge";
+		deleteButton.setAttribute ("style","float:right")
 		deleteButton.appendChild(document.createTextNode("Delete"));
 		deleteButton.setAttribute("onclick", "deleteRule(" + s + ")");
 		tcol2.appendChild(deleteButton);
+		
+		var editButton = document.createElement("button");
+		editButton.className = "btn btn-primary lowMarge";
+		editButton.setAttribute ("style","float:right")
+		editButton.appendChild(document.createTextNode("Edit"));
+		var s = "\""+ key +"\"";
+		editButton.setAttribute("onclick", "resetRuleCreator(); editRule(" + s + ")");
+		tcol2.appendChild(editButton);
 
 		trow.appendChild(tcol);
 		trow.appendChild(tcol2);
@@ -324,6 +340,124 @@ function printRules () {
 	}
 
 	d.appendChild(table);
+
+	if ( getLength(true) == 2 && getLength(false) == 1 ) {
+		document.getElementById("ruleTableTitle").innerHTML = "<h4 class='smallIndent'>Rule Tables</h4>";
+		printRulesAsTable("AND");
+		printRulesAsTable("OR");
+	} else {
+		document.getElementById("ruleTableTitle").innerHTML = "";
+		clearNode(document.getElementById("ruleTableDivAND"));
+		clearNode(document.getElementById("ruleTableDivOR"));	
+	}
+	
+
+}
+
+/**
+	Prints the rules in a tabular format for ease of viewing
+*/
+function printRulesAsTable( connective ){
+	var d = document.getElementById("ruleTableDiv" + connective);
+	clearNode(d);
+
+
+		var table = document.createElement("table");
+		table.border =1;
+		var tr = document.createElement("tr");
+		
+		var keyInputs = new Array();
+		for ( var key in inputDivs ) {
+			keyInputs.push(key);
+		}
+
+		var td = document.createElement("td")
+		td.colSpan = 2;
+		td.rowSpan = 2;
+		td.setAttribute("style","text-align:center; font-weight:bold")
+		td.appendText(connective)
+		tr.appendChild(td)
+
+
+		var td2 = document.createElement("td");
+		td2.colSpan = inputDivs[keyInputs[0]].memFuncs.length;
+		td2.setAttribute("style","text-align:center; font-weight:bold;")
+		td2.appendText(inputDivs[keyInputs[0]].varName)
+		tr.appendChild(td2);
+
+		var tr2 = document.createElement("tr");
+		for ( var key in inputDivs[keyInputs[0]].memFuncs ){
+			var tdx = document.createElement("td");
+			tdx.appendText(inputDivs[keyInputs[0]].memFuncs[key].funName);
+			tdx.setAttribute("style", "font-weight:bold")
+			tr2.appendChild(tdx)
+		}
+
+		table.appendChild(tr);
+		table.appendChild(tr2);
+				
+		for ( var key in inputDivs[keyInputs[1]].memFuncs ){
+			var trx = document.createElement("tr");
+
+			if ( isFirstKey(key, inputDivs[keyInputs[1]].memFuncs) ) {
+				var td3 = document.createElement("td");
+				td3.rowSpan = inputDivs[keyInputs[1]].memFuncs.length;
+				td3.appendText(inputDivs[keyInputs[1]].varName)
+				td3.className="rotate";
+				td3.setAttribute("style", "font-weight:bold")
+				trx.appendChild(td3);
+			}
+
+			var tdx = document.createElement("td");
+			tdx.appendText(inputDivs[keyInputs[1]].memFuncs[key].funName);
+			tdx.setAttribute("style", "font-weight:bold")
+			trx.appendChild(tdx)
+			for ( var key2 in inputDivs[keyInputs[0]].memFuncs ){
+				var tdxi = document.createElement("td");
+				tdxi.appendText(
+					getRuleTableValue(connective, 
+										inputDivs[keyInputs[0]].memFuncs[key2].funName,
+										inputDivs[keyInputs[1]].memFuncs[key].funName
+										))
+				trx.appendChild(tdxi);
+			}
+			table.appendChild(trx)
+		}
+		
+		d.appendChild(table);	
+
+}
+
+/**
+	@param {string}, the connective of this table
+	@param {string}, the current term col
+	@param {string}, the current term row
+	@return {string}, the output value of the rule
+*/
+function getRuleTableValue (connective, col, row) {
+
+	for ( var key in systemRules ) {
+		if ( systemRules[key].inputList[0].rightEl == col && 
+			systemRules[key].inputList[1].rightEl == row && 
+			connective == systemRules[key].connective ) {
+			return (systemRules[key].outputList[0].rightEl);
+		}
+	}
+
+	//f//or ( var key in systemRules ) {
+//		console.log(key)
+		//for ( var key2 in systemRules[key].inputList ){
+			
+
+			//console.log(systemRules[key].inputList[key2].leftEl + " " + systemRules[key].inputList[key2].rightEl)
+			//if ( strcmp(systemRules[key].inputList[key2].rightEl,"Poor") == 0 ) {
+				//console.log(systemRules[key].inputList[key2].rightEl);
+			//}
+
+		//}
+//	}
+	return "";
+
 }
 
 /**
@@ -392,6 +526,8 @@ function isNumber (o) {
 	@param {string}, the id of the rule to be edited
 */
 function editRule ( ruleId ) {
+	generateRuleUI();
+
 	edittingRule = true;
 	edittingId = ruleId;
 

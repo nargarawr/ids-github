@@ -415,19 +415,20 @@ function drawVarCharts(chartDiv, divId, memFuncs, isInput) {
 		if ( memFuncs[key].funType != "gau" && memFuncs[key].funType != "ga2" ){
 			var options = { 
 		    	title: x.varName,
-		    	legend : { position : 'bottom' }
+		    	legend : { position : 'right' },
+		    	chartArea: {  left: 40, width: "70%", height: "80%" }
 		    };       
 		} else {
 			var options = { 
 		    	title: x.varName,
 		    	curveType: "function", 	
-		    	legend : { position : 'bottom' }
+		    	legend : { position : 'right' },
+		    	chartArea: {  left: 40, width: "70%", height: "80%" }
 		    };       
 		}
 	}
 
-    
-    
+
 	var chart = new google.visualization.LineChart(chartDiv);
     chart.draw(data, options);		
 

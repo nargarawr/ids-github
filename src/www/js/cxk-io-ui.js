@@ -75,13 +75,13 @@ function exportFile( filetype ){
 				var t = inputDivs[key].memFuncs[key2];
 
 				if ( t.funType === "gau" ) {
-					d.appendText("MF" + i + "='" + t.funName + "':'gaussmf',[" + t.paramSigma + " " + t.paramMean + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true);
+					d.appendText("MF" + j + "='" + t.funName + "':'gaussmf',[" + t.paramSigma + " " + t.paramMean + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true);
 				} else if ( inputDivs[key].memFuncs[key2].funType === "ga2" ) {
-					d.appendText("MF" + i + "='" + t.funName + "':'gaussbmf',[" + t.paramLeftSigma + " " + t.paramLeftMean + " " + t.paramRightSigma + " " + t.paramRightMean + " " + (filetype==="ufis" ? " " + t.paramHeight : "") +"]", true);
+					d.appendText("MF" + j + "='" + t.funName + "':'gaussbmf',[" + t.paramLeftSigma + " " + t.paramLeftMean + " " + t.paramRightSigma + " " + t.paramRightMean + " " + (filetype==="ufis" ? " " + t.paramHeight : "") +"]", true);
 				} else if ( inputDivs[key].memFuncs[key2].funType === "trp" ) {
-					d.appendText("MF" + i + "='" + t.funName + "':'trapmf',[" + t.paramLeftFoot + " " + t.paramLeftShoulder + " " + t.paramRightShoulder + " " + t.paramRightFoot + " " + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true);
+					d.appendText("MF" + j + "='" + t.funName + "':'trapmf',[" + t.paramLeftFoot + " " + t.paramLeftShoulder + " " + t.paramRightShoulder + " " + t.paramRightFoot + " " + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true);
 				} else if ( inputDivs[key].memFuncs[key2].funType === "tri" ) {
-					d.appendText("MF" + i + "='" + t.funName + "':'trimf',[" + t.paramLeft + " " + t.paramMean + " " + t.paramRight + " " + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true);	
+					d.appendText("MF" + j + "='" + t.funName + "':'trimf',[" + t.paramLeft + " " + t.paramMean + " " + t.paramRight + " " + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true);	
 				}					
 
 				j++;
@@ -104,13 +104,13 @@ function exportFile( filetype ){
 				var t = outputDivs[key].memFuncs[key2];
 
 				if ( t.funType === "gau" ) {
-					d.appendText("MF" + i + "='" + t.funName + "':'gaussmf',[" + t.paramSigma + " " + t.paramMean + " " + t.paramHeight + "]", true);
+					d.appendText("MF" + j + "='" + t.funName + "':'gaussmf',[" + t.paramSigma + " " + t.paramMean + " " + t.paramHeight + "]", true);
 				} else if ( outputDivs[key].memFuncs[key2].funType === "ga2" ) {
-					d.appendText("MF" + i + "='" + t.funName + "':'gaussbmf',[" + t.paramLeftSigma + " " + t.paramLeftMean + " " + t.paramRightSigma + " " + t.paramRightMean + " " + t.paramHeight +"]", true);
+					d.appendText("MF" + j + "='" + t.funName + "':'gaussbmf',[" + t.paramLeftSigma + " " + t.paramLeftMean + " " + t.paramRightSigma + " " + t.paramRightMean + " " + t.paramHeight +"]", true);
 				} else if ( outputDivs[key].memFuncs[key2].funType === "trp" ) {
-					d.appendText("MF" + i + "='" + t.funName + "':'trapmf',[" + t.paramLeftFoot + " " + t.paramLeftShoulder + " " + t.paramRightShoulder + " " + t.paramRightFoot + " " + t.paramHeight + "]", true);
+					d.appendText("MF" + j + "='" + t.funName + "':'trapmf',[" + t.paramLeftFoot + " " + t.paramLeftShoulder + " " + t.paramRightShoulder + " " + t.paramRightFoot + " " + t.paramHeight + "]", true);
 				} else if ( outputDivs[key].memFuncs[key2].funType === "tri" ) {
-					d.appendText("MF" + i + "='" + t.funName + "':'trimf',[" + t.paramLeft + " " + t.paramMean + " " + t.paramRight + " " + t.paramHeight + "]", true);	
+					d.appendText("MF" + j + "='" + t.funName + "':'trimf',[" + t.paramLeft + " " + t.paramMean + " " + t.paramRight + " " + t.paramHeight + "]", true);	
 				}					
 
 				j++;
@@ -161,6 +161,7 @@ function exportFile( filetype ){
 				d.appendText(" : 2", true);		
 			}
 		}
+		d.appendText("\n",true);
 	} else if ( strcmp("ojsn", filetype ) == 0 ){
 		var jsonData = [];
 		var cName = "System"
@@ -373,6 +374,11 @@ function getExtension(filename) {
 	@param {event}, the file event that called this function
 */
 function loadFile(evt) {
+	var r = confirm("Doing this will overwrite any work you have completed already, is this ok?")
+	if ( !r ) {
+		return;
+	}
+
 	var files = evt.target.files; 
 
 	var output = [];
@@ -394,10 +400,18 @@ function loadFile(evt) {
 		var reader = new FileReader();
 		reader.onload = function ( e ) {
 			var text = reader.result;
-			if ( validateInput(text) ) {
-				document.getElementById('list').innerHTML = text.replace(/\n/g, "<br />");	
-			} else {
-				alert("Invalid file.");
+			switch ( ext.toLowerCase() ) {
+				case 'fis':
+					if ( loadFISFile(text) ) {
+						document.getElementById('list').innerHTML = text.replace(/\n/g, "<br />");	
+					}
+
+					break;
+				case 'json':
+					if ( loadJSONFile(text) ) {
+						document.getElementById('list').innerHTML = text.replace(/\n/g, "<br />");	
+					}
+					break;
 			}
 		}
 		reader.readAsText(files[i]);	
@@ -406,20 +420,243 @@ function loadFile(evt) {
 }
 
 /**
-	Checks a file for input validity
+	Loads a fis file into the system
 
-	@param {string}, input text to validate
+	@param {string}, the text to parse and check
 */
-function validateInput ( inputText ) {
-	var pattern = new RegExp("\[System\]\nName='[a-zA-Z0-9]*'\nType='[a-zA-Z]*'\nVersion=\d*\.\d*\nNumInputs=\d*\nNumOutputs=\d*\nNumRules=\d*\nAndMethod='[a-zA-Z]*'\nOrMethod='[a-zA-Z]*'\nImpMethod='[a-zA-Z]*'\nAggMethod='[a-zA-Z]*'\nDefuzzMethod='[a-zA-Z]*'\n\n(\[Input\d*\]\nName='[a-zA-Z0-9]*'\nRange=\[\d* \d*\]\nNumMFs=\d*\n(MF\d*='[a-zA-Z0-9]*':'(trimf|trapmf|gaussmf|gaussbmf)',\[((-|)\d*(\.|)\d*( |))*\]\n)*\n)*\[Output\d*\]\nName='[a-zA-Z0-9]*'\nRange=\[\d* \d*\]\nNumMFs=\d*\n(MF\d*='[a-zA-Z0-9]*':'(trimf|trapmf|gaussmf|gaussbmf)',\[((-|)\d*(\.|)\d*( |))*\]\n)*\n(\[Rules\]|)(\n|)(((\d*( |,))*\(\d*.\d*\) : \d)(\n|))*");
-	var res = pattern.test(inputText);	
+function loadFISFile ( txt ) {
+	var name, type, andMethod, orMethod, aggMethod, impMethod, defMethod;
 
-	return res;
+
+	var str = txt.split("\n");
+	
+	if ( !(new RegExp("\\[System\\]").test(str[0])) ) {
+		alert("System tag is not present")
+		return false;
+	}
+
+	if ( !(new RegExp("Name=\'.*\'").test(str[1])) ) {
+		alert("Name tag is not present, or malformed")
+		return false;
+	}
+	name = str[1].substring(6,str[1].length-2)
+	
+	if ( !(new RegExp("Type=\'mamdani\'").test(str[2])) ) {
+		alert("Type tag is not present, or malformed")
+		return false;
+	}
+	type = str[2].substring(6,str[2].length-2)
+	type = type.charAt(0).toUpperCase() + type.slice(1);
+
+	if ( !(new RegExp("AndMethod=\'(min|product)\'").test(str[7])) ) {
+		alert("And Method tag is not present, or malformed")
+		return false;
+	}
+	andMethod = str[7].substring(11, str[7].length-2)
+	andMethod = andMethod.charAt(0).toUpperCase() + andMethod.slice(1);
+
+	if ( !(new RegExp("OrMethod=\'(max|probor)\'").test(str[8])) ) {
+		alert("Or Method tag is not present, or malformed")
+		return false;
+	}
+	orMethod = str[8].substring(10, str[8].length-2)
+	orMethod = orMethod.charAt(0).toUpperCase() + orMethod.slice(1);
+
+	if ( !(new RegExp("ImpMethod=\'(min|product)\'").test(str[9])) ) {
+		alert("Implication Method tag is not present, or malformed")
+		return false;
+	}
+	impMethod = str[9].substring(11, str[9].length-2)
+	impMethod = impMethod.charAt(0).toUpperCase() + impMethod.slice(1);
+	
+	if ( !(new RegExp("AggMethod=\'(max|probor|sum)\'").test(str[10])) ) {
+		alert("Aggregation Method tag is not present, or malformed")
+		return false;
+	}
+	aggMethod = str[10].substring(11, str[10].length-2)
+	aggMethod = aggMethod.charAt(0).toUpperCase() + aggMethod.slice(1);
+
+	if ( !(new RegExp("DefuzzMethod=\'(centroid|lom|mom|som|bisector)\'").test(str[11])) ) {
+		alert("Defuzzification Method tag is not present, or malformed")
+		return false;
+	}
+	defMethod = str[11].substring(14, str[11].length-2)
+	defMethod = defMethod.charAt(0).toUpperCase() + defMethod.slice(1);
+
+	$('#fisType').val(type);
+	$('#fisAnd').val(andMethod);
+	$('#fisOr').val(orMethod);
+	$('#fisImp').val(impMethod);
+	$('#fisAgg').val(aggMethod);
+	$('#fisDfz').val(defMethod);
+
+	if ( !(new RegExp("NumInputs=\d*").test(str[4])) ) {
+		alert("No input count defined")
+		return false;
+	}
+
+
+	inputDivs.length = 0;
+	var myDiv = document.getElementById('mainDivInput');
+	clearNode(myDiv)
+	inputIndex = 0;
+	var inputCount = parseInt(str[4].substring(10,str[11].length-1));
+	
+	outputDivs.length = 0;
+	var myDiv = document.getElementById('mainDivOutput');
+	clearNode(myDiv)
+	outputIndex = 0;
+	var outputCount = parseInt(str[4].substring(11,str[11].length-1));
+
+	for ( var i = 13; i < str.length ; ){
+		
+		if ( new RegExp("\\[Input\\d+\\]").test(str[i]) ) {
+			alert(str[i])
+			if ( !(new RegExp("Name=\'.*\'").test(str[i+1]))) {
+				alert("A name tag is missing for one of your input variables")
+				return false;
+			}
+			var inputName = str[i+1].substring(6, str[i+1].length-2)
+		
+			if ( !(new RegExp(/[Range=\[\d+\ \d+\]]+/).test(str[i+2]))) {
+				alert("A range tag is missing or malformed for one of your input variables");
+				return false;
+			}
+			var ranges = str[i+2].split(/[\s\[\]]+/)
+			var minRange = ranges[1];
+			var maxRange = ranges[2];
+
+			if ( !(new RegExp(/[NumMFs=\d+]+/).test(str[i+3]))) {
+				alert("A membership function count tag is missing or malformed for one of your input variables");
+				return false;				
+			}
+			var mfCount = str[i+3].substring(7, str[i+3].length-1)
+
+			var mfList = new Array();
+			for ( var j = 0 ; j < mfCount ; j++ ){
+
+				if ( !(new RegExp(/[MF\d+=\'(\s|\S)*\':(\'gaussmf\',\[\-?\d+\.?\d* \-?\d+\.?\d* \-?\d+\.?\d*|\'gaussbmf\',\[\-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d*\]|\'trapmf\',\[\-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d*\]|\'trimf\',\[\-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d*)]+/).test(str[i+4+j]))) {
+					alert("Membership function " + (j+1) + " of one of your variables is invalid")
+					return false;
+				}
+
+				var str_params = str[i+4+j].split(/['|\[\]]/);
+				var mf_name = str_params[1];
+				var mf_type = str_params[3];
+				var mf_params = str_params[5].split(/[\ ]/)
+				
+				if ( mf_type === "gaussmf") {
+					mfList.push(new gauMemFun(mf_name, mf_params[0], mf_params[1], mf_params[2] ));
+				} else if ( mf_type === "gaussbmf") {
+					mfList.push(new gau2MemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], mf_params[3],  mf_params[4] ));
+				} else if ( mf_type === "trapmf") {
+					mfList.push(new trapMemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], mf_params[3],  mf_params[4]  ));
+				} else if ( mf_type === "trimf") {
+					mfList.push(new triMemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], mf_params[3]));
+				}
+			}
+
+			var mainDiv = document.getElementById("mainDivInput")
+			var sysVar = new systemVar(inputName, "inputDiv" + inputIndex, true);
+    		inputIndex++;
+
+		    mainDiv.appendChild(sysVar.createDiv());
+		    inputDivs[sysVar.divId] = sysVar;  
+		    inputDivs[sysVar.divId].rangeMin = minRange;
+		    inputDivs[sysVar.divId].rangeMax = maxRange;
+
+		    for ( var key in mfList ) {
+				inputDivs[sysVar.divId].memFuncs.push(mfList[key])
+		    }
+
+			inputDivs[sysVar.divId].updateSmallView();		    
+
+			alert(str[i+5+parseInt(mfCount)])
+
+			i += (5 + parseInt(mfCount));
+		} else if ( new RegExp("\\[Output\\d+\\]").test(str[i]) ) {
+
+			if ( !(new RegExp("Name=\'.*\'").test(str[i+1]))) {
+				alert("A name tag is missing for one of your input variables")
+				return false;
+			}
+			var inputName = str[i+1].substring(6, str[i+1].length-2)
+		
+			if ( !(new RegExp(/[Range=\[\d+\ \d+\]]+/).test(str[i+2]))) {
+				alert("A range tag is missing or malformed for one of your input variables");
+				return false;
+			}
+			var ranges = str[i+2].split(/[\s\[\]]+/)
+			var minRange = ranges[1];
+			var maxRange = ranges[2];
+
+			if ( !(new RegExp(/[NumMFs=\d+]+/).test(str[i+3]))) {
+				alert("A membership function count tag is missing or malformed for one of your input variables");
+				return false;				
+			}
+			var mfCount = str[i+3].substring(7, str[i+3].length-1)
+
+			var mfList = new Array();
+			for ( var j = 0 ; j < mfCount ; j++ ){
+				if ( !(new RegExp(/[MF\d+=\'(\s|\S)*\':(\'gaussmf\',\[\-?\d+\.?\d* \-?\d+\.?\d* \-?\d+\.?\d*|\'gaussbmf\',\[\-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d*\]|\'trapmf\',\[\-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d*\]|\'trimf\',\[\-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d*)]+/).test(str[i+4+j]))) {
+					alert("Membership function " + (j+1) + " of one of your variables is invalid")
+					return false;
+				}
+
+				var str_params = str[i+4+j].split(/['|\[\]]/);
+				var mf_name = str_params[1];
+				var mf_type = str_params[3];
+				var mf_params = str_params[5].split(/[\ ]/)
+				var mf;
+				
+				if ( mf_type == "gaussmf") {
+					mf = new gauMemFun(mf_name, mf_params[0], mf_params[1], mf_params[2] );
+				} else if ( type == "gaussbmf") {
+					mf = new gau2MemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], mf_params[3],  mf_params[4] );
+				} else if ( type == "trapmf") {
+					mf = new trapMemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], mf_params[3],  mf_params[4]  );
+				} else if ( type == "trimf") {
+					mf = new triMemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], mf_params[3]);
+				}
+				mfList.push(mf);				
+			}
+
+			var mainDiv = document.getElementById("mainDivOutput")
+			var sysVar = new systemVar(inputName, "outputDiv" + outputIndex, false);
+    		outputIndex++;
+
+		    mainDiv.appendChild(sysVar.createDiv());
+		    outputDivs[sysVar.divId] = sysVar;  
+		    outputDivs[sysVar.divId].rangeMin = minRange;
+		    outputDivs[sysVar.divId].rangeMax = maxRange;
+
+		    for ( var key in mfList ) {
+				outputDivs[sysVar.divId].memFuncs.push(mfList[key])
+		    }
+
+			outputDivs[sysVar.divId].updateSmallView();		    
+
+			i += (5 + parseInt(mfCount));
+		} else if ( new RegExp("\\[Rules\\]").test(str[i]) ) {
+
+			i+= 1000;
+		} else {
+			alert("Rules, inputs or outputs are ill defined")
+		}
+	}
+
+	return true;
+
 }
 
-/*
-\[System\]\nName='[a-zA-Z0-9]*'\nType='[a-zA-Z]*'\nVersion=\d*\.\d*\nNumInputs=\d*\nNumOutputs=\d*\nNumRules=\d*\nAndMethod='[a-zA-Z]*'\nOrMethod='[a-zA-Z]*'\nImpMethod='[a-zA-Z]*'\nAggMethod='[a-zA-Z]*'\nDefuzzMethod='[a-zA-Z]*'\n\n(\[Input\d*\]\nName='[a-zA-Z0-9]*'\nRange=\[\d* \d*\]\nNumMFs=\d*\n(MF\d*='[a-zA-Z0-9]*':'(trimf|trapmf|gaussmf|gaussbmf)',\[((-|)\d*(\.|)\d*( |))*\]\n)*\n)*\[Output\d*\]\nName='[a-zA-Z0-9]*'\nRange=\[\d* \d*\]\nNumMFs=\d*\n(MF\d*='[a-zA-Z0-9]*':'(trimf|trapmf|gaussmf|gaussbmf)',\[((-|)\d*(\.|)\d*( |))*\]\n)*\n(\[Rules\]|)(\n|)(((\d*( |,))*\(\d*.\d*\) : \d)(\n|))*(\n|)
+/**
+	Loads a json file into the system
+
+	@param {string}, the text to parse and check
 */
+function loadJSONFile ( txt ) {
+
+}
 
 /**
 	Pseudo- copies to clipboard

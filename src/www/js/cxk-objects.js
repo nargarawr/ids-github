@@ -108,6 +108,15 @@ function systemVar(m_varName, divId, isInput){
 	this.chartDiv = null;
 
 	/**
+		Updates the range and function count of the small view
+	*/
+	this.updateSmallView = updateSmallView;
+	function updateSmallView () {
+		clearNode(this.div);
+		this.getSmallContent();
+	}
+
+	/**
 		Creates the div to store all viewable content
 
 		@return {string}, this as a div
@@ -171,7 +180,7 @@ function systemVar(m_varName, divId, isInput){
 
 		var r = document.createElement("h5");
 		r.className = "titleText";
-		r.appendChild(document.createTextNode("Range: " + this.rangeMin + " to " + this.rangeMax));
+		r.appendChild(document.createTextNode("Range: " + this.rangeMin + "-" + this.rangeMax));
 		this.div.appendChild(r);		
 
 		this.div.appendChild(document.createElement("br"));
@@ -205,77 +214,61 @@ function systemVar(m_varName, divId, isInput){
 	*/
 	this.getBigContent = getBigContent;
 	function getBigContent () {
+
+		var upperContent = document.createElement("div");
+		upperContent.id = "upperDiv_" + this.divId;
+		upperContent.setAttribute("style", "width:100%; overflow:hidden");
+
+		var divUpperLeft = document.createElement("div");
+		divUpperLeft.setAttribute("style", "width: 50%; float:left; margin-bottom:2.5%");
+
 		var chartDiv = document.createElement("div");
 		chartDiv.id = this.divId + "_chartDiv";
-		chartDiv.setAttribute("style", "float:right");
-		this.div.appendChild(chartDiv);
+		chartDiv.setAttribute("style", "float:left; ");
 		this.chartDiv = chartDiv;
+
 		drawVarCharts(this.chartDiv, this.divId, this.memFuncs, this.isInput);
 
 		this.div.appendChild(this.notice);
 
 		var varNameLabel = document.createElement("h4");
 		varNameLabel.className = "titleText";
+		varNameLabel.setAttribute("style", "width:90%")
 		varNameLabel.appendChild(document.createTextNode("Variable Name"));
-		this.div.appendChild(varNameLabel);		
+		divUpperLeft.appendChild(varNameLabel);		
 
-		this.div.appendChild(document.createElement("br"));
-		this.div.appendChild(document.createElement("br"));
-
-		if ( this.isInput ){
-			var varNameInput = document.createElement("input");
-			varNameInput.id = this.divId + "_nameInput";
-			varNameInput.type = "text";
-			varNameInput.value = this.varName;
-			varNameInput.className = "indent";
-			this.div.appendChild(varNameInput);
-		} else {
-			var varNameOutput = document.createElement("input");
-			varNameOutput.id = this.divId + "_nameOutput";
-			varNameOutput.type = "text";
-			varNameOutput.value = this.varName;
-			varNameOutput.className = "indent";
-			this.div.appendChild(varNameOutput);
-		}
-
-
-		this.div.appendChild(document.createElement("br"));
-
+		var varNameInput = document.createElement("input");
+		varNameInput.id = this.divId + "_nameInput";
+		varNameInput.type = "text";
+		varNameInput.value = this.varName;
+		varNameInput.className = "indent";
+		varNameInput.setAttribute("style", "width:82.5%")
+		divUpperLeft.appendChild(varNameInput);
+		 
 		var varRangeLabel = document.createElement("h4");
 		varRangeLabel.className = "titleText";
+		varRangeLabel.setAttribute("style", "width:90%")
 		varRangeLabel.appendChild(document.createTextNode("Range (min-max)"));
-		this.div.appendChild(varRangeLabel);
+		divUpperLeft.appendChild(varRangeLabel);
 
-		this.div.appendChild(document.createElement("br"));
-		this.div.appendChild(document.createElement("br"));
+		var varMinInput = document.createElement("input");
+		varMinInput.id = this.divId + "_rminInput";
+		varMinInput.type = "number";
+		varMinInput.className="indent";
+		varMinInput.setAttribute("style", "width:40%")
+		varMinInput.value = this.rangeMin;
+		divUpperLeft.appendChild(varMinInput);
 
-		if ( this.isInput ){
-			var varMinInput = document.createElement("input");
-			varMinInput.id = this.divId + "_rminInput";
-			varMinInput.type = "number";
-			varMinInput.className="indent";
-			varMinInput.value = this.rangeMin;
-			this.div.appendChild(varMinInput);
+		var varMaxInput = document.createElement("input");
+		varMaxInput.id = this.divId + "_rmaxInput";
+		varMaxInput.type = "number";
+		varMaxInput.value = this.rangeMax;
+		varMaxInput.setAttribute("style", "width:40%")
+		divUpperLeft.appendChild(varMaxInput);
 
-			var varMaxInput = document.createElement("input");
-			varMaxInput.id = this.divId + "_rmaxInput";
-			varMaxInput.type = "number";
-			varMaxInput.value = this.rangeMax;
-			this.div.appendChild(varMaxInput);
-		} else {
-			var varMinOutput = document.createElement("input");
-			varMinOutput.id = this.divId + "_rminOutput";
-			varMinOutput.type = "number";
-			varMinOutput.className="indent";
-			varMinOutput.value = this.rangeMin;
-			this.div.appendChild(varMinOutput);
-
-			var varMaxOutput = document.createElement("input");
-			varMaxOutput.id = this.divId + "_rmaxOutput";
-			varMaxOutput.type = "number";
-			varMaxOutput.value = this.rangeMax;
-			this.div.appendChild(varMaxOutput);
-		}
+		upperContent.appendChild(divUpperLeft)
+		upperContent.appendChild(this.chartDiv)
+		this.div.appendChild(upperContent)
 
 		this.div.appendChild(document.createElement("br"));		
 
@@ -294,37 +287,59 @@ function systemVar(m_varName, divId, isInput){
 
 		innerDiv.appendChild(convertToTable(this.memFuncs, this.divId, this.isInput));
 
+
+		// Buttons 
+		var buttonDiv = document.createElement("div");
+		buttonDiv.id = "btnDiv_" + this.divId;
+		buttonDiv.setAttribute("style", "width:100%; overflow:hidden");
+
+		var divLeft = document.createElement("div");
+		divLeft.setAttribute("style", "width: 40%; float:left;");
+			
+		var divRight = document.createElement("div");
+		divRight.setAttribute("style", "width:60%; float:right");
+	
 		var addMFButton = document.createElement("button");
-		addMFButton.className = "btn variableButton left btn-primary";
+		addMFButton.className = "btn variableButton smallIndent btn-primary";
 		addMFButton.appendChild(document.createTextNode("Add Function"));
 		addMFButton.setAttribute("data-toggle","modal");
 		addMFButton.setAttribute("href","#myModal");
 		var d = "\"" + this.divId +"\", " + this.isInput;
 		var e = "\"" + this.divId +"\", " + this.isInput + ", false";
 		addMFButton.setAttribute("onclick","checkValidity(" + d + "); clearPopovers(); updateModal(); saveDiv(" + d + "); setCurrentDiv(" + d + ")");
-		this.div.appendChild(addMFButton);
+		divLeft.appendChild(addMFButton);
 
-		// Buttons 
+
 		var deleteButton = document.createElement("button");
-		deleteButton.className = "btn btn-danger variableButton right";
+		deleteButton.className = "btn btn-danger variableButton";
 		deleteButton.appendChild(document.createTextNode("Delete"));
+		deleteButton.setAttribute("style", "margin-left:2.5%; float:right")
 		var s = "\"" + this.divId +"\", " + this.isInput;
 		deleteButton.setAttribute("onClick", "deleteDiv(" + s +  ")");
-		this.div.appendChild(deleteButton);
+		divRight.appendChild(deleteButton);
 
 		var saveButton = document.createElement("button");
-		saveButton.className = "btn btn-success variableButton right";
+		saveButton.className = "btn btn-success variableButton";
 		saveButton.appendChild(document.createTextNode("Save"));
+		saveButton.setAttribute("style", "margin-left:2.5%; float:right")
 		var s2 = "\"" + this.divId +"\", " + this.isInput;
 		saveButton.setAttribute("onClick", "saveDiv(" + s2 +  ")");
-		this.div.appendChild(saveButton);
+		divRight.appendChild(saveButton);
 
 		var closeButton = document.createElement("button");
-		closeButton.className = "btn btn-success variableButton right";
+		closeButton.className = "btn btn-success variableButton";
+		closeButton.setAttribute("style", "margin-left:2.5%; float:right")
 		closeButton.appendChild(document.createTextNode("Save and Close"));
 		var s2 = "\"" + this.divId +"\", " + this.isInput + ", true";
 		closeButton.setAttribute("onClick", "compressDiv(" + s2 +  ")");
-		this.div.appendChild(closeButton);
+		divRight.appendChild(closeButton);
+
+		buttonDiv.appendChild(divLeft);
+		buttonDiv.appendChild(divRight);
+
+
+		this.div.appendChild(buttonDiv);
+
 	}
 }
 

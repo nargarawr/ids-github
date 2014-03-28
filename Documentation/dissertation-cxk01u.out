@@ -23,13 +23,24 @@
 \BOOKMARK [2][-]{subsection.6.1}{Key Implementation Decisions}{section.6}% 23
 \BOOKMARK [2][-]{subsection.6.2}{Detailed Description of the Implemented System}{section.6}% 24
 \BOOKMARK [2][-]{subsection.6.3}{Problems Encountered}{section.6}% 25
-\BOOKMARK [1][-]{section.7}{Evaluation}{}% 26
-\BOOKMARK [2][-]{subsection.7.1}{Functionality Tests}{section.7}% 27
-\BOOKMARK [2][-]{subsection.7.2}{User Feedback Tests}{section.7}% 28
-\BOOKMARK [2][-]{subsection.7.3}{Successes and Limitations of the Project}{section.7}% 29
-\BOOKMARK [1][-]{section.8}{Further Work}{}% 30
-\BOOKMARK [2][-]{subsection.8.1}{Type-2 Fuzzy Logic}{section.8}% 31
-\BOOKMARK [2][-]{subsection.8.2}{Backend Interoperability}{section.8}% 32
-\BOOKMARK [2][-]{subsection.8.3}{Customisations}{section.8}% 33
-\BOOKMARK [1][-]{section.9}{Summary}{}% 34
-\BOOKMARK [1][-]{appendix.A}{test}{}% 35
+\BOOKMARK [1][-]{section.7}{Evaluation of the Project}{}% 26
+\BOOKMARK [2][-]{subsection.7.1}{Functionality Testing}{section.7}% 27
+\BOOKMARK [2][-]{subsection.7.2}{User Feedback Testing}{section.7}% 28
+\BOOKMARK [3][-]{subsubsection.7.2.1}{FuzzyToolkitUoN Evaluation}{subsection.7.2}% 29
+\BOOKMARK [3][-]{subsubsection.7.2.2}{MATLAB Fuzzy Toolbox Evaluation}{subsection.7.2}% 30
+\BOOKMARK [3][-]{subsubsection.7.2.3}{My Project, O-Fuzz, Evaluation}{subsection.7.2}% 31
+\BOOKMARK [2][-]{subsection.7.3}{Success and Limitations of the project}{section.7}% 32
+\BOOKMARK [2][-]{subsection.7.4}{Functionality Tests}{section.7}% 33
+\BOOKMARK [2][-]{subsection.7.5}{User Feedback Tests}{section.7}% 34
+\BOOKMARK [3][-]{subsubsection.7.5.1}{FuzzyToolkitUoN}{subsection.7.5}% 35
+\BOOKMARK [3][-]{subsubsection.7.5.2}{MATLAB}{subsection.7.5}% 36
+\BOOKMARK [3][-]{subsubsection.7.5.3}{My Project, O-Fuzz}{subsection.7.5}% 37
+\BOOKMARK [3][-]{subsubsection.7.5.4}{Overall Results}{subsection.7.5}% 38
+\BOOKMARK [3][-]{subsubsection.7.5.5}{In-depth Analysis}{subsection.7.5}% 39
+\BOOKMARK [2][-]{subsection.7.6}{Successes and Limitations of the Project}{section.7}% 40
+\BOOKMARK [1][-]{section.8}{Further Work}{}% 41
+\BOOKMARK [2][-]{subsection.8.1}{Type-2 Fuzzy Logic}{section.8}% 42
+\BOOKMARK [2][-]{subsection.8.2}{Backend Interoperability}{section.8}% 43
+\BOOKMARK [2][-]{subsection.8.3}{Customisations}{section.8}% 44
+\BOOKMARK [1][-]{section.9}{Summary}{}% 45
+\BOOKMARK [1][-]{appendix.A}{User Evaluation Test Instructions}{}% 46

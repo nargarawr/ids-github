@@ -47,7 +47,7 @@ function clearPopovers() {
     $("#rulecHelpBtn").html("Show Help");
     $("#importHelpBtn").html("Show Help");
     $("#exportHelpBtn").html("Show Help");    
-    $("#paramHelpBtn").html("Show Help");        
+    $("#paramHelpBtn").html("Help");        
     $("#evalHelpBtn").html("Show Help"); 
 }
 
@@ -93,7 +93,7 @@ $(document).ready(function() {
     $("#ruleHelpBtn").popover({
       placement:'bottom',
       title: '<b> Rule Creator </b>',
-      content: 'In this section of the system, you can specify what logical rules you wish to apply to the system, during the evaluation process.<br><br> To add a rule, press the \'Add New Rule\' button. This will bring up the Rule Creator Menu, which will explain more about rules in a fuzzy system. Once a rule has been created, you can use the \'Edit\' and \'Delete\' buttons to edit and delete the rule, respectively.'
+      content: 'In this section of the system, you can specify what logical rules you wish to apply to the system, during the evaluation process.<br><br> To add a rule, press the \'Add New Rule\' button. This will bring up the Rule Creator Menu, which will explain more about rules in a fuzzy system. Once a rule has been created, you can use the \'Edit\' and \'Delete\' buttons to edit and delete the rule, respectively.<br><br>Also, if your system has 2 inputs, and 1 output, your rules will be displayed in an intuitive table format'
     });
 
     $("#ruleHelpBtn").click(function(){
@@ -186,10 +186,10 @@ $(document).ready(function() {
       });
 
     $("#paramHelpBtn").click(function(){
-        if ( $("#paramHelpBtn").text() === "Show Help") {
-          $("#paramHelpBtn").html("Hide Help");
+        if ( $("#paramHelpBtn").text() === "Help") {
+          $("#paramHelpBtn").html("Hide");
         } else {
-          $("#paramHelpBtn").html("Show Help");
+          $("#paramHelpBtn").html("Help");
         }
     });    
 
@@ -251,3 +251,4 @@ $(document).ready(function() {
   Shiny.inputBindings.register(inputTextareaBinding);
 });
 */
+

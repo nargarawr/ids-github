@@ -1,5 +1,7 @@
 library(shiny)
 library(FuzzyToolkitUoN)
+#library(rgl)
+#library(shinyRGL)
 
 shinyServer(function(input, output) {
   FIS <<- tippertest()
@@ -36,10 +38,11 @@ shinyServer(function(input, output) {
 
 
   #output$plot <- renderPlot({
-
- 
-   # x <- (1:10)
-   # hist(x, main="derp")
+  #  renderWebGL({
+  #    points3d(1:10,1:10,1:10)
+  #  })
+    
+    
   #})
 
 })

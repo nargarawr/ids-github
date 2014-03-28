@@ -40,20 +40,22 @@
   <div class="row-fluid">
     <div class="span12" style="padding: 10px 0px;">
       <h1> o-Fuzz! </h1>
-      An online Type-1 fuzzy logic specification, visualization and inferencing system
+      An online Type-1 fuzzy logic specification, visualization and inferencing system <button onclick="tipperTest()"> TipperTest </button>
     </div>
   </div>
   <div class="row-fluid">
     <div class="span2">
       <form class ="well">
+
         <div id="dispSysParams">
-          <a href="#" id="paramHelpBtn" class="btn btn-success varHelpBtn" rel="popover" style="float:right" data-original-title>Show Help</a><br>
+          <a href="#" id="paramHelpBtn" class="btn btn-success varHelpBtn" rel="popover" style="float:right" data-original-title>Help</a><br>
+          <h4> System Parameters </h4>
           <label for="fisName">System Name: </label>
-          <input id="fisName"  style="max-width:90%" type="text" value="Sys001" />
+          <input id="fisName" type="text" value="Sys001" />
         
           <label class="control-label" for="fisType">System Type:</label>
           <select id="fisType" class="input">
-            <option value="Mamdani" selected="selected">Mamdani</option>
+            <option value="Mamdani"  selected="selected">Mamdani</option>
           </select>
 
           <label class="control-label" for="fisAnd">And Method:</label>
@@ -85,12 +87,12 @@
           <select id="fisDfz"  class="input">
               <option value="Centroid" selected="selected">Centroid</option>
               <option value="Bisector">Bisector</option>
-              <option value="lom">lom</option>
-              <option value="som">som</option>
-              <option value="mom">mom</option>
+              <option value="lom">Lom</option>
+              <option value="som">Som</option>
+              <option value="mom">Mom</option>
           </select>
         </div>
-        <button onclick="tipperTest()"> TipperTest </button>
+        
       </form>
       <form class ="well">
         <h4> System Listing </h4>
@@ -124,61 +126,55 @@
         <div class="tab-content">
           <div class="tab-pane active" id="tab-inputs">
               <div class="span10">
-                <div class="span10">
                   <button class="btn addNewVarBtn" id="addNewVarInput" onclick="addNewVar(true)">Add New Variable</button>
-                </div> 
-                <div class= "span2">
                   <a href="#" id="inputVarHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
-                </div>
-              </div>
+             </div>
               <div style="padding-top:35px">
                 <div id="mainDivInput">
                   <div class="break"></div>                 
                 </div>
               </div>
-           </div>
+          </div>
           <div class="tab-pane" id="tab-outputs">   
               <div class="span10">
-                <div class="span10">
-                   <button class="btn addNewVarBtn" id="addNewVarOutput" onclick="addNewVar(false)">Add New Variable</button>
-                </div> 
-                <div class= "span2">
-                  <a href="#" id="outputVarHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
-                </div>
+                <button class="btn addNewVarBtn" id="addNewVarOutput" onclick="addNewVar(false)">Add New Variable</button>
+                <a href="#" id="outputVarHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
               </div>
               <div style="padding-top:35px">
                 <div id="mainDivOutput">
                   <div class="break"></div>                 
                 </div>
               </div>
-            </div>
+          </div>
           <div class="tab-pane" id="tab-rules">  
+
               <div class="span10">
-                <div class="span10">
                   <div id="errorRowRule"></div>
-                   <button class="btn addNewVarBtn" id="addNewRule" onclick="clearPopovers(); resetRuleCreator(); checkVarsForRules();">Add New Rule</button>
-                </div> 
-                <div class= "span2">
-                  <a href="#" id="ruleHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
-                </div>
+                   <button class="btn addNewVarBtn" id="addNewRule" onclick="clearPopovers(); resetRuleCreator(); checkVarsForRules(); ">Add New Rule</button>
+                   <a href="#" id="ruleHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
               </div>  
               <div style="padding-top:35px">
-                <div id="mainDivRule">
-                  <div class="break"></div>                 
+                <div id="mainDivRule" class="span10">
+                  <div class="break"></div>   
                 </div>
-              </div>            
+
+              </div>   
+            <div id="ruleTableWrapper">
+              <div id="ruleTableTitle" ></div>
+              <div id="ruleTableDivAND"></div> 
+              <div id="ruleTableDivOR"></div> 
+            </div>
+
           </div>  
           <div class="tab-pane" id="tab-import">   
             <div class="span10">
-                <div class="span10">
                   <div id="errorRowImport"></div>
-                  <span class="btn btn-file" style="margin-left: 2.564102564102564%">
+                  <div style="margin-left:2.564102564102564%;">
+                  <a href="#" id="importHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
+                  <span class="btn btn-file">
                     <input type="file" id="files" name="files[]"/>
                   </span><br>
                   <output id="list"></output>
-                </div> 
-                <div class= "span2">
-                  <a href="#" id="importHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
                 </div>
               </div>  
               <div style="padding-top:35px">
@@ -189,8 +185,8 @@
             </div>   
           <div class="tab-pane" id="tab-export">   
               <div class="span10">
-                <div class="span10">
                   <div id="errorRowExport"></div>
+                  <a href="#" id="exportHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
                     <div class="btn-group" >
                       <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="margin-left: 2.564102564102564%">
                         Export As...
@@ -213,35 +209,29 @@
                           </a> 
                         </li>                        
                       </ul>
-                      <button class="btn addNewVarBtn" id="ctcb" style="margin-left:5px" onclick="copyToClipboard()">Add To Clipboard</button>
-                      <a id="downloadData" class="btn shiny-download-link" target="_blank">Download</a>
                     </div>
-                </div> 
-                <div class= "span2">  
-                  <a href="#" id="exportHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
-                </div>
-              </div>  
-              <div style="padding-top:35px">
-
+               <div>
                <div style="margin-left:2.564102564102564%;">
                   <div class="break"></div>                 
                   <input type="text" id="exportOutput" > 
                   <input type="text" id="iotypestore" value=".fis" > 
-                  <div id="mainDivExport"> </div>
+                  <div id="mainDivExport" style="width:80%; word-wrap:break-word"> </div>
+                </div>
+                <div style="float:right; margin-top:5px">
+                                   <button class="btn addNewVarBtn" id="ctcb" style="margin-left:5px" onclick="copyToClipboard()">Add To Clipboard</button>
+                      <a id="downloadData" class="btn shiny-download-link" target="_blank">Download</a>
                 </div>
               </div> 
-              <div style="margin-bottom:100px"></div>                       
+              <div style="margin-bottom:100px"></div> 
+              </div>  
+                      
             </div> 
           <div class="tab-pane" id="tab-eval">  
               <div class="span10">
-                <div class="span10">
                   <div id="evalRowRule">
                   </div>
                   <button class="btn addNewVarBtn" id="evaluateBtn" onclick="clearPopovers();">Evaluate System</button>
-                </div> 
-                <div class= "span2">
                   <a href="#" id="evalHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
-                </div>
               </div>  
               <div style="padding-top:35px">
                 <div id="mainDivEval">
