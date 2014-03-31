@@ -19,6 +19,12 @@ function onTabChange ( tabIndex ) {
   var d = document.getElementById("errorRowRule");
   d.innerHTML = "";
 
+  $("#downloadData").attr("disabled", "disabled");
+  $("#downloadData").css("pointer-events", "none");
+  $("#downloadData").removeClass("btn-primary");
+  $("#downloadData").text("Download")
+  $("#mainDivExport").text("")
+
   if ( tabIndex == 0 ) {
     g_isInput = true;
   } else if ( tabIndex == 1 ) {

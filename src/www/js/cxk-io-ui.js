@@ -4,6 +4,7 @@
   Author: Craig Knott
 
   Functions:
+    allowDownload ( filetype ); 
   	strcmp ( str1, str2 );
     exportFile ( filetype );
     saveFile ( filetype ); 
@@ -12,7 +13,15 @@
     validateInput ( inputText );
     copyToClipboard ( );
     updateIOType( type );
+
 */
+
+function allowDownload ( filetype ){
+  $("#downloadData").removeAttr("disabled", null);
+  $("#downloadData").css("pointer-events", "auto");
+  $("#downloadData").addClass("btn-primary");
+  $("#downloadData").text("Download as " + filetype)
+}
 
 $(document).ready(function() {
     document.getElementById('files').addEventListener('change', loadFile, false);

@@ -187,24 +187,24 @@
               <div class="span10">
                   <div id="errorRowExport"></div>
                   <a href="#" id="exportHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
-                    <div class="btn-group" >
+                    <div class="btn-group" style="width:70%">
                       <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="margin-left: 2.564102564102564%">
                         Export As...
                         <span class="caret"></span>
                       </a>
                       <ul class="dropdown-menu" style="margin-left: 2.564102564102564%">
                         <li> 
-                          <a href ="#" onclick="exportFile('mfis'); updateIOType('.fis')"> 
+                          <a href ="#" onclick="exportFile('mfis'); updateIOType('.fis'); allowDownload('fis')"> 
                             MATLAB File (.fis)
                           </a> 
                         </li>
                         <li> 
-                          <a href ="#" onclick="exportFile('ufis'); updateIOType('.fis')"> 
+                          <a href ="#" onclick="exportFile('ufis'); updateIOType('.fis'); allowDownload('fis')"> 
                             FuzzyToolkitUoN File (.fis)
                           </a> 
                         </li>
                         <li> 
-                          <a href ="#" onclick="exportFile('ojsn'); updateIOType('.json')"> 
+                          <a href ="#" onclick="exportFile('ojsn'); updateIOType('.json'); allowDownload('json')"> 
                             o-Fuzz File (.json)
                           </a> 
                         </li>                        
@@ -213,12 +213,12 @@
                <div>
                <div style="margin-left:2.564102564102564%;">
                   <div class="break"></div>                 
-                  <input type="text" id="exportOutput" > 
-                  <input type="text" id="iotypestore" value=".fis" > 
+                  <input type="text" id="exportOutput" style="display:none"> 
+                  <input type="text" id="iotypestore" value=".fis" style="display:none"> 
                   <div id="mainDivExport" style="width:80%; word-wrap:break-word"> </div>
                 </div>
                 <div style="float:right; margin-top:5px">
-                    <a id="downloadData" class="btn shiny-download-link" target="_blank">Download</a>
+                    <a id="downloadData" class="btn shiny-download-link btn-primary" target="_blank">Download</a>
                 </div>
               </div> 
               <div style="margin-bottom:100px"></div> 
