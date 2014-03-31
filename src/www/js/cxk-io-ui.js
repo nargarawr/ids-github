@@ -421,10 +421,11 @@ function loadFile(evt) {
 	@param {string}, the text to parse and check
 */
 function loadFISFile ( txt ) {
+
 	var name, type, andMethod, orMethod, aggMethod, impMethod, defMethod;
 
-
 	var str = txt.split("\n");
+	console.log(str)
 	
 	if ( !(new RegExp("\\[System\\]").test(str[0])) ) {
 		alert("System tag is not present")
