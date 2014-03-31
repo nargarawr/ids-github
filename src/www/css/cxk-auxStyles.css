@@ -1,11 +1,8 @@
-.modal {
-/*
-  position: absolute;
-  top: 10%;
-  max-height: 400px
-
-*/
+.popoverR {
+    top: 71px !important;
+    left: 379px !important;
 }
+
 .rotate {
    -moz-transform: rotate(270deg);
    -webkit-transform: rotate(270deg) ;

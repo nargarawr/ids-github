@@ -58,6 +58,7 @@ $(document).ready(function() {
     $("#inputVarHelpBtn").popover(
       {
         placement:'bottom',
+        container: 'body',
         title: '<b> Input Variable Creator </b>',
         content: "An input variable is a collection of membership functions that specify an input to the system. For instance, if we wanted to construct a system to predict how good we would be at basketball, we could have inputs such as height and athleticism.<br><br> To create your own input variable, simply click on the \'Add New Variable\' button. This will create a placeholder new variable for you. The name of the variable is a symbolic, and unique, reference name for it, and the range of a variable is the range between the values can fall<br><br> To then edit your variable, you can click on the \'Edit\' button, which will take you to the expanded view of the variable. From here you can modify all the values of the variable (including any functions that have been added). To actually add your membership functions, click on the \'Add Function\' button, which will bring up the membership function creation window"
       });
@@ -75,6 +76,7 @@ $(document).ready(function() {
     $("#outputVarHelpBtn").popover(
       {
         placement:'bottom',
+        container: 'body',
         title: '<b> Output Variable Creator </b>',
         content: "An output variable is a collection of membership functions that specify an output to the system. For instance, if we had a system that had age and athleticism as our inputs, a potential output of this system could be how good we would be at basketball.<br><br> To create your own output variable, simply click on the \'Add New Variable\' button. This will create a placeholder new variable for you. The name of the variable is a symbolic, and unique, reference name for it, and the range of a variable is the range between the values can fall<br><br> To then edit your variable, you can click on the \'Edit\' button, which will take you to the expanded view of the variable. From here you can modify all the values of the variable (including any functions that have been added). To actually add your membership functions, click on the \'Add Function\' button, which will bring up the membership function creation window"
       });
@@ -92,6 +94,7 @@ $(document).ready(function() {
     */
     $("#ruleHelpBtn").popover({
       placement:'bottom',
+      container: 'body',
       title: '<b> Rule Creator </b>',
       content: 'In this section of the system, you can specify what logical rules you wish to apply to the system, during the evaluation process.<br><br> To add a rule, press the \'Add New Rule\' button. This will bring up the Rule Creator Menu, which will explain more about rules in a fuzzy system. Once a rule has been created, you can use the \'Edit\' and \'Delete\' buttons to edit and delete the rule, respectively.<br><br>Also, if your system has 2 inputs, and 1 output, your rules will be displayed in an intuitive table format'
     });
@@ -163,6 +166,7 @@ $(document).ready(function() {
     $("#exportHelpBtn").popover(
       {
         placement:'bottom',
+        container: 'body',
         title: '<b> File Export </b>',
         content: "In this panel, you can export the Fuzzy System you have created, to a variety of file types. This allows you to save your system and work on it later, and it also allows you to open the file in a different software environment.<br><br> Currently, you can export you file into the following formats:<ul><li>MATLAB .fis</li><li>FuzzyToolkitUoN .fis</li><li>o-Fuzz .json</li></ul>"
       });
@@ -180,9 +184,10 @@ $(document).ready(function() {
     */
     $("#paramHelpBtn").popover(
       {
-        placement:'bottom',
+        placement:'bottomLeft',
+        container: 'body',
         title: '<b> System Wide Parameters </b>',
-        content: "These are parameters that will affect the way the system will be evaluated. As our back end (<a href=\"http://cran.r-project.org/web/packages/FuzzyToolkitUoN/index.html\" target=\"_newtab\">FuzzyToolkitUoN</a>) is expanded, more options for this will become available. The table below summarizing the effects of each parameter:<table><tr><td>Name</td><td>The system name</td><tr><tr><td>Type</td><td>The inference method to use</td><tr><tr><td>And</td><td>How to process rules with ands in them</td><tr><tr><td>Or</td><td>How to process rules with ors in them</td><tr><tr><td>Aggregation</td><td>How to combine the outputs of the evaluation</td><tr><tr><td>Implication</td><td>How to map the inputs to the outputs</td><tr><tr><td>Defuzzification</td><td>How to convert your output set to a crisp value</td><tr></table>"
+        content: "These are parameters that will affect the way the system will be evaluated. As our back end (<a href=\"http://cran.r-project.org/web/packages/FuzzyToolkitUoN/index.html\" target=\"_newtab\">FuzzyToolkitUoN</a>) is expanded, more options for this will become available. <ul><li> <b>Name:</b> The system name </li><li> <b>Type:</b> The inference method to use </li><li> <b>And:</b> How to process rules with AND in them </li><li> <b>Or:</b> How to process rules with OR in them </li><li> <b>Aggregation:</b> How to combine the outputs of the evaluation </li><li> <b>Implication:</b> How to map the inputs to the outputs </li><li> <b>Defuzzification:</b> How to convert your output set to a crisp value </li></ul>"
       });
 
     $("#paramHelpBtn").click(function(){
@@ -216,4 +221,5 @@ $(document).ready(function() {
     $("#export-tab").click(clearPopovers);
     $("#eval-tab").click(clearPopovers);
 });
+
 
