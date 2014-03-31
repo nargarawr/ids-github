@@ -24,6 +24,7 @@ function generateEvaluatorUI () {
 
 function storeValues ( htmlObject ) {
 	exportFile('ufis');
+	Shiny.unbindAll();
 
 	var d = document.getElementById("inputValueList")
 	var s = "";
@@ -31,10 +32,15 @@ function storeValues ( htmlObject ) {
 	for ( var c in d.childNodes ){
 		var textbox = d.childNodes[c];
 		if (textbox.tagName && textbox.tagName.toLowerCase() == "input" && textbox.type.toLowerCase() == "number"){
-			s += textbox.value + " ";
+			if ( textbox.value != "" ) {
+				s += textbox.value + " ";
+			}
+			
 		}
 	}
 	$("#passBackEval").val(s)
+	
+	Shiny.bindAll();
 }
 
 function evaluateSystem () {
