@@ -237,8 +237,12 @@
               </div>  
               <div style="padding-top:35px">
                 <div id="mainDivEval">
-                  <div class="break"></div>                 
+                  <div class="break"></div>
+                    <div id="inputValueList">
 
+                    </div>
+                    <input type="text" id="passBackEval" style=""> 
+                    <pre id="evalFisOutput" class="shiny-text-output"></pre> 
                     <div id="plotGenSurf" class="shiny-plot-output" style="width: 100%;"></div> 
                 </div>
               </div>  
@@ -342,7 +346,5 @@
   google.load("visualization", "1", {packages:["corechart"]});
   google.setOnLoadCallback(drawChart);
 </script>
-
-
 </body>  
 </html>

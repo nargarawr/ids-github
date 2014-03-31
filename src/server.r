@@ -16,8 +16,17 @@ shinyServer(function(input, output) {
     }
   )
 
+  output$evalFisOutput <- renderPrint ({
+    cat(gsub("<spbrk>","\n",input$exportOutput))
+    cat(input$passBackEval)
+
+  })
+
   # Plots a gensurf of the user's FIS
   output$plotGenSurf <- renderPlot({    
     # gensurf(FIS)
   })
+
+
+
 })
