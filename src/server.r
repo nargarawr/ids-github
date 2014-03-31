@@ -12,7 +12,8 @@ shinyServer(function(input, output) {
     },
     content = function(file) {
       cat(input$exportOutput)
-      write({input$exportOutput}, file)
+      cat(gsub("<spbrk>","\n",input$exportOutput))
+      write({gsub("  "," ",gsub("<spbrk>","\n",input$exportOutput))}, file)
     }
   )
 

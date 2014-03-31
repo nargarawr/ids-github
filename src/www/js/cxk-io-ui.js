@@ -45,50 +45,50 @@ function exportFile( filetype ){
 
 	if ( strcmp("ufis", filetype ) == 0 || strcmp("mfis", filetype ) == 0 ){
 		// System Parameters
-		d.appendText("[System]", true)
-		d.appendText("Name='" + ($("#fisName").val()) + "'", true);
-		d.appendText("Type='" + ($("#fisType").val()).toLowerCase() + "'", true);
+		d.appendSpecialBreakText("[System]", true, true)
+		d.appendSpecialBreakText("Name='" + ($("#fisName").val()) + "'", true, true);
+		d.appendSpecialBreakText("Type='" + ($("#fisType").val()).toLowerCase() + "'", true, true);
 		if ( strcmp("ufis", filetype ) == 0  ){
-			d.appendText("Version=1.0", true);	
+			d.appendSpecialBreakText("Version=1.0", true, true);	
 		} else {
-			d.appendText("Version=2.0", true);
+			d.appendSpecialBreakText("Version=2.0", true, true);
 		}
-		d.appendText("NumInputs=" + getLength(true), true);
-		d.appendText("NumOutputs=" + getLength(false), true);
-		d.appendText("NumRules=" + systemRules.length, true);
-		d.appendText("AndMethod='" + ($("#fisAnd").val()).toLowerCase() + "'", true);
-		d.appendText("OrMethod='" + ($("#fisOr").val()).toLowerCase() + "'", true);
-		d.appendText("ImpMethod='" + ($("#fisImp").val()).toLowerCase() + "'", true);
-		d.appendText("AggMethod='" + ($("#fisAgg").val()).toLowerCase() + "'", true);
-		d.appendText("DefuzzMethod='" + ($("#fisDfz").val()).toLowerCase() + "'", true);
-		d.appendText("", true);
+		d.appendSpecialBreakText("NumInputs=" + getLength(true), true, true);
+		d.appendSpecialBreakText("NumOutputs=" + getLength(false), true, true);
+		d.appendSpecialBreakText("NumRules=" + systemRules.length, true, true);
+		d.appendSpecialBreakText("AndMethod='" + ($("#fisAnd").val()).toLowerCase() + "'", true, true);
+		d.appendSpecialBreakText("OrMethod='" + ($("#fisOr").val()).toLowerCase() + "'", true, true);
+		d.appendSpecialBreakText("ImpMethod='" + ($("#fisImp").val()).toLowerCase() + "'", true, true);
+		d.appendSpecialBreakText("AggMethod='" + ($("#fisAgg").val()).toLowerCase() + "'", true, true);
+		d.appendSpecialBreakText("DefuzzMethod='" + ($("#fisDfz").val()).toLowerCase() + "'", true, true);
+		d.appendSpecialBreakText("", true, true);
 
 		// System Inputs
 		var i = 1;
 		for ( var key in inputDivs ) {
 			var io = inputDivs[key].isInput ? "In" : "Out" ;
-			d.appendText("[" + io + "put" + i + "]", true);
-			d.appendText("Name='" + inputDivs[key].varName + "'", true);
-			d.appendText("Range=[" + inputDivs[key].rangeMin + " " + inputDivs[key].rangeMax + "]", true);
-			d.appendText("NumMFs=" + inputDivs[key].memFuncs.length, true);
+			d.appendSpecialBreakText("[" + io + "put" + i + "]", true, true);
+			d.appendSpecialBreakText("Name='" + inputDivs[key].varName + "'", true, true);
+			d.appendSpecialBreakText("Range=[" + inputDivs[key].rangeMin + " " + inputDivs[key].rangeMax + "]", true, true);
+			d.appendSpecialBreakText("NumMFs=" + inputDivs[key].memFuncs.length, true, true);
 			var j = 1;
 			for ( var key2 in inputDivs[key].memFuncs ) {
 				var t = inputDivs[key].memFuncs[key2];
 
 				if ( t.funType === "gau" ) {
-					d.appendText("MF" + j + "='" + t.funName + "':'gaussmf',[" + t.paramSigma + " " + t.paramMean + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true);
+					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'gaussmf',[" + t.paramSigma + " " + t.paramMean + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true, true);
 				} else if ( inputDivs[key].memFuncs[key2].funType === "ga2" ) {
-					d.appendText("MF" + j + "='" + t.funName + "':'gaussbmf',[" + t.paramLeftSigma + " " + t.paramLeftMean + " " + t.paramRightSigma + " " + t.paramRightMean + " " + (filetype==="ufis" ? " " + t.paramHeight : "") +"]", true);
+					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'gaussbmf',[" + t.paramLeftSigma + " " + t.paramLeftMean + " " + t.paramRightSigma + " " + t.paramRightMean + " " + (filetype==="ufis" ? " " + t.paramHeight : "") +"]", true, true);
 				} else if ( inputDivs[key].memFuncs[key2].funType === "trp" ) {
-					d.appendText("MF" + j + "='" + t.funName + "':'trapmf',[" + t.paramLeftFoot + " " + t.paramLeftShoulder + " " + t.paramRightShoulder + " " + t.paramRightFoot + " " + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true);
+					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'trapmf',[" + t.paramLeftFoot + " " + t.paramLeftShoulder + " " + t.paramRightShoulder + " " + t.paramRightFoot + " " + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true, true);
 				} else if ( inputDivs[key].memFuncs[key2].funType === "tri" ) {
-					d.appendText("MF" + j + "='" + t.funName + "':'trimf',[" + t.paramLeft + " " + t.paramMean + " " + t.paramRight + " " + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true);	
+					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'trimf',[" + t.paramLeft + " " + t.paramMean + " " + t.paramRight + " " + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true, true);	
 				}					
 
 				j++;
 			}
 
-			d.appendText("", true);
+			d.appendSpecialBreakText("", true, true);
 			i++;
 		}
 
@@ -96,34 +96,34 @@ function exportFile( filetype ){
 		i = 1;
 		for ( var key in outputDivs ) {
 			var io = outputDivs[key].isoutput ? "In" : "Out" ;
-			d.appendText("[" + io + "put" + i + "]", true);
-			d.appendText("Name='" + outputDivs[key].varName + "'", true);
-			d.appendText("Range=[" + outputDivs[key].rangeMin + " " + outputDivs[key].rangeMax + "]", true);
-			d.appendText("NumMFs=" + outputDivs[key].memFuncs.length, true);
+			d.appendSpecialBreakText("[" + io + "put" + i + "]", true, true);
+			d.appendSpecialBreakText("Name='" + outputDivs[key].varName + "'", true, true);
+			d.appendSpecialBreakText("Range=[" + outputDivs[key].rangeMin + " " + outputDivs[key].rangeMax + "]", true, true);
+			d.appendSpecialBreakText("NumMFs=" + outputDivs[key].memFuncs.length, true, true);
 			var j = 1;
 			for ( var key2 in outputDivs[key].memFuncs ) {
 				var t = outputDivs[key].memFuncs[key2];
 
 				if ( t.funType === "gau" ) {
-					d.appendText("MF" + j + "='" + t.funName + "':'gaussmf',[" + t.paramSigma + " " + t.paramMean + " " + t.paramHeight + "]", true);
+					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'gaussmf',[" + t.paramSigma + " " + t.paramMean + " " + t.paramHeight + "]", true, true);
 				} else if ( outputDivs[key].memFuncs[key2].funType === "ga2" ) {
-					d.appendText("MF" + j + "='" + t.funName + "':'gaussbmf',[" + t.paramLeftSigma + " " + t.paramLeftMean + " " + t.paramRightSigma + " " + t.paramRightMean + " " + t.paramHeight +"]", true);
+					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'gaussbmf',[" + t.paramLeftSigma + " " + t.paramLeftMean + " " + t.paramRightSigma + " " + t.paramRightMean + " " + t.paramHeight +"]", true, true);
 				} else if ( outputDivs[key].memFuncs[key2].funType === "trp" ) {
-					d.appendText("MF" + j + "='" + t.funName + "':'trapmf',[" + t.paramLeftFoot + " " + t.paramLeftShoulder + " " + t.paramRightShoulder + " " + t.paramRightFoot + " " + t.paramHeight + "]", true);
+					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'trapmf',[" + t.paramLeftFoot + " " + t.paramLeftShoulder + " " + t.paramRightShoulder + " " + t.paramRightFoot + " " + t.paramHeight + "]", true, true);
 				} else if ( outputDivs[key].memFuncs[key2].funType === "tri" ) {
-					d.appendText("MF" + j + "='" + t.funName + "':'trimf',[" + t.paramLeft + " " + t.paramMean + " " + t.paramRight + " " + t.paramHeight + "]", true);	
+					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'trimf',[" + t.paramLeft + " " + t.paramMean + " " + t.paramRight + " " + t.paramHeight + "]", true, true);	
 				}					
 
 				j++;
 			}
 
-			d.appendText("", true);
+			d.appendSpecialBreakText("", true, true);
 			i++;
 		}
 
 		// System Rules
 		if ( systemRules.length > 0) {
-			d.appendText("[Rules]", true);		
+			d.appendSpecialBreakText("[Rules]", true, true);		
 		}
 		for ( var key in systemRules ) {
 			var r = systemRules[key];
@@ -131,38 +131,38 @@ function exportFile( filetype ){
 			var id = 0;
 			for ( var inp in r.inputList ) {
 				if ( r.inputList[inp].negated ) {
-					d.appendText("-");
+					d.appendSpecialBreakText("-", false, true);
 				}
-				d.appendText(findMfInVar(inputDivs["inputDiv" + id], r.inputList[inp].rightEl));
+				d.appendSpecialBreakText(findMfInVar(inputDivs["inputDiv" + id], r.inputList[inp].rightEl), false, true);
 				id++;
 				if ( isLastKey (inp, r.inputList)) {
-					d.appendText(", ");		
+					d.appendSpecialBreakText(", ", false, true);		
 				} else {
-					d.appendText(" ");		
+					d.appendSpecialBreakText(" ", false, true);		
 				}
 			}
 			
 			id = 0;
 			for ( var oup in r.outputList ){
 				if ( r.outputList[oup].negated ) {
-					d.appendText("-");
+					d.appendSpecialBreakText("-", false, true);
 				}				
-				d.appendText(findMfInVar(outputDivs["outputDiv" + id], r.outputList[oup].rightEl));
+				d.appendSpecialBreakText(findMfInVar(outputDivs["outputDiv" + id], r.outputList[oup].rightEl), false, true);
 				id++;
 				if ( isLastKey (oup, r.outputList)) {
-					d.appendText(" ");		
+					d.appendSpecialBreakText(" ", false, true);		
 				} 
 			}
 
-			d.appendText("(" + r.weight + ")");
+			d.appendSpecialBreakText("(" + r.weight + ")", false, true);
 
 			if ( strcmp(r.connective, "AND") == 0 ) {
-				d.appendText(" : 1", true);
+				d.appendSpecialBreakText(" : 1", true, true);
 			} else if ( strcmp(r.connective, "OR") == 0 ) {
-				d.appendText(" : 2", true);		
+				d.appendSpecialBreakText(" : 2", true, true);		
 			}
 		}
-		d.appendText("\n",true);
+		d.appendSpecialBreakText("\n",true, true);
 	} else if ( strcmp("ojsn", filetype ) == 0 ){
 		var jsonData = [];
 		var cName = "System"
@@ -338,7 +338,7 @@ function exportFile( filetype ){
         	Rules:   ruleData
     	});
 
-		d.appendText(JSON.stringify(jsonData))		
+		d.appendSpecialBreakText(JSON.stringify(jsonData), false, true)		
 	}
 
 	Shiny.bindAll()

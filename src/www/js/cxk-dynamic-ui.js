@@ -47,7 +47,6 @@ function clearNode ( nodetoclear ) {
   @param {string}, the string to append
 */
 Node.prototype.appendText = function (string) {
-  
   this.appendChild(document.createTextNode(string));
 } 
 
@@ -56,15 +55,34 @@ Node.prototype.appendText = function (string) {
 
   @param {string}, the string to append
   @param {boolean}, whether to also append a break or not
+  @param {boolean}, whether to append to the file output
 */
-Node.prototype.appendText = function (string, shouldBreak) {
+Node.prototype.appendText = function (string, shouldBreak ) {
   this.appendChild(document.createTextNode(string));
   if ( shouldBreak ) {
     this.appendChild(document.createElement("br")); 
-  }
-  var d = document.getElementById('exportOutput');
-  d.value += string + '\n';
+  }  
+} 
 
+/**
+  Appends text to a node element
+
+  @param {string}, the string to append
+  @param {boolean}, whether to also append a break or not
+  @param {boolean}, whether to append to the file output
+*/
+Node.prototype.appendSpecialBreakText = function (string, shouldBreak, shouldAppendToFile ) {
+  this.appendChild(document.createTextNode(string));
+
+  var d = document.getElementById('exportOutput');
+  if ( shouldAppendToFile ) {
+    d.value += string;
+  }
+
+  if ( shouldBreak ) {
+    this.appendChild(document.createElement("br"));
+    d.value += '<spbrk>';  
+  }
 } 
 
 /**
