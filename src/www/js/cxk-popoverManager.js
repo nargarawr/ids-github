@@ -200,7 +200,7 @@ $(document).ready(function() {
         content: "Evaluation of a fuzzy system is the process of taking the rules of the system, and applying the supplied input values to those rules. The goal of this is to evaluate each rule, combine the results of this rule, and then produce a single value for you to use. The actual process of inferencing is not important to the end user, but those looking to find more can check <a href=\"http://www.cs.princeton.edu/courses/archive/fall07/cos436/HIDDEN/Knapp/fuzzy004.htm\" target=\"_newtab\">this</a>. <br><br> There are some facts and figures that are displayed on this page that may not be relevant to novice users, so feel free to ignore these. The most important values are the \"Input\" boxes, and the \"Output\" boxes"
     });
 
-    $("#evalHelpBtn").click(function(){s
+    $("#evalHelpBtn").click(function(){
         if ( $("#evalHelpBtn").text() === "Show Help") {
           $("#evalHelpBtn").html("Hide Help");
         } else {
@@ -216,39 +216,4 @@ $(document).ready(function() {
     $("#export-tab").click(clearPopovers);
     $("#eval-tab").click(clearPopovers);
 });
-
-
-/**$(document).on("click", "textarea.inputTextarea", function(evt) {
-
-    // evt.target is the button that was clicked
-    var el = $(evt.target);
-
-    // Raise an event to signal that the value changed
-    el.trigger("change");
-  });
-
-  var inputTextareaBinding = new Shiny.InputBinding();
-  $.extend(inputTextareaBinding, {
-    find: function(scope) {
-      return $(scope).find(".inputTextarea");
-    },
-    getValue: function(el) {
-      return $(el).text();
-    },
-    setValue: function(el, value) {
-      $(el).text(value);
-    },
-    subscribe: function(el, callback) {
-      $(el).on("change.inputTextareaBinding", function(e) {
-        callback();
-      });
-    },
-    unsubscribe: function(el) {
-      $(el).off(".inputTextareaBinding");
-    }
-  });
-
-  Shiny.inputBindings.register(inputTextareaBinding);
-});
-*/
 

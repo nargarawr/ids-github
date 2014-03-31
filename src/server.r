@@ -6,20 +6,21 @@ library(FuzzyToolkitUoN)
 shinyServer(function(input, output) {
   FIS <<- tippertest()
 
-  output$testOp <- renderPrint({
-    #paste(input$n1, "...", input$n2)
-      m <- matrix(c(input$n1,input$n2),1,2)
-      evalFIS(m,FIS)
-  })
-
   output$downloadData <- downloadHandler(
     filename = function() { 
       paste(input$fisName, input$iotypestore, sep='') 
     },
     content = function(file) {
+      cat(input$exportOutput)
       write({input$exportOutput}, file)
     }
   )
+
+
+  output$plotGenSurf <- renderPlot({    
+    # gensurf(FIS)
+  })
+
 
   # Generate a summary of the data
   #output$test <- renderPrint({

@@ -18,7 +18,7 @@ $(document).ready(function() {
     document.getElementById('files').addEventListener('change', loadFile, false);
 });
 
-/**
+/**t
 	Compares the two given strings
 
 	@param {string}, first string
@@ -35,6 +35,7 @@ function strcmp ( str1, str2 ) {
 	@param {string}, the format to print in (mfis, ufis, or ojsn)
 */
 function exportFile( filetype ){
+    Shiny.unbindAll()
 
    	var texts = document.getElementById('exportOutput');
    	texts.value = "";
@@ -340,21 +341,7 @@ function exportFile( filetype ){
 		d.appendText(JSON.stringify(jsonData))		
 	}
 
-	saveFile (filetype);
-}
-
-/**
-	Saves the system in a variety of formats
-
-	@param {string}, the format to print in (mfis, ufis, or ojsn)
-*/
-function saveFile ( filetype ){
-	// Check for the various File API support.
-	if (window.File && window.FileReader && window.FileList && window.Blob) {
-
-	} else {
-  		alert('Your browser does not allow for the saving and loading of files (yet)');
-  	}
+	Shiny.bindAll()
 }
 
 /**
@@ -571,10 +558,9 @@ function loadFISFile ( txt ) {
 
 			inputDivs[sysVar.divId].updateSmallView();		    
 
-			alert(str[i+5+parseInt(mfCount)])
-
 			i += (5 + parseInt(mfCount));
 		} else if ( new RegExp("\\[Output\\d+\\]").test(str[i]) ) {
+						alert(str[i])
 
 			if ( !(new RegExp("Name=\'.*\'").test(str[i+1]))) {
 				alert("A name tag is missing for one of your input variables")
@@ -630,8 +616,14 @@ function loadFISFile ( txt ) {
 		    outputDivs[sysVar.divId].rangeMin = minRange;
 		    outputDivs[sysVar.divId].rangeMax = maxRange;
 
+		    alert(outputDivs[sysVar.divId].rangeMax)
+
 		    for ( var key in mfList ) {
 				outputDivs[sysVar.divId].memFuncs.push(mfList[key])
+		    }
+
+		    for ( var key in outputDivs[sysVar.divId].memFuncs ) {
+		    	alert( outputDivs[sysVar.divId].memFuncs[key] )
 		    }
 
 			outputDivs[sysVar.divId].updateSmallView();		    
@@ -645,6 +637,7 @@ function loadFISFile ( txt ) {
 		}
 	}
 
+	updateSidePanelWithVars();
 	return true;
 
 }
@@ -673,5 +666,8 @@ function copyToClipboard () {
 	@param {string}, the file type 
 */
 function updateIOType( type ) {
-	document.getElementById("iotypestore").value = type;
+	Shiny.unbindAll()
+	console.log("what")
+	$("#iotypestore").val(type);
+	Shiny.bindAll()
 }

@@ -19,8 +19,8 @@
   <script type="text/javascript" type="text/javascript" src="js/libs/bootstrap-tooltip.js"></script>
   <script type="text/javascript" src="js/libs/bootstrap-popover.js"></script>
   <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
-  <!--<script type="text/javascript" src="js/libs/underscore-min.js"></script>-->
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script src="js/increment.js"></script>
 
   <!-- Custom Javascript files -->
   <script src="js/cxk-objects.js"></script>
@@ -31,6 +31,7 @@
   <script src="js/cxk-io-ui.js"></script>    
   <script src="js/cxk-popoverManager.js"></script>
   <script src="js/cxk-graphs.js"></script>  
+  <script src="js/cxk-evaluate.js"></script>
 
   <title> o-Fuzz! </title>
 </head>
@@ -218,8 +219,7 @@
                   <div id="mainDivExport" style="width:80%; word-wrap:break-word"> </div>
                 </div>
                 <div style="float:right; margin-top:5px">
-                                   <button class="btn addNewVarBtn" id="ctcb" style="margin-left:5px" onclick="copyToClipboard()">Add To Clipboard</button>
-                      <a id="downloadData" class="btn shiny-download-link" target="_blank">Download</a>
+                    <a id="downloadData" class="btn shiny-download-link" target="_blank">Download</a>
                 </div>
               </div> 
               <div style="margin-bottom:100px"></div> 
@@ -230,17 +230,15 @@
               <div class="span10">
                   <div id="evalRowRule">
                   </div>
-                  <button class="btn addNewVarBtn" id="evaluateBtn" onclick="clearPopovers();">Evaluate System</button>
+                  <button class="btn addNewVarBtn" id="evaluateBtn" onclick="clearPopovers(); evaluateSystem();">Evaluate System</button>
                   <a href="#" id="evalHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
+                   
               </div>  
               <div style="padding-top:35px">
                 <div id="mainDivEval">
                   <div class="break"></div>                 
-                  <p>
-                   <input type="number" name="n1" value="5" min="0" max="10" />
-                   <input type="number" name="n2" value="5" min="0" max="10" />   
-                   <pre id="testOp" class="shiny-text-output"></pre> 
-                  </p>
+
+                    <div id="plotGenSurf" class="shiny-plot-output" style="width: 100%;"></div> 
                 </div>
               </div>  
           </div>
