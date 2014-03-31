@@ -53,40 +53,40 @@
           <a href="#" id="paramHelpBtn" class="btn btn-success varHelpBtn" rel="popover" style="float:right" data-original-title>Help</a><br>
           <h4> System Parameters </h4>
           <label for="fisName">System Name: </label>
-          <input id="fisName" type="text" value="Sys001" />
+          <input id="fisName" type="text" value="Sys001" onchange="storeValues()"/>
         
           <label class="control-label" for="fisType">System Type:</label>
-          <select id="fisType" class="input">
+          <select id="fisType" class="input" onchange="storeValues()">
             <option value="Mamdani"  selected="selected">Mamdani</option>
           </select>
 
           <label class="control-label" for="fisAnd">And Method:</label>
-          <select id="fisAnd" class="input">
+          <select id="fisAnd" class="input" onchange="storeValues()">
             <option value="Min" selected="selected">Min</option>
-            <option value="Product">Product</option>
+            <option value="Product" disabled>Product</option>
           </select>
           
           <label class="control-label" for="fisOr">Or Method:</label>
-          <select id="fisOr" class="input">
+          <select id="fisOr" class="input" onchange="storeValues()">
             <option value="Max" selected="selected">Max</option>
-            <option value="Probor">Probor</option>
+            <option value="Probor" disabled>Probor</option>
           </select>
 
           <label class="control-label" for="fisAgg">Aggregation Method:</label>
-          <select id="fisAgg"  class="input">
+          <select id="fisAgg"  class="input" onchange="storeValues()">
             <option value="Max" selected="selected">Max</option>
             <option value="Probor">Probor</option>
             <option value="Sum">Sum</option>
           </select>
 
           <label class="control-label" for="fisImp">Implication Method:</label>
-          <select id="fisImp"  class="input">
+          <select id="fisImp"  class="input" onchange="storeValues()">
               <option value="Min" selected="selected">Min</option>
               <option value="Prod">Prod</option>
           </select>
 
           <label class="control-label" for="fisDfz">Defuzzification Method:</label>
-          <select id="fisDfz"  class="input">
+          <select id="fisDfz"  class="input" onchange="storeValues()">
               <option value="Centroid" selected="selected">Centroid</option>
               <option value="Bisector">Bisector</option>
               <option value="lom">Lom</option>
@@ -231,22 +231,32 @@
               <div class="span10">
                   <div id="evalRowRule">
                   </div>
-                  <button class="btn addNewVarBtn" id="evaluateBtn" onclick="clearPopovers(); evaluateSystem();">Evaluate System</button>
+                  <div class="alert alert-info" id="evalPageInfo"> Before this page is usable, you need to add inputs, outputs, and rules to your system!</div>
                   <a href="#" id="evalHelpBtn" class="btn btn-success varHelpBtn" rel="popover" data-original-title>Show Help</a>
-                   
               </div>  
               <div style="padding-top:35px">
-                <div id="mainDivEval">
+                <div id="mainDivEval" style="width:90%; overflow:hidden">
                   <div class="break"></div>
-                    <div id="inputValueList">
+                  <div id="inputListWrapped" style="  width: 50%;float:left;">
+                    <div id="inputValueList" style="margin-left:2.564102564102564%;">
+                      <h3> Inputs </h3>
+                      None!
+                      </div>
+                    <input type="text" id="passBackEval" style="display:none"> 
 
-                    </div>
-                    <input type="text" id="passBackEval" style=""> 
-                    <pre id="evalFisOutput" class="shiny-text-output"></pre> 
-                    
-                     <div id="plotGenSurf" class="shiny-plot-output" style="width: 100%; height: 400px"></div> 
                 </div>
+                <div id="outputListWrapped" style="overflow:hidden;float:left;">
+                  <h3> Outputs </h3>
+                  
+                  <pre id="evalFisOutput" class="shiny-text-output"> </pre> 
+                </div>
+
               </div>  
+                <hr>
+                  <div id="surfaceContainer" style="width:90%;">
+                    <div id="beforeYouPlot" style="width:100%; text-align:center"></div>
+                   <div id="plotGenSurf" class="shiny-plot-output" style="width: 100%; height: 400px"></div> 
+                  </div>
           </div>
             </div>                                   
            </div>

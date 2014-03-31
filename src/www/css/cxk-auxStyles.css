@@ -1,3 +1,9 @@
+#evalFisOutput {
+	background-color:#ffffff;
+	border:0px;
+}
+
+
 .rotate {
    -moz-transform: rotate(270deg);
    -webkit-transform: rotate(270deg) ;

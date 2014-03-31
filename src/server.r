@@ -42,6 +42,8 @@ shinyServer(function(input, output) {
       for ( i in 1:ncol(x) ) {
         cat(fis$outputList[[i]]$outputName, x[i])
       }
+    } else {
+      cat("You have not provided a value for all of your inputs, so no evaluation can be done!")
     }
   })
 

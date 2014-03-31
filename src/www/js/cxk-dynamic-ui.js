@@ -5,10 +5,13 @@
   Functions:
     onTabChange( tabIndex );
     clearNode ( nodetoclear );
+    Element.prototype.remove = function();
     Node.prototype.appendText = function (string);
     Node.prototype.appendText = function (string, shouldBreak);
     tipperTest( );
 */
+
+
 
 /**
   Ran each time a new tab is selected, takes the tab selected as argument
@@ -25,6 +28,10 @@ function onTabChange ( tabIndex ) {
   $("#downloadData").text("Download")
   $("#mainDivExport").text("")
 
+  if ( getLength(true) >= 1 && getLength(false) >= 1 && systemRules.length >= 1 ){
+    document.getElementById("evalPageInfo").remove()
+  }
+
   if ( tabIndex == 0 ) {
     g_isInput = true;
   } else if ( tabIndex == 1 ) {
@@ -36,6 +43,20 @@ function onTabChange ( tabIndex ) {
   }
 
 
+}
+
+/**
+  Deletes an element by id
+*/
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+}
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for(var i = 0, len = this.length; i < len; i++) {
+        if(this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
 }
 
 /**
