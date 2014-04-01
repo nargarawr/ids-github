@@ -187,14 +187,15 @@ shinyServer(function(input, output) {
 
       txtc= grep("\\[Rules\\]", txt[[1]])
       txtc= txtc+1
-
       if(ruleCount > 0) {
         for(i in 1:ruleCount) {
+          browser()
           inputVals = strsplit(gsub(",.*$", "", txt[[1]][txtc]), " ") 
           outputVals = strsplit(gsub(".$","",gsub("\\(.*$","",gsub("^.*,.","",txt[[1]][txtc]))), " ") 
           weight = as.numeric(gsub(" ","",gsub(".*\\(", "", gsub("\\).*$","", txt[[1]][txtc]))))
           connective = as.numeric(gsub(" ","", gsub("^.*:", "", txt[[1]][txtc]))) 
-          
+          browser()
+
           ruleList = c()
           for ( fg in 1:length(inputVals[[1]])){
             ruleList = c(ruleList, as.numeric(inputVals[[1]][fg]))

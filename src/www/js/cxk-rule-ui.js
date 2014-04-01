@@ -281,7 +281,13 @@ function printRules () {
 				if ( !isFirstKey ( key2, systemRules[key].inputList ) ) {
 					tcol.appendChild(document.createTextNode(systemRules[key].connective + " "));
 				}
-				tcol.appendChild(document.createTextNode(inputDivs[x.leftEl].varName + " IS " + ns + " " + x.rightEl + " "));
+				if ( inputDivs[x.leftEl] !== undefined ) {
+					tcol.appendChild(document.createTextNode(inputDivs[x.leftEl].varName + " IS " + ns + " " + x.rightEl + " "));
+				} else {
+
+
+				}
+				
 			}
 			
 			if ( (isLastKey (key2, systemRules[key].inputList))) {
@@ -305,7 +311,13 @@ function printRules () {
 			
 			if ( strcmp(x.rightEl,"(Not used)") == 0 ) {
 			} else {
-				tcol.appendChild(document.createTextNode(outputDivs[x.leftEl].varName + " IS "  + ns + " " + x.rightEl + " "));
+				if ( outputDivs[x.leftEl] !== undefined ) {
+					tcol.appendChild(document.createTextNode(outputDivs[x.leftEl].varName + " IS "  + ns + " " + x.rightEl + " "));
+				} else {
+
+					
+				}
+				
 			}
 		}
 

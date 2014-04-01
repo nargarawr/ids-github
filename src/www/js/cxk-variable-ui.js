@@ -291,7 +291,8 @@ function expandDiv(divId, isInput){
   @param {boolean}, whether this is an input or not    
 */
 function deleteDiv(divId, isInput) {
-	var r = confirm("This will permanently delete this variable, are you sure you wish to continue?")
+
+	var r = confirm("This will permanently delete this variable (and any rules you have), are you sure you wish to continue?")
 	if (r) { 		
     if ( isInput ) {
       for ( var key in inputDivs ) {
@@ -299,7 +300,8 @@ function deleteDiv(divId, isInput) {
           delete inputDivs[key];
         }
       }
-
+      systemRules.length = 0;
+      printRules();
       var myDiv = document.getElementById('mainDivInput');
       myDiv.removeChild(document.getElementById(divId));      
     } else {
@@ -308,7 +310,8 @@ function deleteDiv(divId, isInput) {
           delete outputDivs[key];
         }
       }
-
+      systemRules.length = 0;
+      printRules();
       var myDiv = document.getElementById('mainDivOutput');
       myDiv.removeChild(document.getElementById(divId));            
     }

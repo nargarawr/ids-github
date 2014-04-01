@@ -29,7 +29,9 @@ function onTabChange ( tabIndex ) {
   $("#mainDivExport").text("")
 
   if ( getLength(true) >= 1 && getLength(false) >= 1 && systemRules.length >= 1 ){
-    document.getElementById("evalPageInfo").remove()
+    if ( document.contains(document.getElementById("evalPageInfo")) ){
+      document.getElementById("evalPageInfo").remove()  
+    }
   }
 
   if ( tabIndex == 0 ) {
