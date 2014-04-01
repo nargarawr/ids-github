@@ -1,6 +1,8 @@
 ====================
 FUZZY
 =====================
+jon & wagner fuzzy toolbox
+
 Jump up ^ Vichuzhanin, Vladimir (12 April 2012). "Realization of a fuzzy controller with fuzzy dynamic correction". Central European Journal of Engineering 2 (3): 392–398. doi:10.2478/s13531-012-0003-7.
 
 Gerla G., Fuzzy Logic Programming and fuzzy control, Studia Logica, 79 (2005) 231-254.
