@@ -1,0 +1,98 @@
+[System]
+Name='Urgency Calculator v10'
+Type='mamdani'
+Version=1.0
+NumInputs=2
+NumOutputs=1
+NumRules=50
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Heart Rate'
+Range=[0 160]
+NumMFs=7
+MF1='D Low':'gaussmf',[10.2 -15 1]
+MF2='V Low':'gaussmf',[5.2 40 1]
+MF3='Low':'gaussmf',[7.3 50 1]
+MF4='Average':'gaussmf',[14.8 80 1]
+MF5='High':'gaussmf',[10.2 108 1]
+MF6='V High':'gaussmf',[7.8 122 1]
+MF7='D High':'gaussmf',[20 177 1]
+
+[Input2]
+Name='Temperature'
+Range=[25 45]
+NumMFs=7
+MF1='D Low':'trapmf',[25 25 27 29 1]
+MF2='V Low':'trapmf',[27 32 33 35 1]
+MF3='Low':'trapmf',[34 35 36 37 1]
+MF4='Average':'trimf',[36.5 37 37.5 1]
+MF5='High':'trapmf',[37 39 40 41 1]
+MF6='V High':'trapmf',[38 41 42 44 1]
+MF7='D High':'trapmf',[41 45 45 45 1]
+
+[Output1]
+Name='Urgency'
+Range=[0 100]
+NumMFs=5
+MF1='Noncritical':'gaussmf',[5.8 4 1]
+MF2='Low':'gaussmf',[4.125 33 1]
+MF3='Rising':'gaussmf',[3.675 31 1]
+MF4='High':'gaussmf',[4.1 79 1]
+MF5='Critical':'gaussmf',[3.9 102 1]
+
+[Rules]
+1 1, 5 (1) : 1
+1 2, 5 (1) : 1
+1 3, 5 (1) : 1
+1 4, 5 (1) : 1
+1 5, 5 (1) : 1
+1 6, 5 (1) : 1
+1 7, 5 (1) : 1
+2 1, 5 (1) : 1
+2 2, 4 (1) : 1
+2 3, 4 (1) : 1
+2 4, 3 (1) : 1
+2 5, 4 (1) : 1
+2 6, 4 (1) : 1
+2 7, 5 (1) : 1
+3 1, 5 (1) : 1
+3 2, 4 (1) : 1
+3 3, 3 (1) : 1
+3 4, 2 (1) : 1
+3 5, 3 (1) : 1
+3 6, 4 (1) : 1
+3 7, 5 (1) : 1
+4 1, 5 (1) : 1
+4 2, 4 (1) : 1
+4 3, 3 (1) : 1
+4 4, 1 (1) : 1
+4 5, 3 (1) : 1
+4 6, 4 (1) : 1
+4 7, 5 (1) : 1
+5 1, 5 (1) : 1
+5 2, 4 (1) : 1
+5 3, 3 (1) : 1
+5 4, 2 (1) : 1
+5 5, 3 (1) : 1
+5 6, 4 (1) : 1
+5 7, 5 (1) : 1
+6 1, 5 (1) : 1
+6 2, 4 (1) : 1
+6 3, 4 (1) : 1
+6 4, 3 (1) : 1
+6 5, 4 (1) : 1
+6 6, 4 (1) : 1
+6 7, 5 (1) : 1
+7 7, 5 (1) : 1
+7 1, 5 (1) : 1
+7 2, 5 (1) : 1
+7 3, 5 (1) : 1
+7 4, 5 (1) : 1
+7 5, 5 (1) : 1
+7 6, 5 (1) : 1
+7 7, 5 (1) : 1
