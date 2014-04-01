@@ -151,7 +151,7 @@ shinyServer(function(input, output) {
               
               # Adds the variable name and range to the FIS structure currently stored in memory.
               FIS= addVar(FIS, "output", nameHolder, c(minHolder:maxHolder))
-              #browser()
+              
               # The following block reads all the data from each of the variable's membership function from the file,
               # and stores the data in relevant variables for a later addition to the FIS structure in memory which
               # occurs on every iteration.
@@ -189,12 +189,11 @@ shinyServer(function(input, output) {
       txtc= txtc+1
       if(ruleCount > 0) {
         for(i in 1:ruleCount) {
-          browser()
+          
           inputVals = strsplit(gsub(",.*$", "", txt[[1]][txtc]), " ") 
           outputVals = strsplit(gsub(".$","",gsub("\\(.*$","",gsub("^.*,.","",txt[[1]][txtc]))), " ") 
           weight = as.numeric(gsub(" ","",gsub(".*\\(", "", gsub("\\).*$","", txt[[1]][txtc]))))
           connective = as.numeric(gsub(" ","", gsub("^.*:", "", txt[[1]][txtc]))) 
-          browser()
 
           ruleList = c()
           for ( fg in 1:length(inputVals[[1]])){
