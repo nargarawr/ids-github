@@ -39,6 +39,7 @@ shinyServer(function(input, output) {
       fis <- readFISFromString(gsub("<spbrk>","\n",input$exportOutput))
       dummy <- capture.output(x <- evalFIS(matrix(cvals, 1, length(cvals)), fis))
       
+
       for ( i in 1:ncol(x) ) {
         cat(fis$outputList[[i]]$outputName, x[i])
       }
@@ -105,9 +106,10 @@ shinyServer(function(input, output) {
                 txtc=txtc+1
                 mfHolder = list(mfName="", mfType="", mfParams=c())
                 for ( j in 1:mfCount ) {
-                  mfName = gsub("MF\\d+='|':'[A-Za-z]+',\\[((-)?\\d+\\.?\\d*(\\s)*)*\\]","",txt[[1]][txtc])
-                  mfType = gsub("MF\\d+='[a-zA-Z]+':'|',\\[((-)?\\d+\\.?\\d*(\\s)*)*\\]","",txt[[1]][txtc])
-                  params = strsplit(gsub("  ", " ", gsub("MF\\d+='[a-zA-Z]+':'[a-zA-Z]+|',\\[|\\]|","",txt[[1]][txtc])), " ")
+                  
+                  mfName = gsub("MF\\d+='|':'[a-zA-Z]+',\\[((-)?\\d+(\\.)?\\d*(\\s)?)+\\]","",txt[[1]][txtc])
+                  mfType = gsub("MF\\d+='(\\S| )+':'|',\\[((-)?\\d+\\.?\\d*(\\s)*)*\\]","",txt[[1]][txtc])
+                  params = strsplit(gsub("  ", " ", gsub("MF\\d+='(\\S| )+':'[a-zA-Z]+|',\\[|\\]|","",txt[[1]][txtc])), " ")
                   paramsV = c()
                   for ( fg in 1:length(params[[1]]) ){
                     paramsV = c(paramsV, as.numeric(params[[1]][fg]))
@@ -124,6 +126,7 @@ shinyServer(function(input, output) {
                     mf = triMF(mfName, c(minHolder:maxHolder), paramsV)
                   }
 
+                  
                   FIS = addMF(FIS, "input", i, mf)
                   txtc=txtc+1
                 }
@@ -159,9 +162,9 @@ shinyServer(function(input, output) {
                 txtc=txtc+2
                 mfHolder = list(mfName="", mfType="", mfParams=c())
                 for ( j in 1:mfCount ) {
-                  mfName = gsub("MF\\d+='|':'[A-Za-z]+',\\[((-)?\\d+(\\.)?\\d*(\\s)?)+\\]","",txt[[1]][txtc])
-                  mfType = gsub("MF\\d+='[a-zA-Z]+':'|',\\[((-)?\\d+\\.?\\d*(\\s)*)*\\]","",txt[[1]][txtc])
-                  params = strsplit(gsub("MF\\d+='[a-zA-Z]+':'[a-zA-Z]+|',\\[|\\]","",txt[[1]][txtc]), " ")
+                  mfName = gsub("MF\\d+='|':'[a-zA-Z]+',\\[((-)?\\d+(\\.)?\\d*(\\s)?)+\\]","",txt[[1]][txtc])
+                  mfType = gsub("MF\\d+='(\\S| )+':'|',\\[((-)?\\d+\\.?\\d*(\\s)*)*\\]","",txt[[1]][txtc])
+                  params = strsplit(gsub("  ", " ", gsub("MF\\d+='(\\S| )+':'[a-zA-Z]+|',\\[|\\]|","",txt[[1]][txtc])), " ")
                   paramsV = c()
                   for ( fg in 1:length(params[[1]]) ){
                     paramsV = c(paramsV, as.numeric(params[[1]][fg]))

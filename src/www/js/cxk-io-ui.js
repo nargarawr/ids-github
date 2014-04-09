@@ -87,11 +87,11 @@ function exportFile( filetype ){
 				if ( t.funType === "gau" ) {
 					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'gaussmf',[" + t.paramSigma + " " + t.paramMean + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true, true);
 				} else if ( inputDivs[key].memFuncs[key2].funType === "ga2" ) {
-					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'gaussbmf',[" + t.paramLeftSigma + " " + t.paramLeftMean + " " + t.paramRightSigma + " " + t.paramRightMean + " " + (filetype==="ufis" ? " " + t.paramHeight : "") +"]", true, true);
+					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'gaussbmf',[" + t.paramLeftSigma + " " + t.paramLeftMean + " " + t.paramRightSigma + " " + t.paramRightMean + (filetype==="ufis" ? " " + t.paramHeight : "") +"]", true, true);
 				} else if ( inputDivs[key].memFuncs[key2].funType === "trp" ) {
-					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'trapmf',[" + t.paramLeftFoot + " " + t.paramLeftShoulder + " " + t.paramRightShoulder + " " + t.paramRightFoot + " " + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true, true);
+					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'trapmf',[" + t.paramLeftFoot + " " + t.paramLeftShoulder + " " + t.paramRightShoulder + " " + t.paramRightFoot + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true, true);
 				} else if ( inputDivs[key].memFuncs[key2].funType === "tri" ) {
-					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'trimf',[" + t.paramLeft + " " + t.paramMean + " " + t.paramRight + " " + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true, true);	
+					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'trimf',[" + t.paramLeft + " " + t.paramMean + " " + t.paramRight + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true, true);	
 				}					
 
 				j++;
@@ -114,13 +114,13 @@ function exportFile( filetype ){
 				var t = outputDivs[key].memFuncs[key2];
 
 				if ( t.funType === "gau" ) {
-					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'gaussmf',[" + t.paramSigma + " " + t.paramMean + " " + t.paramHeight + "]", true, true);
-				} else if ( outputDivs[key].memFuncs[key2].funType === "ga2" ) {
-					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'gaussbmf',[" + t.paramLeftSigma + " " + t.paramLeftMean + " " + t.paramRightSigma + " " + t.paramRightMean + " " + t.paramHeight +"]", true, true);
-				} else if ( outputDivs[key].memFuncs[key2].funType === "trp" ) {
-					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'trapmf',[" + t.paramLeftFoot + " " + t.paramLeftShoulder + " " + t.paramRightShoulder + " " + t.paramRightFoot + " " + t.paramHeight + "]", true, true);
-				} else if ( outputDivs[key].memFuncs[key2].funType === "tri" ) {
-					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'trimf',[" + t.paramLeft + " " + t.paramMean + " " + t.paramRight + " " + t.paramHeight + "]", true, true);	
+					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'gaussmf',[" + t.paramSigma + " " + t.paramMean + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true, true);
+				} else if ( inputDivs[key].memFuncs[key2].funType === "ga2" ) {
+					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'gaussbmf',[" + t.paramLeftSigma + " " + t.paramLeftMean + " " + t.paramRightSigma + " " + t.paramRightMean + (filetype==="ufis" ? " " + t.paramHeight : "") +"]", true, true);
+				} else if ( inputDivs[key].memFuncs[key2].funType === "trp" ) {
+					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'trapmf',[" + t.paramLeftFoot + " " + t.paramLeftShoulder + " " + t.paramRightShoulder + " " + t.paramRightFoot + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true, true);
+				} else if ( inputDivs[key].memFuncs[key2].funType === "tri" ) {
+					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'trimf',[" + t.paramLeft + " " + t.paramMean + " " + t.paramRight + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true, true);	
 				}					
 
 				j++;
@@ -370,10 +370,14 @@ function getExtension(filename) {
 	@param {event}, the file event that called this function
 */
 function loadFile(evt) {
+	
 	var r = confirm("Doing this will overwrite any work you have completed already, is this ok?")
 	if ( !r ) {
 		return;
 	}
+
+	clearNode(document.getElementById('nameList'));
+	clearNode(document.getElementById('list'));
 
 	var files = evt.target.files; 
 
@@ -389,7 +393,7 @@ function loadFile(evt) {
 				return;
 		} 
 
-		document.getElementById('list').innerHTML = '<li><strong>' + escape(f.name) + '</strong> - '
+		document.getElementById('nameList').innerHTML = '<li><strong>' + escape(f.name) + '</strong> - '
 		+ f.size + ' bytes, last modified: ' + (f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a') +
 		'</li>';
 
@@ -411,8 +415,9 @@ function loadFile(evt) {
 			}
 		}
 		reader.readAsText(files[i]);	
-	}
-	document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+
+		document.getElementById('list').innerHTML += '<ul>' + output.join('') + '</ul>';
+	}	
 }
 
 /**
@@ -425,61 +430,63 @@ function loadFISFile ( txt ) {
 	var name, type, andMethod, orMethod, aggMethod, impMethod, defMethod;
 
 	var str = txt.split("\n");
-	console.log(str)
-	
+
 	if ( !(new RegExp("\\[System\\]").test(str[0])) ) {
 		alert("System tag is not present")
 		return false;
 	}
 
-	if ( !(new RegExp("Name=\'.*\'").test(str[1])) ) {
+	var re = "Name='[a-zA-Z0-9 ]*'";
+	if ( !(new RegExp(re).test(str[1])) ) {
 		alert("Name tag is not present, or malformed")
 		return false;
 	}
-	name = str[1].substring(6,str[1].length-2)
+	name = (str[1].split("'"))[1];
 	
 	if ( !(new RegExp("Type=\'mamdani\'").test(str[2])) ) {
 		alert("Type tag is not present, or malformed")
 		return false;
 	}
-	type = str[2].substring(6,str[2].length-2)
+	
+	type = (str[2].split("'"))[1];
 	type = type.charAt(0).toUpperCase() + type.slice(1);
 
 	if ( !(new RegExp("AndMethod=\'(min|product)\'").test(str[7])) ) {
 		alert("And Method tag is not present, or malformed")
 		return false;
 	}
-	andMethod = str[7].substring(11, str[7].length-2)
+	andMethod = (str[7].split("'"))[1];
 	andMethod = andMethod.charAt(0).toUpperCase() + andMethod.slice(1);
 
 	if ( !(new RegExp("OrMethod=\'(max|probor)\'").test(str[8])) ) {
 		alert("Or Method tag is not present, or malformed")
 		return false;
 	}
-	orMethod = str[8].substring(10, str[8].length-2)
+	orMethod = (str[8].split("'"))[1];
 	orMethod = orMethod.charAt(0).toUpperCase() + orMethod.slice(1);
 
 	if ( !(new RegExp("ImpMethod=\'(min|product)\'").test(str[9])) ) {
 		alert("Implication Method tag is not present, or malformed")
 		return false;
 	}
-	impMethod = str[9].substring(11, str[9].length-2)
+	impMethod = (str[9].split("'"))[1];
 	impMethod = impMethod.charAt(0).toUpperCase() + impMethod.slice(1);
 	
 	if ( !(new RegExp("AggMethod=\'(max|probor|sum)\'").test(str[10])) ) {
 		alert("Aggregation Method tag is not present, or malformed")
 		return false;
 	}
-	aggMethod = str[10].substring(11, str[10].length-2)
+	aggMethod = (str[10].split("'"))[1];
 	aggMethod = aggMethod.charAt(0).toUpperCase() + aggMethod.slice(1);
 
 	if ( !(new RegExp("DefuzzMethod=\'(centroid|lom|mom|som|bisector)\'").test(str[11])) ) {
 		alert("Defuzzification Method tag is not present, or malformed")
 		return false;
 	}
-	defMethod = str[11].substring(14, str[11].length-2)
+	defMethod = (str[11].split("'"))[1];
 	defMethod = defMethod.charAt(0).toUpperCase() + defMethod.slice(1);
 
+	$('#fisName').val(name)
 	$('#fisType').val(type);
 	$('#fisAnd').val(andMethod);
 	$('#fisOr').val(orMethod);
@@ -491,30 +498,48 @@ function loadFISFile ( txt ) {
 		alert("No input count defined")
 		return false;
 	}
+	
+	if ( !(new RegExp("NumOutputs=\d*").test(str[5])) ) {
+		alert("No output count defined")
+		return false;
+	}
 
+	if ( !(new RegExp("NumRules=\d*").test(str[6])) ) {
+		alert("No rule count defined")
+		return false;
+	}
 
 	inputDivs.length = 0;
 	var myDiv = document.getElementById('mainDivInput');
 	clearNode(myDiv)
 	inputIndex = 0;
-	var inputCount = parseInt(str[4].substring(10,str[11].length-1));
-	
+	var inputCount = parseInt((str[4].split("="))[1]);
+    var breakDiv = document.createElement("div");
+    breakDiv.className = "break";
+    myDiv.appendChild(breakDiv);
+
 	outputDivs.length = 0;
 	var myDiv = document.getElementById('mainDivOutput');
 	clearNode(myDiv)
 	outputIndex = 0;
-	var outputCount = parseInt(str[4].substring(11,str[11].length-1));
+	var outputCount = parseInt((str[5].split("="))[1]);
+	var breakDiv = document.createElement("div");
+    breakDiv.className = "break";
+    myDiv.appendChild(breakDiv);
+
+	systemRules.length = 0;
+	printRules ( ); 
+	var ruleCount = parseInt((str[6].split("="))[1]);
 
 	for ( var i = 13; i < str.length ; ){
-		
 		if ( new RegExp("\\[Input\\d+\\]").test(str[i]) ) {
-			alert(str[i])
+
 			if ( !(new RegExp("Name=\'.*\'").test(str[i+1]))) {
 				alert("A name tag is missing for one of your input variables")
 				return false;
 			}
-			var inputName = str[i+1].substring(6, str[i+1].length-2)
-		
+			var inputName = (str[i+1].split("'"))[1];
+			
 			if ( !(new RegExp(/[Range=\[\d+\ \d+\]]+/).test(str[i+2]))) {
 				alert("A range tag is missing or malformed for one of your input variables");
 				return false;
@@ -527,11 +552,11 @@ function loadFISFile ( txt ) {
 				alert("A membership function count tag is missing or malformed for one of your input variables");
 				return false;				
 			}
-			var mfCount = str[i+3].substring(7, str[i+3].length-1)
-
+			
+			var mfCount = (str[i+3].split("="))[1];
 			var mfList = new Array();
-			for ( var j = 0 ; j < mfCount ; j++ ){
 
+			for ( var j = 0 ; j < mfCount ; j++ ){
 				if ( !(new RegExp(/[MF\d+=\'(\s|\S)*\':(\'gaussmf\',\[\-?\d+\.?\d* \-?\d+\.?\d* \-?\d+\.?\d*|\'gaussbmf\',\[\-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d*\]|\'trapmf\',\[\-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d*\]|\'trimf\',\[\-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d*)]+/).test(str[i+4+j]))) {
 					alert("Membership function " + (j+1) + " of one of your variables is invalid")
 					return false;
@@ -543,14 +568,14 @@ function loadFISFile ( txt ) {
 				var mf_params = str_params[5].split(/[\ ]/)
 				
 				if ( mf_type === "gaussmf") {
-					mfList.push(new gauMemFun(mf_name, mf_params[0], mf_params[1], mf_params[2] ));
+					mfList.push(new gauMemFun(mf_name, mf_params[0], mf_params[1], 1 ));
 				} else if ( mf_type === "gaussbmf") {
-					mfList.push(new gau2MemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], mf_params[3],  mf_params[4] ));
+					mfList.push(new gau2MemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], mf_params[3],  1 ));
 				} else if ( mf_type === "trapmf") {
-					mfList.push(new trapMemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], mf_params[3],  mf_params[4]  ));
+					mfList.push(new trapMemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], mf_params[3],  1  ));
 				} else if ( mf_type === "trimf") {
-					mfList.push(new triMemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], mf_params[3]));
-				}
+					mfList.push(new triMemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], 1 ));
+				}				
 			}
 
 			var mainDiv = document.getElementById("mainDivInput")
@@ -567,17 +592,13 @@ function loadFISFile ( txt ) {
 		    }
 
 			inputDivs[sysVar.divId].updateSmallView();		    
-
-			i += (5 + parseInt(mfCount));
 		} else if ( new RegExp("\\[Output\\d+\\]").test(str[i]) ) {
-						alert(str[i])
-
 			if ( !(new RegExp("Name=\'.*\'").test(str[i+1]))) {
 				alert("A name tag is missing for one of your input variables")
 				return false;
 			}
-			var inputName = str[i+1].substring(6, str[i+1].length-2)
-		
+			var inputName = (str[i+1].split("'"))[1];
+			
 			if ( !(new RegExp(/[Range=\[\d+\ \d+\]]+/).test(str[i+2]))) {
 				alert("A range tag is missing or malformed for one of your input variables");
 				return false;
@@ -590,9 +611,10 @@ function loadFISFile ( txt ) {
 				alert("A membership function count tag is missing or malformed for one of your input variables");
 				return false;				
 			}
-			var mfCount = str[i+3].substring(7, str[i+3].length-1)
-
+			
+			var mfCount = (str[i+3].split("="))[1];
 			var mfList = new Array();
+
 			for ( var j = 0 ; j < mfCount ; j++ ){
 				if ( !(new RegExp(/[MF\d+=\'(\s|\S)*\':(\'gaussmf\',\[\-?\d+\.?\d* \-?\d+\.?\d* \-?\d+\.?\d*|\'gaussbmf\',\[\-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d*\]|\'trapmf\',\[\-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d*\]|\'trimf\',\[\-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d* \-?\d*\.?\d*)]+/).test(str[i+4+j]))) {
 					alert("Membership function " + (j+1) + " of one of your variables is invalid")
@@ -603,18 +625,16 @@ function loadFISFile ( txt ) {
 				var mf_name = str_params[1];
 				var mf_type = str_params[3];
 				var mf_params = str_params[5].split(/[\ ]/)
-				var mf;
 				
-				if ( mf_type == "gaussmf") {
-					mf = new gauMemFun(mf_name, mf_params[0], mf_params[1], mf_params[2] );
-				} else if ( type == "gaussbmf") {
-					mf = new gau2MemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], mf_params[3],  mf_params[4] );
-				} else if ( type == "trapmf") {
-					mf = new trapMemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], mf_params[3],  mf_params[4]  );
-				} else if ( type == "trimf") {
-					mf = new triMemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], mf_params[3]);
-				}
-				mfList.push(mf);				
+				if ( mf_type === "gaussmf") {
+					mfList.push(new gauMemFun(mf_name, mf_params[0], mf_params[1], 1 ));
+				} else if ( mf_type === "gaussbmf") {
+					mfList.push(new gau2MemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], mf_params[3],  1 ));
+				} else if ( mf_type === "trapmf") {
+					mfList.push(new trapMemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], mf_params[3],  1  ));
+				} else if ( mf_type === "trimf") {
+					mfList.push(new triMemFun(mf_name, mf_params[0], mf_params[1], mf_params[2], 1));
+				}				
 			}
 
 			var mainDiv = document.getElementById("mainDivOutput")
@@ -626,30 +646,109 @@ function loadFISFile ( txt ) {
 		    outputDivs[sysVar.divId].rangeMin = minRange;
 		    outputDivs[sysVar.divId].rangeMax = maxRange;
 
-		    alert(outputDivs[sysVar.divId].rangeMax)
-
 		    for ( var key in mfList ) {
 				outputDivs[sysVar.divId].memFuncs.push(mfList[key])
 		    }
 
-		    for ( var key in outputDivs[sysVar.divId].memFuncs ) {
-		    	alert( outputDivs[sysVar.divId].memFuncs[key] )
-		    }
-
 			outputDivs[sysVar.divId].updateSmallView();		    
-
-			i += (5 + parseInt(mfCount));
 		} else if ( new RegExp("\\[Rules\\]").test(str[i]) ) {
+			for ( var j = 1 ; j <= ruleCount ; j++ ){
+				var regexp = "";
 
-			i+= 1000;
-		} else {
-			alert("Rules, inputs or outputs are ill defined")
+				for ( var iJ = 0 ; iJ < inputCount+outputCount ; iJ++ ){
+					regexp += "\d+";
+					if ( iJ == inputCount-1 ) {
+						regexp += ", ";	
+					} else {
+						regexp += " ";
+					}
+				}
+				
+				regexp += "\(\d+\.?\d*\) : (1|2)"
+				if ( !(new RegExp(regexp).test(str[i+j])) ) {
+					var parts = str[i+j].split(/ \(|\) : /);
+
+					var rule_inputs = new Array();
+					var rule_outputs = new Array();
+
+					var insAndOuts = parts[0];
+					var lookingAtOutputs = false;
+
+					
+					for ( var ji=0; ji < insAndOuts.length; ji++ ) {
+						var charAt = insAndOuts.substr( ji, 1 );
+						if ( charAt == " " ) {
+							continue;
+						} else if (charAt == "," ) {
+							lookingAtOutputs = true;
+						} else if ( charAt == "-") {
+							var twoChart = "-" + insAndOuts.substr( ji+1, 1 );
+							if ( lookingAtOutputs ) {
+								rule_outputs.push(twoChart)
+							} else {
+								rule_inputs.push(twoChart)
+							}							
+							ji++;
+						} else {
+							if ( lookingAtOutputs ) {
+								rule_outputs.push(charAt)
+							} else {
+								rule_inputs.push(charAt)
+							}
+						}
+					}
+
+					var rule_weight = parts[1];
+					var rule_conn   = parts[2];
+
+				    var r1i = new Array;
+				    var r1iDex = 0;
+				    for ( var key in inputDivs ) {
+				    	var p1 = inputDivs[key].divId;
+				    	var p2 = "";
+				    	var p3 = ( rule_inputs[r1iDex] < 0 );
+				    	if ( rule_inputs[r1iDex] == 0 ) {
+				    		p2 = "(Not Used)";
+				    	} else {
+				    		p2 =inputDivs[key].memFuncs[Math.abs(rule_inputs[r1iDex]-1)].funName;
+				    	}
+				    	
+				    	r1i.push(new rulePair(p1,p2,p3))
+				    	r1iDex++;
+				    }
+
+				    var r1o = new Array;
+				    var r1oDex = 0;
+				    for ( var key in outputDivs ) {
+						var p1 = outputDivs[key].divId;
+				    	var p2 = "";
+				    	var p3 = ( rule_outputs[r1oDex] < 0 );
+				    	if ( rule_outputs[r1oDex] == 0 ) {
+				    		p2 = "(Not Used)";
+				    	} else {
+				    		p2 =outputDivs[key].memFuncs[Math.abs(rule_outputs[r1oDex]-1)].funName;
+				    	}
+
+				    	r1o.push(new rulePair(p1,p2,p3))
+				    	r1oDex++;
+				    }				    
+
+				    var conn_str = "";
+				    if ( rule_conn == 1 ) {
+				    	conn_str = "AND";
+				    } else if ( rule_conn == 2 ) {
+						conn_str = "OR";
+				    }
+				    var sr = new systemRule(r1i, r1o, rule_weight, conn_str)
+				    systemRules.push(sr);
+				}
+			}
 		}
+		i++;
 	}
 
 	updateSidePanelWithVars();
 	return true;
-
 }
 
 /**
@@ -677,7 +776,6 @@ function copyToClipboard () {
 */
 function updateIOType( type ) {
 	Shiny.unbindAll()
-	console.log("what")
 	$("#iotypestore").val(type);
 	Shiny.bindAll()
 }

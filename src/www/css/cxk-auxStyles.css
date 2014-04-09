@@ -16,7 +16,6 @@
 
 #dispSysParams label,#dispSysParams input, #dispSysParams select {
 	width:90%;
-
 }
 
 #ruleTableWrapper {
@@ -31,7 +30,6 @@
 }
 
 #ruleTableDivOR {
-	
 	float:left;
 	margin-bottom:5%;
 	overflow: hidden;
@@ -80,11 +78,6 @@ h4 .titleText {
 hr {
 	border-color:#000000;
 	border: 1px solid;
-	-webkit-margin-before:0em;
-	-webkit-margin-after: 0.0em;
-	-webkit-margin-start: 0em;
-	-webkit-margin-end: 0em;
-	margin-left:-2.5%;
 }
 
 .modal {
