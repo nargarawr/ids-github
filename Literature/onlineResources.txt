@@ -1,0 +1,33 @@
+Online Tutorials/ Resources
+
+Web Scripting Basics
+http://www.w3schools.com/
+
+Supplementary HTML Services 
+http://www.rstudio.com/shiny/
+http://www.highcharts.com/
+http://www.amcharts.com/
+http://getbootstrap.com/
+https://developers.google.com/chart/
+
+Fundamentals of Fuzzy Logic
+/FUZ/*.*
+
+http://books.google.co.uk/books?hl=en&lr=&id=WhqPtfVEnSoC&oi=fnd&pg=PA1&dq=fundamental%3Bs+of+fuzzy+logic&ots=arD7OVQS1_&sig=UJab11dXpR7sRwTxc4TLXJ80szU#v=onepage&q=fundamental%3Bs%20of%20fuzzy%20logic&f=false
+
+http://books.google.co.uk/books?hl=en&lr=&id=dngGh9lJapsC&oi=fnd&pg=PP9&dq=fundamental%3Bs+of+fuzzy+logic&ots=hwNUyxnZHj&sig=fe0aS7lV4opGlknCWpTv7ZE-lAY#v=onepage&q&f=false
+
+http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=158640&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D158640
+
+http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=52551&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D52551
+
+http://dl.acm.org/citation.cfm?id=175255
+
+http://books.google.co.uk/books?hl=en&lr=&id=nhz1f9j6_SMC&oi=fnd&pg=PR7&dq=fuzzy+logic&ots=vex-1uKpu4&sig=N3wJWaTQJPMA8GCEzf6wsD1vWAA#v=onepage&q=fuzzy%20logic&f=false
+
+http://www.control.auc.dk/~dimon/edu/softComp/l2/Sugeno1.pdf
+
+http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=53&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D53
+
+Principles of HCI
+
