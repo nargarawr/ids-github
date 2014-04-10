@@ -231,9 +231,6 @@ function errorsInFunction (arr) {
   @param {string}, the original name of the membership function
 */
 function overwriteMembershipFunction (divId, isInput, originalName) {
- // alert(divId + " " + isInput + " " + originalName)
- // return;
-
   // Get the entered values
   var vals;
   var mf;

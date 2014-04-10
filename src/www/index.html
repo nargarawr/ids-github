@@ -37,12 +37,12 @@
   <title> o-Fuzz! </title>
 </head>
  
-<body id="body">
+<body id="body" onload="showStart()">
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span12" style="padding: 10px 0px;">
       <h1> o-Fuzz! </h1>
-      An online Type-1 fuzzy logic specification, visualization and inferencing system <button onclick="tipperTest()"> TipperTest </button>
+      An online Type-1 fuzzy logic specification, visualization and inferencing system 
     </div>
   </div>
   <div class="row-fluid">
@@ -355,6 +355,27 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="modal fade" id="startModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"> Getting Started </h4>
+      </div>
+      <div class="modal-body">
+          Welcome to o-Fuzz, the online fuzzy set construction system. The purpose of this system is to allow the average user to construct and visualise fuzzy sets and systems, in the easiest manner possible. The system is aimed at experts and novice, both in regards to knowledge in fuzzy logic, and in use of computer systems in general, so in theory, anybody should be able to use this system with ease.<br>
+          <br>
+          To begin, you should think about the problem you are attempting to solve, and how you would construct this as a fuzzy system. You can then add input variables on the "input" tab, and output variables on the "output" tab. Each page of the system has a help button in the top right, that will explain to you what do to on every page, if you get stuck. After specifying the input and output variables, use the "rule" tab to specify the rules for your system, using the simple graphical interface, after which evaluation can take place on the "evaluate" tab.<br>
+          <br>
+          I hope you enjoy using the system, and if you have any questions or complaints, please email me at psyck@nottingham.ac.uk
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
+      </div>      
+    </div>
+  </div>     
 </div>
 
 <script type="text/javascript">

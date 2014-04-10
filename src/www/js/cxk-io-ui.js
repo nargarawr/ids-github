@@ -315,6 +315,7 @@ function exportFile( filetype ){
 
 			ruleInputData  = [];
 			for ( var key2 in r.inputList ) {
+				console.log(r.inputList[key2].negated)
 				ruleInputData.push({
 					Variable : r.inputList[key2].leftEl,
 					Term     : r.inputList[key2].rightEl,
@@ -415,7 +416,6 @@ function loadFile(evt) {
 			}
 		}
 		reader.readAsText(files[i]);	
-
 		document.getElementById('list').innerHTML += '<ul>' + output.join('') + '</ul>';
 	}	
 }
@@ -495,17 +495,17 @@ function loadFISFile ( txt ) {
 	$('#fisDfz').val(defMethod);
 
 	if ( !(new RegExp("NumInputs=\d*").test(str[4])) ) {
-		alert("No input count defined")
+		alert("No input count defined (NumInputs field)")
 		return false;
 	}
 	
 	if ( !(new RegExp("NumOutputs=\d*").test(str[5])) ) {
-		alert("No output count defined")
+		alert("No output count defined (NumOutputs field)")
 		return false;
 	}
 
 	if ( !(new RegExp("NumRules=\d*").test(str[6])) ) {
-		alert("No rule count defined")
+		alert("No rule count defined (NumRules field)")
 		return false;
 	}
 
@@ -758,15 +758,252 @@ function loadFISFile ( txt ) {
 */
 function loadJSONFile ( txt ) {
 
-}
+	inputDivs.length = 0;
+	var myDiv = document.getElementById('mainDivInput');
+	clearNode(myDiv)
+	inputIndex = 0;
+    var breakDiv = document.createElement("div");
+    breakDiv.className = "break";
+    myDiv.appendChild(breakDiv);
 
-/**
-	Pseudo- copies to clipboard
-*/
-function copyToClipboard () {
-	var expVal = (document.getElementById("mainDivExport").innerHTML).toString();
-	expVal = expVal.replace(/<br>/g, '\n');
-	window.prompt("To copy to clipboard, press Ctrl+C and then Enter", expVal);
+	outputDivs.length = 0;
+	var myDiv = document.getElementById('mainDivOutput');
+	clearNode(myDiv)
+	outputIndex = 0;
+	var breakDiv = document.createElement("div");
+    breakDiv.className = "break";
+    myDiv.appendChild(breakDiv);
+
+	systemRules.length = 0;
+	printRules (); 
+
+	var f = (JSON.parse(txt))[0]
+
+	var sys_name		= f.System[0].Name;
+	var sys_type		= f.System[0].Type;
+	var sys_andMethod	= f.System[0].AndMethod;
+	var sys_orMethod	= f.System[0].OrMethod;
+	var sys_impMethod	= f.System[0].ImpMethod;
+	var sys_aggMethod	= f.System[0].AggMethod;
+	var sys_defMethod	= f.System[0].DefuzzMethod;
+
+
+	if (typeof(sys_name) == "undefined"){
+		alert("System name is missing or malformed")
+		return false;
+	}
+	if (typeof(sys_type) == "undefined"){
+		alert("System type is missing or malformed")
+		return false;		
+	}
+	if (typeof(sys_andMethod) == "undefined"){
+		alert("And Method is missing or malformed")
+		return false;
+	}	
+	if (typeof(sys_orMethod) == "undefined"){
+		alert("Or Method is missing or malformed")
+		return false;
+	}
+	if (typeof(sys_impMethod) == "undefined"){
+		alert("Implication Method is missing or malformed")
+		return false;
+	}
+ 	if (typeof(sys_aggMethod) == "undefined"){
+		alert("Aggregation method is missing or malformed")
+		return false;
+	}
+ 	if (typeof(sys_defMethod) == "undefined"){
+		alert("Defuzzification method is missing or malformed")
+		return false;
+	}	
+
+	$('#fisName').val(sys_name)
+	$('#fisType').val(sys_type);
+	$('#fisAnd').val(sys_andMethod);
+	$('#fisOr').val(sys_orMethod);
+	$('#fisImp').val(sys_impMethod);
+	$('#fisAgg').val(sys_aggMethod);
+	$('#fisDfz').val(sys_defMethod);
+
+	$.each( f.Inputs, function ( index, value ) {
+		var var_id = JSON.stringify(value[0].Id).replace(/"/g, "");
+		var var_name = JSON.stringify(value[0].Name).replace(/"/g, "");
+		var var_minRange = JSON.stringify(value[0].Min);
+		var var_maxRange = JSON.stringify(value[0].Max);
+
+		if ( typeof(var_id) == "undefined" || typeof(var_name) == "undefined" || typeof(var_minRange) == "undefined" || typeof(var_maxRange) == "undefined" ){
+			alert("One of your input variables is invalid")
+			return false;
+		}		
+		
+	  
+		var var_mfList = new Array();
+
+		$.each( value[0].Functions, function( mf_index, mf ) {
+	  		var mf_name = JSON.stringify(mf[0].Name).replace(/"/g, "")
+	  		var mf_type = JSON.stringify(mf[0].Type).replace(/"/g, "")
+
+	  		if ( strcmp(mf_type, "gau") == 0 ) {
+	  			var mf_p1 = JSON.stringify(mf[0].Sigma)
+	  			var mf_p2 = JSON.stringify(mf[0].Mean)
+				var mf_p3 = JSON.stringify(mf[0].Height)
+
+				var_mfList.push(new gauMemFun (mf_name, mf_p1, mf_p2, mf_p3))
+	  		} else if ( strcmp(mf_type, "ga2") == 0 ) {
+	  			var mf_p1 = JSON.stringify(mf[0].LeftSigma)
+	  			var mf_p2 = JSON.stringify(mf[0].LeftMean)
+				var mf_p3 = JSON.stringify(mf[0].RightSigma)
+				var mf_p4 = JSON.stringify(mf[0].RightMean)
+				var mf_p5 = JSON.stringify(mf[0].Height)
+
+				var_mfList.push(new gau2MemFun (mf_name, mf_p1, mf_p2, mf_p3, mf_p4, mf_p5))
+	  		} else if ( strcmp(mf_type, "trp") == 0 ) {
+	  			var mf_p1 = JSON.stringify(mf[0].LeftFoot)
+	  			var mf_p2 = JSON.stringify(mf[0].LeftShoulder)
+				var mf_p3 = JSON.stringify(mf[0].RightShoulder)
+				var mf_p4 = JSON.stringify(mf[0].RightFoot)
+				var mf_p5 = JSON.stringify(mf[0].Height)
+
+				var_mfList.push(new trapMemFun (mf_name, mf_p1, mf_p2, mf_p3, mf_p4, mf_p5))
+	  		} else if ( strcmp(mf_type, "tri") == 0 ) {
+	  			var mf_p1 = JSON.stringify(mf[0].Left)
+	  			var mf_p2 = JSON.stringify(mf[0].Mean)
+				var mf_p3 = JSON.stringify(mf[0].Right)
+				var mf_p4 = JSON.stringify(mf[0].Height)
+
+				var_mfList.push(new triMemFun (mf_name, mf_p1, mf_p2, mf_p3, mf_p4))
+	  		}
+		});
+
+		var mainDiv = document.getElementById("mainDivInput")
+		var sysVar = new systemVar(var_name, "inputDiv" + inputIndex, true);
+		inputIndex++;
+
+	    mainDiv.appendChild(sysVar.createDiv());
+	    inputDivs[sysVar.divId] = sysVar;  
+	    inputDivs[sysVar.divId].rangeMin = var_minRange;
+	    inputDivs[sysVar.divId].rangeMax = var_maxRange;
+
+	    for ( var key in var_mfList ) {
+			inputDivs[sysVar.divId].memFuncs.push(var_mfList[key])
+	    }
+
+		inputDivs[sysVar.divId].updateSmallView();	
+	});
+
+	$.each( f.Outputs, function ( index, value ) {
+		var var_id = JSON.stringify(value[0].Id).replace(/"/g, "");
+		var var_name = JSON.stringify(value[0].Name).replace(/"/g, "");
+		var var_minRange = JSON.stringify(value[0].Min);
+		var var_maxRange = JSON.stringify(value[0].Max);
+
+		if ( typeof(var_id) == "undefined" || typeof(var_name) == "undefined" || typeof(var_minRange) == "undefined" || typeof(var_maxRange) == "undefined" ){
+			alert("One of your output variables is invalid")
+			return false;
+		}		
+		
+	  
+		var var_mfList = new Array();
+
+		$.each( value[0].Functions, function( mf_index, mf ) {
+	  		var mf_name = JSON.stringify(mf[0].Name).replace(/"/g, "")
+	  		var mf_type = JSON.stringify(mf[0].Type).replace(/"/g, "")
+
+	  		if ( strcmp(mf_type, "gau") == 0 ) {
+	  			var mf_p1 = JSON.stringify(mf[0].Sigma)
+	  			var mf_p2 = JSON.stringify(mf[0].Mean)
+				var mf_p3 = JSON.stringify(mf[0].Height)
+
+				var_mfList.push(new gauMemFun (mf_name, mf_p1, mf_p2, mf_p3))
+	  		} else if ( strcmp(mf_type, "ga2") == 0 ) {
+	  			var mf_p1 = JSON.stringify(mf[0].LeftSigma)
+	  			var mf_p2 = JSON.stringify(mf[0].LeftMean)
+				var mf_p3 = JSON.stringify(mf[0].RightSigma)
+				var mf_p4 = JSON.stringify(mf[0].RightMean)
+				var mf_p5 = JSON.stringify(mf[0].Height)
+
+				var_mfList.push(new gau2MemFun (mf_name, mf_p1, mf_p2, mf_p3, mf_p4, mf_p5))
+	  		} else if ( strcmp(mf_type, "trp") == 0 ) {
+	  			var mf_p1 = JSON.stringify(mf[0].LeftFoot)
+	  			var mf_p2 = JSON.stringify(mf[0].LeftShoulder)
+				var mf_p3 = JSON.stringify(mf[0].RightShoulder)
+				var mf_p4 = JSON.stringify(mf[0].RightFoot)
+				var mf_p5 = JSON.stringify(mf[0].Height)
+
+				var_mfList.push(new trapMemFun (mf_name, mf_p1, mf_p2, mf_p3, mf_p4, mf_p5))
+	  		} else if ( strcmp(mf_type, "tri") == 0 ) {
+	  			var mf_p1 = JSON.stringify(mf[0].Left)
+	  			var mf_p2 = JSON.stringify(mf[0].Mean)
+				var mf_p3 = JSON.stringify(mf[0].Right)
+				var mf_p4 = JSON.stringify(mf[0].Height)
+
+				var_mfList.push(new triMemFun (mf_name, mf_p1, mf_p2, mf_p3, mf_p4))
+	  		}
+		});
+
+		var mainDiv = document.getElementById("mainDivOutput")
+		var sysVar = new systemVar(var_name, "outputDiv" + outputIndex, false);
+		outputIndex++;
+
+	    mainDiv.appendChild(sysVar.createDiv());
+	    outputDivs[sysVar.divId] = sysVar;  
+	    outputDivs[sysVar.divId].rangeMin = var_minRange;
+	    outputDivs[sysVar.divId].rangeMax = var_maxRange;
+
+	    for ( var key in var_mfList ) {
+			outputDivs[sysVar.divId].memFuncs.push(var_mfList[key])
+	    }
+
+		outputDivs[sysVar.divId].updateSmallView();	
+	});
+
+	$.each ( f.Rules, function ( index, value) {
+		var rule_inputs = new Array();
+		var rule_outputs = new Array();
+
+
+		var inputtingIndex = 0;
+
+		$.each ( value[0].Inputs, function ( in_index, in_value) {
+			var rule_var = (JSON.stringify(in_value.Variable).replace(/"/g, ""))
+			var rule_term = (JSON.stringify(in_value.Term).replace(/"/g, ""))
+			var rule_negated = (JSON.stringify(in_value.Negated));
+
+			if ( typeof(rule_var) == "undefined" || typeof(rule_term) == "undefined" || typeof(rule_negated) == "undefined" ){
+				alert("One of your rules is invalid")
+				return false;
+			}
+			
+			rule_inputs.push(new rulePair(rule_var, rule_term, rule_negated))		
+		});
+
+		$.each ( value[0].Outputs, function ( out_index, out_value) {
+			var rule_var = (JSON.stringify(out_value.Variable).replace(/"/g, ""))	
+			var rule_term = (JSON.stringify(out_value.Term).replace(/"/g, ""))
+			var rule_negated = (JSON.stringify(out_value.Negated));
+
+			if ( typeof(rule_var) == "undefined" || typeof(rule_term) == "undefined" || typeof(rule_negated) == "undefined" ){
+				alert("One of your rules is invalid")
+				return false;
+			}			
+
+			rule_outputs.push(new rulePair(rule_var, rule_term, rule_negated))					
+		});
+
+		var rule_conn = (JSON.stringify(value[0].Connective)).replace(/"/g, "");
+		var rule_weight = (JSON.stringify(value[0].Weight));
+
+		if ( typeof(rule_conn) == "undefined" || typeof(rule_weight) == "undefined" ){
+			alert("One of your rules is invalid")
+			return false;
+		}
+
+
+		var sr = new systemRule(rule_inputs, rule_outputs, rule_weight, rule_conn)
+		systemRules.push(sr);
+	});
+
+	return true;
 }
 
 /**

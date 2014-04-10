@@ -3,6 +3,7 @@
   Author: Craig Knott
 
   Functions:
+    showStart ();
     onTabChange( tabIndex );
     clearNode ( nodetoclear );
     Element.prototype.remove = function();
@@ -12,6 +13,12 @@
 */
 
 
+/**
+  Opens the modal window to begin the system
+*/
+function showStart ( ) {
+  $('#startModal').modal('show');
+}
 
 /**
   Ran each time a new tab is selected, takes the tab selected as argument
@@ -175,26 +182,26 @@ function tipperTest () {
     // Create 3 rules
 
     var r1i = new Array;
-    r1i.push(new pair("inputDiv0","Poor"))
-    r1i.push(new pair("inputDiv1","Rancid"))
+    r1i.push(new rulePair("inputDiv0","Poor", false))
+    r1i.push(new rulePair("inputDiv1","Rancid", false))
     var r1o = new Array;
-    r1o.push(new pair("outputDiv0","Poor"))
+    r1o.push(new rulePair("outputDiv0","Poor", false))
     var r1 = new systemRule(r1i, r1o, 1,"OR")
     systemRules.push(r1);
 
     var r2i = new Array;
-    r2i.push(new pair("inputDiv0","Good"))
-    r2i.push(new pair("inputDiv1","(Not Used)"))
+    r2i.push(new rulePair("inputDiv0","Good", false))
+    r2i.push(new rulePair("inputDiv1","(Not Used)", false))
     var r2o = new Array;
-    r2o.push(new pair("outputDiv0","Average"))
+    r2o.push(new rulePair("outputDiv0","Average", false))
     var r2 = new systemRule(r2i, r2o, 1,"AND")
     systemRules.push(r2);
 
     var r3i = new Array;
-    r3i.push(new pair("inputDiv0","Excellent"))
-    r3i.push(new pair("inputDiv1","Delicious"))
+    r3i.push(new rulePair("inputDiv0","Excellent", false))
+    r3i.push(new rulePair("inputDiv1","Delicious", false))
     var r3o = new Array;
-    r3o.push(new pair("outputDiv0","Generous"))
+    r3o.push(new rulePair("outputDiv0","Generous", false))
     var r3 = new systemRule(r3i, r3o, 1,"OR")
     systemRules.push(r3);
 
