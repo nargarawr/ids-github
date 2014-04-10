@@ -49,26 +49,15 @@
 \contentsline {subsection}{\numberline {6.1}Key Implementation Decisions}{13}{subsection.6.1}
 \contentsline {subsection}{\numberline {6.2}Detailed Description of the Implemented System}{13}{subsection.6.2}
 \contentsline {subsection}{\numberline {6.3}Problems Encountered}{13}{subsection.6.3}
-\contentsline {section}{\numberline {7}Evaluation of the Project}{14}{section.7}
-\contentsline {subsection}{\numberline {7.1}Functionality Testing}{14}{subsection.7.1}
+\contentsline {section}{\numberline {7}Evaluation of the Project}{13}{section.7}
+\contentsline {subsection}{\numberline {7.1}Functionality Testing}{13}{subsection.7.1}
 \contentsline {subsection}{\numberline {7.2}User Feedback Testing}{14}{subsection.7.2}
 \contentsline {subsubsection}{\numberline {7.2.1}FuzzyToolkitUoN Evaluation}{14}{subsubsection.7.2.1}
 \contentsline {subsubsection}{\numberline {7.2.2}MATLAB Fuzzy Toolbox Evaluation}{14}{subsubsection.7.2.2}
 \contentsline {subsubsection}{\numberline {7.2.3}My Project, O-Fuzz, Evaluation}{14}{subsubsection.7.2.3}
-\contentsline {subsection}{\numberline {7.3}Success and Limitations of the project}{14}{subsection.7.3}
-\contentsline {subsection}{\numberline {7.4}Functionality Tests}{14}{subsection.7.4}
-\contentsline {subsection}{\numberline {7.5}User Feedback Tests}{14}{subsection.7.5}
-\contentsline {subsubsection}{\numberline {7.5.1}FuzzyToolkitUoN}{15}{subsubsection.7.5.1}
-\contentsline {subsubsection}{\numberline {7.5.2}MATLAB}{15}{subsubsection.7.5.2}
-\contentsline {subsubsection}{\numberline {7.5.3}My Project, O-Fuzz}{15}{subsubsection.7.5.3}
-\contentsline {subsubsection}{\numberline {7.5.4}Overall Results}{15}{subsubsection.7.5.4}
-\contentsline {subsubsection}{\numberline {7.5.5}In-depth Analysis}{16}{subsubsection.7.5.5}
-\contentsline {paragraph}{Low Computing Skill, Low Fuzzy Logic Skill}{16}{subsubsection.7.5.5}
-\contentsline {paragraph}{Low Computing Skill, High Fuzzy Logic Skill}{16}{subsubsection.7.5.5}
-\contentsline {paragraph}{High Computing Skill, Low Fuzzy Logic Skill}{16}{subsubsection.7.5.5}
-\contentsline {paragraph}{High Computing Skill, High Fuzzy Logic Skill}{16}{subsubsection.7.5.5}
-\contentsline {subsection}{\numberline {7.6}Successes and Limitations of the Project}{16}{subsection.7.6}
-\contentsline {section}{\numberline {8}Further Work}{16}{section.8}
+\contentsline {subsubsection}{\numberline {7.2.4}Summary}{14}{subsubsection.7.2.4}
+\contentsline {subsection}{\numberline {7.3}Successes and Limitations of the Project}{15}{subsection.7.3}
+\contentsline {section}{\numberline {8}Further Work}{15}{section.8}
 \contentsline {subsection}{\numberline {8.1}Type-2 Fuzzy Logic}{16}{subsection.8.1}
 \contentsline {subsection}{\numberline {8.2}Backend Interoperability}{16}{subsection.8.2}
 \contentsline {subsection}{\numberline {8.3}Customisations}{16}{subsection.8.3}
