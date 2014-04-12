@@ -17,6 +17,12 @@ George~A Miller.
   capacity for processing information.
 \newblock {\em Psychological review}, 63(2):81, 1956.
 
+\bibitem{wagner2011fuzzy}
+Christian Wagner, Simon Miller, and Jonathan~M Garibaldi.
+\newblock A fuzzy toolbox for the r programming language.
+\newblock In {\em Fuzzy Systems (FUZZ), 2011 IEEE International Conference on},
+  pages 1185--1192. IEEE, 2011.
+
 \bibitem{zadeh1965fuzzy}
 Lotfi~A Zadeh.
 \newblock Fuzzy sets.

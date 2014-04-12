@@ -1,9 +1,8 @@
 ====================
 FUZZY
 =====================
-jon & wagner fuzzy toolbox
 
-Jump up ^ Vichuzhanin, Vladimir (12 April 2012). "Realization of a fuzzy controller with fuzzy dynamic correction". Central European Journal of Engineering 2 (3): 392–398. doi:10.2478/s13531-012-0003-7.
+Jump up Vichuzhanin, Vladimir (12 April 2012). "Realization of a fuzzy controller with fuzzy dynamic correction". Central European Journal of Engineering 2 (3): 392–398. doi:10.2478/s13531-012-0003-7.
 
 Gerla G., Fuzzy Logic Programming and fuzzy control, Studia Logica, 79 (2005) 231-254.
 
@@ -31,27 +30,19 @@ Computational Intelligence: A Methodological Introduction by Kruse, Borgelt, Kla
 HCI & UI
 ===================
 
-[1] Jakob Nielsen. Enhancing the explanatory power of usability heuristics. In Proceedings of the
+Jakob Nielsen. Enhancing the explanatory power of usability heuristics. In Proceedings of the
 SIGCHI conference on Human factors in computing systems: celebrating interdependence,
 pages 152-158. ACM, 1994.
 
-[2] Jakob Nielsen. How to conduct a heuristic evaluation. On the World Wide Web, 1994.
-
-J. Lazar, A. Jones, and B. Shneiderman. Workplace user frustration with computers: An
-exploratory investigation of the causes and severity. Behaviour & Information Technology,
-2006.
-
-George A Miller. The magical number seven, plus or minus two: some limits on our capacity for processing information. Psychological review, 63(2):81, 1956.
+Jakob Nielsen. How to conduct a heuristic evaluation. On the World Wide Web, 1994.
 
 Don Norman. The design of everyday things. Basic books, 2002.
 
-[5] David J Oborne. Ergonomics at work. Wiley, 1987.
+David J Oborne. Ergonomics at work. Wiley, 1987.
 
-[6] B. Shneiderman. The future of interactive systems and the emergence of direct manipulation.
-1982.
+B. Shneiderman. The future of interactive systems and the emergence of direct manipulation.1982.
 
-[7] Ben Shneiderman and Catherine Plaisant. Designing the user interface. Information Visu-
-alization, 555:495.
+Ben Shneiderman and Catherine Plaisant. Designing the user interface. Information Visualization, 555:495.
 
 https://www.ischool.utexas.edu/~adillon/BookChapters/User%20Interface%20Design_files/User%20Interface%20Design.htm
 
