@@ -5,6 +5,12 @@ Pedro Albertos and Antonio Sala.
 \newblock Fuzzy logic controllers, advantages and drawbacks.
 \newblock {\em IEEE transactions on control system technology}, 1998.
 
+\bibitem{golombisky2013white}
+Kim Golombisky and Rebecca Hagen.
+\newblock {\em White Space is Not Your Enemy: A Beginner's Guide to
+  Communicating Visually Through Graphic, Web \& Multimedia Design}.
+\newblock CRC Press, 2013.
+
 \bibitem{lazar2006workplace}
 Jonathan Lazar, Adam Jones, and Ben Shneiderman.
 \newblock Workplace user frustration with computers: An exploratory
@@ -16,6 +22,17 @@ George~A Miller.
 \newblock The magical number seven, plus or minus two: some limits on our
   capacity for processing information.
 \newblock {\em Psychological review}, 63(2):81, 1956.
+
+\bibitem{nielsen1990heuristic}
+Jakob Nielsen and Rolf Molich.
+\newblock Heuristic evaluation of user interfaces.
+\newblock In {\em Proceedings of the SIGCHI conference on Human factors in
+  computing systems}, pages 249--256. ACM, 1990.
+
+\bibitem{shneiderman2005designing}
+Shneiderman~Ben Shneiderman and Catherine Plaisant.
+\newblock Designing the user interface 4 th edition.
+\newblock {\em ed: Pearson Addison Wesley, USA}, 2005.
 
 \bibitem{wagner2011fuzzy}
 Christian Wagner, Simon Miller, and Jonathan~M Garibaldi.
