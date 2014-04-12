@@ -112,14 +112,14 @@ function exportFile( filetype ){
 			var j = 1;
 			for ( var key2 in outputDivs[key].memFuncs ) {
 				var t = outputDivs[key].memFuncs[key2];
-
-				if ( t.funType === "gau" ) {
+				console.log(t + "~")
+				if ( t.funType == "gau" ) {
 					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'gaussmf',[" + t.paramSigma + " " + t.paramMean + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true, true);
-				} else if ( inputDivs[key].memFuncs[key2].funType === "ga2" ) {
+				} else if ( t.funType == "ga2" ) {
 					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'gaussbmf',[" + t.paramLeftSigma + " " + t.paramLeftMean + " " + t.paramRightSigma + " " + t.paramRightMean + (filetype==="ufis" ? " " + t.paramHeight : "") +"]", true, true);
-				} else if ( inputDivs[key].memFuncs[key2].funType === "trp" ) {
+				} else if ( t.funType == "trp" ) {
 					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'trapmf',[" + t.paramLeftFoot + " " + t.paramLeftShoulder + " " + t.paramRightShoulder + " " + t.paramRightFoot + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true, true);
-				} else if ( inputDivs[key].memFuncs[key2].funType === "tri" ) {
+				} else if ( t.funType == "tri" ) {
 					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'trimf',[" + t.paramLeft + " " + t.paramMean + " " + t.paramRight + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true, true);	
 				}					
 
@@ -315,7 +315,6 @@ function exportFile( filetype ){
 
 			ruleInputData  = [];
 			for ( var key2 in r.inputList ) {
-				console.log(r.inputList[key2].negated)
 				ruleInputData.push({
 					Variable : r.inputList[key2].leftEl,
 					Term     : r.inputList[key2].rightEl,
