@@ -112,7 +112,6 @@ function exportFile( filetype ){
 			var j = 1;
 			for ( var key2 in outputDivs[key].memFuncs ) {
 				var t = outputDivs[key].memFuncs[key2];
-				console.log(t + "~")
 				if ( t.funType == "gau" ) {
 					d.appendSpecialBreakText("MF" + j + "='" + t.funName + "':'gaussmf',[" + t.paramSigma + " " + t.paramMean + (filetype==="ufis" ? " " + t.paramHeight : "") + "]", true, true);
 				} else if ( t.funType == "ga2" ) {

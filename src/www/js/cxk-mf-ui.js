@@ -446,7 +446,7 @@ function createMembershipFunction( divId, isInput ) {
   @param {boolean}, whether this is an input or not
 */
 function deleteMembershipFunction ( i, divId, isInput ) {
-  var r = confirm("This will permanently delete this membership function, are you sure you wish to continue?")
+  var r = confirm("This will permanently delete this membership function (and any rules you have), are you sure you wish to continue?")
     if ( r ) {    
       if ( isInput ) {
         (inputDivs[divId].memFuncs).splice(i, 1);
@@ -457,6 +457,8 @@ function deleteMembershipFunction ( i, divId, isInput ) {
         outputDivs[divId].resetContent();
         outputDivs[divId].getBigContent();
       }
+      systemRules.length = 0;
+      printRules();
     }
   if ( isInput ){
     drawVarCharts(inputDivs[divId].chartDiv, divId, inputDivs[divId].memFuncs, isInput)
