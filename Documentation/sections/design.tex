@@ -27,16 +27,14 @@ This design uses long horizontal representations of the variables, so a large nu
 
 \begin{figure}[ht!]	
 \begin{center}
-\includegraphics[width=0.9\textwidth]{images/firstItRules}
+\includegraphics[width=0.85\textwidth]{images/firstItRules}
 \end{center}
 \vspace{-5mm}	
 \caption{The first iteration of the design of the rule creation page}
 \label{fig:design-firstIterationRules}
 \end{figure}
 \noindent 
-The rule creation page also follows a horizontal theme, which is especially effective for the rules, as there could potentially be a long list of them. The creation of the rules, and their displaying, are two clearly distinct segments to the page, which means there is no confusion between the two, and the process remains a simple one.\ \\
-\ \\
-In keeping with the standards of the previous page, the ``Add'' button is coloured green, to represent creation, and the ``Delete'' buttons present by each rule is coloured red, to represent destruction. These clear colour separations are useful to the user, as they do not even need to read a button to gain an understanding of what it will do \cite{cyr2010colour}, and they can be more careful to not make mistakes.\ \\
+The rule creation page also follows a horizontal theme, which is especially effective for the rules, as there could potentially be a long list of them. The creation of the rules, and their displaying, are two clearly distinct segments to the page, which means there is no confusion between the two, and the process remains a simple one. In keeping with the standards of the previous page, the ``Add'' button is coloured green, to represent creation, and the ``Delete'' buttons present by each rule is coloured red, to represent destruction. These clear colour separations are useful to the user, as they do not even need to read a button to gain an understanding of what it will do \cite{cyr2010colour}, and they can be more careful to not make mistakes.\ \\
 \ \\
 As can be seen, the navigation and header of the rule creation page are the same as those on the input creation page, which promotes a consistent style amongst the pages, and helps to remind the user they are still within the same system, even if they are completing a different task. 
 
@@ -45,7 +43,7 @@ As can be seen, the navigation and header of the rule creation page are the same
 
 \begin{figure}[ht!]
 \begin{center}
-\includegraphics[width=0.99\textwidth]{images/secondItInputs}
+\includegraphics[width=1.1\textwidth]{images/secondItInputs}
 \end{center}
 \vspace{-6mm}
 \caption{The second iteration of the design of the input creation page}
@@ -65,14 +63,12 @@ The new design works by having expandable and collapsible variables. When in the
 \ \\
 To fit with the consistency of the other pages, the buttons for the editing and deletion of membership functions have also been changed. The edit button is now blue, which is the system wide colour for editing, and the delete buttons are now red, the system wide colour for deletion. This keeps the website consistent, and makes the functionality of these buttons easily identifiable.\ \\
 \ \\
-A graphical representation of each variable is now also displayed in the expanded view, allowing the user to quickly interpret how their system is progressing, and whether it looks as they expected. This is a very powerful tool, as users will be able to spot errors much sooner than if this were not present.\ \\
-\ \\
-Some other smaller changes include the moving of the ``Add'' button from the bottom right of the page, to the top left. The reason for this is that, in the first iteration of design, the add button would constantly move down the page as variables were added, and a moving button can be frustrating and confusing for some users. Another change is the addition of a short name for the software, with a longer tag-line underneath this, at the top of the page. This shortened title allows for users to refer to system with ease, allowing them to search for help for the system if necessary, and simply discuss the system with other potential users. The longer tag-line allows for a brief description of the system, so the user knows whether it will be able to accomplish the tasks they have set out to achieve.
+Some other smaller changes include the moving of the ``Add'' button from the bottom right of the page, to the top left. so that it would not constantly move down the page as variables were added, as a moving button can be frustrating and confusing for some users. Another change is the addition of a short name for the software, with a longer tag-line underneath this, at the top of the page. This shortened title allows for users to refer to system with ease, allowing them to search for help for the system if necessary, and simply discuss the system with other potential users. The longer tag-line allows for a brief description of the system, so the user knows whether it will be able to accomplish the tasks they have set out to achieve. A graphical representation of each variable is now also displayed in the expanded view, allowing the user to quickly interpret how their system is progressing, and whether it looks as they expected. This is a very powerful tool, as users will be able to spot errors much sooner than if this were not present.
 
 
 \begin{figure}[ht!]
 \begin{center}
-\includegraphics[width=0.99\textwidth]{images/secondItRules}
+\includegraphics[width=0.95\textwidth]{images/secondItRules}
 \end{center}
 \caption{The second iteration of the design of the rule creation page}
 \label{fig:design-secondIterationRules}
@@ -86,10 +82,17 @@ In addition, an extra feature was included in the form of a rule table that coul
 
 \begin{figure}[ht!]
 \begin{center}
-\includegraphics[width=0.575\textwidth]{images/ruletable}
+\begin{tabular}{cl|lll}
+\multicolumn{2}{c|}{} & \multicolumn{3}{c}{Body Temperature} \\
+\multicolumn{2}{c|}{   }	& Low & Medium & High \\
+\hline
+\multirow{3}{10mm}{Heart Rate}	& Low		& Critical & Rising    & Critical \\
+					& Medium	& Critical & No Threat & Critical \\
+					& High		& Critical & Rising & Critical \\
+\end{tabular}
 \end{center}
 \vspace{-4mm}
-\caption{An example of a rule table that would be displayed if the user had two inputs (heart rate and temperature) and a single output (urgency)}
+\caption{An example of a rule table that would be displayed if the user had two inputs (heart rate and body temperature) and a single output (urgency)}
 \label{fig:ruleTable}
 \end{figure}
 
@@ -101,16 +104,16 @@ The new design also went through a heuristic evaluation \cite{nielsen1990heurist
 It is important that the users of a system are always updated as to what is happening within the system. This will be implemented through the use of JavaScript alert messages to alert the user to any errors they have made, or any important changes they have taken place.
 
 \item User control and freedom/Support internal locus of control\\
-The user should be in full control of their experience of the system at all times, and thus a fluid and flexible navigation system is important. This is the purpose of the tabular layout of the website, as the user is free to travel to whichever pages they wish, in whichever order. More details on the navigation of the system can be found in section \ref{subsec:nav}.
+The user should be in full control of their experience of the system at all times, and thus a fluid and flexible navigation system is important. This is the purpose of the tabular layout of the website, as the user is free to travel to whichever pages they wish, in whichever order, which is specifically useful in the modern age where the culture and location of users has a large impact on how they navigate websites \cite{kralisch2005impact}. More details on the navigation of the system can be found in section \ref{subsec:nav}. 
 
 \item Consistency and standards/Strive for consistency\\
 A good interface should also be consistent in it's design, and follow platform standards. As you can see from the design of the input creator and the rule creator pages, the tabular layout is consistent throughout the website, and colours such as blue, green, and red have clearly defined purposes, which stay consistent throughout the as well.
 
 \item Error prevention/ Help users recognize, diagnose, and recover from errors\\
-Unfortunately, with a system that is entirely dictated by user input, it is very difficult to prevent the user from making errors. However, measures will be put in place to ensure these errors do not affect the system. For instance, there is no way to enforce the user of a system to enter a number, but an informative error message will be displayed, telling the user this is not valid, and what should be done to rectify the issue (and, of course, not accepting the value into the system).
+Unfortunately, with a system that is entirely dictated by user input, it is very difficult to prevent the user from making errors. However, measures will be put in place to ensure these errors do not affect the system. For instance, there is no way to enforce the user of a system to enter a number, but an informative error message will be displayed, telling the user this is not valid, and what should be done to rectify the issue (and, of course, not accepting the value into the system). Further to this, as there is no such thing as an ``average'' user \cite{partarakis2009user}, it is important that the website is designed in a way that it is usable by as many different types of users as possible (and of different skill levels), and thus error detection, prevention, and recover, are enormously important.
 
 \item Recognition rather than recall/Reduce short-term memory load\\
-As mentioned multiple times already, the system is designed to reduce cognitive load on the user as much as possible. This is done by reducing the number of elements on the page at any one time, and by using modal windows for the creation of new membership functions and rules, so their creation and their display are distinct.
+As mentioned multiple times already, the system is designed to reduce cognitive load on the user as much as possible. This is done by reducing the number of elements on the page at any one time, and by using modal windows for the creation of new membership functions and rules, so their creation and their display are distinct. This reduction in cognitive load is also extremely important in the case of designing a fuzzy logic system, as the task itself requires a significant level of concentration and thought, and thus reducing load in all other areas is a necessity \cite{sweller1994cognitive}.
 
 \item Aesthetic and minimalist design\\
 To reduce any possible distractions for the user, the system is designed in a minimalistic fashion, using colour very sparingly, and sticking to neutral shades for background elements. The only colour used in the system is on the graphs drawn, and on the important buttons the user will be pressing. These buttons are essentially colour coded so the user is aware of their functionality, without even having to read them. Further to this, the use of modal windows to essentially hide functionality greatly helps to reduce clutter on the pages of the website, giving it a much cleaner look \cite{depot2014clutter}.
@@ -120,8 +123,9 @@ Due to the goal of being as easy as use as possible, the system is to be designe
 
 \end{enumerate}
 \noindent 
-As the final stage of the heuristic evaluation process, the ``sins'' of New Media Design \cite{golombisky2013white} were also evaluated, to ensure an optimal design had been produced. The second iteration of design has taken these sins into account and has avoided those that were appropriate. Specifically, the website features no bulky borders, a generous use of margins, left alignment of elements (as opposed to centring), and an avoidance of a busy background, opting instead for a very simple white background. All of the aforementioned design choices could have easily caused distractions for the user, and damaged their enjoyment of the system.
+As the final stage of the design evaluation process, the ``sins'' of New Media Design \cite{golombisky2013white} were also evaluated, to ensure an optimal design had been produced. The second iteration of design has taken these sins into account and has avoided those that were appropriate. Specifically, the website features no bulky borders, a generous use of margins, left alignment of elements (as opposed to centring), and an avoidance of a busy background, opting instead for a very simple white background. All of the aforementioned design choices could have easily caused distractions for the user, and damaged their enjoyment of the system.
 
+\newpage
 \subsection{Navigation/Control Flow Design}	
 \label{subsec:nav}	
 As of the second iteration of the design, the website has six main sections, enumerated below;
@@ -144,25 +148,34 @@ The generally \emph{expected} path for a user of the system to take, would be to
 \ \\
 Due to the ability to import files, an entirely new path is also available throughout this process, in which the user begins by importing a file, and then either editing it, or going straight to evaluating it.\ \\
 \ \\
-The expected path through the system (beginning at the inputs page, as this is the landing page of the website), is represented in figure \ref{fig:pathThrough}
+The expected path through the system (beginning at the inputs page, as this is the landing page of the website), is represented in figure \ref{fig:pathThrough}.
 
 \begin{figure}[ht!]
 \begin{center}
-\includegraphics[width=0.75\textwidth]{images/genericPathOne}
+\includegraphics[width=0.6\textwidth]{images/genericPathOne}
 \end{center}
 \caption{Expected path a user would take through the system}
 \label{fig:pathThrough}
 \end{figure}
 \noindent 
-Of course, whilst the general path through the system has been determined, this is not the only path through the system, and there is no guarantee that the user will follow this path. In fact, the user has the freedom to traverse the system in any path they please, as shown in figure \ref{fig:webThrough}. This is important for promoting freedom and a sense of control within the system. The user is free to decide how they wish to travel through the system, and this means they are free to traverse forward or backward through the system to make any alterations, or fix any mistakes they may have made.
+\begin{wrapfigure}[13]{r}{0.395\textwidth}
+\hspace{5mm}
+\vspace{-5mm}
+	\begin{center}
+    \includegraphics[width=0.41\textwidth]{images/web}
+	\end{center}
+	\vspace{-7mm}
+  \caption{Potential paths that can be taken through the system}
+  \vspace{-3mm}
+  \label{fig:webThrough}
+    \vspace{-13mm}
+\end{wrapfigure}
+\noindent
+Of course, whilst the generally expected path through the system has been determined, this is not the only path through the system, and there is no guarantee that the user will follow this path. In fact, the user has the freedom to traverse the system in any path they please, as shown in figure \ref{fig:webThrough}. This is important for promoting freedom and a sense of control within the system. The user is free to decide how they wish to travel through the system, and this means they are free to traverse forward or backward through the system to make any alterations, or fix any mistakes they may have made.
 
-\begin{figure}[ht!]
-\begin{center}
-\includegraphics[width=0.6\textwidth]{images/web}
-\end{center}
-\caption{Possible paths through the system}
-\label{fig:webThrough}
-\end{figure}
+
+
+
 \newpage 
 \subsection{Internal Design}
 The user interface of a system is a huge part of the design process, and is extremely important, as this will be how the user will actually be interacting with it. However, this is not the only part of the system that requires designing; as the internal workings of the system also require a lot of thought. \ \\
@@ -171,7 +184,7 @@ For this project, a web-interface was to be used to interact with a back end tha
 
 \begin{figure}[ht!]
 \begin{center}
-\includegraphics[width=0.9\textwidth]{images/architecture}
+\includegraphics[width=0.7\textwidth]{images/architecture}
 \end{center}
 \caption{Interaction between the back end and front end of the system}
 \label{fig:architectureDiagram}
@@ -179,3 +192,4 @@ For this project, a web-interface was to be used to interact with a back end tha
 
 \noindent
 As you can see, the web front end will be constructed using HTML 5, JavaScript, and CSS 3, and will allow for the creation and specification of fuzzy inputs, outputs, rules, and system parameters. Once a system has been specified, and the user chooses to evaluate the system, the information of the system is passed to the R-Shiny server. This then takes all the form elements from the web front end, extracts their values, and constructs a FIS file, within R. This can then have functions from the FuzzyToolkitUoN package applied to it, and the results of these functions can then be passed back to the web front end, for display to the user.
+\newpage 

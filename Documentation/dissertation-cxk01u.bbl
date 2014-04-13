@@ -29,6 +29,11 @@ Jeff Huang and Ryen~W White.
 \newblock In {\em Proceedings of the 21st ACM conference on Hypertext and
   Hypermedia}, pages 13--18. ACM, 2010.
 
+\bibitem{kralisch2005impact}
+Anett Kralisch, Martin Eisend, and Bettina Berendt.
+\newblock Impact of culture on website navigation behaviour.
+\newblock In {\em Proc. HCI-International}, 2005.
+
 \bibitem{lazar2006workplace}
 Jonathan Lazar, Adam Jones, and Ben Shneiderman.
 \newblock Workplace user frustration with computers: An exploratory
@@ -48,6 +53,11 @@ George~A Miller.
   capacity for processing information.
 \newblock {\em Psychological review}, 63(2):81, 1956.
 
+\bibitem{nielsen1992usability}
+Jakob Nielsen.
+\newblock The usability engineering life cycle.
+\newblock {\em Computer}, 25(3):12--22, 1992.
+
 \bibitem{nielsen2005ten}
 Jakob Nielsen.
 \newblock Ten usability heuristics.
@@ -59,10 +69,22 @@ Jakob Nielsen and Rolf Molich.
 \newblock In {\em Proceedings of the SIGCHI conference on Human factors in
   computing systems}, pages 249--256. ACM, 1990.
 
+\bibitem{partarakis2009user}
+Nikolaos Partarakis, Constantina Doulgeraki, Asterios Leonidis, Margherita
+  Antona, and Constantine Stephanidis.
+\newblock User interface adaptation of web-based services on the semantic web.
+\newblock In {\em Universal Access in Human-Computer Interaction. Intelligent
+  and Ubiquitous Interaction Environments}, pages 711--719. Springer, 2009.
+
 \bibitem{shneiderman2005designing}
 Shneiderman~Ben Shneiderman and Catherine Plaisant.
 \newblock Designing the user interface 4 th edition.
 \newblock {\em ed: Pearson Addison Wesley, USA}, 2005.
+
+\bibitem{sweller1994cognitive}
+John Sweller.
+\newblock Cognitive load theory, learning difficulty, and instructional design.
+\newblock {\em Learning and instruction}, 4(4):295--312, 1994.
 
 \bibitem{wagner2011fuzzy}
 Christian Wagner, Simon Miller, and Jonathan~M Garibaldi.

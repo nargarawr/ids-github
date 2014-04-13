@@ -4,45 +4,45 @@ The top-level auxiliary file: dissertation-cxk01u.aux
 The style file: plain.bst
 Database file #1: bib.bib
 Warning--empty journal in nielsen2005ten
-You've used 14 entries,
+You've used 18 entries,
             2118 wiz_defined-function locations,
-            583 strings with 6354 characters,
-and the built_in function-call counts, 4614 in all, are:
-= -- 474
-> -- 172
-< -- 4
-+ -- 70
-- -- 54
-* -- 281
-:= -- 744
-add.period$ -- 45
-call.type$ -- 14
-change.case$ -- 68
+            604 strings with 7029 characters,
+and the built_in function-call counts, 6054 in all, are:
+= -- 619
+> -- 232
+< -- 5
++ -- 95
+- -- 74
+* -- 379
+:= -- 974
+add.period$ -- 58
+call.type$ -- 18
+change.case$ -- 90
 chr.to.int$ -- 0
-cite$ -- 15
-duplicate$ -- 197
-empty$ -- 387
-format.name$ -- 54
-if$ -- 998
+cite$ -- 19
+duplicate$ -- 257
+empty$ -- 508
+format.name$ -- 74
+if$ -- 1306
 int.to.chr$ -- 0
-int.to.str$ -- 14
-missing$ -- 14
-newline$ -- 72
-num.names$ -- 28
-pop$ -- 82
+int.to.str$ -- 18
+missing$ -- 18
+newline$ -- 92
+num.names$ -- 36
+pop$ -- 107
 preamble$ -- 1
-purify$ -- 55
+purify$ -- 73
 quote$ -- 0
-skip$ -- 146
+skip$ -- 185
 stack$ -- 0
-substring$ -- 297
-swap$ -- 52
-text.length$ -- 4
+substring$ -- 394
+swap$ -- 66
+text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 54
+type$ -- 70
 warning$ -- 1
-while$ -- 49
-width$ -- 16
-write$ -- 152
+while$ -- 64
+width$ -- 20
+write$ -- 196
 (There was 1 warning)
