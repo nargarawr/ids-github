@@ -3,44 +3,46 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: dissertation-cxk01u.aux
 The style file: plain.bst
 Database file #1: bib.bib
-You've used 9 entries,
+Warning--empty journal in nielsen2005ten
+You've used 14 entries,
             2118 wiz_defined-function locations,
-            557 strings with 5619 characters,
-and the built_in function-call counts, 2951 in all, are:
-= -- 303
-> -- 109
-< -- 2
-+ -- 45
-- -- 34
-* -- 186
-:= -- 482
-add.period$ -- 29
-call.type$ -- 9
-change.case$ -- 43
+            583 strings with 6354 characters,
+and the built_in function-call counts, 4614 in all, are:
+= -- 474
+> -- 172
+< -- 4
++ -- 70
+- -- 54
+* -- 281
+:= -- 744
+add.period$ -- 45
+call.type$ -- 14
+change.case$ -- 68
 chr.to.int$ -- 0
-cite$ -- 9
-duplicate$ -- 124
-empty$ -- 245
-format.name$ -- 34
-if$ -- 631
+cite$ -- 15
+duplicate$ -- 197
+empty$ -- 387
+format.name$ -- 54
+if$ -- 998
 int.to.chr$ -- 0
-int.to.str$ -- 9
-missing$ -- 10
-newline$ -- 48
-num.names$ -- 18
-pop$ -- 46
+int.to.str$ -- 14
+missing$ -- 14
+newline$ -- 72
+num.names$ -- 28
+pop$ -- 82
 preamble$ -- 1
-purify$ -- 35
+purify$ -- 55
 quote$ -- 0
-skip$ -- 91
+skip$ -- 146
 stack$ -- 0
-substring$ -- 200
-swap$ -- 31
-text.length$ -- 2
+substring$ -- 297
+swap$ -- 52
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 34
-warning$ -- 0
-while$ -- 31
-width$ -- 10
-write$ -- 100
+type$ -- 54
+warning$ -- 1
+while$ -- 49
+width$ -- 16
+write$ -- 152
+(There was 1 warning)
