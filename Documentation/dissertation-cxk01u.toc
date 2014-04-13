@@ -60,6 +60,6 @@
 \contentsline {subsection}{\numberline {8.1}Type-2 Fuzzy Logic}{23}{subsection.8.1}
 \contentsline {subsection}{\numberline {8.2}Backend Interoperability}{23}{subsection.8.2}
 \contentsline {subsection}{\numberline {8.3}Customisations}{23}{subsection.8.3}
-\contentsline {section}{\numberline {9}Summary}{23}{section.9}
+\contentsline {section}{\numberline {9}Summary}{24}{section.9}
 \contentsline {section}{\numberline {A}User Evaluation Test Instructions}{1}{appendix.A}
 \contentsfinish 
