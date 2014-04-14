@@ -1,4 +1,9 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{albertos1998fuzzy}
+Pedro Albertos and Antonio Sala.
+\newblock Fuzzy logic controllers, advantages and drawbacks.
+\newblock {\em IEEE transactions on control system technology}, 1998.
 
 \bibitem{castillo2003type}
 Oscar Castillo and Patricia Melin.
@@ -6,12 +11,65 @@ Oscar Castillo and Patricia Melin.
 \newblock In {\em Soft Computing and Fractal Theory for Intelligent
   Manufacturing}, pages 33--46. Springer, 2003.
 
+\bibitem{cyr2010colour}
+Dianne Cyr, Milena Head, and Hector Larios.
+\newblock Colour appeal in website design within and across cultures: A
+  multi-method evaluation.
+\newblock {\em International journal of human-computer studies}, 68(1):1--21,
+  2010.
+
+\bibitem{depot2014clutter}
+Webdesigner Depot.
+\newblock Interface design technique to simplify and declutter your interfaces,
+  2014.
+
 \bibitem{fan2010factors}
 Wei-Shang Fan and Ming-Chun Tsai.
 \newblock Factors driving website success--the key role of internet
   customisation and the influence of website design quality and internet
   marketing strategy.
 \newblock {\em Total Quality Management}, 21(11):1141--1159, 2010.
+
+\bibitem{golombisky2013white}
+Kim Golombisky and Rebecca Hagen.
+\newblock {\em White Space is Not Your Enemy: A Beginner's Guide to
+  Communicating Visually Through Graphic, Web \& Multimedia Design}.
+\newblock CRC Press, 2013.
+
+\bibitem{gross2013bootstrap}
+Joshua Gross.
+\newblock Please stop using twitter bootstrap, 2013.
+
+\bibitem{huang2010parallel}
+Jeff Huang and Ryen~W White.
+\newblock Parallel browsing behavior on the web.
+\newblock In {\em Proceedings of the 21st ACM conference on Hypertext and
+  Hypermedia}, pages 13--18. ACM, 2010.
+
+\bibitem{kralisch2005impact}
+Anett Kralisch, Martin Eisend, and Bettina Berendt.
+\newblock Impact of culture on website navigation behaviour.
+\newblock In {\em Proc. HCI-International}, 2005.
+
+\bibitem{lane2005hidden}
+David~M Lane, H~Albert Napier, S~Camille Peres, and Anik{\'o} S{\'a}ndor.
+\newblock Hidden costs of graphical user interfaces: Failure to make the
+  transition from menus and icon toolbars to keyboard shortcuts.
+\newblock {\em International Journal of Human-Computer Interaction},
+  18(2):133--144, 2005.
+
+\bibitem{lazar2006workplace}
+Jonathan Lazar, Adam Jones, and Ben Shneiderman.
+\newblock Workplace user frustration with computers: An exploratory
+  investigation of the causes and severity.
+\newblock {\em Behaviour \& Information Technology}, 25(03):239--251, 2006.
+
+\bibitem{mccarthy2004could}
+John~D McCarthy, M~Angela Sasse, and Jens Riegelsberger.
+\newblock Could i have the menu please? an eye tracking study of design
+  conventions.
+\newblock In {\em People and computers XVII—Designing for society}, pages
+  401--414. Springer, 2004.
 
 \bibitem{mendel2003type}
 Jerry~M Mendel.
@@ -23,10 +81,67 @@ Jerry~M Mendel and RI~Bob John.
 \newblock Type-2 fuzzy sets made simple.
 \newblock {\em Fuzzy Systems, IEEE Transactions on}, 10(2):117--127, 2002.
 
+\bibitem{miller1956magical}
+George~A Miller.
+\newblock The magical number seven, plus or minus two: some limits on our
+  capacity for processing information.
+\newblock {\em Psychological review}, 63(2):81, 1956.
+
+\bibitem{nielsen1992usability}
+Jakob Nielsen.
+\newblock The usability engineering life cycle.
+\newblock {\em Computer}, 25(3):12--22, 1992.
+
+\bibitem{nielsen2005ten}
+Jakob Nielsen.
+\newblock Ten usability heuristics.
+\newblock 2005.
+
+\bibitem{nielsen1990heuristic}
+Jakob Nielsen and Rolf Molich.
+\newblock Heuristic evaluation of user interfaces.
+\newblock In {\em Proceedings of the SIGCHI conference on Human factors in
+  computing systems}, pages 249--256. ACM, 1990.
+
+\bibitem{partarakis2009user}
+Nikolaos Partarakis, Constantina Doulgeraki, Asterios Leonidis, Margherita
+  Antona, and Constantine Stephanidis.
+\newblock User interface adaptation of web-based services on the semantic web.
+\newblock In {\em Universal Access in Human-Computer Interaction. Intelligent
+  and Ubiquitous Interaction Environments}, pages 711--719. Springer, 2009.
+
+\bibitem{shneiderman2005designing}
+Shneiderman~Ben Shneiderman and Catherine Plaisant.
+\newblock Designing the user interface 4 th edition.
+\newblock {\em ed: Pearson Addison Wesley, USA}, 2005.
+
+\bibitem{sweller1994cognitive}
+John Sweller.
+\newblock Cognitive load theory, learning difficulty, and instructional design.
+\newblock {\em Learning and instruction}, 4(4):295--312, 1994.
+
 \bibitem{wagner2013juzzy}
 Christian Wagner.
 \newblock Juzzy-a java based toolkit for type-2 fuzzy logic.
 \newblock In {\em Advances in Type-2 Fuzzy Logic Systems (T2FUZZ), 2013 IEEE
   Symposium on}, pages 45--52. IEEE, 2013.
+
+\bibitem{wagner2011fuzzy}
+Christian Wagner, Simon Miller, and Jonathan~M Garibaldi.
+\newblock A fuzzy toolbox for the r programming language.
+\newblock In {\em Fuzzy Systems (FUZZ), 2011 IEEE International Conference on},
+  pages 1185--1192. IEEE, 2011.
+
+\bibitem{zadeh1965fuzzy}
+Lotfi~A Zadeh.
+\newblock Fuzzy sets.
+\newblock {\em Information and control}, 8(3):338--353, 1965.
+
+\bibitem{zadeh1999computing}
+Lotfi~A Zadeh.
+\newblock From computing with numbers to computing with words. from
+  manipulation of measurements to manipulation of perceptions.
+\newblock {\em Circuits and Systems I: Fundamental Theory and Applications,
+  IEEE Transactions on}, 46(1):105--119, 1999.
 
 \end{thebibliography}
