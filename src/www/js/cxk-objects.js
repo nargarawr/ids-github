@@ -301,7 +301,7 @@ function systemVar(m_varName, divId, isInput){
 	
 		var addMFButton = document.createElement("button");
 		addMFButton.className = "btn variableButton smallIndent btn-primary";
-		addMFButton.appendChild(document.createTextNode("Add Function"));
+		addMFButton.appendChild(document.createTextNode("Add Membership Function"));
 		addMFButton.setAttribute("data-toggle","modal");
 		addMFButton.setAttribute("href","#myModal");
 		var d = "\"" + this.divId +"\", " + this.isInput;
