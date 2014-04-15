@@ -1,0 +1,14 @@
+\thispagestyle {empty}
+\contentsline {figure}{\numberline {1}{\ignorespaces A fuzzy set depicting ``height''\relax }}{3}{figure.caption.1}
+\contentsline {figure}{\numberline {2}{\ignorespaces The first iteration of the design of the input creation page\relax }}{13}{figure.caption.2}
+\contentsline {figure}{\numberline {3}{\ignorespaces The first iteration of the design of the rule creation page\relax }}{14}{figure.caption.3}
+\contentsline {figure}{\numberline {4}{\ignorespaces The second iteration of the design of the input creation page\relax }}{15}{figure.caption.4}
+\contentsline {figure}{\numberline {5}{\ignorespaces The second iteration of the design of the rule creation page\relax }}{16}{figure.caption.5}
+\contentsline {figure}{\numberline {6}{\ignorespaces An example of a rule table that would be displayed if the user had two inputs (heart rate and body temperature) and a single output (urgency)\relax }}{17}{figure.caption.6}
+\contentsline {figure}{\numberline {7}{\ignorespaces Expected path a user would take through the system\relax }}{19}{figure.caption.7}
+\contentsline {figure}{\numberline {8}{\ignorespaces Potential paths that can be taken through the system\relax }}{19}{figure.caption.8}
+\contentsline {figure}{\numberline {9}{\ignorespaces Interaction between the back end and front end of the system\relax }}{20}{figure.caption.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces Interaction between the front end of the system and interchangeable back ends\relax }}{23}{figure.caption.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Example of a possible way to display the fuzzy inference process\relax }}{24}{figure.caption.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces An example type-2 fuzzy set\relax }}{24}{figure.caption.12}
+\contentsfinish 

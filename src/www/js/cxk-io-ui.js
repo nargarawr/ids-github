@@ -242,8 +242,8 @@ function exportFile( filetype ){
 			subInputData.push({
 				Id:   key,
 				Name: inputDivs[key].varName,
-				Min:  inputDivs[key].rangeMin,
-				Max:  inputDivs[key].rangeMax,
+				Min:  parseInt(inputDivs[key].rangeMin),
+				Max:  parseInt(inputDivs[key].rangeMax),
 				Functions: mfDataMain
 			});
 			inputData.push(subInputData);

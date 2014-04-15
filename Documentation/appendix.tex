@@ -2,11 +2,93 @@
 \label{app-userEval}
 The purpose of this test is to construct the fuzzy logic tipper example, in three different software systems, so that the strengths and weaknesses of each of these systems can be identified. The tipper example is a simple fuzzy system that uses food quality (rated from 0 to 10) and service quality (rated from 0 to 10) as inputs, to determine how much of a tip should be left (between 0 and 30 percent). \ \\
 \ \\
-Please follow the instructions below, and do not hesitate to ask for help if you are stuck (this is not a test!)
+Please follow the instructions below, and do not hesitate to ask for help if you are stuck, this is an evaluation of the user interface, and not of you. After each step, please explain your thought process, and how you found the task.
 
 \begin{enumerate}
-\item test
+\item (\textbf{FuzzyToolkitUoN only}) Create a new \textbf{Fuzzy Inference System}
+\item Add a new \textbf{input variable}, called \textbf{Service}, with range \textbf{0} to \textbf{10}
+\item Add the following \textbf{membership functions} to the \textbf{Service} variable
+	\begin{enumerate}
+	\item A \textbf{Gaussian} function, named \textbf{Poor}, with parameters:\\
+	\begin{tabular}{ll}
+	Sigma 	& 1.5 \\
+	Mean	& 0   \\
+	Height	& 1   \\
+	\end{tabular}
+	\item A \textbf{Gaussian} function, named \textbf{Good}, with parameters:\\
+	\begin{tabular}{ll}
+	Sigma 	& 1.5 \\
+	Mean	& 5   \\
+	Height	& 1   \\
+	\end{tabular}	
+	\item A \textbf{Gaussian} function, named \textbf{Excellent}, with parameters:\\
+	\begin{tabular}{ll}
+	Sigma 	& 1.5 \\
+	Mean	& 10   \\
+	Height	& 1   \\
+	\end{tabular}	
+	\end{enumerate}
+\item Add a new \textbf{input variable}, called \textbf{Food}, with range \textbf{0} to \textbf{10}	
+\item Add the following \textbf{membership functions} to the \textbf{Food} variable
+	\begin{enumerate}
+	\item A \textbf{Trapezoidal} function, named \textbf{Rancid}, with parameters:\\
+	\begin{tabular}{ll}
+	Left Foot 		& 0		\\
+	Left Shoulder 	& 0		\\
+	Right Shoulder 	& 1		\\
+	Right Foot 		& 3		\\
+	Height			& 1   	\\
+	\end{tabular}
+	\item A \textbf{Trapezoidal} function, named \textbf{Delicious}, with parameters:\\
+	\begin{tabular}{ll}
+	Left Foot 		& 7		\\
+	Left Shoulder 	& 9		\\
+	Right Shoulder 	& 10	\\
+	Right Foot 		& 10	\\
+	Height			& 1   	\\
+	\end{tabular}		
+	\end{enumerate}
+\newpage 
+\item Add a new \textbf{output variable}, called \textbf{Tip}, with range \textbf{0} to \textbf{30}	
+\item Add the following \textbf{membership functions} to the \textbf{Tip} variable
+	\begin{enumerate}
+	\item A \textbf{Triangular} function, named \textbf{Cheap}, with parameters:\\
+	\begin{tabular}{ll}
+	Left  			& 0		\\
+	Mean 			& 5		\\
+	Right 			& 10		\\
+	Height			& 1   	\\
+	\end{tabular}
+	\item A \textbf{Triangular} function, named \textbf{Average}, with parameters:\\
+	\begin{tabular}{ll}
+	Left  			& 10		\\
+	Mean 			& 15		\\
+	Right 			& 20		\\
+	Height			& 1   	\\
+	\end{tabular}	
+	\item A \textbf{Triangular} function, named \textbf{Generous}, with parameters:\\
+	\begin{tabular}{ll}
+	Left  			& 20		\\
+	Mean 			& 25		\\
+	Right 			& 30		\\
+	Height			& 1   	\\
+	\end{tabular}			
+	\end{enumerate}	
+\item Add the following \textbf{rules} to the system
+	\begin{enumerate}
+	\item IF Service is Poor OR Food is Rancid, Then Tip is Cheap (Weight 1)
+	\item IF Service is Average, Then Tip is Average (Weight 1)
+	\item IF Service is Excellent OR Food is Delicious, Then Tip is Generous (Weight 1)
+	\end{enumerate}
+\item (\textbf{FuzzyToolkitUoN, and o-Fuzz only}) Please evaluate the following values:
+	\begin{enumerate}
+	\item Service score of 0, Food score of 0
+	\item Service score of 10, Food score of 10
+	\end{enumerate}
+\item Please change the \textbf{defuzzification method}	of the system to \textbf{Bisector}
+\item \textbf{Save} the inference system as a file to your hard drive
+\item Now, read that same file back into the system
 \end{enumerate}
 
-
+\newpage
 \section{Table of Results of User Evaluation}

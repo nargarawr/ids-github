@@ -214,8 +214,6 @@ shinyServer(function(input, output) {
 
       }
       
-
-
       # Return the FIS object to be evaluated!
       FIS
   }

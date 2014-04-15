@@ -1,5 +1,5 @@
 \section{Software Implementation}
-
+In this section, the actual implementation of the software has been detailed, including: what tools were used in the implementation, how the software was implemented, and any issues that were encountered during the implementation process.
 %{\color{red}
 
 %\begin{enumerate}
@@ -17,14 +17,56 @@
 
 \subsection{Key Implementation Decisions}
 \label{sec:kid}
-%{\color{red} A list of the tools and platforms that were used in the project, including justification for their inclusion. (To cover: Languages used, Web technologies used, Shiny, Bootstrap, JQuery) - using an old version of bootstrap because i was more familiar with it and work had already begun}
+As detailed in section \ref{sec:pat}, there were many different potential platforms and tools can could have been used in the implementation of the project. In this section, the final decision for which tool to use for each distinct section of the project have been detailed, along with their justifications.
+
+\tocless\subsubsection{System Back End - R-Shiny}
+R-Shiny is a new, up and coming R Package, that allows for the creation of web applications using the R programming language. The main reason that R-Shiny was selected as the back end was that it would be able to use the FuzzyToolkitUoN R package, and access all the fuzzy logic inferencing tools that were contained within it. R-Shiny was chosen over R-Node due to, at the time of implementation, R-Node not having a working website, and thus not ability to actually download it; which is not the sign of a well-maintained tool. Node.js was not chosen as this would require a brand new inference engine to be written in JavaScript, which would have taken a considerable length of time, and may not have been completed during the life time of the project.\ \\
+\ \\
+Unfortunately, as detailed in section \ref{sec:pe}, this may have not been the greatest choice, as some issues were discovered with R-Shiny. However, the ability to use the FuzzyToolkitUoN inference system was a vital part of the project, and as R-Shiny continues to be developed, hopefully these issues will be resolved.
+
+\tocless\subsubsection{Front End Programming Language - JavaScript}
+JavaScript is a client-sided programming language used to dynamically alter the content of an HTML document. This the perfect tool to be used, as it has the ability to directly and easily manipulate the content of a web page, and thus dynamic interfaces can be constructed with ease. It also fulfils the goal of the system being easy to access, and use, as the user is not required to install any extra software, to begin using the system (like they would have to have done, if the other alternative, Adobe Flash, was used instead). Using JavaScript also means that other JavaScript libraries could be used within the system, and thus greater functionality provided. One other JavaScript library heavily used within the system is JQuery, which is a fast, small, and feature rich JavaScript library, that greatly simplifies document traversal and manipulation, and event handling.
+
+\tocless\subsubsection{Front End Design Framework - Twitter's Bootstrap}
+Despite complaints that Bootstrap is overused, it is still by far the best front end design framework available. This is due to ease of use, huge number of UI elements to choose from, and extensive documentation. Many of Bootstrap's feature were included in the implementation of the project, to heighten the user experience. This included the use of modal windows to reduce on-screen clutter, coloured buttons to dictate functionality, and tabbed panes, to help split the system into smaller segments. Due to the adoption of Bootstrap, the system is also fully responsive. This means that the system automatically scales to work on any screen resolution, from large, to small. This makes the system much more accessible to all users, and no strange UI bugs will occur if the user is using a different screen resolution to the one the system was designed on. \ \\
+\ \\
+The only negative of using Bootstrap is that the modal window class does not function correctly when viewed on a mobile device. However, this is not a huge issue, as the system isn't truly designed to work on mobile devices, as this is an impractical interface for designing a fuzzy system. 
+
+\tocless\subsubsection{Graphing Tools - Google Charts/Directly from R}
+Of the three potential candidates for graphic tools, Flot, was ruled out, due to it being difficult to use, and having a limited number of graph types available. The system instead utilised Google Charts for the majority of chart drawing. This is because Google Charts provide aesthetically pleasing, interactive graphs, in a large number of formats, and has extensive documentation. The graphs drawn to represent the fuzzy sets in the membership function creator, and those in the variable creator are all drawn using Google Charts.\ \\
+\ \\
+Unfortunately, Google Charts does not support the drawing of three dimensional graphs, whereas FuzzyToolkitUoN does. When a fuzzy system of two inputs, and one outputs is defined (a common set up for type-1 systems), a three dimensional surface plot of the mapping between the two is an extremely effective way of visualising the system. For this reason, on the evaluation page, if the user has specified a system of two inputs and a single output, a surface plot will be displayed, directly from R.
+
+\subsection{Detailed Description of the User Interface}
+% Annotated screen shot of each segment of the system, why each thing is positioned as it is, why it's good, etc etc. What could be improved?
+
+\begin{figure}[ht!]
+	\begin{center}
+%		\includegraphics[width=0.6\textwidth]{images/}
+	\end{center}
+	\caption{{\color{red} some caption}}
+%	\label{}
+\end{figure}
 
 
-\subsection{Detailed Description of the Implemented System}
-%{\color{red} A detailed description of the system, including how the individual sections were implemented, how they interact, strengths and weaknesses of individual components. Talk about the system as a whole as well, covering how the parts interacted and how well they did so. buggy as fuck r :(}
 
+\subsection{Implementation of System Components}
+\subsubsection{Web Front End}
+% how it was done, good and bad things
+\subsubsection{R-Shiny Back End}
+% how it was done, good and bad things 
+% buggy as fuck R
+\subsubsection{The System as a Whole}
+% how interaction occurs, good and bad things
 
 \subsection{Problems Encountered}
-%{\color{red} 
-%A description of any major problems encountered during the implementation of the project, causes of these, and their resolutions - if there were any. Talk about the impact of the problems on the project as a whole, and how this potentially affected it (like changes to designs, etc) - SHINY BEING A MASSIVE CUNT, but fixing it! confusion due to such a large code base
-%}
+\label{sec:pe}
+Unfortunately, as with most software systems, the implementation stage of this project was not without it's problems; the first of these being with the back end tool that was chosen, R-Shiny. As R-Shiny is a relatively new R Package, support for it is limited. This means that any issues that arise whilst attempting to use it, may not be documented, and a solution not found. The main issue that arose in this particular project, was the difficulty of creating a dynamic user interface, that may interact with R-Shiny. Normally, R-Shiny expects a static user interface, which allow for the server to index specific UI elements, and return their value. Unfortunately, that would not work for this project, as lots of dynamic UI elements were necessary, so that the user could construct the system exactly as they required. This meant it was impossible to list all UI elements in the server, as there could be any number. This problem was not discovered until a great deal of work had been carried out on the front end side, and at a point in the project life time at which restructuring was simply not possible. \ \\
+\ \\
+A solution to this problem was eventually arrived at, although it was not ideal. Instead of attempting to return the value of every single UI element that could possibly be created in the system, a hidden call-back UI element was included. This call-back UI element was hidden from the user, but would be populated, using JavaScript to loop through all UI elements, with details of the system the user had created whenever server side interaction was required. This meant that the server was required to parse the input it received, but this was a trivial task.\ \\
+\ \\
+Another issue that arose multiple times throughout the project, was the difficulty of working with such a large code base. By the end of the project, there was approximately 4,000 lines of code (split between R, and JavaScript), across 10 individual files. This could make debugging sometimes extremely difficult, as there was often a chain of function calls that would pass through multiple files, making pin-pointing exactly where errors occurred very troublesome.\ \\
+\ \\
+Luckily, the Google Chrome JavaScript debugging functionality is very powerful, and would highlight the file that the error originated in. This meant that tracing the calls backward was much simpler, and errors be fixed much quicker. Google Chrome also allowed for the inspecting of variables being passed throughout the system, which meant values could be observed, and checked for validity at any point. To further alleviate the difficulties of working with such a large code base, every file had a list of functions present in it, at the top, so that offending functions could be found quickly. Further to this, every function had a JavaDoc style comment accompanying them, explaining what they did, what parameters they expected (including their type), and what they would return (if anything).\ \\
+\ \\
+The final major issue that was encountered during the life time of the project, was the sub-standard implementation of FuzzyToolkitUoN, which was the back end for the system. Many bugs that are present in the system, are a direct result of bugs that are present in FuzzyToolkitUoN, and are thus not a controllable factor, and should not reflect poorly on the system itself. As a result of this, there was nothing that could be done to rectify these errors. The only thing that could be done, was to put error messages on the front end side of the system, that would explain issues of FuzzyToolkitUoN. Hopefully, as further work is completed on FuzzyToolkitUoN, some of these issues will be resolved, and the usability and robustness of the system will be increased considerably. In section \ref{sec:bei}, the potential for back end interchangeability is discussed, by using an API layer between the front end and the back end, which would have been a potential solution for this problem, if there had been enough time to do so. 

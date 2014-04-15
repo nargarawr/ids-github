@@ -20,21 +20,25 @@
 \BOOKMARK [2][-]{subsection.5.3}{Internal Design}{section.5}% 20
 \BOOKMARK [1][-]{section.6}{Software Implementation}{}% 21
 \BOOKMARK [2][-]{subsection.6.1}{Key Implementation Decisions}{section.6}% 22
-\BOOKMARK [2][-]{subsection.6.2}{Detailed Description of the Implemented System}{section.6}% 23
-\BOOKMARK [2][-]{subsection.6.3}{Problems Encountered}{section.6}% 24
-\BOOKMARK [1][-]{section.7}{Evaluation of the Project}{}% 25
-\BOOKMARK [2][-]{subsection.7.1}{Functionality Testing}{section.7}% 26
-\BOOKMARK [2][-]{subsection.7.2}{User Feedback Testing}{section.7}% 27
-\BOOKMARK [3][-]{subsubsection.7.2.1}{Evaluation of FuzzyToolkitUoN}{subsection.7.2}% 28
-\BOOKMARK [3][-]{subsubsection.7.2.2}{Evaluation of MATLAB Fuzzy Toolbox}{subsection.7.2}% 29
-\BOOKMARK [3][-]{subsubsection.7.2.3}{Evaluation of My Project}{subsection.7.2}% 30
-\BOOKMARK [3][-]{subsubsection.7.2.4}{Summary}{subsection.7.2}% 31
-\BOOKMARK [2][-]{subsection.7.3}{Successes and Limitations of the Project}{section.7}% 32
-\BOOKMARK [1][-]{section.8}{Further Work}{}% 33
-\BOOKMARK [2][-]{subsection.8.1}{Back end Interoperability}{section.8}% 34
-\BOOKMARK [2][-]{subsection.8.2}{More Usability Improvements}{section.8}% 35
-\BOOKMARK [2][-]{subsection.8.3}{Type-2 Fuzzy Logic Support}{section.8}% 36
-\BOOKMARK [2][-]{subsection.8.4}{Customisations}{section.8}% 37
-\BOOKMARK [1][-]{section.9}{Summary}{}% 38
-\BOOKMARK [1][-]{appendix.A}{User Evaluation Test Instructions}{}% 39
-\BOOKMARK [1][-]{appendix.B}{Table of Results of User Evaluation}{}% 40
+\BOOKMARK [2][-]{subsection.6.2}{Detailed Description of the User Interface}{section.6}% 23
+\BOOKMARK [2][-]{subsection.6.3}{Implementation of System Components}{section.6}% 24
+\BOOKMARK [3][-]{subsubsection.6.3.1}{Web Front End}{subsection.6.3}% 25
+\BOOKMARK [3][-]{subsubsection.6.3.2}{R-Shiny Back End}{subsection.6.3}% 26
+\BOOKMARK [3][-]{subsubsection.6.3.3}{The System as a Whole}{subsection.6.3}% 27
+\BOOKMARK [2][-]{subsection.6.4}{Problems Encountered}{section.6}% 28
+\BOOKMARK [1][-]{section.7}{Evaluation of the Project}{}% 29
+\BOOKMARK [2][-]{subsection.7.1}{Functionality Testing}{section.7}% 30
+\BOOKMARK [2][-]{subsection.7.2}{User Feedback Testing}{section.7}% 31
+\BOOKMARK [3][-]{subsubsection.7.2.1}{Evaluation of FuzzyToolkitUoN}{subsection.7.2}% 32
+\BOOKMARK [3][-]{subsubsection.7.2.2}{Evaluation of MATLAB Fuzzy Toolbox}{subsection.7.2}% 33
+\BOOKMARK [3][-]{subsubsection.7.2.3}{Evaluation of My Project}{subsection.7.2}% 34
+\BOOKMARK [3][-]{subsubsection.7.2.4}{Summary}{subsection.7.2}% 35
+\BOOKMARK [2][-]{subsection.7.3}{Successes and Limitations of the Project}{section.7}% 36
+\BOOKMARK [1][-]{section.8}{Further Work}{}% 37
+\BOOKMARK [2][-]{subsection.8.1}{Back end Interoperability}{section.8}% 38
+\BOOKMARK [2][-]{subsection.8.2}{More Usability Improvements}{section.8}% 39
+\BOOKMARK [2][-]{subsection.8.3}{Type-2 Fuzzy Logic Support}{section.8}% 40
+\BOOKMARK [2][-]{subsection.8.4}{Customisations}{section.8}% 41
+\BOOKMARK [1][-]{section.9}{Summary}{}% 42
+\BOOKMARK [1][-]{appendix.A}{User Evaluation Test Instructions}{}% 43
+\BOOKMARK [1][-]{appendix.B}{Table of Results of User Evaluation}{}% 44

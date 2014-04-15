@@ -31,7 +31,6 @@
 \usepackage{listings}
 \usepackage{color}
 \usepackage{xcolor}
-%\usepackage{ulem}
 
 \hypersetup{
     unicode=false,
@@ -51,7 +50,10 @@
 }
 
 \newcommand{\paperTitleShort}{Web-based Fuzzy Logic Visualisation and Inferencing}
-\newcommand{\paperTitle}{Improving usability and accessibility of Fuzzy Logic software systems with a web-based approach}
+\newcommand{\paperTitle}{Improving the usability and accessibility of Fuzzy Logic software systems with a web-based approach}
+
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
 
 \setlength{\parskip}{0.25em}
 
@@ -98,6 +100,7 @@
 \pagestyle{empty}
 \newgeometry{left=99pt, right=99pt, top = 75pt, bottom=75pt}
 \input{sections/titlepage}
+\cleardoublepage
 
 %
 %
@@ -105,14 +108,13 @@
 %
 %
 
-\newpage
-\begin{abstract}
-This project was both a practical implementation of an online fuzzy logic software system, and a research piece into the optimal design of a fuzzy logic system, and how fuzzy logic can be best introduced to novices of the field. Specifically, I implemented an online system for the creation and evaluation of fuzzy logic sets and systems, using mostly JavaScript and JQuery, with an R backend to deal with the processing requirements of fuzzy logic.
-{\color{red}
-In the end, I found out that... (using facts and figures)
-}
-\end{abstract}
 
+\begin{abstract}
+This project was both a practical implementation of an online fuzzy logic software system, and a research piece into the optimal design of a fuzzy logic system, and how fuzzy logic can be best introduced to novices of the field. This report details the implemented of an online system for the creation and evaluation of fuzzy logic sets and systems, using mostly JavaScript and JQuery, with an R back end to deal with the processing requirements of fuzzy logic.\ \\
+\ \\
+In the end, it was found that the majority of participants much preferred a graphical user interface when working with fuzzy sets and systems. This is due to the ability to easily visualise the sets, and the structure of the system being produced, along with how these interfaces can be designed to aid the user. Specifically the advantages of the system presented in this report were the clean uncluttered interface, and the ay the tasks to be completed were structured in a logical order but still allowing the user full control over their experience.
+\end{abstract}
+\cleardoublepage
 
 %
 %
@@ -120,10 +122,13 @@ In the end, I found out that... (using facts and figures)
 %
 %
 
-\newpage
+
+
+
 \newgeometry{left=3cm, right=3cm, top = 75pt, bottom=75pt}
 \addtocontents{toc}{\protect\thispagestyle{empty}}
 \tableofcontents
+\cleardoublepage
 
 %
 %
