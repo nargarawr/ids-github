@@ -200,38 +200,38 @@ function exportFile( filetype ){
 					mfData.push({
 						Name  : inputDivs[key].memFuncs[key2].funName,
 						Type  : inputDivs[key].memFuncs[key2].funType,
-						Sigma : inputDivs[key].memFuncs[key2].paramSigma,
-						Mean  : inputDivs[key].memFuncs[key2].paramMean,
-						Height: inputDivs[key].memFuncs[key2].paramHeight		
+						Sigma : parseFloat(inputDivs[key].memFuncs[key2].paramSigma),
+						Mean  : parseFloat(inputDivs[key].memFuncs[key2].paramMean),
+						Height: parseFloat(inputDivs[key].memFuncs[key2].paramHeight)		
 					});
 				} else if ( inputDivs[key].memFuncs[key2].funType == "ga2" ) {
 					mfData.push({
 						Name       : inputDivs[key].memFuncs[key2].funName,
 						Type       : inputDivs[key].memFuncs[key2].funType,						
-						LeftSigma  : inputDivs[key].memFuncs[key2].paramLeftSigma,
-						LeftMean   : inputDivs[key].memFuncs[key2].paramLeftMean,
-						RightSigma : inputDivs[key].memFuncs[key2].paramRightSigma,
-						RightMean  : inputDivs[key].memFuncs[key2].paramRightMean,
-						Height: inputDivs[key].memFuncs[key2].paramHeight		
+						LeftSigma  : parseFloat(inputDivs[key].memFuncs[key2].paramLeftSigma),
+						LeftMean   : parseFloat(inputDivs[key].memFuncs[key2].paramLeftMean),
+						RightSigma : parseFloat(inputDivs[key].memFuncs[key2].paramRightSigma),
+						RightMean  : parseFloat(inputDivs[key].memFuncs[key2].paramRightMean),
+						Height: parseFloat(inputDivs[key].memFuncs[key2].paramHeight)		
 					});
 				} else if ( inputDivs[key].memFuncs[key2].funType == "trp" ) {
 					mfData.push({
 						Name          : inputDivs[key].memFuncs[key2].funName,
 						Type          : inputDivs[key].memFuncs[key2].funType,						
-						LeftFoot      : inputDivs[key].memFuncs[key2].paramLeftFoot,
-						LeftShoulder  : inputDivs[key].memFuncs[key2].paramLeftShoulder,
-						RightShoulder : inputDivs[key].memFuncs[key2].paramRightShoulder,
-						RightFoot     : inputDivs[key].memFuncs[key2].paramRightFoot,	
-						Height: inputDivs[key].memFuncs[key2].paramHeight		
+						LeftFoot      : parseFloat(inputDivs[key].memFuncs[key2].paramLeftFoot),
+						LeftShoulder  : parseFloat(inputDivs[key].memFuncs[key2].paramLeftShoulder),
+						RightShoulder : parseFloat(inputDivs[key].memFuncs[key2].paramRightShoulder),
+						RightFoot     : parseFloat(inputDivs[key].memFuncs[key2].paramRightFoot),	
+						Height: parseFloat(inputDivs[key].memFuncs[key2].paramHeight)
 					});
 				} else if ( inputDivs[key].memFuncs[key2].funType == "tri" ) {
 					mfData.push({
 						Name  : inputDivs[key].memFuncs[key2].funName,
 						Type  : inputDivs[key].memFuncs[key2].funType,						
-						Left  : inputDivs[key].memFuncs[key2].paramLeft,
-						Mean  : inputDivs[key].memFuncs[key2].paramMean,
-						Right : inputDivs[key].memFuncs[key2].paramRight,
-						Height: inputDivs[key].memFuncs[key2].paramHeight						
+						Left  : parseFloat(inputDivs[key].memFuncs[key2].paramLeft),
+						Mean  : parseFloat(inputDivs[key].memFuncs[key2].paramMean),
+						Right : parseFloat(inputDivs[key].memFuncs[key2].paramRight),
+						Height: parseFloat(inputDivs[key].memFuncs[key2].paramHeight)						
 					});
 				}
 
@@ -259,38 +259,38 @@ function exportFile( filetype ){
 					mfData.push({
 						Name  : outputDivs[key].memFuncs[key2].funName,
 						Type  : outputDivs[key].memFuncs[key2].funType,
-						Sigma : outputDivs[key].memFuncs[key2].paramSigma,
-						Mean  : outputDivs[key].memFuncs[key2].paramMean,
-						Height: outputDivs[key].memFuncs[key2].paramHeight		
+						Sigma : parseFloat(outputDivs[key].memFuncs[key2].paramSigma),
+						Mean  : parseFloat(outputDivs[key].memFuncs[key2].paramMean),
+						Height: parseFloat(outputDivs[key].memFuncs[key2].paramHeight)		
 					});
 				} else if ( outputDivs[key].memFuncs[key2].funType == "ga2" ) {
 					mfData.push({
 						Name       : outputDivs[key].memFuncs[key2].funName,
 						Type       : outputDivs[key].memFuncs[key2].funType,						
-						LeftSigma  : outputDivs[key].memFuncs[key2].paramLeftSigma,
-						LeftMean   : outputDivs[key].memFuncs[key2].paramLeftMean,
-						RightSigma : outputDivs[key].memFuncs[key2].paramRightSigma,
-						RightMean  : outputDivs[key].memFuncs[key2].paramRightMean,
-						Height: outputDivs[key].memFuncs[key2].paramHeight		
+						LeftSigma  : parseFloat(outputDivs[key].memFuncs[key2].paramLeftSigma),
+						LeftMean   : parseFloat(outputDivs[key].memFuncs[key2].paramLeftMean),
+						RightSigma : parseFloat(outputDivs[key].memFuncs[key2].paramRightSigma),
+						RightMean  : parseFloat(outputDivs[key].memFuncs[key2].paramRightMean),
+						Height: parseFloat(outputDivs[key].memFuncs[key2].paramHeight)		
 					});
 				} else if ( outputDivs[key].memFuncs[key2].funType == "trp" ) {
 					mfData.push({
 						Name          : outputDivs[key].memFuncs[key2].funName,
 						Type          : outputDivs[key].memFuncs[key2].funType,						
-						LeftFoot      : outputDivs[key].memFuncs[key2].paramLeftFoot,
-						LeftShoulder  : outputDivs[key].memFuncs[key2].paramLeftShoulder,
-						RightShoulder : outputDivs[key].memFuncs[key2].paramRightShoulder,
-						RightFoot     : outputDivs[key].memFuncs[key2].paramRightFoot,	
-						Height: outputDivs[key].memFuncs[key2].paramHeight		
+						LeftFoot      : parseFloat(outputDivs[key].memFuncs[key2].paramLeftFoot),
+						LeftShoulder  : parseFloat(outputDivs[key].memFuncs[key2].paramLeftShoulder),
+						RightShoulder : parseFloat(outputDivs[key].memFuncs[key2].paramRightShoulder),
+						RightFoot     : parseFloat(outputDivs[key].memFuncs[key2].paramRightFoot),	
+						Height: parseFloat(outputDivs[key].memFuncs[key2].paramHeight)
 					});
 				} else if ( outputDivs[key].memFuncs[key2].funType == "tri" ) {
 					mfData.push({
 						Name  : outputDivs[key].memFuncs[key2].funName,
 						Type  : outputDivs[key].memFuncs[key2].funType,						
-						Left  : outputDivs[key].memFuncs[key2].paramLeft,
-						Mean  : outputDivs[key].memFuncs[key2].paramMean,
-						Right : outputDivs[key].memFuncs[key2].paramRight,
-						Height: outputDivs[key].memFuncs[key2].paramHeight						
+						Left  : parseFloat(outputDivs[key].memFuncs[key2].paramLeft),
+						Mean  : parseFloat(outputDivs[key].memFuncs[key2].paramMean),
+						Right : parseFloat(outputDivs[key].memFuncs[key2].paramRight),
+						Height: parseFloat(outputDivs[key].memFuncs[key2].paramHeight)						
 					});
 				}
 
@@ -301,8 +301,8 @@ function exportFile( filetype ){
 			suboutputData.push({
 				Id:   key,
 				Name: outputDivs[key].varName,
-				Min:  outputDivs[key].rangeMin,
-				Max:  outputDivs[key].rangeMax,
+				Min:  parseInt(outputDivs[key].rangeMin),
+				Max:  parseInt(outputDivs[key].rangeMax),
 				Functions: mfDataMain
 			});
 			outputData.push(suboutputData);
@@ -317,7 +317,7 @@ function exportFile( filetype ){
 				ruleInputData.push({
 					Variable : r.inputList[key2].leftEl,
 					Term     : r.inputList[key2].rightEl,
-					Negated  : r.inputList[key2].negated
+					Negated  : (r.inputList[key2].negated == 'true')
 				});
 			}
 			ruleOutputData = [];
@@ -325,7 +325,7 @@ function exportFile( filetype ){
 				ruleOutputData.push({
 					Variable : r.outputList[key2].leftEl,
 					Term     : r.outputList[key2].rightEl,
-					Negated  : r.outputList[key2].negated					
+					Negated  : (r.outputList[key2].negated == 'true')				
 				});
 			}
 
@@ -334,7 +334,7 @@ function exportFile( filetype ){
 				Inputs     : ruleInputData,
 				Outputs    : ruleOutputData,
 				Connective : r.connective,
-				Weight     : r.weight
+				Weight     : parseFloat(r.weight)
 			});
 			ruleData.push(subRuleData);
 		}
@@ -965,7 +965,7 @@ function loadJSONFile ( txt ) {
 		$.each ( value[0].Inputs, function ( in_index, in_value) {
 			var rule_var = (JSON.stringify(in_value.Variable).replace(/"/g, ""))
 			var rule_term = (JSON.stringify(in_value.Term).replace(/"/g, ""))
-			var rule_negated = (JSON.stringify(in_value.Negated));
+			var rule_negated = (JSON.stringify(in_value.Negated)) == 'true';
 
 			if ( typeof(rule_var) == "undefined" || typeof(rule_term) == "undefined" || typeof(rule_negated) == "undefined" ){
 				alert("One of your rules is invalid")
@@ -978,7 +978,7 @@ function loadJSONFile ( txt ) {
 		$.each ( value[0].Outputs, function ( out_index, out_value) {
 			var rule_var = (JSON.stringify(out_value.Variable).replace(/"/g, ""))	
 			var rule_term = (JSON.stringify(out_value.Term).replace(/"/g, ""))
-			var rule_negated = (JSON.stringify(out_value.Negated));
+			var rule_negated = (JSON.stringify(out_value.Negated))  == 'true';
 
 			if ( typeof(rule_var) == "undefined" || typeof(rule_term) == "undefined" || typeof(rule_negated) == "undefined" ){
 				alert("One of your rules is invalid")
