@@ -26,7 +26,7 @@ The first of these, noted by a handful of the participants with a high level of 
 \ \\
 This leads onto the next possible improvement, of allowing more keyboard short cuts throughout the system. A good interface should be easy for novices to learn (which the results of the user feedback clearly indicate is true for this system), and efficient for experts to use. It has been found that, whilst most users do not use keyboard short cuts, they greatly increase the speed and efficient that tasks can be performed within a software system \cite{lane2005hidden}. Currently, the user is required to use the mouse for the majority of the system, which is much slower than a keyboard could be, once the user had mastered the keyboard short cuts.\ \\
 \ \\
-The final improvement that could be made, which would be useful for those wishing to learn how fuzzy logic works and for debugging purposes, would be the implementation of more visualisations of the inference process. Fuzzy inference is very easily representable graphically, and a display of these graphs on the evaluation page would be a great way for the user to learn how the inference process works so they could tweak their system accordingly, and gain a better understand of fuzzy logic as a whole. A mock up of how this could look is displayed in figure \ref{fig:fw-inf}.
+Another improvement that could be made, which would be useful for those wishing to learn how fuzzy logic works and for debugging purposes, would be the implementation of more visualisations of the inference process. Fuzzy inference is very easily representable graphically, and a display of these graphs on the evaluation page would be a great way for the user to learn how the inference process works so they could tweak their system accordingly, and gain a better understand of fuzzy logic as a whole. A mock up of how this could look is displayed in figure \ref{fig:fw-inf}.
 
 \begin{figure}[ht!]
 	\begin{center}
@@ -38,10 +38,12 @@ The final improvement that could be made, which would be useful for those wishin
 	\vspace{-1mm}
 \end{figure}
 
+\noindent
+The final improvement that could be made, would be the adoption of cookies within the system. Whilst this would present some security issues for the user, and would require a cookie agreement policy to be instated into the system, the addition of cookies could greatly increase user experience. The most obvious use of cookies would be the ability to auto-save the system the user is working on. This would mean that if they lost internet connection, or they accidentally closed the system, their work would not be lost, and they could continue working after restoring their work from a cookie. 
+\newpage 
 \subsection{Type-2 Fuzzy Logic Support}
 \label{sec:type2}
 The purpose of a type-1 fuzzy logic system, is to model uncertainty in the terms that humans use to describe properties. Unfortunately, this is slightly hypocritical; fuzzy sets have a connotation of uncertainty, but the membership functions used are entirely certain once their parameters have been specified \cite{mendel2003type}. Type-2 fuzzy logic attempts to rectify this, in the sense that uncertainty is not only limited to the terms used, but also the membership functions defined \cite{castillo2003type}. This means that each membership function defined has a third dimension, which allows an additional degree of freedom, to directly model uncertainty \cite{mendel2002type}. An example type-2 fuzzy set can be seen in figure \ref{fig:fw-type2}.
-\newpage 
 \begin{figure}[ht!]
 	\begin{center}
 		\includegraphics[width=0.5\textwidth]{images/type2set}

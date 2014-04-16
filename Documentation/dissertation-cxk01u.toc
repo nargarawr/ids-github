@@ -55,27 +55,27 @@
 \contentsline {subsection}{\numberline {7.2}Non-Functional Testing}{32}{subsection.7.2}
 \contentsline {paragraph}{Accessibility}{32}{subsection.7.2}
 \contentsline {paragraph}{Usability and Operability}{32}{subsection.7.2}
-\contentsline {paragraph}{Maintainability}{32}{subsection.7.2}
-\contentsline {paragraph}{Quality}{32}{subsection.7.2}
-\contentsline {paragraph}{Resource Requirements and Constraints}{32}{subsection.7.2}
-\contentsline {paragraph}{Cross Platform Compatibility}{32}{subsection.7.2}
-\contentsline {paragraph}{Security}{32}{subsection.7.2}
-\contentsline {paragraph}{Reliability and Robustness}{32}{subsection.7.2}
-\contentsline {paragraph}{Documentation}{32}{subsection.7.2}
-\contentsline {paragraph}{Disaster Recovery}{33}{subsection.7.2}
-\contentsline {subsection}{\numberline {7.3}User Feedback Testing}{33}{subsection.7.3}
-\contentsline {subsubsection}{\numberline {7.3.1}Evaluation of FuzzyToolkitUoN}{33}{subsubsection.7.3.1}
-\contentsline {subsubsection}{\numberline {7.3.2}Evaluation of MATLAB Fuzzy Toolbox}{33}{subsubsection.7.3.2}
-\contentsline {subsubsection}{\numberline {7.3.3}Evaluation of My Project}{33}{subsubsection.7.3.3}
-\contentsline {subsubsection}{\numberline {7.3.4}Summary}{33}{subsubsection.7.3.4}
-\contentsline {subsection}{\numberline {7.4}Successes and Limitations of the Project}{33}{subsection.7.4}
-\contentsline {section}{\numberline {8}Further Work}{34}{section.8}
-\contentsline {subsection}{\numberline {8.1}Back end Interoperability}{34}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}More Usability Improvements}{34}{subsection.8.2}
-\contentsline {subsection}{\numberline {8.3}Type-2 Fuzzy Logic Support}{35}{subsection.8.3}
-\contentsline {subsection}{\numberline {8.4}Customisations}{36}{subsection.8.4}
-\contentsline {section}{\numberline {9}Summary}{37}{section.9}
-\contentsline {section}{\numberline {A}User Evaluation Test Instructions}{1}{appendix.A}
-\contentsline {section}{\numberline {B}Table of Results of User Evaluation}{3}{appendix.B}
-\contentsline {section}{\numberline {C}Complete Test Listing}{4}{appendix.C}
+\contentsline {paragraph}{Maintainability}{33}{subsection.7.2}
+\contentsline {paragraph}{Quality}{33}{subsection.7.2}
+\contentsline {paragraph}{Resource Requirements and Constraints}{33}{subsection.7.2}
+\contentsline {paragraph}{Cross Platform Compatibility}{33}{subsection.7.2}
+\contentsline {paragraph}{Security}{33}{subsection.7.2}
+\contentsline {paragraph}{Reliability and Robustness}{33}{subsection.7.2}
+\contentsline {paragraph}{Documentation}{34}{subsection.7.2}
+\contentsline {paragraph}{Disaster Recovery}{34}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}User Feedback Testing}{34}{subsection.7.3}
+\contentsline {subsubsection}{\numberline {7.3.1}Evaluation of FuzzyToolkitUoN}{35}{subsubsection.7.3.1}
+\contentsline {subsubsection}{\numberline {7.3.2}Evaluation of MATLAB Fuzzy Toolbox}{35}{subsubsection.7.3.2}
+\contentsline {subsubsection}{\numberline {7.3.3}Evaluation of My Project}{35}{subsubsection.7.3.3}
+\contentsline {subsubsection}{\numberline {7.3.4}Summary}{35}{subsubsection.7.3.4}
+\contentsline {subsection}{\numberline {7.4}Successes and Limitations of the Project}{35}{subsection.7.4}
+\contentsline {section}{\numberline {8}Further Work}{36}{section.8}
+\contentsline {subsection}{\numberline {8.1}Back end Interoperability}{36}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}More Usability Improvements}{36}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}Type-2 Fuzzy Logic Support}{38}{subsection.8.3}
+\contentsline {subsection}{\numberline {8.4}Customisations}{38}{subsection.8.4}
+\contentsline {section}{\numberline {9}Summary \& Personal Evaluation}{39}{section.9}
+\contentsline {section}{\numberline {A}User Evaluation Test Instructions}{42}{appendix.A}
+\contentsline {section}{\numberline {B}Table of Results of User Evaluation}{44}{appendix.B}
+\contentsline {section}{\numberline {C}Complete Test Listing}{45}{appendix.C}
 \contentsfinish 
