@@ -1,21 +1,24 @@
 \section{Further Work}
+\vspace{-2mm}
 Whilst the system produced can be considered a complete system, there are still definitely improvements that could be made, and functionality that could be added. In this section, the main extensions to the system have been detailed, along with their reasoning for not being in the initial release. 
 
 \subsection{Back end Interoperability}
+\vspace{-2mm}
 \label{sec:bei}
 The purpose of the system is to be a web based front end, to a back end that can perform fuzzy inference. This means that the system should not be reliant on the back end that it currently uses (R-Shiny/FuzzyToolkitUoN), and it could be interchanged with some other back end (potentially with greater functionality, or better performance). This is a result of the system being written almost entirely in JavaScript, making the majority of it's functionality a client-sided affair, and not relying on the back end. The only functionality that the back end truly provides, is the ability to save files to the user's machine, and to evaluate the fuzzy system created. This means that, with the implementation of a simple API layer between the front end and back end, the back end could easily be swapped out to any back end that the user would want. This would allow the user extra functionality within the system, making it much more useful for the expert user. This could include such things as different inference types (like TSK), different t-norms, and t-conorms for the inference methods, and different visualisation techniques. This would make the system much more useful, as it currently can only perform Mamdani inference, with a limited number of inference methods, due to the limited scope of the back end. The revised architecture of the system, taking these interchangeable back ends into account, can be seen in figure \ref{fig:fw-interop}.
 
 \begin{figure}[ht!]
 	\begin{center}
-		\includegraphics[width=0.9\textwidth]{images/archi-new}
+		\includegraphics[width=0.8125\textwidth]{images/archi-new}
 	\end{center}
-	\vspace{-2mm}
+	\vspace{-4mm}
 	\caption{Interaction between the front end of the system and interchangeable back ends}
 	\label{fig:fw-interop}
-	\vspace{-1mm}
+	\vspace{-3mm}
 \end{figure}
 
 \subsection{More Usability Improvements}
+\vspace{-2mm}
 \label{sec:mui}
 As a result of the user evaluation that was detailed in section \ref{sec:uft}, many potential improvements to the system were identified. Most of these were personal preferences mentioned by few participants, but others were mentioned by more participants, and some thought should go into these features, if any more work is to be completed on the system.\ \\
 \ \\
@@ -38,7 +41,7 @@ The final improvement that could be made, which would be useful for those wishin
 \subsection{Type-2 Fuzzy Logic Support}
 \label{sec:type2}
 The purpose of a type-1 fuzzy logic system, is to model uncertainty in the terms that humans use to describe properties. Unfortunately, this is slightly hypocritical; fuzzy sets have a connotation of uncertainty, but the membership functions used are entirely certain once their parameters have been specified \cite{mendel2003type}. Type-2 fuzzy logic attempts to rectify this, in the sense that uncertainty is not only limited to the terms used, but also the membership functions defined \cite{castillo2003type}. This means that each membership function defined has a third dimension, which allows an additional degree of freedom, to directly model uncertainty \cite{mendel2002type}. An example type-2 fuzzy set can be seen in figure \ref{fig:fw-type2}.
-
+\newpage 
 \begin{figure}[ht!]
 	\begin{center}
 		\includegraphics[width=0.5\textwidth]{images/type2set}

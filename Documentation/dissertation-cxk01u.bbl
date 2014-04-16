@@ -5,6 +5,12 @@ Pedro Albertos and Antonio Sala.
 \newblock Fuzzy logic controllers, advantages and drawbacks.
 \newblock {\em IEEE transactions on control system technology}, 1998.
 
+\bibitem{beizer1995black}
+Boris Beizer.
+\newblock {\em Black-box testing: techniques for functional testing of software
+  and systems}.
+\newblock John Wiley \& Sons, Inc., 1995.
+
 \bibitem{castillo2003type}
 Oscar Castillo and Patricia Melin.
 \newblock Type-2 fuzzy logic.
@@ -115,6 +121,12 @@ Nikolaos Partarakis, Constantina Doulgeraki, Asterios Leonidis, Margherita
 \newblock In {\em Universal Access in Human-Computer Interaction. Intelligent
   and Ubiquitous Interaction Environments}, pages 711--719. Springer, 2009.
 
+\bibitem{shneiderman1982future}
+Ben Shneiderman.
+\newblock The future of interactive systems and the emergence of direct
+  manipulation†.
+\newblock {\em Behaviour \& Information Technology}, 1(3):237--256, 1982.
+
 \bibitem{shneiderman2005designing}
 Shneiderman~Ben Shneiderman and Catherine Plaisant.
 \newblock Designing the user interface 4 th edition.
@@ -136,6 +148,12 @@ Christian Wagner, Simon Miller, and Jonathan~M Garibaldi.
 \newblock A fuzzy toolbox for the r programming language.
 \newblock In {\em Fuzzy Systems (FUZZ), 2011 IEEE International Conference on},
   pages 1185--1192. IEEE, 2011.
+
+\bibitem{wilson2008goal}
+Susan~B Wilson and Michael~S Dobson.
+\newblock {\em Goal Setting: How to Create an Action Plan and Achieve Your
+  Goals}.
+\newblock Publisher - Amacom, 2008.
 
 \bibitem{zadeh1965fuzzy}
 Lotfi~A Zadeh.

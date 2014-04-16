@@ -1,19 +1,5 @@
 \section{Software Implementation}
 In this section, the actual implementation of the software has been detailed, including: what tools were used in the implementation, how the software was implemented, and any issues that were encountered during the implementation process.
-%{\color{red}
-
-%\begin{enumerate}
-%\item simple introduction to the program, what it does and who it is for
-%\item technical solution adopted, what technical solution has been implemented, whether it is ideal, whether an alternative exists
-%\item software engineering information, program design, structure, definition language, test plans
-%\item development approach used (evolutionary, build and fix)
-%\item Problems encountered (bugs, errors, uncompleted sections of code)
-%\item hardware/ software requirements
-%\item Friendly errors
-%\item Help system is dedicated, but offers links to other, helpful, external resources
-%\end{enumerate}
-
-%}
 
 \subsection{Key Implementation Decisions}
 \label{sec:kid}
@@ -38,20 +24,16 @@ Of the three potential candidates for graphic tools, Flot, was ruled out, due to
 Unfortunately, Google Charts does not support the drawing of three dimensional graphs, whereas FuzzyToolkitUoN does. When a fuzzy system of two inputs, and one output is defined (a common set up for type-1 systems), a three dimensional surface plot of the mapping between the two is an extremely effective way of visualising the system. For this reason, on the evaluation page, if the user has specified a system of two inputs and a single output, a surface plot will be displayed, directly from R.
 
 \subsection{Implementation Methodology}
-% agile - scrum - kanban ( but with trello ) 
+
 To help manage the implementation of such a large piece of software, the adoption of some methodology was necessary. It was decided that the best methodology would be an agile one, with heavy use of Kanban, using the tips laid out by Henrik Kniberg \cite{kniberg2007scrum}. In order to accomplish this, at the beginning of the implementation stage, after the requirements specification had been detailed, the entire project was split into user stories. Each of these stories detailed a specific action that a user of the system would be able to accomplish, along with how long it should take to implement, how important it was, and a way of testing its completion. These stories were then organised onto a digital Kanban Board, using a service called Trello\footnote{\url{http://www.trello.com}}. \ \\
 \ \\
-Each week, a set of tasks would be selected to be worked on for that week. The amount of tasks selected would be dependent on how much was completed, on average, in the weeks before, so that reasonable estimates could be made (obviously excluding the first few weeks). This ensured a decent portion of work was being completed per week, and that progress was constant. During the week, tasks would be selected from the available pool, prioritising those that were prerequisites of others, or had a high importance, and would then be worked on until completion. After the completion of a task, a new task would be selected, and work would begin on this. This was an extremely effective method of managing the implementation, as any small tasks that were necessary could be added to the board, and there was an assurance they would eventually be completed, and nothing would be overlooked.
+Each week, a set of tasks would be selected to be worked on for that week. The amount of tasks selected would be dependent on how much was completed, on average, in the weeks before, so that reasonable estimates could be made (obviously excluding the first few weeks). This ensured a decent portion of work was being completed per week, and that progress was constant. During the week, tasks would be selected from the available pool, prioritising those that were prerequisites of others, or had a high importance, and would then be worked on until completion. After the completion of a task, a new task would be selected, and work would begin on this. This was an extremely effective method of managing the implementation, as any small tasks that were necessary could be added to the board, and there was an assurance they would eventually be completed, and nothing would be overlooked. It has also been shown that it is much easier to reach goal,s if they have been written down \cite{wilson2008goal}, which a Kanban Board was the perfect tool for.
 
 \newpage 
 \subsection{Detailed Description of the User Interface}
 In this section, each individual screen of the system has been displayed, along with a detailed explanation of why it is effective, and why it has been implemented as it has.\ \\
 \ \\
 The first screen presented to the user upon launching the system (shown in figure \ref{fig:ss-ui-0}), is a greyed out version of the input creation page, with a modal window displayed. This modal window gives a brief explanation of the purpose of the system, how to get started, the intended audience, and contact details for the maintainer. The purpose of this is so that any user that has navigated to the website can very quickly gain an understanding of what the system is for, how to use it, and as a result, whether or not they would want to, or need to.
-
-% What screen it is
-% Explain individual elements about it. Why are they good?
-% Why was it implemented in this way?
 
 \begin{figure}[ht!]
 	\centering
@@ -180,9 +162,38 @@ The final screen of the system is the file export page. Like the file import scr
 	\caption{Screen shots of file export screen, before and after selecting a file type}
 	\label{fig:ss-ui-8}
 \end{figure}
+\noindent
+As mentioned previously, help is available to the user at every stage of the system. This help is accessed by pressing the green ``Help'' button, present in the top right hand corner of every page. This consistent placement makes identification of the help button very easy, and means the user can quickly access help, regardless of where they are within the system (as they know where it can be found). When the help button is pressed, a pop over box appears, detailing help for the page the user is currently on (as shown in figure \ref{fig:ss-ui-10}). This localised help system means the user does not have to trawl through some huge documentation to find help, and instead can simply click a button on the page they are on, to get help for that page. This makes finding help much quicker, and less intrusive.
 
+\begin{figure}[ht!]
+	\vspace{-1mm}
+	\begin{center}
+		\fbox{
+			\includegraphics[width=0.5\textwidth]{images/ui-10}
+		}
+	\end{center}
+	\vspace{-6mm}
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Screen shots of the help button on the import page, before and after being pressed}
+	\label{fig:ss-ui-10}
+\end{figure}
 
+\noindent 
+The last interface element to be mentioned, is that of errors. Errors are an important part of a user interface, as they give feedback to the user on mistakes they have made. It is important that errors are trapped, as to not cause unexpected actions from the system, which could cause confusion for the user, and reduce the overall quality of the system. When it came to actually writing the error messages, it was important to ensure they used positive language, and focused on what should be done to fix errors made, as opposed to condemning the user for making them \cite{shneiderman1982future}. Some examples of error messages within the system have been included in figure \ref{fig:ss-ui-11}
 
+\newpage 
+\begin{figure}[ht!]
+	\vspace{-1mm}
+	\begin{center}
+			\includegraphics[width=0.8\textwidth]{images/ss-ui-11}
+	\end{center}
+	\vspace{-6mm}
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Example error messages of the system}
+	\label{fig:ss-ui-11}
+\end{figure}
+\noindent 
+In the first example (displayed when the user attempts to give two variables the same name), informal words, such as ``Oops'', are used to show that a mistake has been made, but this is not a huge issue, and the user should not worry about it (although the system will not allow them to progress until this has been rectified). It also clearly explains what the issue is, and thus how a resolution can be achieved. The second example (displayed when the user has not filled in all parameter boxes for specifying a membership function, or has not used numbers), is direct, and thus makes identifying issues quicker, and easier. It specifically references a segment of the page (the ``Parameters'' segment), which means the user can find the general area of the error, helping to reduce the time it takes to locate the error itself. The language used in the error message is extremely basic, using terminology that any user would understand, giving any user the ability to resolve the error.
 
 \subsection{Implementation of System Components}
 \tocless\subsubsection{Web Front End}
@@ -193,7 +204,6 @@ The front end is certainly a strong point with the system, as it has a clean, un
 \tocless\subsubsection{R-Shiny Back End}
 The back end of the system was constructed using R-Shiny, interacting with the FuzzyToolkitUoN R package, and thus was written entirely in R. This gave the system access to the powerful processing tools that R provides, and the visualisations that it can provide, if necessary. The purpose of the R-Shiny segment was to gather the data the user input into the front end, turn this into a format that could be used by the FuzzyToolkitUoN package, and then call the necessary functions for processing to take place.
 
-\newpage 
 \noindent 
 The biggest issue with using R-Shiny is that it was a tool still in development, and there were some bugs present, and features missing. The biggest of these was the inability to properly handle dynamic user interfaces, such as the one this system required. This meant that, when it came to handling the user input, a hack had to be put in place for this to be dealt with correctly. This is covered in greater detail in section \ref{sec:pe}.
 
