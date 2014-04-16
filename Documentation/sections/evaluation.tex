@@ -70,22 +70,18 @@ Along with the user experience feedback that was recorded in these studies, the 
 The tasks were designed to evaluate as many of the cross-compatible features of the systems, so that they could be compared. The task itself was to implement the fuzzy tipper example, that is a popular first system for those learning fuzzy logic. The list of instructions given to the users can be found in appendix \ref{app-userEval}.
 
 \subsubsection{Evaluation of FuzzyToolkitUoN}
-% The exact setup (R console w/o ftu installed)
-
-% Confusion between the R interface and console (assumed most functionality would be in the R gui interface)
-% Attempt to use the inbuilt R help, to no avail
-% Most interaction (especially with those of low skill level) was copy+paste from the example in the docs, and modifying for their needs
-% variable assignment confusion throughout
-% ``This is confusion'' Helplessness
-% After multiple additions of mfs, most users began to understand what was expected
-% Bam, rules; wide spread confusion <- many rules were wrong and thus system did not work
-% mistakes were nigh-on impossible to resolve for novice users, intervention necessary
-% poor understanding of evaluation across all groups
-% treating the FIS as an object and indexing into it, confusing 
-% some vital examples in the docs aren't sufficient 
-% terrible error messages, mostly R garbage
+This test took place within the standard R environment, installed on a Windows 7 Machine. It was clear from the start that this would be the most difficult interface to use, and many of the novice computer users (and even a large portion of expert computer users) ran into trouble almost straight away. Many of the users could not conceptually separate the graphical user interface of the R environment, and the use of FuzzyToolkitUoN, and many of them would attempt to use the GUI when asked to perform certain tasks. The help provided by R was also extremely unhelpful in this endeavour. Some users attempted to access the help documentation, but this was about R itself, and offered no help for them using FuzzyToolkitUoN from within R. It was not until most users were shown the online documentation for FuzzyToolkitUoN on CRAN that they could begin. Most users could identify the correct function to use for each of the tasks, but some, such a ``readFIS'' and ``writeFIS'' were unusual to the user, and took longer to locate (as they expected ``load'' and ``save''). Most users, regardless of skill level, would simply copy and paste the code from the ``Examples'' section of the documentation into R, and modify this to their needs. Whilst this did complete the task, the users admitted that they did not fully understand how these functions worked, or what they were doing. Towards the end of the task list, the documentation for the necessary functions began to diminish, and the users found the final few tasks much more difficult.\ \\
+\ \\
+One of the greatest issues that users faced was the necessity to constantly reassign the FIS variable they had created, to itself. The purpose of this was to update their FIS variable with each function, but this concept was difficult to grasp for many users, and they claimed it was unintuitive. Throughout the majority of the tasks, users were confused, and this led many users to frustration. The fact has more impact knowing that it was the user interface that was being evaluated, and not the user, and yet they still felt like they were ``failing''.\ \\
+\ \\
+After a few repetitions of the same actions (such as adding membership functions), most users finally began to understand better what they were doing, became more confident, and their progress sped up greatly. Unfortunately, when it then came to adding the rules to the system, much of their confidence was damaged, as this was an extremely confusing process. Instead of using symbolic names, like they had been throughout the system, they were now expected to use numbers, which many users did not understand. The documentation for adding rules is also extremely long and confusing, and many users almost gave up.\ \\
+\ \\
+Any mistakes made by the users (other than those users that had used R before) were, for them, irreparable, and external assistance was necessary. This essentially punishes the user for their lack of knowledge, and would often require them to start again, if assistance was not available. These mistakes were often not aided by the obtuse error messages provided by R. Throughout the usage of this software, users had many complaints, were often confused, and regardless of skill level, had difficulty using it.
+\newpage 
 
 \subsubsection{Evaluation of MATLAB Fuzzy Toolbox} 	
+This test took place on an installation of MATLAB, with the Fuzzy Toolbox installed, on a Windows 7 machine. 
+
 % far too much on the screen at once, very confusing
 % so many windows open! confusion as to wheter to close them or keep them
 % some boxes look like they should be editable, but aren't
@@ -145,7 +141,7 @@ The piece of software that was most favoured by the test participants, was the s
 \noindent 
 When questioned as to the preference of this new system, most users agreed that the interface was both extremely simple to navigate, and visually appealing. It was also mentioned that there was a natural flow to the software. By this, they meant that each task in the software lead onto the next very intuitively. For instance, the adding of a variable would be one distinct task, but the adding of membership functions would be a separate task nested inside this task. This meant that the conceptually distinct parts of the system were separate, but the system had a ``waterfall'' style flow to it. Many of the novice users also commended the system on it's help system, specifically mentioning how this was much more intuitive than checking the huge documentation manual provided with FuzzyToolkitUoN.\ \\
 \ \\
-It is worth noting that the single result for FuzzyToolkitUoN as favourite software came from a user that was extremely proficient in R, and specifically FuzzyToolkitUoN, and knew many commands from memory. 
+It is worth noting that the single result for FuzzyToolkitUoN as favourite software came from a user that was extremely proficient in R, and specifically FuzzyToolkitUoN, and knew many commands from memory. This was also the same person that rated MATLAB as their least favourite piece of software, claiming that it was far too cluttered and aesthetically unappealing.
 	
 
 \subsection{Successes and Limitations of the Project}
@@ -154,8 +150,9 @@ It is worth noting that the single result for FuzzyToolkitUoN as favourite softw
 % Easy to pick up by a novice user 
 % Easily expandable
 % Deals with errors well
+% responsiveness
 
 % Limitations
 % Backend did not provide a lot of functionality -> Get new backend/API Layer
-% Some other issue..
-% Some other issue..
+% probably a bug somewhere -> unit testing next time
+% doesn't work on mobiles -> no action
