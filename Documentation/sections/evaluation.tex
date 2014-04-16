@@ -65,87 +65,97 @@ There were a total of 23 participants in these studies, split into four main cat
 \vspace{-2mm}
 \end{figure}
 \noindent 
-Along with the user experience feedback that was recorded in these studies, the time taken for the user to complete the task list in each of the software systems, along with their favourite and least favourite systems was also recorded. The full results for this can be found in appendix \ref{app-torous}, and will be referred to throughout this section.
+Along with the user experience feedback that was recorded in these studies, the time taken for the user to complete the task list in each of the software systems, along with their favourite and least favourite systems was also recorded. The full results for this can be found in appendix \ref{app-torous}, and will be referred to throughout this section.\ \\
+\ \\
+The tasks were designed to evaluate as many of the cross-compatible features of the systems, so that they could be compared. The task itself was to implement the fuzzy tipper example, that is a popular first system for those learning fuzzy logic. The list of instructions given to the users can be found in appendix \ref{app-userEval}.
 
-%	General explanation about the tests, and the participants, and what we are looking for (non functional, usability, accessibility). 
+\subsubsection{Evaluation of FuzzyToolkitUoN}
+% The exact setup (R console w/o ftu installed)
 
+% Confusion between the R interface and console (assumed most functionality would be in the R gui interface)
+% Attempt to use the inbuilt R help, to no avail
+% Most interaction (especially with those of low skill level) was copy+paste from the example in the docs, and modifying for their needs
+% variable assignment confusion throughout
+% ``This is confusion'' Helplessness
+% After multiple additions of mfs, most users began to understand what was expected
+% Bam, rules; wide spread confusion <- many rules were wrong and thus system did not work
+% mistakes were nigh-on impossible to resolve for novice users, intervention necessary
+% poor understanding of evaluation across all groups
+% treating the FIS as an object and indexing into it, confusing 
+% some vital examples in the docs aren't sufficient 
+% terrible error messages, mostly R garbage
 
+\subsubsection{Evaluation of MATLAB Fuzzy Toolbox} 	
+% far too much on the screen at once, very confusing
+% so many windows open! confusion as to wheter to close them or keep them
+% some boxes look like they should be editable, but aren't
+% better than FTU atleast
+% rectifying mistakes was must simpler
+% menu system confusing and cumbersome
+% no errors, would just attempt to fix your problems for you -> confusing
 
-% mention how someone obviously said the errors were friendly
+\subsubsection{Evaluation of My Project}	
+% water fall flow
+% clean interface, bootstrap is nice
+% graphs are nice, more colourful than MATLAB 
+% rule ui is super intuitive
+% very easy to use
+% much quicker (tab for speed)
+% errors were friendly
 
-% talk about using disseration to do fuz coursework. ``Considering I wrote both FTU and oFuzz, i found oFuzz much easier to use. Having the fuz coursework gave me a unique experience to test using both systems, as a user, instead of as the developer.''
-		
-%		{\color{blue}
-%	.\ \\
-%		\ \\
-%		I split the participants into four main categories, based on their skill levels in terms of using computers, and knowledge of fuzzy logic. There were a total of 23 participants in these studies, and the distribution of skill levels is displayed in figure \ref{fig-skills}. The reason for this split was so that these distinctive groups could be evaluated individually, and their specific requirements could be observed. For instance, a participant skilled in computers, but not in fuzzy logic, would not struggle in navigating a system, but could potentially struggle understanding some of the fuzzy terminology.
-		
-%		\begin{figure}[ht!]
-%		\begin{center}
-%		\begin{tabular}{cc|cc}
-%			& &\multicolumn{2}{c}{Computer Skill} \\
-%			& & Low & High \\
-%			\hline 
-%		    \multirow{2}{2cm}{Fuzzy Logic Skill}  & Low & 7 & 5  \\
-%		     &  High                                    & 3 & 8  \\
-%		     \hline
-%		     \\
-%		     \multicolumn{3}{r}{\textbf{Total}} & 23\\
-%		\end{tabular}
-%		\end{center}
-%		\vspace{-5mm}
-%		\caption{Distribution of participant skill levels}
-%		\label{fig-skills}
-%		\vspace{-2mm}
-%		\end{figure}
-%		\noindent 
-%		The task assigned to the participants was designed to use as much of the different systems as possible, but focused mainly on cross-compatible parts of the systems, so they could be easily compared. The test itself was to construct the fuzzy tipper example, using service and food as inputs, to produce a number for the tip to leave (the full set of instructions can be found in appendix \ref{app-userEval}). 
-%		}
-%	}
-	\subsubsection{Evaluation of FuzzyToolkitUoN}
-%		{\color{red}
-%			Good things, bad things, statistics to back this up, talk about non funcs, and mention each type of user
-%		}
-	\subsubsection{Evaluation of MATLAB Fuzzy Toolbox} 	
-%		{\color{red}
-%			As above, but comparisons with above. specificaly mention that MATLAB has milliions of windows to open which make it very confusing!!!		
-%		}
-	\subsubsection{Evaluation of My Project}	
-%		{\color{red}
-%			As above, but comparison with above and above above
-%		}
-	\subsubsection{Summary}	
-%		{\color{red}
-%			Overall results and comparative statistics. 
-%			{\color{blue}
-%			The main two factors that were observed whilst the participants were completing the tasks were the speed at which they could do so, and the ease. Generally a faster completion meant either a high level of understanding, or an easier piece of software to use. The data collected strongly suggests that completion of the task using FuzzyToolkitUoN was the most difficult, which after speaking to the participants was the result of a poor user interface, and a very steep learning curve (especially for those of a novice computer skill level). The graph in figure \ref{fig:times} shows box plots of the completion times of each of the tasks, for each of the different groups. Each of these plots shows that FuzzyToolkitUoN was the most time consuming task to complete (taking on average {\color{red} 100 seconds}), and that the graphical systems were much easier to use (with MATLAB on average, taking {\color{red} 40 \%} less time, and my new system taking {\color{red} 10 \%} less time than that).
+\subsubsection{Summary of Evaluations}	
+The main two factors that were observed whilst the participants were completing the tasks were the speed at which they could do so, and the ease. Generally a faster completion time meant either a high level of understanding, or an easier piece of software to use. The graph in figure \ref{fig:times} shows a bar chart representing the average time taken for each group to complete the task list, in each software system, as well as the average for all participants. The data collected clearly indicates that using FuzzyToolkitUoN to complete the tasks was the most difficult (taking on average  35 minutes), which, after speaking to the participants, was a result of it's poor user interface, steep learning curve, and reliance on checking a huge documentation manual. Both of the graphical user interface systems faired much better, with MATLAB being the second fastest to use (with an average time of 18 minutes), and the software system proposed in this report taking on average 10 minutes (an improvement of 44\% on MATLAB, and 71\% on FuzzyToolkitUoN). 
 			
-%			\begin{figure}[ht!]
-%			\begin{center}
-%			some graph yo
-%			\end{center}
-%			\vspace{-5mm}
-%			\caption{Time taken to complete the tasks in the different software systems}
-%			\label{fig:times}
-%			\vspace{-2mm}
-%			\end{figure}
+\begin{figure}[ht!]
+	\begin{center}
+		\includegraphics[width=0.9\textwidth]{images/timeTaken}
+	\end{center}
+	\vspace{-5mm}
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Bar chart of average time taken to complete the task set in the different software systems, by group}
+	\label{fig:times}
+	\vspace{-2mm}
+\end{figure}
+\noindent 						
+Whilst the time taken to complete the tasks was a strong indicator of the success of the software system, it was also important to ask the participants which system they \emph{enjoyed} using the most. The results for this were conclusive, with 95.7\% of participants (across all categories) claiming FuzzyToolkitUoN was the piece of software they enjoyed using the least. The main reasons for this were the command line interface being difficult to use, visualisation of the system itself being unintuitive, there was a necessity to constantly refer to the large documentation manual, and that it was conceptually confusing for many computer novices. 
+
+\begin{figure}[ht!]
+	\begin{center}
+		\includegraphics[width=0.65\textwidth]{images/leastFav}
+	\end{center}
+	\vspace{-5mm}
+	\captionsetup{justification=centering,margin=2cm}	
+	\caption{The percentage of users claiming each piece of software to by their least favourite}
+	\label{fig:leastFavour}
+	\vspace{-2mm}
+\end{figure}
+\noindent 
+The piece of software that was most favoured by the test participants, was the system proposed in this report, o-Fuzz. Of the total participants, 65\% claimed o-Fuzz to be their favourite software, with 30\% saying it was MATLAB, and 4\% saying FuzzyToolkitUoN (a single person). A decomposition of favourite software across groups can be seen in figure \ref{fig:mostLiked}
 			
-%			Whilst the time taken to complete the tasks was a strong indicator of the success of the software system, it was also important to ask the participants which system they enjoyed using the most. The results for this were conclusive, which 100\% of participants (across all categories) claiming FuzzyToolkitUoN was the piece of software they enjoyed using the least. {\color{red} This is because...}. The piece of software that the participants enjoyed using the most was {\color{red} x \%} in favour of my produced software, over MATLAB (and the majority of those that said they preferred MATLAB said so as they were already very familiar with MATLAB). The results for most favoured,  software system can be seen in figure \ref{fig:mostleast}, organised by category of participant. {\color{red} The main reasons for an attraction to MATLAB were... and o-fuzz}
-			
-%			\begin{figure}[ht!]
-%			\begin{center}
-%			\includegraphics[width=0.8\textwidth]{images/graphsSmall.png}
-%			\end{center}
-%			\vspace{-5mm}
-%			\caption{Favoured/Least Favoured software system, by participant category}
-%			\label{fig:mostleast}
-%			\vspace{-2mm}
-%			\end{figure}
-%			}
-%		}		
+\begin{figure}[ht!]
+	\begin{center}
+		\includegraphics[width=0.65\textwidth]{images/mostFav.png}
+	\end{center}
+	\vspace{-5mm}
+	\captionsetup{justification=centering,margin=2cm}	
+	\caption{The percentage of users claiming each piece of software to by their most favourite}
+	\label{fig:mostLiked}
+	\vspace{-2mm}
+\end{figure}
+\noindent 
+When questioned as to the preference of this new system, most users agreed that the interface was both extremely simple to navigate, and visually appealing. It was also mentioned that there was a natural flow to the software. By this, they meant that each task in the software lead onto the next very intuitively. For instance, the adding of a variable would be one distinct task, but the adding of membership functions would be a separate task nested inside this task. This meant that the conceptually distinct parts of the system were separate, but the system had a ``waterfall'' style flow to it. Many of the novice users also commended the system on it's help system, specifically mentioning how this was much more intuitive than checking the huge documentation manual provided with FuzzyToolkitUoN.\ \\
+\ \\
+It is worth noting that the single result for FuzzyToolkitUoN as favourite software came from a user that was extremely proficient in R, and specifically FuzzyToolkitUoN, and knew many commands from memory. 
+	
 
 \subsection{Successes and Limitations of the Project}
+% Successes:
+% Fulfills its main two goals
+% Easy to pick up by a novice user 
+% Easily expandable
+% Deals with errors well
 
-% Successes : fulfills its main goals, Easy to use and pick up by new user ( reference actual results ), prefferred to other systems ( reference actual results ) , built so that easily could be expanded, deals with user error well
-
-% Limitations \& How they would be improved upon next time (concrete goals) : Backend did not provide a lot of functionality, at least two more!!!!
+% Limitations
+% Backend did not provide a lot of functionality -> Get new backend/API Layer
+% Some other issue..
+% Some other issue..

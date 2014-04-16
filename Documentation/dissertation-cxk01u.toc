@@ -67,15 +67,15 @@
 \contentsline {subsubsection}{\numberline {7.3.1}Evaluation of FuzzyToolkitUoN}{35}{subsubsection.7.3.1}
 \contentsline {subsubsection}{\numberline {7.3.2}Evaluation of MATLAB Fuzzy Toolbox}{35}{subsubsection.7.3.2}
 \contentsline {subsubsection}{\numberline {7.3.3}Evaluation of My Project}{35}{subsubsection.7.3.3}
-\contentsline {subsubsection}{\numberline {7.3.4}Summary}{35}{subsubsection.7.3.4}
-\contentsline {subsection}{\numberline {7.4}Successes and Limitations of the Project}{35}{subsection.7.4}
-\contentsline {section}{\numberline {8}Further Work}{36}{section.8}
-\contentsline {subsection}{\numberline {8.1}Back end Interoperability}{36}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}More Usability Improvements}{36}{subsection.8.2}
-\contentsline {subsection}{\numberline {8.3}Type-2 Fuzzy Logic Support}{38}{subsection.8.3}
-\contentsline {subsection}{\numberline {8.4}Customisations}{38}{subsection.8.4}
-\contentsline {section}{\numberline {9}Summary \& Personal Evaluation}{39}{section.9}
-\contentsline {section}{\numberline {A}User Evaluation Test Instructions}{42}{appendix.A}
-\contentsline {section}{\numberline {B}Table of Results of User Evaluation}{44}{appendix.B}
-\contentsline {section}{\numberline {C}Complete Test Listing}{45}{appendix.C}
+\contentsline {subsubsection}{\numberline {7.3.4}Summary of Evaluations}{35}{subsubsection.7.3.4}
+\contentsline {subsection}{\numberline {7.4}Successes and Limitations of the Project}{37}{subsection.7.4}
+\contentsline {section}{\numberline {8}Further Work}{38}{section.8}
+\contentsline {subsection}{\numberline {8.1}Back end Interoperability}{38}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}More Usability Improvements}{38}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}Type-2 Fuzzy Logic Support}{40}{subsection.8.3}
+\contentsline {subsection}{\numberline {8.4}Customisations}{40}{subsection.8.4}
+\contentsline {section}{\numberline {9}Summary \& Personal Evaluation}{41}{section.9}
+\contentsline {section}{\numberline {A}User Evaluation Test Instructions}{44}{appendix.A}
+\contentsline {section}{\numberline {B}Table of Results of User Evaluation}{46}{appendix.B}
+\contentsline {section}{\numberline {C}Complete Test Listing}{47}{appendix.C}
 \contentsfinish 
