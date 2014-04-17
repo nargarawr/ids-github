@@ -44,6 +44,7 @@ The final improvement that could be made, would be the adoption of cookies withi
 \subsection{Type-2 Fuzzy Logic Support}
 \label{sec:type2}
 The purpose of a type-1 fuzzy logic system, is to model uncertainty in the terms that humans use to describe properties. Unfortunately, this is slightly hypocritical; fuzzy sets have a connotation of uncertainty, but the membership functions used are entirely certain once their parameters have been specified \cite{mendel2003type}. Type-2 fuzzy logic attempts to rectify this, in the sense that uncertainty is not only limited to the terms used, but also the membership functions defined \cite{castillo2003type}. This means that each membership function defined has a third dimension, which allows an additional degree of freedom, to directly model uncertainty \cite{mendel2002type}. An example type-2 fuzzy set can be seen in figure \ref{fig:fw-type2}.
+
 \begin{figure}[ht!]
 	\begin{center}
 		\includegraphics[width=0.5\textwidth]{images/type2set}
@@ -53,6 +54,7 @@ The purpose of a type-1 fuzzy logic system, is to model uncertainty in the terms
 	\label{fig:fw-type2}
 	\vspace{-1mm}
 \end{figure}
+
 \noindent
 As mentioned in the introduction to this report, type-2 fuzzy logic is not supported in this software. This is because the jump in knowledge between type-1 fuzzy logic (that \emph{is} supported), and type-2, is extremely large, and would not be suitable for novice users. Other reasons include a lack of time to implement such a large feature, and that type-2 fuzzy logic is still not widely adopted in the field. If more time was allocated to the project, this could have been implemented alongside the type-1 system, however an entirely new back end would have been needed, as the current back end, FuzzyToolkitUoN, does not support type-2 fuzzy logic. Adding type-2 support to the system would have greatly improved it's usefulness and practicality, and could have easily made the tool a niche within the market, and the preferred software to use among experts. This would have been due to the ease of access, and ease of use of the system, which are  features that most type-2 software systems currently available are lacking (such as Juzzy \cite{wagner2013juzzy}, which requires an installation of Java before it can be used).
 
