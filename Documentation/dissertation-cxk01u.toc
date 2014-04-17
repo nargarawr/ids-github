@@ -69,13 +69,13 @@
 \contentsline {subsubsection}{\numberline {7.3.3}Evaluation of My Project}{36}{subsubsection.7.3.3}
 \contentsline {subsubsection}{\numberline {7.3.4}Summary of Evaluations}{37}{subsubsection.7.3.4}
 \contentsline {subsection}{\numberline {7.4}Successes and Limitations of the Project}{39}{subsection.7.4}
-\contentsline {section}{\numberline {8}Further Work}{40}{section.8}
-\contentsline {subsection}{\numberline {8.1}Back end Interoperability}{40}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}More Usability Improvements}{40}{subsection.8.2}
-\contentsline {subsection}{\numberline {8.3}Type-2 Fuzzy Logic Support}{42}{subsection.8.3}
-\contentsline {subsection}{\numberline {8.4}Customisations}{42}{subsection.8.4}
-\contentsline {section}{\numberline {9}Summary \& Personal Evaluation}{43}{section.9}
-\contentsline {section}{\numberline {A}User Evaluation Test Instructions}{46}{appendix.A}
-\contentsline {section}{\numberline {B}Table of Results of User Evaluation}{48}{appendix.B}
-\contentsline {section}{\numberline {C}Complete Test Listing}{49}{appendix.C}
+\contentsline {section}{\numberline {8}Further Work}{41}{section.8}
+\contentsline {subsection}{\numberline {8.1}Back end Interoperability}{41}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}More Usability Improvements}{41}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}Type-2 Fuzzy Logic Support}{43}{subsection.8.3}
+\contentsline {subsection}{\numberline {8.4}Customisations}{43}{subsection.8.4}
+\contentsline {section}{\numberline {9}Summary \& Personal Evaluation}{44}{section.9}
+\contentsline {section}{\numberline {A}User Evaluation Test Instructions}{47}{appendix.A}
+\contentsline {section}{\numberline {B}Table of Results of User Evaluation}{49}{appendix.B}
+\contentsline {section}{\numberline {C}Complete Test Listing}{50}{appendix.C}
 \contentsfinish 

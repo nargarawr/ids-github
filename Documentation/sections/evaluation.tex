@@ -144,14 +144,17 @@ It is worth noting that the single result for FuzzyToolkitUoN as favourite softw
 	
 
 \subsection{Successes and Limitations of the Project}
-% Successes:
-% Fulfills its main two goals
-% Easy to pick up by a novice user 
-% Easily expandable
-% Deals with errors well
-% responsiveness
-
-% Limitations
-% Backend did not provide a lot of functionality -> Get new backend/API Layer
-% probably a bug somewhere -> unit testing next time
-% doesn't work on mobiles -> no action
+Whilst getting user feedback is extremely important in evaluating a system, it is equally important for the creator of a software system to analyse the work they have completed. They are the only person that truly knows whether or not the software they have produced is what they were originally attempting to create. In this section, the successes and failures of the project have been listed, as seen by the project creator.\ \\
+\ \\
+The biggest strength of the project is its adherence to its two main goals: ease of use, and ease of accessibility. The purpose of this project was to both be a practical implementation of a fuzzy logic software system and, more specifically, open up the field of fuzzy logic to novices of the area, and novices in using computers in general. In this regard, the project was a huge success. The feedback received from the user feedback evaluation strongly suggested that this newly produced system performed much better than existing systems, and that it was much easier for novice users to pick up and understand. Further adding to the the system's accessibility, it was designed entirely in Bootstrap, meaning it was fully responsive, and would display adequately, regardless of the screen size of the user (in contrast to many systems nowadays that assume users have a certain level of space, which they may not always have). It was also more visually appealing as a result of the adoption of Bootstrap.\ \\
+\ \\
+The system has also been designed in such a way, that it is hopefully easily expandable in the future, and open to modification. One goal would be, eventually, the ability to swap the back end that the system used. This would be a relatively simple goal, as the system has been created so that the majority of task are a front end affair, and adoption of ``hot-swappable'' back ends would only require the implementation of some API layer between the front end and back end. The code base itself should also be relatively easy to add to and modify, due to the JavaDoc style comments that accompany every function in the system, that detail what the functions does, what parameters it expects (and their types), and what value the function returns - if any.
+\newpage 
+\noindent 
+The final main strength of this new software system is the way that it deals with mistakes the user makes. Some systems (such as FuzzyToolkitUoN) provide extremely obtuse error messages that make the rectification of errors very difficult to the novice user. The system specified in this report implements errors message that are concise, but also explain the problem, and are worded in such a way that a solution can easily be inferred by the user (regardless of their skill level).\ \\
+\ \\
+As with any software project, there are obviously areas where extra work could have been completed to improve the system. The largest limitation of this new software system, is in fact, it's back end. Due to the relatively limited scope of the functionality of FuzzyToolkitUoN, the functionality for this new software system is also severely limited. Luckily, however, FuzzyToolkitUoN is still in development and extra functionality may become available, thus allowing extensions for this project. However, if extra time was allocated to this project, an API layer would have been implemented between the front end and any possible back end. This would then allow the back end to tell the front end what functionality it should expect, and the user would be able to swap the back end to whichever most closely met their needs.\ \\
+\ \\
+Another limitation with the software, that is present in any large software systems, is the potential for some unidentified bug being present. Whilst the utmost has been done to ensure there are as few bugs as there can be, it is not always possible to claim there are none. This could have been helped, if Unit Testing and Test Driven Development were adopted towards the start of the project. This is the process of writing a test, and writing the code necessary to pass the test. This ensures that all code written is free of bugs, is as concise as possible, and integration and regression tests are extremely easy to perform\cite{olan2003unit} (as all the tests from previous work still remain).\ \\
+\ \\
+The final limitation of the project, which was noted when testing the responsiveness of the software, is that the system does not load or display correctly on mobile devices. This is mostly due to Bootstrap, and how modal windows in Bootstrap (that are heavily used throughout the software) do not render correctly properly on mobile devices. Luckily, this isn't truly an issue, as the project was never intended to work on mobile devices, as this is an impractical medium in which to construct a fuzzy system, and thus no actions would be taken to amend this.
