@@ -635,7 +635,15 @@ function validRuleWeight () {
 		document.getElementById("weight_val").value = 1;
 		document.getElementById("weight_val_selector").value = 1;		
 		return false;
-	}	
+	}	else if  ( isNaN(val) ) {
+		var errorMessage = "Weight must be a number between 0 and 1"; 
+		document.getElementById("ruleCreatorErrorsDiv").innerHTML = 
+		"<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>&times;</button>" + errorMessage  +"</div>";
+
+		document.getElementById("weight_val").value = 1;
+		document.getElementById("weight_val_selector").value = 1;		
+		return false;		
+	}
 	return true;
 }
 
