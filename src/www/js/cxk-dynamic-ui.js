@@ -50,6 +50,8 @@ function onTabChange ( tabIndex ) {
     document.getElementById("passBackEval2").value = "0";
   }
   
+  document.getElementById("passBackEval3").value = getLength(true);
+  
 
   if ( tabIndex == 0 ) {
     g_isInput = true;

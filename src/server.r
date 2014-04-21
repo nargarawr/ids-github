@@ -30,7 +30,7 @@ shinyServer(function(input, output) {
   # Read the FIS object from the system, create it in R, and evaluate
   output$evalFisOutput <- renderPrint ({
     if ( input$passBackEval2 >= 1 ) {
-      if ( length(strsplit(input$passBackEval," ")[[1]]) >= 2 )  {
+      if ( length(strsplit(input$passBackEval," ")[[1]]) == input$passBackEval3 )  {
       
           vals = strsplit(input$passBackEval, " ")
           cvals = c()
