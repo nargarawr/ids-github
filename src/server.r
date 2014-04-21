@@ -29,22 +29,28 @@ shinyServer(function(input, output) {
 
   # Read the FIS object from the system, create it in R, and evaluate
   output$evalFisOutput <- renderPrint ({
-    if ( length(strsplit(input$passBackEval," ")[[1]]) >= 2 )  {
-      vals = strsplit(input$passBackEval, " ")
-      cvals = c()
-      for ( i in 1:length(vals) ) {
-        cvals = c(cvals, as.numeric(vals[[1]]))
-      }
-
-      fis <- readFISFromString(gsub("<spbrk>","\n",input$exportOutput))
-      dummy <- capture.output(x <- evalFIS(matrix(cvals, 1, length(cvals)), fis))
+    if ( input$passBackEval2 >= 1 ) {
+      if ( length(strsplit(input$passBackEval," ")[[1]]) >= 2 )  {
       
+          vals = strsplit(input$passBackEval, " ")
+          cvals = c()
+          for ( i in 1:length(vals) ) {
+            cvals = c(cvals, as.numeric(vals[[1]]))
+          }
 
-      for ( i in 1:ncol(x) ) {
-        cat(fis$outputList[[i]]$outputName, x[i])
+          fis <- readFISFromString(gsub("<spbrk>","\n",input$exportOutput))
+          dummy <- capture.output(x <- evalFIS(matrix(cvals, 1, length(cvals)), fis))
+          
+
+          for ( i in 1:ncol(x) ) {
+            cat(fis$outputList[[i]]$outputName, x[i])
+          }
+      } else {
+        cat("You have not provided a value for all of your inputs, so no evaluation can be done!")
       }
     } else {
-      cat("You have not provided a value for all of your inputs, so no evaluation can be done!")
+        cat("You have not provided any output variables")  
+      
     }
   })
 

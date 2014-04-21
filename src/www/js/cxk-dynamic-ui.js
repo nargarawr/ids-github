@@ -36,10 +36,20 @@ function onTabChange ( tabIndex ) {
   $("#mainDivExport").text("")
 
   if ( getLength(true) >= 1 && getLength(false) >= 1 && systemRules.length >= 1 ){
-    if ( document.contains(document.getElementById("evalPageInfo")) ){
-      document.getElementById("evalPageInfo").remove()  
-    }
+    
+      document.getElementById("evalPageInfo").innerHTML = ""; 
+      document.getElementById("evalPageInfo").className = "";
+  } else {
+      document.getElementById("evalPageInfo").innerHTML = "Before this page is usable, you need to add inputs, outputs, and rules to your system!"; 
+      document.getElementById("evalPageInfo").className = "alert alert-info";
   }
+
+  if ( getLength(false) >= 1 ) { 
+    document.getElementById("passBackEval2").value = "1";
+  } else {
+    document.getElementById("passBackEval2").value = "0";
+  }
+  
 
   if ( tabIndex == 0 ) {
     g_isInput = true;

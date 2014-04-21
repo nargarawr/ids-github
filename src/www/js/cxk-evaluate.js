@@ -28,6 +28,8 @@ function generateEvaluatorUI () {
 		var h3 = document.createElement("h3")
 		h3.appendText("Surface plot of your system")
 		document.getElementById("beforeYouPlot").appendChild(h3)
+	} else {
+		clearNode(document.getElementById("beforeYouPlot"))
 	}
 
 	for ( var key in inputDivs) {
