@@ -61,8 +61,8 @@ In this section, the functional requirements of the project have been enumerated
 		\begin{enumerate}[label*=\arabic*.]
 			\item Name of the system
 			\item Type of evaluation to use
-			\item ``And'' method to use
-			\item ``Or'' method to use
+			\item Intersection method to use
+			\item Union method to use
 			\item Aggregation method to use
 			\item Implication method to use
 			\item Defuzzification method to use		
@@ -103,7 +103,7 @@ In this section, a list of the non-functional requirements, that place constrain
 This is, naturally, a huge goal for the system, as it was one of the reasons for it's conception. The proposed system is to be made available entirely on-line, allowing anyone with internet access, and a computer, to use the system. The system's accessibility will be further increased by it's lack of client-side dependencies, meaning the user is not required to download or install any additional software if they wish to use the software. The only potential issue with accessibility is if the server that is hosting the website was to stop functioning. This is, however, a potential issue that does not have a solution.
 
 \paragraph{Usability and Operability}\ \\
-Due to the large range of potential users, the system will be designed in a way that is easy to navigate and use, regardless of the skill of the user. There will be a dedicated help system present in the system, that will allow the user to get help, whenever they need it, without having the leave the system and check some external documentation. The graphical user interface of the system helps to promote the ease of use, as the user is not expected to memorise a collection of commands, and instead need only press a few buttons to construct the system they wish to construct.
+Due to the large range of potential users, the system will be designed in a way that is easy to navigate and use, regardless of the skill of the user. There will be a dedicated help system present in the system, that will allow the user to get help, whenever they need it, without having to leave the system and check some external documentation. The graphical user interface of the system helps to promote the ease of use, as the user is not expected to memorise a collection of commands, and instead need only press a few buttons to construct the system they wish to construct.
 
 \paragraph{Maintainability}\ \\
 One of the eventual goals of the project is that the inference engine, that will initially be a bespoke JavaScript implementation, or using the FuzzyToolkitUoN implementation, can be swapped out, and any compatible engine be used. This means that this system would evolve into a web-front end, for any Fuzzy Logic back end; greatly expanding it's usefulness. As a result of this, and a result of good software engineering practices in general, the code will be kept as readable and modular as possible. The large quantity of JavaScript code that is required will be split into separate files, so that the maintaining programmer can easily identify issues. Each function will be commented in a JavaScript equivalent of JavaDoc, so that automated documentation can be produced, if necessary. This will hopefully ensure that new back-ends can be easily incorporated into the system, and any additions necessary will be quick and easy for the maintaining developers.
