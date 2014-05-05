@@ -4,7 +4,7 @@ In this section, all of the design aspects of this system have been detailed and
 \subsection{UI Design}
 As the purpose of this project was to aid in the accessibility and usability of fuzzy logic, to users of all skill levels, the design of the user interface was extremely important. The difference between a good piece of software, and a great piece of software, can easily be the interface they provide. In fact, the entire reason that FuzzyToolkitUoN is an inadequate piece of software for specifying fuzzy sets, is it's interface, and this is the exact thing this project aims to overcome. There were two main iterations to the user interface design, the first was a simple attempt to include all information on the page, in an easily viewable format. The second iteration was a refinement of the first stage, in which design principles were applied, and feedback was gathered from potential end users. \ \\
 \ \\
-It is worth noting that having all the different tasks of constructing a fuzzy system (specifying inputs, specifying outputs, specifying rules, evaluating the system, and file input and output) are all distinct tasks, and there is no reason for them to be together at any point. This is why, regardless of design, these tasks are all separated and are on different pages, or tabs, of the website. Further to this, the designs presented below cover only the input variable creation page and the rule creation page, as the input creation page is an exact replica of the output variable creation page, and the remaining pages or tabs of the website do not require much level of design, as they are relatively small.
+It is worth noting that all the different tasks of constructing a fuzzy system (specifying inputs, specifying outputs, specifying rules, evaluating the system, and file input and output) are distinct tasks, and there is no reason for them to be together at any point. This is why, regardless of design, these tasks are all separated and are on different pages, or tabs, of the website. Further to this, the designs presented below cover only the input variable creation page and the rule creation page, as the output creation page is an exact replica of the input variable creation page, and the remaining pages or tabs of the website do not require much level of design, as they are relatively small.
 
 \subsubsection{First Iteration}
 \begin{figure}[ht!]
@@ -27,15 +27,16 @@ This design uses long horizontal representations of the variables, so a large nu
 
 \begin{figure}[ht!]	
 \begin{center}
-\includegraphics[width=0.85\textwidth]{images/firstItRules}
+\includegraphics[width=0.825\textwidth]{images/firstItRules}
 \end{center}
 \vspace{-5mm}	
 \caption{The first iteration of the design of the rule creation page}
 \label{fig:design-firstIterationRules}
 \end{figure}
 \noindent 
-The rule creation page also follows a horizontal theme, which is especially effective for the rules, as there could potentially be a long list of them. The creation of the rules, and their displaying, are two clearly distinct segments to the page, which means there is no confusion between the two, and the process remains a simple one. In keeping with the standards of the previous page, the ``Add'' button is coloured green, to represent creation, and the ``Delete'' buttons present by each rule is coloured red, to represent destruction. These clear colour separations are useful to the user, as they do not even need to read a button to gain an understanding of what it will do \cite{cyr2010colour}, and they can be more careful to not make mistakes.\ \\
+The rule creation page also follows a horizontal theme, which is especially effective for the rules, as there could potentially be a long list of them. The creation of the rules, and their displaying, are two clearly distinct segments to the page, which means there is no confusion between the two, and the process remains a simple one. In keeping with the standards of the previous page, the ``Add'' button is coloured green, to represent creation, and the ``Delete'' buttons present by each rule are coloured red, to represent destruction. These clear colour separations are useful to the user, as they do not even need to read a button to gain an understanding of what it will do \cite{cyr2010colour}, and they can be more careful to not make mistakes.\ \\
 \ \\
+\vspace{-1mm}
 As can be seen, the navigation and header of the rule creation page are the same as those on the input creation page, which promotes a consistent style amongst the pages, and helps to remind the user they are still within the same system, even if they are completing a different task. 
 
 
@@ -107,7 +108,7 @@ It is important that the users of a system are always updated as to what is happ
 The user should be in full control of their experience of the system at all times, and thus a fluid and flexible navigation system is important. This is the purpose of the tabular layout of the website, as the user is free to travel to whichever pages they wish, in whichever order, which is specifically useful in the modern age where the culture and location of users has a large impact on how they navigate websites \cite{kralisch2005impact}. More details on the navigation of the system can be found in section \ref{subsec:nav}. 
 
 \item Consistency and standards/Strive for consistency\\
-A good interface should also be consistent in it's design, and follow platform standards. As you can see from the design of the input creator and the rule creator pages, the tabular layout is consistent throughout the website, and colours such as blue, green, and red have clearly defined purposes, which stay consistent throughout the as well.
+A good interface should also be consistent in it's design, and follow platform standards. As you can see from the design of the input creator and the rule creator pages, the tabular layout is consistent throughout the website, and colours such as blue, green, and red have clearly defined purposes, which stay consistent throughout the website.
 
 \newpage 
 \item Error prevention/ Help users recognize, diagnose, and recover from errors\\
@@ -181,7 +182,7 @@ Of course, whilst the generally expected path through the system has been determ
 \subsection{Internal Design}
 The user interface of a system is a huge part of the design process, and is extremely important, as this will be how the user will actually be interacting with it. However, this is not the only part of the system that requires designing; as the internal workings of the system also require a lot of thought. \ \\
 \ \\
-For this project, a web-interface was to be used to interact with a back end that could deal the processing of a fuzzy logic system. By this point in the project's development, the software's implementation decisions had been made (which are detailed in section \ref{sec:kid}), and the decision of the back end to be used was the FuzzyToolkitUoN R Package, using the R-Shiny service, to interact between the front end and back end. The diagram in figure \ref{fig:architectureDiagram} shows how the interaction between these two systems is handled.
+For this project, a web-interface was to be used to interact with a back end that could deal with the processing of a fuzzy logic system. By this point in the project's development, the software's implementation decisions had been made (which are detailed in section \ref{sec:kid}), and the decision of the back end to be used was the FuzzyToolkitUoN R Package, using the R-Shiny service, to interact between the front end and back end. The diagram in figure \ref{fig:architectureDiagram} shows how the interaction between these two systems is handled.
 
 \begin{figure}[ht!]
 \begin{center}
